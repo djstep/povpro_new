@@ -1,0 +1,31 @@
+[
+    "friction-linings",
+    "home-alt",
+    "kpo",
+    "search-example",
+    "services",
+    "machining",
+    "products",
+    "design-guide",
+    "hookahs",
+    {
+        "value":  [
+                      "index",
+                      "home-alt"
+                  ],
+        "Count":  2
+    },
+    "reviews",
+    "contacts",
+    "intelligent-systems",
+    "heat-treatment",
+    "specs",
+    "mld-alt",
+    {
+        "value":  [
+                      "mld",
+                      "mld-alt"
+                  ],
+        "Count":  2
+    }
+]

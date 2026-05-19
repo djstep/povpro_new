@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ремонт кузнечно-прессового оборудования — ППО №3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#0d1c2d",
+                        "inverse-surface": "#d4e4fa",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#273647",
+                        "secondary-container": "#3f465c",
+                        "tertiary-fixed": "#d8e3fb",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "primary-fixed-dim": "#adc6ff",
+                        "outline": "#8c909f",
+                        "tertiary-fixed-dim": "#bcc7de",
+                        "secondary-fixed": "#dae2fd",
+                        "on-primary-container": "#00285d",
+                        "on-tertiary-fixed-variant": "#3c475a",
+                        "tertiary": "#bcc7de",
+                        "on-surface": "#d4e4fa",
+                        "on-secondary": "#283044",
+                        "surface": "#051424",
+                        "on-tertiary-fixed": "#111c2d",
+                        "on-secondary-container": "#adb4ce",
+                        "secondary": "#bec6e0",
+                        "primary-fixed": "#d8e2ff",
+                        "on-background": "#d4e4fa",
+                        "on-primary": "#002e6a",
+                        "on-tertiary-container": "#1f2a3c",
+                        "outline-variant": "#424754",
+                        "error-container": "#93000a",
+                        "surface-tint": "#adc6ff",
+                        "surface-container-lowest": "#010f1f",
+                        "surface-bright": "#2c3a4c",
+                        "on-primary-fixed": "#001a42",
+                        "surface-container-high": "#1c2b3c",
+                        "on-surface-variant": "#c2c6d6",
+                        "primary-container": "#4d8eff",
+                        "on-tertiary": "#263143",
+                        "background": "#051424",
+                        "on-primary-fixed-variant": "#004395",
+                        "on-error": "#690005",
+                        "tertiary-container": "#8691a7",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "surface-container": "#122131",
+                        "primary": "#adc6ff",
+                        "surface-dim": "#051424",
+                        "on-secondary-fixed": "#131b2e",
+                        "inverse-primary": "#005ac2",
+                        "surface-container-highest": "#273647",
+                        "inverse-on-surface": "#233143"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "margin-desktop": "48px",
+                        "unit": "4px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Geist"],
+                        "mono-label": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-xl": ["Geist"],
+                        "body-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["13px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "mono-label": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .inner-glow-5 { box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.05); }
+        .glass-card {
+            background-color: rgba(39, 54, 71, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-[40px] border-b border-white/10 inner-glow-5 shadow-xl">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="flex items-center justify-between py-4 border-b border-white/10">
+<div class="flex items-center gap-4 cursor-pointer group">
+<img alt="ППО №3 Logo" class="w-12 h-12 object-contain group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0qS_t425FT9geYRFhZeluJHIqi-bfWwywSsS4nraVAP0FNgxBCFBkC4Ea7TdT_QyVcx1x5U-MYVN7V9TBrHJdp1K0Yd8DTdhXhA46meF-rXTXKT32RM7cLdKopTClmb-_tSTbXVjPnofAFl-BciUMfoXKT8-53CRtNHvWQcUQRWIxYmOgbN8fV0x7hyk1ubKzng0nAnBVDM-iFbMcUfBywu-3v728DzzIRk3MBZBEdX4gYMqdRxpH9vwalfSzHPFT95lA5NDkobsA"/>
+<div class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface tracking-tighter">
+          ППО №3
+        </div>
+</div>
+<div class="hidden md:flex items-center gap-12">
+<div class="flex flex-col text-right font-mono-label text-on-surface-variant">
+<div class="flex items-center justify-end gap-2">
+<span>г. Тольятти,</span>
+<span class="text-outline-variant">|</span>
+<a class="text-on-surface hover:text-primary transition-colors font-body-md" href="tel:+78482208050">+7 848 220 80 50</a>
+</div>
+<div class="flex items-center justify-end gap-2">
+<span>Индустриальная ул., 4 стр. 2</span>
+<span class="text-outline-variant">|</span>
+<a class="text-on-surface hover:text-primary transition-colors font-body-md" href="mailto:info@povpro.ru">info@povpro.ru</a>
+</div>
+</div>
+<button class="font-label-sm text-label-sm uppercase tracking-wider bg-primary text-on-primary px-8 py-3 rounded-full hover:bg-primary-fixed transition-all duration-300 font-bold shadow-lg shadow-primary/20">
+          СВЯЗАТЬСЯ
+        </button>
+</div>
+<div class="md:hidden">
+<button class="w-10 h-10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+<div class="hidden md:flex items-center h-14">
+<nav class="flex items-center gap-8">
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" href="/">Главная</a>
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" href="/frikcionnye-nakladki/">Фрикционные накладки</a>
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" href="/mekhanicheskaya-obrabotka/">Мехобработка</a>
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" href="/irt/">Интеллектуальные системы</a>
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-primary border-b-2 border-primary pb-1" href="/metalloobrabotka/">Услуги</a>
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" href="/contacts/">Контакты</a>
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors" href="/otzyvy-o-ppo/">Отзывы</a>
+</nav>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-40 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Hero Section -->
+<section class="mb-24 flex flex-col items-center text-center">
+<div class="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-surface-container-high border border-outline-variant/30 mb-8">
+<span class="font-mono-label text-mono-label text-primary">ТЕХНИЧЕСКОЕ ОБСЛУЖИВАНИЕ И РЕМОНТ</span>
+</div>
+<h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface mb-6 max-w-4xl">
+                Ремонт кузнечно-прессового оборудования.
+            </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto mb-10">Ремонт прессов, молотов, штампов в Тольятти. Многолетний опыт, работа с Авто-ВАЗ, ТЗТО, ДААЗ. Изготовление запчастей на собственном производстве.</p>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-8 py-4 rounded-full uppercase tracking-wider font-bold hover:bg-primary-fixed transition-colors shadow-lg shadow-primary/20">
+                Задать вопрос
+            </button>
+</section>
+<!-- Bento Grid: Services -->
+<section class="mb-24">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter auto-rows-[300px] md:auto-rows-[400px]">
+<!-- Main Feature Card -->
+<div class="md:col-span-8 glass-card rounded-xl p-8 md:p-12 flex flex-col justify-end relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 to-transparent z-10"></div>
+<img alt="Процесс ремонта гидравлического пресса" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close-up shot of industrial machinery undergoing maintenance in a high-tech facility. Sparks subtly fly in the background, illuminating the heavy metal components. The lighting is dramatic, with cool blue ambient tones and warm accents, reflecting a liquid industrial aesthetic. The focus is sharp on the precision engineering parts." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGgnDTjUEd_V25d5AorDdc1SbeA7o8gTxfSlXF2aYHXaTUJDjsTVIVj6JcQHFI58xFLK31jMHX9V_VW5RK5kXsseFAr7NCMRz3qTUegQiyj6h5VsCaIepLnE3e4z93HURT0gep3hDM99vZaQQTJ_MkBVK8-yoWifS24kKJd5KlkDvqqSuFpmE_vr3-79Skdm2sDOmciihmH5E1tLlf_gkX7xO7Im9C75HLPRKKuqNmu4lMMHsVMGpxzvm0RJANfS--LsKplbQqXV7_"/>
+<div class="relative z-20">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">Ремонт прессов гидравлических</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                            Полный цикл восстановительных работ: от диагностики гидравлической системы и замены уплотнений до восстановления геометрии направляющих и модернизации систем управления.
+                        </p>
+</div>
+</div>
+<!-- Secondary Card -->
+<div class="md:col-span-4 glass-card rounded-xl p-8 flex flex-col justify-between">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container mb-6">
+<span class="material-symbols-outlined" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<div>
+<h3 class="font-label-sm text-label-sm uppercase tracking-wider text-primary mb-3">Собственное производство</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Изготовление деталей по чертежам заказчика и разработка конструкторской документации на базе изношенных узлов.
+                         По собственной уникальной технологии изготавливаются фрикционы, что позволяет значительно увеличить срок службы муфт тормоза и сцепления любого механизма.</p>
+</div>
+</div>
+<!-- List Card -->
+<div class="md:col-span-12 glass-card rounded-xl p-8 md:p-12">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Обслуживаемое оборудование</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Наличие чертежей на запчасти для популярных моделей</p>
+</div>
+<div class="relative w-full md:w-auto">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full md:w-80 glass-card rounded-full pl-12 pr-4 py-3 text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary/50 bg-transparent border border-outline-variant/30 inner-glow-5" placeholder="Поиск по названию..." type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface/50 border border-outline-variant/20 rounded-full px-6 py-3 flex items-center justify-center hover:bg-surface-variant transition-colors cursor-default">
+<span class="font-mono-label text-mono-label text-on-surface">К-2131</span>
+</div>
+<div class="bg-surface/50 border border-outline-variant/20 rounded-full px-6 py-3 flex items-center justify-center hover:bg-surface-variant transition-colors cursor-default">
+<span class="font-mono-label text-mono-label text-on-surface">БВК 63</span>
+</div>
+<div class="bg-surface/50 border border-outline-variant/20 rounded-full px-6 py-3 flex items-center justify-center hover:bg-surface-variant transition-colors cursor-default">
+<span class="font-mono-label text-mono-label text-on-surface">MS-620</span>
+</div>
+<div class="bg-surface/50 border border-outline-variant/20 rounded-full px-6 py-3 flex items-center justify-center hover:bg-surface-variant transition-colors cursor-default">
+<span class="font-mono-label text-mono-label text-on-surface">К-2534</span>
+</div>
+<div class="bg-surface/50 border border-outline-variant/20 rounded-full px-6 py-3 flex items-center justify-center hover:bg-surface-variant transition-colors cursor-default">
+<span class="font-mono-label text-mono-label text-on-surface">КД-2128</span>
+</div>
+<div class="bg-surface/50 border border-outline-variant/20 rounded-full px-6 py-3 flex items-center justify-center hover:bg-surface-variant transition-colors cursor-default">
+<span class="font-mono-label text-mono-label text-on-surface">КД-2328</span>
+</div>
+<div class="bg-surface/50 border border-outline-variant/20 rounded-full px-6 py-3 flex items-center justify-center hover:bg-surface-variant transition-colors cursor-default">
+<span class="font-mono-label text-mono-label text-on-surface">ERFURT</span>
+</div>
+<div class="bg-surface/50 border border-outline-variant/20 rounded-full px-6 py-3 flex items-center justify-center hover:bg-surface-variant transition-colors cursor-default">
+<span class="font-mono-label text-mono-label text-outline">+ 40 моделей</span>
+</div>
+</div>
+<div class="mt-8 flex justify-center">
+<button class="w-12 h-12 rounded-full glass-card flex items-center justify-center text-primary hover:bg-white/5 transition-all duration-300">
+<span class="material-symbols-outlined text-2xl">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20 full-width bottom-0">
+<div class="md:col-span-1 flex flex-col gap-4">
+<div class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary">ППО №3</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-auto">© 2024 ППО №3 (POVPRO). Промышленное производство и инжиниринг.</p>
+</div>
+<div class="md:col-span-3 flex flex-wrap gap-x-8 gap-y-4 md:justify-end items-start mt-8 md:mt-0">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="/">Главная</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="/frikcionnye-nakladki/nashi-izdeliya/">Продукция</a>
+<a class="font-body-md text-body-md text-primary font-bold hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="/metalloobrabotka/">Услуги</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="/frikcionnye-nakladki/tu/">Технические условия</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="/otzyvy-o-ppo/">Отзывы</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="/contacts/">Контакты</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="#">Карта сайта</a>
+</div>
+</footer>
+</body></html>

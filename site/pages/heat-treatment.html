@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Услуги термообработки - ППО №3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "outline-variant": "#424754",
+                "on-secondary": "#283044",
+                "on-tertiary-fixed": "#111c2d",
+                "on-primary-fixed": "#001a42",
+                "on-tertiary": "#263143",
+                "on-surface": "#d4e4fa",
+                "on-secondary-fixed-variant": "#3f465c",
+                "on-secondary-container": "#adb4ce",
+                "tertiary": "#bcc7de",
+                "surface-container-high": "#1c2b3c",
+                "on-primary-fixed-variant": "#004395",
+                "tertiary-fixed-dim": "#bcc7de",
+                "secondary": "#bec6e0",
+                "primary": "#adc6ff",
+                "inverse-surface": "#d4e4fa",
+                "tertiary-fixed": "#d8e3fb",
+                "on-error": "#690005",
+                "inverse-primary": "#005ac2",
+                "surface-variant": "#273647",
+                "on-secondary-fixed": "#131b2e",
+                "on-primary-container": "#00285d",
+                "surface-bright": "#2c3a4c",
+                "primary-fixed-dim": "#adc6ff",
+                "on-background": "#d4e4fa",
+                "secondary-container": "#3f465c",
+                "surface-dim": "#051424",
+                "inverse-on-surface": "#233143",
+                "surface-container": "#122131",
+                "tertiary-container": "#8691a7",
+                "surface-tint": "#adc6ff",
+                "surface-container-low": "#0d1c2d",
+                "outline": "#8c909f",
+                "on-primary": "#002e6a",
+                "secondary-fixed-dim": "#bec6e0",
+                "surface-container-lowest": "#010f1f",
+                "on-error-container": "#ffdad6",
+                "on-tertiary-fixed-variant": "#3c475a",
+                "on-tertiary-container": "#1f2a3c",
+                "on-surface-variant": "#c2c6d6",
+                "surface-container-highest": "#273647",
+                "surface": "#051424",
+                "secondary-fixed": "#dae2fd",
+                "error": "#ffb4ab",
+                "primary-container": "#4d8eff",
+                "background": "#051424",
+                "error-container": "#93000a",
+                "primary-fixed": "#d8e2ff"
+        },
+        "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "gutter": "24px",
+                "margin-mobile": "16px",
+                "unit": "4px",
+                "margin-desktop": "48px",
+                "container-max": "1280px"
+        },
+        "fontFamily": {
+                "headline-xl": [
+                        "Geist"
+                ],
+                "label-sm": [
+                        "Geist"
+                ],
+                "headline-lg-mobile": [
+                        "Geist"
+                ],
+                "mono-label": [
+                        "Geist"
+                ],
+                "headline-lg": [
+                        "Geist"
+                ],
+                "body-md": [
+                        "Geist"
+                ]
+        },
+        "fontSize": {
+                "headline-xl": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "600"
+                        }
+                ],
+                "mono-label": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .liquid-glass {
+            background-color: rgba(39, 54, 71, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.05);
+        }
+        .liquid-glass:hover {
+            background-color: rgba(39, 54, 71, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-3xl border-b border-white/10 flex flex-col">
+<!-- Upper Level -->
+<div class="border-b border-white/5">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center">
+<div class="font-headline-lg-mobile text-primary font-black tracking-tighter text-[2.5rem] leading-tight flex items-center gap-4"><img alt="Logo" class="w-12 h-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbnb-_niYbXNu6FJEjkH0l8VPhQ8iKDkOGZd9_YrKB1hRg2LVyay3ME0FSzyjDB4BZ-SbmPPD8Rru1I0MPkcX-8YqUxyLaHw9Y77kay9bOZrA8HKFNa1zdcC4h-m9KOKv1fHk9auxlzkIGTSdqq4EWyg5ZEEQv83hTyk1qPQKqkdjR4O-O6l9mEq4Ug7I_cVJun8gyvJP0wenJUh8FpWwZXJZZQkRd8DgE90Jolic1QiSye2vfyIDaKOO0O3NEyTvKQYd15-qwerev"/>ППО №3</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:grid grid-cols-[auto_auto] gap-x-6 gap-y-0 items-center"><!-- Row 1 -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">location_on</span>
+<div class="text-on-surface-variant font-label-sm text-label-sm leading-[1.2]">г. Тольятти</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">call</span>
+<a class="text-on-surface hover:text-primary transition-colors font-label-sm text-label-sm font-bold leading-[1.2]" href="tel:88482555900">8 (8482) 555-900</a>
+</div>
+<!-- Row 2 -->
+<div class="flex items-center gap-2 mt-1">
+<div class="w-4"></div>
+<div class="text-on-surface-variant font-label-sm text-label-sm leading-[1.2]">ул. Окраинная, 24</div>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-primary text-base">mail</span>
+<a class="text-on-surface hover:text-primary transition-colors font-label-sm text-label-sm font-bold leading-[1.2]" href="mailto:office@povpro.ru">office@povpro.ru</a>
+</div></div>
+<button class="bg-primary text-on-primary rounded-full px-5 py-3 font-label-sm text-label-sm hover:opacity-90 transition-opacity uppercase tracking-widest font-bold">
+                    Запросить расчет
+                </button>
+</div>
+</div>
+</div>
+<!-- Lower Level -->
+<div class="hidden lg:block">
+<div class="max-w-container-max mx-auto px-margin-desktop py-3 flex justify-center">
+<div class="flex items-center space-x-6">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm uppercase tracking-widest" href="index.html">ГЛАВНАЯ</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="friction-linings.html">ФРЕЗЕРНЫЕ РАБОТЫ</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="machining.html">МЕХОБРАБОТКА</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="intelligent-systems.html">ИНТЕЛЛЕКТУАЛЬНЫЕ СИСТЕМЫ</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="services.html">УСЛУГИ</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="contacts.html">КОНТАКТЫ</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="reviews.html">ОТЗЫВЫ</a>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-40 md:pt-48 pb-32 flex-grow px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Hero Section -->
+<section class="mb-24 text-center mt-12">
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">Термообработка</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl mx-auto mb-12">
+            Термическая обработка - это технологически сложный процесс, в котором необходимо учитывать множество факторов в зависимости от вида термообработки и обрабатываемого материала, требующий дорогостоящего оборудования и оснастки, достаточно больших площадей и высококвалифицированных специалистов.
+        </p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-primary max-w-4xl mx-auto mb-12 font-bold">
+            ООО «Поволжское производственное объединение №3» (ППО 3) производит следующие услуги по термообработке:
+        </p>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider px-8 py-4 rounded-full hover:bg-primary-fixed transition-colors shadow-lg shadow-primary/20">
+            Сделать заказ
+        </button>
+</section>
+<!-- Vertical Panels List -->
+<div class="flex flex-col gap-16">
+<!-- Закалка -->
+<div class="liquid-glass rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row gap-12 items-center">
+<div class="flex-1 space-y-6">
+<div class="inline-block bg-surface-container text-on-surface-variant font-mono-label text-mono-label px-4 py-2 rounded-full border border-outline/20">
+                    01 / Закалка
+                </div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Закалка</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Разновидность термической обработки металлов и сплавов, в основу которого входит нагрев выше критической температуры, при котором происходят изменения в кристаллической решетки, с дальнейшим быстрым охлаждением чаще всего в воде или масле. Применяется для увеличения твердости, но при этом металл становится менее вязким, менее пластичным и хрупким.
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    А для снижения хрупкости и повышения пластичности после закалки без полиморфного превращения наши специалисты применяют старение , после закалки с полиморфным превращением применяют отпуск, но нужно отметить, что при отпуске несколько снижается твердость и прочность материала..
+                </p>
+</div>
+<div class="flex-1 flex gap-4 w-full h-full">
+<img alt="Закалка 1" class="w-1/2 rounded-3xl object-cover aspect-[4/5] border border-outline/20" src="https://lh3.googleusercontent.com/aida/ADBb0ugS4f7hksOhfHWejwzRwHjjXcIf9aVolwmDn44QyIBsxyXX4xdVGQtGVCVDReAyqLLVif4uuQslSQm-KBzigP5uJWxOGBk3wArVKIhfQoOOio2AzMWUCn0ck2pUVtuTAF7udWHSnHgb65sU6kRqawpN9eIVsCXh-X_puLuGf_fgWwk-idX3fyp8UheEWeDQz8pYCqj6Si6TXjCbuRNwDUGQfFw4lcTgD5kCb2GJp3MDX3-1y5Hfv16RogUQ"/>
+<img alt="Закалка 2" class="w-1/2 rounded-3xl object-cover aspect-[4/5] border border-outline/20" src="https://lh3.googleusercontent.com/aida/ADBb0uhxJlmHe0Uv2spItmaiAG6whCOUP3Y2NUqmqXfyTkFaZyzVMfx9JPCdhQ38Gh_8jn5ZOeimjxu1qeUTpaUi6TbQFDc1LCyqLZrzBLGqRgMpj0a88__lIcxFeaSL2l5Xbi29u8Rc2lOiTp4dpFI4oxQq4Jsp-PlNCCLjA2Ox0kN5mnSogmS55TrTHnnSTa096B6F_4nk5HduRUkStzCESi0jbqbLfrQryJ2cHcnPY3od7bx2hI1tI-SElmwt"/>
+</div>
+</div>
+<!-- Отпуск -->
+<div class="liquid-glass rounded-[3rem] p-8 md:p-16 flex flex-col gap-12">
+<div class="space-y-6 max-w-4xl">
+<div class="inline-block bg-surface-container text-on-surface-variant font-mono-label text-mono-label px-4 py-2 rounded-full border border-outline/20">
+                    02 / Отпуск
+                </div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Отпуск</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Данная услуга термической обработки, происходит после закалки металла и проводится с целью снижения хрупкости металла и получения более высокой пластичности. Для этого металл подвергается нагреву от 150—260 °C до 370—650 °C с дальнейшим медленным остыванием.
+                </p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-8 mb-4">Компания ООО "ППО№3" проводит 3 вида отпуска.</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="space-y-4 bg-surface-container-lowest/50 p-8 rounded-3xl border border-outline/10">
+<h4 class="text-primary font-bold font-headline-lg-mobile text-headline-lg-mobile">Низкотемпературный отпуск</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Проводится при температуре до 250 °C. Такая сталь сохраняет свою высокую износостойкость, но сердцевина остается хрупкой такое изделие не стоит применять при высоких динамических нагрузках. Такой отпуск используют для измерительных и режущих инструментов из низколегированных и углеродистых с</p>
+</div>
+<div class="space-y-4 bg-surface-container-lowest/50 p-8 rounded-3xl border border-outline/10">
+<h4 class="text-primary font-bold font-headline-lg-mobile text-headline-lg-mobile">Среднетемпературный отпуск</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Проводится в диапазонах температур 350—500 °C и применяется в основном для штампов, рессор, пружин. Этот отпуск обеспечивает высокие показатели упругости и выносливости, материал после среднетемпературного отпуска способен длительное время противостоять внешнему воздействию и сохранять свои свойства в течение определенного времени эксплуатации. Далее происходит охлаждение детали при температурах 400—500 °C в воде, в следствии чего появляются сжимающие напряжения, увеличивающие предел выносливости пружин.</p>
+</div>
+<div class="space-y-4 bg-surface-container-lowest/50 p-8 rounded-3xl border border-outline/10">
+<h4 class="text-primary font-bold font-headline-lg-mobile text-headline-lg-mobile">Высокотемпературный отпуск</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Проводится при температуре 500—680 °C. При этом сохраняется вязкость, пластичность и высокая прочность. На производстве высокотемпературному отпуску подвергают детали, которые воспринимают ударную нагрузку (валы, зубчатые колёса).</p>
+</div>
+</div>
+</div>
+<!-- Старение -->
+<div class="liquid-glass rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row gap-12 items-center">
+<div class="flex-1 space-y-6">
+<div class="inline-block bg-surface-container text-on-surface-variant font-mono-label text-mono-label px-4 py-2 rounded-full border border-outline/20">
+                    03 / Старение
+                </div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Старение</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Это разновидность термообработки, при которой в металле, подвергнутому закалке происходит изменение физико-механических свойств, где основным процессом является распад пересыщенного твердого раствора. Процесс старения может приводить к нежелательным изменениям характеристик металлов. К примеру,после сварки металла сварной шов и прилегающая к нему зона становятся хрупкими. Старение несет и положительное влияние- когда происходит термообработка с целью повышения прочности и др. свойств за счет совокупности процессов закалки и старения.
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    При термической обработке старение используется в качестве финишной операции для специального класса конструкционных материал
+                </p>
+</div>
+<div class="flex-1 flex justify-center w-full">
+<img alt="Старение" class="w-full max-w-md rounded-3xl object-cover aspect-[4/5] border border-outline/20" src="https://lh3.googleusercontent.com/aida/ADBb0uiFEFMSCUwPiDpCCKszNya3M7H9HZzB8w8BsrL6Z6fUjd1j13cvZwDAC5il7nPqK7rwWNSn-kob5I2vhw-BrJP7cTje7fWtC6mi5fliEYYHSfcrSHV2IGEbMt9iFDaRVXFfitX2cWyOSZN6ULCsORaYbEm7q7GZGZWlB9Pt2LymTFsvzkXYwqcQIOfYBBrvMn-68zEKIeipEU4tt_0Xg5hK1OOFpvPEHx6w4oreFfimuq-MjE3cFb6SNxk"/>
+</div>
+</div>
+<!-- Закалка ТВЧ -->
+<div class="liquid-glass rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row-reverse gap-12 items-center">
+<div class="flex-1 space-y-6">
+<div class="inline-block bg-surface-container text-on-surface-variant font-mono-label text-mono-label px-4 py-2 rounded-full border border-outline/20">
+                    04 / Закалка ТВЧ
+                </div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Закалка токами высокой частоты (ТВЧ)</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Этот метод поверхностной закалки получил большое распространение в машиностроении. Применяется для ответственных деталей, которые работают на износ и одновременно подвергаются действию ударных нагрузок (зубчатые колеса, валы). Целью закалки стали является предельное повышение твердости путем получения мартенситной структуры. Такой вид обработки отличается высоко производительностью поверхностного упрочнения металла.
+                </p>
+</div>
+<div class="flex-1 w-full">
+<img alt="Закалка ТВЧ" class="w-full rounded-3xl object-cover aspect-[4/3] border border-outline/20" src="https://lh3.googleusercontent.com/aida/ADBb0ugWnnyfNQfdwwqZuKTz7blRU4JLz8qwh7shJ90VXsMfaUbmIP7KUYN3ir6wZjoFE0xXy5c9A19fnhXUjc7ra1MAU84Ae3BuJ56kzBRNQMu4uMhJUyKA_lj0IZ-675lz7CWIZL0eDSct2Kfo6yaAX_cc6MQOeBEWB51t3v9DGVoJeGtrziA8DzYGZ4A0ad4iMmqnb6B7dSHTJSb4Okz-jR3Y0IYCBNChmu8eOt2eaWpcWCfk8h_hn9pYChSR"/>
+</div>
+</div>
+<!-- Отжиг -->
+<div class="liquid-glass rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row gap-12 items-center">
+<div class="flex-1 space-y-6">
+<div class="inline-block bg-surface-container text-on-surface-variant font-mono-label text-mono-label px-4 py-2 rounded-full border border-outline/20">
+                    05 / Отжиг
+                </div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Отжиг</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Компания ООО "ППО№3" предлагает процедуру термической обработки "Отжиг", которая заключается в нагреве стали выше критических температур, выдержке и дальнейшем, медленном охлаждении до комнатной температуры. Целью отжига является снижение твердости для улучшения обрабатываемости резанием, исправление структуры, улучшение структуры литой стали и уничтожение внутренних напряжений.
+                </p>
+</div>
+<div class="flex-1 w-full">
+<img alt="Отжиг" class="w-full rounded-3xl object-cover aspect-[4/3] border border-outline/20" src="https://lh3.googleusercontent.com/aida/ADBb0uhykG7bBQS2w1cCTifr4d8gNNRCh4ZWkGG8W36YEOL9olQcG0gUQ40Bb6CPAXUT5Joat0tIA7PGhThlhYxirVYheH3HWZ27VUGPgZJWk3ARdW-ViLyPe46NEjIl6tpck6Y8LGpctdVCLRvN_6pZEx2fwnEdv0PvU6h_E716LW0jY6fkGbxNoTDWuWRXmFsn6-zebOvH5KpDXJkzo_DMfBvyPcdcSeCrP2XgJ_Sk8fHbYNERTfmnO_WVej-3"/>
+</div>
+</div>
+<!-- Азотирование & Карбонитрация -->
+<div class="liquid-glass rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row gap-12 items-center">
+<div class="flex-1 w-full h-full">
+<img alt="Азотирование и Карбонитрация" class="w-full h-full rounded-3xl object-cover border border-outline/20" src="https://lh3.googleusercontent.com/aida/ADBb0uh6sXRSiVRKtypETFDO2ssJZoTT7_uamfytETJnFQ6lsVNiJUyQef4267IIe6a4pEe3ZDkEXtjV3pnbXKBDHNAifiQnKGSn1wGHA_MK5fT0zxsqtFK6HoUcZIL1hz-3uWOx0jeV5bWbYTkFRb3Kcxv_LUeY3SICRrja7QfWs12epks16F0_zJi9a-hPrF4T4MzbbsBcz-ii4FBctOmSx6DmUpTU5hc1DFFL_9mpJrmRI4IqaT78KliocSk"/>
+</div>
+<div class="flex-1 space-y-12">
+<div class="space-y-6">
+<div class="inline-block bg-surface-container text-on-surface-variant font-mono-label text-mono-label px-4 py-2 rounded-full border border-outline/20">
+                        06 / Азотирование
+                    </div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Азотирование</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Азотирование заключается в насыщении поверхностного слоя стали азотом с целью придания поверхности твердости, износоустойчивости и предела выносливости деталей. Помимо того, азотирование повышает коррозионную стойкость. Азотирование является одной из последних и может быть заключительной операцией термообработки и технологического процесса изготовления деталей. Азотирование обычно применяется после процесса шлифовки. Иногда после азотирования производится окончательная доводка размеров шлифованием. Азотированием подвергают шестерни, коленчатые валы мощных двигателей, кулачки и втулки. В последнее время азотируются лопатки и другие детали паровых турбин.
+                    </p>
+</div>
+<div class="border-t border-outline/20 pt-12 space-y-6">
+<div class="inline-block bg-surface-container text-on-surface-variant font-mono-label text-mono-label px-4 py-2 rounded-full border border-outline/20">
+                        07 / Карбонитрация
+                    </div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Карбонитрация (Карбонитрирование)</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Используется для усиления твёрдости и износостойкости поверхности металла. При этом процессе термической обработки поверхность металла одновременно насыщается углеродом и азотом, создавая препятствия для скольжения, повышая твёрдость и упругость у поверхности материала. Это финишный процесс. При других способах увеличения поверхностной прочности деталей нужно предусматривать припуск на последующую мехобработку,а при карбонитрации в этом нет необходимости. Для карбонитрации используют недорогую, легко обрабатываемую низкоуглеродистую сталь, чтобы придать её поверхностные свойства к более дорогим маркам сталей. Твёрдость карбонитрированной поверхности стали достигает от 55 до 62 HRC.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Цементация -->
+<div class="liquid-glass rounded-[3rem] p-8 md:p-16 flex flex-col md:flex-row-reverse gap-12 items-center">
+<div class="flex-1 space-y-6">
+<div class="inline-block bg-surface-container text-on-surface-variant font-mono-label text-mono-label px-4 py-2 rounded-full border border-outline/20">
+                    08 / Цементация
+                </div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface">Цементация</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Цементация – вид термической обработки , который заключается в насыщении стали углеродом для придания деталям машин износостойкости и высокой поверхностной твердости, а также повышения предела выносливости (предела усталости). В цементованных изделиях благодаря высокой твердости слоя поверхностности и вязкой пластичной сердцевине удачно сочетаются высокое сопротивление износу и хорошее восприятие ударных нагрузок. Цементации подвергаются детали, работающие в условиях контактного износа и приложения знакопеременных нагрузок: например, втулки, кулачки, поршневые пальцы, валы и т.п.
+                </p>
+</div>
+<div class="flex-1 w-full flex justify-center">
+<img alt="Цементация" class="w-full max-w-md rounded-3xl object-cover aspect-[4/5] border border-outline/20" src="https://lh3.googleusercontent.com/aida/ADBb0uhuos-Yz5AxW8hvt2q4UtTWk-Mg1s0MZEG-MiPvwDm6D-K-j0gCR2V_zfDwQD-_TLpUHyHi0UTvUvXoR-6HveaLCiWnRCqDJ4GA1Fg800oAe5Ibl1pXstBdtc4UhxT_mjFQ848T2G3rQfK8nyxLz8WJEIz9EYfDM3T_CXYhPAOY6gRM408TpCRBTmuv7s3xzBvJMPtGP0e8RfuwMn515jQb1avd9yOrTtMXwrqKXLyZ_ZhRbNZMpp2tVQyt"/>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter bg-surface-container-lowest border-t border-outline-variant/20 flat no shadows full-width bottom-0 mt-20">
+<div class="col-span-1 md:col-span-4 mb-8">
+<div class="font-headline-lg text-headline-lg font-bold text-primary">ППО №3</div>
+</div>
+<div class="col-span-1">
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">© 2024 ППО №3 (POVPRO). Промышленное производство и инжиниринг.</p>
+</div>
+<div class="col-span-1 md:col-span-3 flex flex-wrap gap-x-8 gap-y-4 md:justify-end">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="index.html">Главная</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="products.html">Продукция</a>
+<a class="font-body-md text-body-md text-primary font-bold hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="services.html">Услуги</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="specs.html">Технические условия</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="reviews.html">Отзывы</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="contacts.html">Контакты</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4 transition-opacity duration-200 hover:opacity-80" href="#">Карта сайта</a>
+</div>
+</footer>
+</body></html>

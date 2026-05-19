@@ -1,0 +1,422 @@
+<!DOCTYPE html><html class="dark" lang="ru"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Фрикционные накладки — ППО №3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#051424",
+                      "primary-fixed-dim": "#adc6ff",
+                      "inverse-surface": "#d4e4fa",
+                      "surface-container-low": "#0d1c2d",
+                      "primary-container": "#4d8eff",
+                      "on-surface-variant": "#c2c6d6",
+                      "inverse-on-surface": "#233143",
+                      "secondary-fixed": "#dae2fd",
+                      "on-primary": "#002e6a",
+                      "on-surface": "#d4e4fa",
+                      "outline": "#8c909f",
+                      "on-tertiary-container": "#1f2a3c",
+                      "on-tertiary": "#263143",
+                      "on-secondary-fixed": "#131b2e",
+                      "surface-container-highest": "#273647",
+                      "surface-container": "#122131",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "on-tertiary-fixed-variant": "#3c475a",
+                      "outline-variant": "#424754",
+                      "on-error-container": "#ffdad6",
+                      "tertiary-container": "#8691a7",
+                      "on-secondary-container": "#adb4ce",
+                      "error": "#ffb4ab",
+                      "on-primary-fixed": "#001a42",
+                      "secondary": "#bec6e0",
+                      "surface": "#051424",
+                      "tertiary": "#bcc7de",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "surface-dim": "#051424",
+                      "primary-fixed": "#d8e2ff",
+                      "tertiary-fixed": "#d8e3fb",
+                      "secondary-container": "#3f465c",
+                      "on-primary-container": "#00285d",
+                      "on-secondary": "#283044",
+                      "error-container": "#93000a",
+                      "on-primary-fixed-variant": "#004395",
+                      "surface-tint": "#adc6ff",
+                      "on-background": "#d4e4fa",
+                      "surface-variant": "#273647",
+                      "surface-container-lowest": "#010f1f",
+                      "surface-container-high": "#1c2b3c",
+                      "on-error": "#690005",
+                      "on-tertiary-fixed": "#111c2d",
+                      "surface-bright": "#2c3a4c",
+                      "primary": "#adc6ff",
+                      "inverse-primary": "#005ac2",
+                      "tertiary-fixed-dim": "#bcc7de"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "unit": "4px",
+                      "margin-desktop": "48px"
+              },
+              "fontFamily": {
+                      "body-md": ["Geist"],
+                      "headline-lg": ["Geist"],
+                      "headline-lg-mobile": ["Geist"],
+                      "mono-label": ["Geist"],
+                      "headline-xl": ["Geist"],
+                      "label-sm": ["Geist"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "mono-label": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                      "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-sm": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #051424;
+            color: #d4e4fa;
+            font-family: 'Geist', sans-serif;
+        }
+        .liquid-glass {
+            background: rgba(18, 33, 49, 0.4);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 2px 1px rgba(255, 255, 255, 0.05);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        h1, h2, h3, h4, h5, h6, nav, button, span, a, p {
+            font-family: 'Geist', sans-serif;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container leading-relaxed">
+<!-- Header Section -->
+<header class="bg-surface/60 backdrop-blur-2xl docked full-width top-0 z-50 border-b border-white/10">
+<div class="flex flex-col w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex flex-wrap items-center justify-between gap-gutter">
+<div class="flex items-center gap-4">
+<img alt="ППО №3 Логотип" class="w-16 h-16 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAef0OUO2dYaLREfU80gYA1Imx0mvvFu_ZtTnwaF8bTYGTE5MwBcdoGheKSZYSIbBapgJSulFuTOx7Bu65aDcI5FjmdWtTEph4kB_j00zI2b3O-vyryNguFdSJroJGSrMZRwJ4Dak6vxSkBC-3eNN7Kn4tWq_P5d8g4w4QxN4ymhrp8VdsAZ4UUjFX1OFbrGGf7SUsBtunv8GSRlonQ6GtXElQQhBE6yjfgGdx-h7w3GlYl31QQJSJnkWPE61K6AUklNQPLHj8oMGu4">
+<span class="font-headline-lg text-headline-lg font-black tracking-tighter text-[2.5rem] leading-tight text-primary">ППО №3</span>
+</div>
+<div class="flex gap-6 items-center">
+<div class="hidden md:grid grid-cols-[auto_auto] gap-x-6 gap-y-0 items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">location_on</span>
+<div class="text-on-surface-variant font-label-sm text-label-sm leading-[1.2]">г. Тольятти</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">call</span>
+<a class="text-on-surface hover:text-primary transition-colors font-label-sm text-label-sm font-bold leading-[1.2]" href="tel:88482555900">8 (8482) 555-900</a>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-4"></div>
+<div class="text-on-surface-variant font-label-sm text-label-sm leading-[1.2]">ул. Окраинная, 24</div>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-primary text-base">mail</span>
+<a class="text-on-surface hover:text-primary transition-colors font-label-sm text-label-sm font-bold leading-[1.2]" href="mailto:office@povpro.ru">office@povpro.ru</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Navigation Section -->
+<nav class="bg-surface/40 backdrop-blur-xl border-b border-white/5 sticky top-0 z-40">
+<div class="flex flex-row items-center justify-center w-full px-margin-desktop py-3 max-w-container-max mx-auto gap-6">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="/">Главная</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm uppercase tracking-widest" href="/frikcionnye-nakladki/">Фрикционные накладки</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="/mekhanicheskaya-obrabotka/">Мехобработка</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="/irt/">Интеллектуальные системы</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="/metalloobrabotka/">Услуги</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="/contacts/">Контакты</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="/otzyvy-o-ppo/">Отзывы</a>
+</div>
+</nav>
+<main class="w-full">
+<!-- Hero Section -->
+<section class="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-b from-background/40 via-background/80 to-background z-10"></div>
+<img class="w-full h-full object-cover" data-alt="A macro cinematic shot of precision-engineered industrial metal friction plates and mechanical gears. The lighting is moody and technical with cool blue tones and sharp highlights on the metallic surfaces. The atmosphere is professional and high-end, representing advanced manufacturing and engineering excellence in a dark industrial environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYLFK-QoFr4afkEAUxvKtpYu6pIOcEIDWfwC1KtHFSOqEmWPeIKonMfx7XZkC6NRFT1_HZjvuUSMSp7P0nGxF8CeJC7LJHZY5JJNf72spW4fsSiFsL3_JnaDwUw1Oy4WNSAsQGbueMksQxpAKUEgSrMxG03RxBMo3Ny1myjAzNlnCLbeiHNPg8k6Fk84ybtmHIQx1rG_C407DNvujnjm5HA2A8zXE3ydw-ym74Xo6kLSQLS4AAYaMK75gx4XgRtVor0Z5DrSKj7rQA">
+</div>
+<div class="relative z-20 text-center px-margin-desktop max-w-4xl">
+<h1 class="font-headline-xl text-headline-xl mb-6 text-on-surface font-bold tracking-tight">Фрикционные изделия на заказ</h1>
+<p class="font-body-md text-headline-lg-mobile text-on-surface-variant font-light">По собственной, уникальной технологии</p>
+<div class="mt-12 flex justify-center gap-4">
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-8 py-4 rounded-full uppercase tracking-widest hover:scale-95 transition-transform font-bold">Консультация</button>
+<button class="liquid-glass text-primary font-label-sm text-label-sm px-8 py-4 rounded-full uppercase tracking-widest hover:bg-white/10 transition-colors font-bold">Смотреть каталог</button>
+</div>
+</div>
+</section>
+<!-- History Section -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto">
+<div class="liquid-glass rounded-xl p-12 md:p-16 flex flex-col md:flex-row gap-16 items-center">
+<div class="w-full md:w-1/2">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-4 block">Наша история</span>
+<h2 class="font-headline-xl text-headline-xl mb-8 font-bold tracking-tight">История разработки</h2>
+<div class="space-y-6 text-on-surface-variant font-body-md leading-relaxed">
+<p class="">В 2004 году перед специалистами нашего предприятия была поставлена амбициозная задача от ПАО «АВТОВАЗ» — разработка и внедрение современных безасбестовых фрикционных материалов.</p>
+<p class="">Благодаря интеграции инновационных инженерных решений и глубоких знаний в области химии полимеров, нами был создан уникальный композитный состав, превосходящий традиционные аналоги по долговечности и безопасности. Сегодня это стандарт качества в промышленной отрасли.</p>
+</div>
+</div>
+<div class="w-full md:w-1/2">
+<div class="relative rounded-lg overflow-hidden border border-white/10 group">
+<img class="w-full aspect-video object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An artistic black and white photograph with subtle blue highlights showing a vintage technical blueprint of an automotive clutch component lying on a modern laboratory table. Beside the blueprint, several high-tech friction pads are displayed. The scene captures a bridge between historical engineering heritage and modern industrial innovation in a dark, atmospheric setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpenxsvS0PvSJQF9VnkQ4Ze_uiBoL5G5uWfKIuTctMsJws-sfI2rGvfF4tyVanIkTO32knVwMrDWI0GuyNq4-Jg1H6aMmPkBadvNxtmY3RfUR8ZeDDslHw3ahL9XZqsG2P1yLwPSStDiFHeLJvmCyZsuROw8g7-mNINg6pH2wTnbu_kI8J7nW-BIgtEJSFadhI38VB_P_xKj_hiXlAlcw8keirJlkF3eBelsJFacYtUKj83o91iUVmm2wzqR_rHBtCVy84mclWi0Ob">
+</div>
+</div>
+</div>
+</section>
+<!-- Production Grid -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-xl text-headline-xl mb-4 font-bold tracking-tight">Что мы производим</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto font-body-md leading-relaxed">Полный спектр высококачественных изделий для тормозных систем и узлов трения промышленного оборудования.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-16">
+<!-- Product Cards -->
+<div class="liquid-glass p-8 rounded-lg flex flex-col items-center text-center group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">disc_full</span>
+<h3 class="font-headline-lg-mobile mb-2 font-bold tracking-tight">Накладки</h3>
+<p class="text-mono-label text-on-surface-variant opacity-70 group-hover:opacity-100 transition-opacity">Для различных типов механизмов</p>
+</div>
+<div class="liquid-glass p-8 rounded-lg flex flex-col items-center text-center group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">view_kanban</span>
+<h3 class="font-headline-lg-mobile mb-2 font-bold tracking-tight">Сектора</h3>
+<p class="text-mono-label text-on-surface-variant opacity-70 group-hover:opacity-100 transition-opacity">Сегментные фрикционные элементы</p>
+</div>
+<div class="liquid-glass p-8 rounded-lg flex flex-col items-center text-center group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">layers</span>
+<h3 class="font-headline-lg-mobile mb-2 font-bold tracking-tight">Вкладыши</h3>
+<p class="text-mono-label text-on-surface-variant opacity-70 group-hover:opacity-100 transition-opacity">Прецизионные вкладыши трения</p>
+</div>
+<div class="liquid-glass p-8 rounded-lg flex flex-col items-center text-center group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">circle</span>
+<h3 class="font-headline-lg-mobile mb-2 font-bold tracking-tight">Диски</h3>
+<p class="text-mono-label text-on-surface-variant opacity-70 group-hover:opacity-100 transition-opacity">Стандартные и под заказ</p>
+</div>
+<div class="liquid-glass p-8 rounded-lg flex flex-col items-center text-center group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">cake_add</span>
+<h3 class="font-headline-lg-mobile mb-2 font-bold tracking-tight">Колодки</h3>
+<p class="text-mono-label text-on-surface-variant opacity-70 group-hover:opacity-100 transition-opacity">Промышленные тормозные колодки</p>
+</div>
+<div class="liquid-glass p-8 rounded-lg flex flex-col items-center text-center group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">square</span>
+<h3 class="font-headline-lg-mobile mb-2 font-bold tracking-tight">Пластины</h3>
+<p class="text-mono-label text-on-surface-variant opacity-70 group-hover:opacity-100 transition-opacity">Листовой фрикционный материал</p>
+</div>
+<div class="liquid-glass p-8 rounded-lg flex flex-col items-center text-center group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">radio_button_unchecked</span>
+<h3 class="font-headline-lg-mobile mb-2 font-bold tracking-tight">Кольца</h3>
+<p class="text-mono-label text-on-surface-variant opacity-70 group-hover:opacity-100 transition-opacity">Уплотнительные и тормозные</p>
+</div>
+<div class="liquid-glass p-8 rounded-lg flex flex-col items-center text-center group cursor-pointer">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">architecture</span>
+<h3 class="font-headline-lg-mobile mb-2 font-bold tracking-tight">Нестандартные</h3>
+<p class="text-mono-label text-on-surface-variant opacity-70 group-hover:opacity-100 transition-opacity">Изделия по вашим чертежам</p>
+</div>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="bg-primary text-on-primary font-label-sm text-label-sm px-8 py-4 rounded-full uppercase tracking-widest hover:scale-95 transition-transform font-bold flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined">call_log</span>
+                    Наши фрикционные изделия
+                </a>
+<a class="liquid-glass text-primary font-label-sm text-label-sm px-8 py-4 rounded-full uppercase tracking-widest hover:bg-white/10 transition-colors font-bold flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined">description</span>
+                    Технические условия
+                </a>
+</div>
+</section>
+<!-- Advantages Section -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto">
+<div class="liquid-glass rounded-xl p-12 md:p-16 flex flex-col lg:flex-row gap-16 items-center">
+<div class="w-full lg:w-1/2 order-2 lg:order-1">
+<div class="relative rounded-lg overflow-hidden border border-white/10 shadow-2xl bg-[#051424] group aspect-video flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+<div class="z-20 flex items-center justify-center group-hover:scale-110 transition-transform cursor-pointer">
+<div class="w-20 h-20 bg-primary/20 backdrop-blur-md rounded-full flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary text-5xl fill-1">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-4 z-30 flex flex-col gap-2">
+<div class="h-1 w-full bg-white/20 rounded-full overflow-hidden">
+<div class="h-full w-1/3 bg-primary"></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-white text-xl cursor-pointer hover:text-primary transition-colors">play_pause</span>
+<span class="material-symbols-outlined text-white text-xl cursor-pointer hover:text-primary transition-colors">volume_up</span>
+<span class="text-white/70 text-xs font-mono-label">01:24 / 04:12</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-white text-xl cursor-pointer hover:text-primary transition-colors">settings</span>
+<span class="material-symbols-outlined text-white text-xl cursor-pointer hover:text-primary transition-colors">fullscreen</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-1/2 order-1 lg:order-2">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-4 block">Индивидуальное производство</span>
+<h2 class="font-headline-xl text-headline-xl mb-8 font-bold tracking-tight text-on-surface">Фрикционные накладки на заказ</h2>
+<div class="space-y-6 text-on-surface-variant font-body-md leading-relaxed">
+<p>
+          Фрикционные накладки изготавливаются в соответствии с <a class="text-primary hover:underline" href="#">ТУ 25-71-001-59647441-2005</a>, которые разрабатывались специально для использования при повышенных нагрузках в муфтах-тормозах кузнечно-прессового оборудования, работающего при многосменном режиме работы в тяжелых условиях.
+        </p>
+<p>
+          Разработанная и применяемая технология нашим производством позволяет добиться высоких физико-механических характеристик, устойчивого и высокого коэффициента трения в широком интервале скоростей и температур. За счет этого повышена безопасность работы и увеличена стойкость изделий.
+        </p>
+</div>
+<div class="mt-10">
+<a class="inline-flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all uppercase tracking-widest font-label-sm" href="#">
+          Узнать больше о технологии
+          <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section><section class="py-24 bg-surface-container-low/30">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col lg:flex-row gap-gutter">
+<div class="lg:w-1/3">
+<h2 class="font-headline-xl text-headline-xl mb-6 font-bold tracking-tight">Преимущества материала</h2>
+<p class="text-on-surface-variant mb-8 font-body-md leading-relaxed">Инновации в каждом слое. Наши материалы обеспечивают бесперебойную работу вашего оборудования.</p>
+<div class="h-1 w-24 bg-primary rounded-full"></div>
+</div>
+<div class="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="flex gap-6 items-start">
+<div class="liquid-glass p-4 rounded-full text-primary shrink-0">
+<span class="material-symbols-outlined">eco</span>
+</div>
+<div>
+<h4 class="font-headline-lg-mobile mb-2 font-bold tracking-tight">Отсутствие асбеста</h4>
+<p class="text-on-surface-variant font-body-md leading-relaxed">Экологически безопасный состав, отвечающий мировым стандартам безопасности и здоровья.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="liquid-glass p-4 rounded-full text-primary shrink-0">
+<span class="material-symbols-outlined">trending_flat</span>
+</div>
+<div>
+<h4 class="font-headline-lg-mobile mb-2 font-bold tracking-tight">Стабильный коэффициент трения</h4>
+<p class="text-on-surface-variant font-body-md leading-relaxed">Постоянные показатели эффективности в широком температурном диапазоне эксплуатации.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="liquid-glass p-4 rounded-full text-primary shrink-0">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<h4 class="font-headline-lg-mobile mb-2 font-bold tracking-tight">Конкурентная цена</h4>
+<p class="text-on-surface-variant font-body-md leading-relaxed">Прямое производство в России позволяет нам предлагать лучшие условия без посредников.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="liquid-glass p-4 rounded-full text-primary shrink-0">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div>
+<h4 class="font-headline-lg-mobile mb-2 font-bold tracking-tight">5 лет гарантии</h4>
+<p class="text-on-surface-variant font-body-md leading-relaxed">Уверенность в качестве подтверждена многолетними испытаниями и реальным опытом эксплуатации.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Partnership Section -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto">
+<div class="relative rounded-xl overflow-hidden liquid-glass p-12 md:p-20 text-center">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] -mr-32 -mt-32"></div>
+<div class="relative z-10">
+<h2 class="font-headline-xl text-headline-xl mb-8 font-bold tracking-tight">Стратегическое партнерство</h2>
+<p class="text-headline-lg-mobile text-on-surface-variant mb-12 max-w-3xl mx-auto font-light leading-relaxed">
+                        ППO №3 обладает эксклюзивным статусом поставщика фрикционных компонентов для конвейерных линий <span class="text-primary font-bold">ПАО «АВТОВАЗ»</span>. Наше сотрудничество базируется на многолетнем доверии и безупречном качестве продукции.
+                    </p>
+<div class="flex items-center justify-center gap-8 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+<div class="font-headline-xl italic font-black text-on-surface tracking-tighter">AVTOVAZ</div>
+<div class="h-12 w-px bg-white/20"></div>
+<div class="font-headline-xl italic font-black text-on-surface tracking-tighter">PPO №3</div>
+</div>
+</div>
+</div>
+</section><section class="py-12 px-margin-desktop max-w-container-max mx-auto text-center">
+<button class="bg-primary text-on-primary font-label-sm text-label-sm px-12 py-5 rounded-full uppercase tracking-widest hover:scale-95 transition-transform font-bold shadow-lg shadow-primary/20">
+    Сделать заказ
+</button>
+</section>
+</main>
+<!-- Footer Section -->
+<footer class="bg-surface-container-lowest/80 backdrop-blur-xl w-full rounded-t-lg border-t border-white/10 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="flex flex-col gap-6">
+<div class="font-headline-lg text-headline-lg-mobile text-primary font-bold tracking-tighter">ППО №3</div>
+<p class="text-on-surface-variant text-body-md leading-relaxed">
+                    Промышленные фрикционные изделия. Лидер отрасли в разработке безасбестовых материалов.
+                </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">public</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">chat_bubble</span>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2">Навигация</span>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="/">Главная</a>
+<a class="text-primary font-bold font-label-sm text-label-sm uppercase tracking-widest" href="/frikcionnye-nakladki/">Фрикционные накладки</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="/mekhanicheskaya-obrabotka/">Мехобработка</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="/metalloobrabotka/">Услуги</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2">Продукция</span>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Тормозные накладки</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Вкладыши</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Секторы</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Карта сайта</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2">Контакты</span>
+<div class="flex items-start gap-3 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-primary scale-90">location_on</span>
+<span class="">г. Тольятти, ул. Окраинная, 24</span>
+</div>
+<div class="flex items-start gap-3 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-primary scale-90">phone</span>
+<span class="">8 (8482) 555-900</span>
+</div>
+<div class="flex items-start gap-3 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-primary scale-90">mail</span>
+<span class="">office@povpro.ru</span>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-white/5 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="text-on-surface-variant text-mono-label">© 2024 ППО №3. Промышленные фрикционные изделия. Все права защищены.</span>
+<a class="text-on-surface-variant text-mono-label hover:text-primary transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="#">Политика конфиденциальности</a>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html><html class="dark" lang="ru"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Отзывы - ППО №3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-secondary-container": "#adb4ce",
+                "secondary": "#bec6e0",
+                "primary-fixed": "#d8e2ff",
+                "on-background": "#d4e4fa",
+                "on-primary": "#002e6a",
+                "on-tertiary-container": "#1f2a3c",
+                "tertiary": "#bcc7de",
+                "on-surface": "#d4e4fa",
+                "on-secondary": "#283044",
+                "surface": "#051424",
+                "on-tertiary-fixed": "#111c2d",
+                "tertiary-fixed": "#d8e3fb",
+                "on-error-container": "#ffdad6",
+                "secondary-fixed-dim": "#bec6e0",
+                "primary-fixed-dim": "#adc6ff",
+                "outline": "#8c909f",
+                "tertiary-fixed-dim": "#bcc7de",
+                "secondary-fixed": "#dae2fd",
+                "on-primary-container": "#00285d",
+                "on-tertiary-fixed-variant": "#3c475a",
+                "surface-container-low": "#0d1c2d",
+                "inverse-surface": "#d4e4fa",
+                "error": "#ffb4ab",
+                "surface-variant": "#273647",
+                "secondary-container": "#3f465c",
+                "on-secondary-fixed-variant": "#3f465c",
+                "surface-container": "#122131",
+                "primary": "#adc6ff",
+                "surface-dim": "#051424",
+                "on-secondary-fixed": "#131b2e",
+                "inverse-primary": "#005ac2",
+                "surface-container-highest": "#273647",
+                "inverse-on-surface": "#233143",
+                "tertiary-container": "#8691a7",
+                "surface-container-high": "#1c2b3c",
+                "on-surface-variant": "#c2c6d6",
+                "primary-container": "#4d8eff",
+                "on-tertiary": "#263143",
+                "background": "#051424",
+                "on-primary-fixed-variant": "#004395",
+                "on-error": "#690005",
+                "outline-variant": "#424754",
+                "error-container": "#93000a",
+                "surface-tint": "#adc6ff",
+                "surface-container-lowest": "#010f1f",
+                "surface-bright": "#2c3a4c",
+                "on-primary-fixed": "#001a42"
+        },
+        "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "margin-mobile": "16px",
+                "unit": "4px",
+                "container-max": "1280px",
+                "gutter": "24px",
+                "margin-desktop": "48px"
+        },
+        "fontFamily": {
+                "headline-lg-mobile": [
+                        "Geist"
+                ],
+                "mono-label": [
+                        "Geist"
+                ],
+                "headline-lg": [
+                        "Geist"
+                ],
+                "label-sm": [
+                        "Geist"
+                ],
+                "body-md": [
+                        "Geist"
+                ],
+                "headline-xl": [
+                        "Geist"
+                ]
+        },
+        "fontSize": {
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "600"
+                        }
+                ],
+                "mono-label": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-xl": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .liquid-glass {
+            background-color: rgba(28, 43, 60, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 10px 40px -10px rgba(0, 0, 0, 0.5), 
+                inset 0 1px 2px rgba(255, 255, 255, 0.2), 
+                inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md min-h-screen flex flex-col lg:flex-row antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar (from SCREEN_59) -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-3xl border-b border-white/10 flex flex-col">
+<!-- Upper Level -->
+<div class="border-b border-white/5">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center">
+<div class="font-headline-lg-mobile text-primary font-black tracking-tighter text-[2.5rem] leading-tight flex items-center gap-4">
+<img alt="Logo" class="w-12 h-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHZelvIUjjdD3Rpq8_o4E544LaL5Inwz80gAuir5JgAmh8gxzYEqJUO_kTehpB8WVHB4k8q-TGGaMO5GKkHDrj_HzqTW7xIaNhHe_xixs6puARHBjT6SFZA6J-J_J7YnKmUHulzuQiENd0QqeFOjxIYPXG27Wf8WjR4rzvK7xFrLlwgPIolthuHDtxMdsxRS7x1fYMLWC0CmRh8eVWm2m3RIqijlEPCtXKmJQvjw4Uo00tVhWaQKx4zqnjwdQ5gmLOEYHC1CwXf334">ППО №3
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:grid grid-cols-[auto_auto] gap-x-6 gap-y-0 items-center"><!-- Row 1 -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">location_on</span>
+<div class="text-on-surface-variant font-label-sm text-label-sm leading-[1.2]">г. Тольятти</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">call</span>
+<a class="text-on-surface hover:text-primary transition-colors font-label-sm text-label-sm font-bold leading-[1.2]" href="tel:88482555900">8 (8482) 555-900</a>
+</div>
+<!-- Row 2 -->
+<div class="flex items-center gap-2 mt-1">
+<div class="w-4"></div>
+<div class="text-on-surface-variant font-label-sm text-label-sm leading-[1.2]">ул. Окраинная, 24</div>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-primary text-base">mail</span>
+<a class="text-on-surface hover:text-primary transition-colors font-label-sm text-label-sm font-bold leading-[1.2]" href="mailto:office@povpro.ru">office@povpro.ru</a>
+</div></div>
+<button class="bg-primary text-on-primary rounded-full px-5 py-3 font-label-sm text-label-sm hover:opacity-90 transition-opacity uppercase tracking-widest font-bold">
+                    Запросить расчет
+                </button>
+</div>
+</div>
+</div>
+<!-- Lower Level -->
+<div class="hidden lg:block">
+<div class="max-w-container-max mx-auto px-margin-desktop py-3 flex justify-center">
+<div class="flex items-center space-x-6">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="index.html">ГЛАВНАЯ</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="friction-linings.html">ФРЕЗЕРНЫЕ РАБОТЫ</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="machining.html">МЕХОБРАБОТКА</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="intelligent-systems.html">ИНТЕЛЛЕКТУАЛЬНЫЕ СИСТЕМЫ</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="services.html">УСЛУГИ</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="contacts.html">КОНТАКТЫ</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm uppercase tracking-widest" href="reviews.html">ОТЗЫВЫ</a>
+</div>
+</div>
+</div>
+</nav>
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-surface-container/80 dark:bg-surface-container/80 backdrop-blur-2xl border-t border-white/10 rounded-t-lg shadow-xl overflow-x-auto gap-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant Active: scale-95 transition-transform hover:bg-surface-variant/50 px-4 py-1 rounded-full flex-shrink-0" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-label-sm text-label-sm">Главная</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant Active: scale-95 transition-transform hover:bg-surface-variant/50 px-4 py-1 rounded-full flex-shrink-0" href="services.html">
+<span class="material-symbols-outlined mb-1">settings_suggest</span>
+<span class="font-label-sm text-label-sm">Услуги</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant Active: scale-95 transition-transform hover:bg-surface-variant/50 px-4 py-1 rounded-full flex-shrink-0" href="contacts.html">
+<span class="material-symbols-outlined mb-1">contact_mail</span>
+<span class="font-label-sm text-label-sm">Контакты</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 Active: scale-95 transition-transform hover:bg-surface-variant/50 flex-shrink-0" href="reviews.html">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">rate_review</span>
+<span class="font-label-sm text-label-sm">Отзывы</span>
+</a>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-h-screen pt-40 md:pt-48 pb-32 w-full">
+<div class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile py-12 md:py-24 md:px-gutter">
+<!-- Header Section -->
+<header class="mb-16">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-variant border border-white/10 mb-6">
+<span class="material-symbols-outlined text-primary text-[16px]">verified</span>
+<span class="font-mono-label text-mono-label text-primary uppercase tracking-wider">Репутация</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mb-6 max-w-3xl">
+                    Отзывы о продукции и услугах ППО №3
+                </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl text-lg">
+                    Мы гордимся долгосрочными отношениями с нашими партнерами. Прозрачность, точность в сроках и неизменно высокое качество — основа нашего подхода к производству.
+                </p>
+</header>
+<!-- Reviews List -->
+<div class="flex flex-col gap-8 items-center w-full">
+<!-- Review Card 1 -->
+<div class="liquid-glass p-8 md:px-16 md:py-12 flex flex-col md:flex-row gap-8 items-center justify-between group hover:bg-surface-variant/40 transition-all duration-300 min-h-[300px] rounded-[3rem] md:rounded-full w-full max-w-7xl">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-surface border border-white/10 shrink-0 flex items-center justify-center p-4">
+<span class="material-symbols-outlined text-4xl text-primary opacity-70">person</span>
+</div>
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-4">
+<h4 class="font-body-md text-body-md text-on-surface font-medium">Алексей</h4>
+<div class="h-1 w-1 bg-outline rounded-full"></div>
+<span class="font-mono-label text-mono-label text-outline">14.12.16</span>
+</div>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-medium leading-relaxed">
+                            «Отличная компания! Все заказы выполняют быстро и качественно и по отличным ценам среди конкурентов. Спасибо, с Вами приятно иметь дело! Всем рекомендую это предприятие»
+                        </p>
+</div>
+</div>
+<!-- Review Card 2 -->
+<div class="liquid-glass p-8 md:px-16 md:py-12 flex flex-col md:flex-row gap-8 items-center justify-between group hover:bg-surface-variant/40 transition-all duration-300 min-h-[300px] rounded-[3rem] md:rounded-full w-full max-w-7xl">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-surface border border-white/10 shrink-0 flex items-center justify-center p-4">
+<span class="material-symbols-outlined text-4xl text-primary opacity-70">domain</span>
+</div>
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-4">
+<h4 class="font-body-md text-body-md text-on-surface font-medium">Сергей (ООО "ДВЗ")</h4>
+<div class="h-1 w-1 bg-outline rounded-full"></div>
+<span class="font-mono-label text-mono-label text-outline">16.12.16</span>
+</div>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-medium leading-relaxed">
+                            «Мастера своего дела! Качество поставляемой продукции всегда на достаточно высоком уровне, причем цена вполне приемлема. По срокам поставки - все делали в срок. Рекомендую как надежного поставщика.»
+                        </p>
+</div>
+</div>
+<!-- Review Card 3 -->
+<div class="liquid-glass p-8 md:px-16 md:py-12 flex flex-col md:flex-row gap-8 items-center justify-between group hover:bg-surface-variant/40 transition-all duration-300 min-h-[300px] rounded-[3rem] md:rounded-full w-full max-w-7xl">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-surface border border-white/10 shrink-0 flex items-center justify-center p-4">
+<span class="material-symbols-outlined text-4xl text-primary opacity-70">business</span>
+</div>
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-4">
+<h4 class="font-body-md text-body-md text-on-surface font-medium">Игорь Владимирович "Лада-Флект"</h4>
+<div class="h-1 w-1 bg-outline rounded-full"></div>
+<span class="font-mono-label text-mono-label text-outline">19.12.16</span>
+</div>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-medium leading-relaxed">
+                            «Как положительный момент надо отметить технически грамотный персонал, наличие отк.конструкторскую и технологическую поддержку, грамотно подобранный состав оборудования и конечно внимательное отношение к заказчику.»
+                        </p>
+</div>
+</div>
+<!-- Review Card 4 -->
+<div class="liquid-glass p-8 md:px-16 md:py-12 flex flex-col md:flex-row gap-8 items-center justify-between group hover:bg-surface-variant/40 transition-all duration-300 min-h-[300px] rounded-[3rem] md:rounded-full w-full max-w-7xl">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-surface border border-white/10 shrink-0 flex items-center justify-center p-4">
+<span class="material-symbols-outlined text-4xl text-primary opacity-70">factory</span>
+</div>
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-4">
+<h4 class="font-body-md text-body-md text-on-surface font-medium">ОАО "Тамбов АТИ"</h4>
+<div class="h-1 w-1 bg-outline rounded-full"></div>
+<span class="font-mono-label text-mono-label text-outline">19.12.16</span>
+</div>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-medium leading-relaxed">
+                            «Оперативно и качественно делают для нас оснастку, в том числе очень сложную. Самое главное - опытные и знающие инженеры, каких сейчас днем с огнем не сыщешь»
+                        </p>
+</div>
+</div>
+<!-- Review Card 5 -->
+<div class="liquid-glass p-8 md:px-16 md:py-12 flex flex-col md:flex-row gap-8 items-center justify-between group hover:bg-surface-variant/40 transition-all duration-300 min-h-[300px] rounded-[3rem] md:rounded-full w-full max-w-7xl">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-surface border border-white/10 shrink-0 flex items-center justify-center p-4">
+<span class="material-symbols-outlined text-4xl text-primary opacity-70">precision_manufacturing</span>
+</div>
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-4">
+<h4 class="font-body-md text-body-md text-on-surface font-medium">АО "Авиаагрегат"</h4>
+<div class="h-1 w-1 bg-outline rounded-full"></div>
+<span class="font-mono-label text-mono-label text-outline">03.14.19</span>
+</div>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-medium leading-relaxed">
+                            «Наша компания плодотворно сотрудничает с ООО «ППО» с 2015 года. За время нашей совместной работы сотрудники компании показали себя высокими профессионалами, которые следят за качеством выполняемой работы и учитывают пожелания Заказчика. Компания ООО «ППО» выполняет работы согласно сроку, по отличным ценам. Рекомендую Вам компанию ООО «ППО» как надежного Подрядчика.»
+                        </p>
+</div>
+</div>
+<!-- Review Card 6 -->
+<div class="liquid-glass p-8 md:px-16 md:py-12 flex flex-col md:flex-row gap-8 items-center justify-between group hover:bg-surface-variant/40 transition-all duration-300 min-h-[300px] rounded-[3rem] md:rounded-full w-full max-w-7xl">
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-surface border border-white/10 shrink-0 flex items-center justify-center p-4">
+<span class="material-symbols-outlined text-4xl text-primary opacity-70">corporate_fare</span>
+</div>
+<div class="flex-1 flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-4">
+<h4 class="font-body-md text-body-md text-on-surface font-medium">ООО "НПО Лагуна Лавочкина"</h4>
+<div class="h-1 w-1 bg-outline rounded-full"></div>
+<span class="font-mono-label text-mono-label text-outline">04.17.21</span>
+</div>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-medium leading-relaxed">
+                            «Работаем с ППО с 2018 года. Они - отличные партнеры. Надежные, пунктуальные. За это время сотрудничали по широчайшему спектру фрикционной номенклатуры и ни разу нас не подвели.»
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer (from JSON Footer) -->
+<footer class="bg-surface-container-lowest/80 backdrop-blur-xl w-full rounded-t-lg border-t border-white/10 mt-20"><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto"><div class="flex flex-col gap-6"><div class="font-headline-lg text-headline-lg-mobile text-primary font-bold tracking-tighter">ППО №3</div><p class="text-on-surface-variant text-body-md leading-relaxed">Промышленные фрикционные изделия. Лидер отрасли в разработке безасбестовых материалов.</p><div class="flex gap-4"><span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">public</span><span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">chat_bubble</span></div></div><div class="flex flex-col gap-4"><span class="font-mono-label text-primary uppercase tracking-widest mb-2">Навигация</span><a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="index.html">Главная</a><a class="text-primary font-bold font-label-sm text-label-sm uppercase tracking-widest" href="friction-linings.html">Фрикционные накладки</a><a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="machining.html">Мехобработка</a><a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="services.html">Услуги</a></div><div class="flex flex-col gap-4"><span class="font-mono-label text-primary uppercase tracking-widest mb-2">Продукция</span><a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Тормозные накладки</a><a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Вкладыши</a><a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Секторы</a><a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Карта сайта</a></div><div class="flex flex-col gap-4"><span class="font-mono-label text-primary uppercase tracking-widest mb-2">Контакты</span><div class="flex items-start gap-3 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest"><span class="material-symbols-outlined text-primary scale-90">location_on</span><span class="">г. Тольятти, ул. Окраинная, 24</span></div><div class="flex items-start gap-3 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest"><span class="material-symbols-outlined text-primary scale-90">phone</span><span class="">8 (8482) 555-900</span></div><div class="flex items-start gap-3 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest"><span class="material-symbols-outlined text-primary scale-90">mail</span><span class="">office@povpro.ru</span></div></div></div><div class="px-margin-desktop py-8 border-t border-white/5 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4"><span class="text-on-surface-variant text-mono-label">© 2024 ППО №3. Промышленные фрикционные изделия. Все права защищены.</span><a class="text-on-surface-variant text-mono-label hover:text-primary transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="#">Политика конфиденциальности</a></div></footer>
+</main>
+
+
+
+
+</body></html>

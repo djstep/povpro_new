@@ -1,0 +1,365 @@
+<!DOCTYPE html><html class="dark" lang="ru"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Контакты — ППО №3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .inner-glow-5 { box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05); }
+        .glass-card {
+            background: rgba(18, 33, 49, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.05);
+        }
+        .liquid-border {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.05);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#adc6ff",
+                        "secondary": "#bec6e0",
+                        "on-secondary-container": "#adb4ce",
+                        "on-tertiary": "#263143",
+                        "inverse-primary": "#005ac2",
+                        "on-surface-variant": "#c2c6d6",
+                        "on-tertiary-container": "#1f2a3c",
+                        "inverse-surface": "#d4e4fa",
+                        "surface-container-lowest": "#010f1f",
+                        "surface-container": "#122131",
+                        "secondary-fixed": "#dae2fd",
+                        "on-primary-container": "#00285d",
+                        "surface-dim": "#051424",
+                        "tertiary-fixed-dim": "#bcc7de",
+                        "surface-container-highest": "#273647",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "tertiary": "#bcc7de",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#3f465c",
+                        "surface-variant": "#273647",
+                        "primary": "#adc6ff",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#d4e4fa",
+                        "error-container": "#93000a",
+                        "outline": "#8c909f",
+                        "surface-container-low": "#0d1c2d",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-primary": "#002e6a",
+                        "surface": "#051424",
+                        "primary-fixed": "#d8e2ff",
+                        "inverse-on-surface": "#233143",
+                        "outline-variant": "#424754",
+                        "on-secondary": "#283044",
+                        "on-primary-fixed": "#001a42",
+                        "surface-tint": "#adc6ff",
+                        "tertiary-fixed": "#d8e3fb",
+                        "on-tertiary-fixed-variant": "#3c475a",
+                        "surface-bright": "#2c3a4c",
+                        "background": "#051424",
+                        "tertiary-container": "#8691a7",
+                        "on-tertiary-fixed": "#111c2d",
+                        "surface-container-high": "#1c2b3c",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#004395",
+                        "primary-container": "#4d8eff",
+                        "on-background": "#d4e4fa"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "unit": "4px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "mono-label": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-xl": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "body-md": ["Geist"]
+                    },
+                    fontSize: {
+                        "mono-label": ["12px", { lineHeight: "1", letterSpacing: "0.02em", fontWeight: "400" }],
+                        "label-sm": ["13px", { lineHeight: "1.4", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "600" }],
+                        "headline-xl": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }]
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-3xl border-b border-white/10 flex flex-col">
+<div class="border-b border-white/5">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center">
+<a href="/" class="font-headline-lg-mobile text-primary font-black tracking-tighter text-[2.5rem] leading-tight flex items-center gap-4 no-underline">
+<img alt="ППО №3" class="w-12 h-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbnb-_niYbXNu6FJEjkH0l8VPhQ8iKDkOGZd9_YrKB1hRg2LVyay3ME0FSzyjDB4BZ-SbmPPD8Rru1I0MPkcX-8YqUxyLaHw9Y77kay9bOZrA8HKFNa1zdcC4h-m9KOKv1fHk9auxlzkIGTSdqq4EWyg5ZEEQv83hTyk1qPQKqkdjR4O-O6l9mEq4Ug7I_cVJun8gyvJP0wenJUh8FpWwZXJZZQkRd8DgE90Jolic1QiSye2vfyIDaKOO0O3NEyTvKQYd15-qwerev">ППО №3
+</a>
+<div class="flex items-center gap-6">
+<div class="hidden md:grid grid-cols-[auto_auto] gap-x-6 gap-y-0 items-center">
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">location_on</span><div class="text-on-surface-variant font-label-sm text-label-sm">г. Тольятти</div></div>
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">call</span><a class="text-on-surface hover:text-primary font-label-sm text-label-sm font-bold" href="tel:+78482555900">8 (8482) 555-900</a></div>
+<div class="flex items-center gap-2 mt-1"><div class="w-4"></div><div class="text-on-surface-variant font-label-sm text-label-sm">ул. Окраинная, 24</div></div>
+<div class="flex items-center gap-2 mt-1"><span class="material-symbols-outlined text-primary text-base">mail</span><a class="text-on-surface hover:text-primary font-label-sm text-label-sm font-bold" href="mailto:office@povpro.ru">office@povpro.ru</a></div>
+</div>
+<a href="/contacts/" class="bg-primary text-on-primary rounded-full px-5 py-3 font-label-sm text-label-sm hover:opacity-90 uppercase tracking-widest font-bold no-underline">Запросить расчет</a>
+</div>
+</div>
+</div>
+<div class="hidden lg:block border-t border-white/5">
+<div class="max-w-container-max mx-auto px-margin-desktop py-3 flex justify-center">
+<div class="flex items-center gap-4 xl:gap-6 flex-wrap justify-center">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest whitespace-nowrap" href="/">Главная</a>
+<div class="relative group">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest whitespace-nowrap flex items-center gap-1" href="/frikcionnye-nakladki/">Фрикционные накладки <span class="material-symbols-outlined text-sm">expand_more</span></a>
+<div class="absolute left-0 top-full pt-1 hidden group-hover:block min-w-[280px] z-[60]"><div class="liquid-glass rounded-lg py-2 border border-white/10 shadow-xl"><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/frikcionnye-nakladki/nashi-izdeliya/">Наши фрикционные изделия</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/frikcionnye-nakladki/tu/">Технические условия</a></div></div>
+</div>
+<div class="relative group">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest whitespace-nowrap flex items-center gap-1" href="/mekhanicheskaya-obrabotka/">Мехобработка <span class="material-symbols-outlined text-sm">expand_more</span></a>
+<div class="absolute left-0 top-full pt-1 hidden group-hover:block min-w-[280px] z-[60]"><div class="liquid-glass rounded-lg py-2 border border-white/10 shadow-xl"><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/proizvodstvo_detalej/">Продукция</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/proizvodstvo-press-form-i-shtampov/">Штампы и пресс-формы</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/izgotovlenie-valov/">Валы</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/izgotovlenie-shesteren-i-zubchatyh-koles/">Шестерни и зубчатые колеса</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/zuboreznye-raboty/">Зуборезные работы</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/shlifovalnye-raboty/">Шлифовальные работы</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/frezernye-raboty/">Фрезерные работы</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/tokarnye-raboty/">Токарные работы</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/koordinatno-rastochnye-raboty/">Координатно-расточные работы</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/elektroerozionnye-raboty/">Электроэрозионные работы</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/dolbezhnye-raboty/">Долбежные работы</a></div></div>
+</div>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest whitespace-nowrap" href="/irt/">Интеллектуальные системы</a>
+<div class="relative group">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest whitespace-nowrap flex items-center gap-1" href="/metalloobrabotka/">Услуги <span class="material-symbols-outlined text-sm">expand_more</span></a>
+<div class="absolute left-0 top-full pt-1 hidden group-hover:block min-w-[280px] z-[60]"><div class="liquid-glass rounded-lg py-2 border border-white/10 shadow-xl"><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/mashiny-dlya-litya-pod-davleniem/">Продажа МЛД</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/remont-mashin-dlya-litya-pod-davleniem/">Ремонт МЛД</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/termoobrabotka/">Термообработка</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/remont-kuznechno-pressovogo-oborudovaniya/">Ремонт кузнечно-прессового оборудования</a><a class="block px-4 py-2 text-sm text-on-surface-variant hover:text-primary" href="/izgotovlenie-kalyanovs/">Изготовление кальянов</a></div></div>
+</div>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 transition-colors font-label-sm text-label-sm uppercase tracking-widest whitespace-nowrap" href="/contacts/">Контакты</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest whitespace-nowrap" href="/otzyvy-o-ppo/">Отзывы</a>
+</div>
+</div>
+</div>
+</nav>
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-6 pt-2 bg-surface-container/80 backdrop-blur-2xl border-t border-white/10">
+<a class="flex flex-col items-center px-3 py-1 text-on-surface-variant" href="/"><span class="material-symbols-outlined text-xl">home</span><span class="text-xs">Главная</span></a>
+<a class="flex flex-col items-center px-3 py-1 text-on-surface-variant" href="/metalloobrabotka/"><span class="material-symbols-outlined text-xl">settings</span><span class="text-xs">Услуги</span></a>
+<a class="flex flex-col items-center px-3 py-1 text-on-surface-variant" href="/mekhanicheskaya-obrabotka/"><span class="material-symbols-outlined text-xl">precision_manufacturing</span><span class="text-xs">Мехобработка</span></a>
+<a class="flex flex-col items-center px-3 py-1 text-primary" href="/contacts/"><span class="material-symbols-outlined text-xl">call</span><span class="text-xs">Контакты</span></a>
+</nav><!-- Main Content -->
+<main class="flex-grow pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full pt-40 md:pt-48">
+<!-- Hero -->
+<div class="mb-16 text-center">
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-4">Контакты</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Свяжитесь с нами для обсуждения проектов, заказа продукции или получения технической консультации. Мы всегда открыты для сотрудничества.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Address Card -->
+<div class="lg:col-span-4 glass-card rounded-[2rem] p-8 flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-colors duration-500"></div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Адреса</h2>
+</div>
+<div class="space-y-4">
+<div>
+<span class="font-mono-label text-mono-label text-primary uppercase block mb-1">Юр. адрес</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Санкт-Петербург, пр-кт Шуваловский, д. 84, к. 1</p>
+</div>
+<div class="h-px w-full bg-outline-variant/30"></div>
+<div>
+<span class="font-mono-label text-mono-label text-primary uppercase block mb-1">Обособленное подразделение (Производство)</span>
+<p class="font-body-md text-body-md text-on-surface-variant">Самарская обл., г. Тольятти ул. Окраинная, д. 24, помещение 8</p>
+</div>
+</div>
+</div>
+<!-- Departments Card -->
+<div class="lg:col-span-8 glass-card rounded-[2rem] p-8">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">badge</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Сотрудники и отделы</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+<!-- Item -->
+<div class="flex flex-col gap-1 p-4 rounded-xl bg-surface-container/50 border border-white/5">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Директор</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Зубков Алексей Олегович</span>
+</div>
+<!-- Item -->
+<div class="flex flex-col gap-1 p-4 rounded-xl bg-surface-container/50 border border-white/5">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Помощник директора</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Пикулик Татьяна Юрьевна</span>
+<div class="flex items-center gap-3 mt-2 text-sm">
+<span class="text-primary">+100</span>
+<span class="text-on-surface-variant">office@povpro.ru</span>
+</div>
+</div>
+<!-- Item -->
+<div class="flex flex-col gap-1 p-4 rounded-xl bg-surface-container/50 border border-white/5">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Отдел маркетинга</span>
+<div class="flex items-center gap-3 mt-2 text-sm">
+<span class="text-primary">+103</span>
+<span class="text-on-surface-variant">ppo@povpro.ru</span>
+</div>
+</div>
+<!-- Item -->
+<div class="flex flex-col gap-1 p-4 rounded-xl bg-surface-container/50 border border-white/5">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Бухгалтерия</span>
+<div class="flex items-center gap-3 mt-2 text-sm">
+<span class="text-primary">+106</span>
+<span class="text-on-surface-variant">glavbuh@povpro.ru</span>
+</div>
+</div>
+<!-- Item -->
+<div class="flex flex-col gap-1 p-4 rounded-xl bg-surface-container/50 border border-white/5">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Конструкторско-технологическая служба</span>
+<div class="flex items-center gap-3 mt-2 text-sm">
+<span class="text-primary">+109</span>
+<span class="text-on-surface-variant">tehnolog@yandex.ru</span>
+</div>
+</div>
+<!-- Item -->
+<div class="flex flex-col gap-1 p-4 rounded-xl bg-surface-container/50 border border-white/5">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">ОМТС</span>
+<div class="flex items-center gap-3 mt-2 text-sm">
+<span class="text-primary">+111</span>
+<span class="text-on-surface-variant">omts@povpro.ru</span>
+</div>
+</div>
+<!-- Item -->
+<div class="flex flex-col gap-1 p-4 rounded-xl bg-surface-container/50 border border-white/5 md:col-span-2">
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Начальник производства</span>
+<div class="flex items-center gap-3 mt-2 text-sm">
+<span class="text-primary">+107</span>
+<span class="text-on-surface-variant">cehppo@yandex.ru</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Requisites Card -->
+<div class="lg:col-span-12 glass-card rounded-[2rem] p-8">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Реквизиты организации</h2>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<tbody>
+<tr class="border-b border-white/5">
+<td class="py-3 pr-4 font-mono-label text-mono-label text-on-surface-variant w-1/3">Полное наименование</td>
+<td class="py-3 font-body-md text-body-md text-on-surface">ООО "ПОВОЛЖСКОЕ ПРОИЗВОДСТВЕННОЕ ОБЪЕДИНЕНИЕ №3"</td>
+</tr>
+<tr class="border-b border-white/5">
+<td class="py-3 pr-4 font-mono-label text-mono-label text-on-surface-variant">ИНН / КПП</td>
+<td class="py-3 font-body-md text-body-md text-on-surface">6321168743 / 781401001</td>
+</tr>
+<tr class="border-b border-white/5">
+<td class="py-3 pr-4 font-mono-label text-mono-label text-on-surface-variant">ОГРН</td>
+<td class="py-3 font-body-md text-body-md text-on-surface">1066320169420</td>
+</tr>
+<tr class="border-b border-white/5">
+<td class="py-3 pr-4 font-mono-label text-mono-label text-on-surface-variant">Банк</td>
+<td class="py-3 font-body-md text-body-md text-on-surface">ФИЛИАЛ "НИЖЕГОРОДСКИЙ" АО "АЛЬФА-БАНК"</td>
+</tr>
+<tr class="border-b border-white/5">
+<td class="py-3 pr-4 font-mono-label text-mono-label text-on-surface-variant">БИК</td>
+<td class="py-3 font-body-md text-body-md text-on-surface">042202824</td>
+</tr>
+<tr class="border-b border-white/5">
+<td class="py-3 pr-4 font-mono-label text-mono-label text-on-surface-variant">Корр. счет</td>
+<td class="py-3 font-body-md text-body-md text-on-surface">30101810200000000824</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Map and Form Split -->
+<div class="lg:col-span-12 grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Map -->
+<div class="glass-card rounded-[2rem] overflow-hidden h-[400px] relative border border-white/10" data-location="Tolyatti">
+<div class="absolute inset-0 bg-surface-container-lowest/80 flex items-center justify-center">
+<span class="text-on-surface-variant font-mono-label">Interactive Map Placeholder</span>
+</div>
+</div>
+<!-- Form -->
+<div class="glass-card rounded-[2rem] p-8">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-6">Написать нам</h2>
+<form class="space-y-4">
+<div>
+<input class="w-full bg-surface-container/50 border border-white/10 rounded-xl px-4 py-3 text-on-surface focus:outline-none focus:border-primary transition-colors placeholder:text-on-surface-variant/50" placeholder="Ваше имя" type="text">
+</div>
+<div>
+<input class="w-full bg-surface-container/50 border border-white/10 rounded-xl px-4 py-3 text-on-surface focus:outline-none focus:border-primary transition-colors placeholder:text-on-surface-variant/50" placeholder="Телефон или Email" type="text">
+</div>
+<div>
+<textarea class="w-full bg-surface-container/50 border border-white/10 rounded-xl px-4 py-3 text-on-surface focus:outline-none focus:border-primary transition-colors placeholder:text-on-surface-variant/50 resize-none" placeholder="Сообщение" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-sm text-label-sm uppercase py-4 rounded-xl hover:bg-primary/90 transition-all duration-300 active:scale-95" type="button">Отправить</button>
+</form>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest/80 backdrop-blur-xl w-full rounded-t-lg border-t border-white/10 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="flex flex-col gap-6">
+<div class="font-headline-lg text-headline-lg-mobile text-primary font-bold tracking-tighter">ББВ №3</div>
+<p class="text-on-surface-variant text-body-md leading-relaxed">
+                    Бравсввввввв брибциббвуу извввис. Биввр страсви в равраббтбб бввасбвстбвсх батвриаббв.
+                </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">public</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">chat_bubble</span>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2">Бавигацис</span>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Гбаввас</a>
+<a class="text-primary font-bold font-label-sm text-label-sm uppercase tracking-widest" href="#">Брибциббвуу ваббадби</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Бвхббраббтба</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Бсбуги</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2">Брбдубцис</span>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Ббрббзвсв ваббадби</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Вббадсси</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Бвбтбрс</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200 font-label-sm text-label-sm uppercase tracking-widest" href="#">Барта сайта</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2">Ббвтабтс</span>
+<div class="flex items-start gap-3 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-primary scale-90">location_on</span>
+<span class="">г. Бббсстти, уб. Ббраиввас, 24</span>
+</div>
+<div class="flex items-start gap-3 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-primary scale-90">phone</span>
+<span class="">8 (8482) 555-900</span>
+</div>
+<div class="flex items-start gap-3 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-primary scale-90">mail</span>
+<span class="">office@povpro.ru</span>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-white/5 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="text-on-surface-variant text-mono-label"> 2024 ББВ №3. Бравсввввввв брибциббвуу извввис. Бсв брава защищвбс.</span>
+<a class="text-on-surface-variant text-mono-label hover:text-primary transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="#">Бббитива бббфидвбциабсбсти</a>
+</div>
+</footer>
+
+
+
+
+</body></html>
