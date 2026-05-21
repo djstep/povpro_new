@@ -1,8 +1,8 @@
-# ППО №3 — сайт из Google Stitch
+# ППО №3 — сайт
 
-Статический сайт по макетам Stitch с **структурой URL как на [povpro.ru](https://povpro.ru)**.
+Основной проект: **Next.js 15** в папке `web/`.
 
-## Сборка и запуск
+## Запуск
 
 ```bash
 npm run dev
@@ -10,31 +10,46 @@ npm run dev
 
 Откройте **http://localhost:3000/**
 
-После изменения исходников в `site/pages/` выполните `npm run build`.
+Подробности: [web/README.md](web/README.md)
 
-## Структура меню (как povpro.ru)
-
-- **Главная** → `/`
-- **Фрикционные накладки**
-  - Наши фрикционные изделия → `/frikcionnye-nakladki/nashi-izdeliya/`
-  - Технические условия → `/frikcionnye-nakladki/tu/`
-- **Мехобработка** (+ подразделы: продукция, штампы, валы, фрезерные, токарные и др.)
-- **Интеллектуальные системы** → `/irt/`
-- **Услуги**
-  - Продажа МЛД → `/mashiny-dlya-litya-pod-davleniem/`
-  - Ремонт МЛД → `/remont-mashin-dlya-litya-pod-davleniem/`
-  - Термообработка → `/termoobrabotka/`
-  - Ремонт КПО → `/remont-kuznechno-pressovogo-oborudovaniya/`
-  - Изготовление кальянов → `/izgotovlenie-kalyanovs/`
-- **Контакты** → `/contacts/`
-- **Отзывы** → `/otzyvy-o-ppo/`
-
-## Файлы
+## Структура
 
 | Путь | Назначение |
 |------|------------|
-| `site/pages/` | Исходный HTML из Stitch |
-| `site/dist/` | Собранный сайт (после `npm run build`) |
-| `scripts/build-site.mjs` | Сборка: URL + меню povpro.ru |
+| `web/app/` | Страницы Next.js, API, админка |
+| `web/components/` | Header, Footer, UI |
+| `web/content/` | HTML-контент страниц (из Stitch) |
+| `web/app/globals.css` | Тема Tailwind + glass-стили |
+| `web/prisma/` | Схема PostgreSQL |
+| `web/public/assets/` | Изображения |
+| `site/pages/` | Исходники Stitch (HTML) |
+| `scripts/build-site.mjs` | Вспомогательная сборка (папка `public/` в gitignore) |
+| `scripts/migrate-content-to-next.mjs` | Stitch → `web/content/` |
 
-Подразделы мехобработки без отдельного макета в Stitch используют страницу «Мехобработка» с заголовком раздела.
+## База данных
+
+```bash
+cd web
+cp .env.example .env
+# укажите DATABASE_URL
+npm run db:migrate
+```
+
+## Админка
+
+1. Запустите сайт: `npm run dev`
+2. Откройте в браузере: **http://localhost:3000/admin**
+
+Разделы:
+- `/admin` — обзор
+- `/admin/pages` — список страниц
+- `/admin/inquiries` — заявки (нужна БД)
+
+Пароль пока **не включён** — на продакшене добавьте авторизацию до выкладки в интернет.
+
+## Обновление контента из Stitch
+
+```bash
+npm run migrate:content
+npm run dev
+```

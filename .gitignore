@@ -1,0 +1,11 @@
+node_modules/
+public/
+site/dist/
+web/.next/
+.env
+web/.env
+*.log
+
+# Тестовые артефакты
+test-*.html
+test-*.jpg
