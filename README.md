@@ -14,10 +14,15 @@ npm run dev
 
 ## Деплой на Vercel
 
-В настройках проекта укажите **Root Directory: `web`** (рекомендуется)  
-или оставьте корень репозитория — тогда сработает `vercel.json` в корне.
+Репозиторий — **monorepo**: приложение в `web/`, в корне `package.json` с `workspaces`.
 
-Переменные окружения (по желанию): `DATABASE_URL` для БД и админки заявок.
+1. Подключите репозиторий, **Root Directory оставьте пустым** (корень).
+2. Vercel подхватит `vercel.json`: `npm install` → `npm run build -w web`.
+3. Либо вручную: Root Directory = `web`, Build = `npm run build`.
+
+После правок обязательно **git push** и **Redeploy** (в логе должно быть `prisma generate && next build`, не старый `--turbopack`).
+
+Переменные окружения (опционально): `DATABASE_URL`.
 
 ## Структура
 
