@@ -1,4 +1,5 @@
 node_modules/
+web/package-lock.json
 public/
 site/dist/
 web/.next/
