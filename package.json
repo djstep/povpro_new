@@ -1,17 +1,14 @@
 {
   "name": "ppo3-site",
   "private": true,
-  "workspaces": [
-    "web"
-  ],
   "scripts": {
     "migrate:content": "node scripts/migrate-content-to-next.mjs",
     "styles:extract": "node scripts/extract-stitch-styles.mjs",
-    "dev": "npm run dev -w web",
-    "build": "npm run build -w web",
-    "start": "npm run start -w web",
-    "lint": "npm run lint -w web",
-    "db:generate": "npm run db:generate -w web",
-    "db:migrate": "npm run db:migrate -w web"
+    "dev": "npm run dev --prefix web",
+    "build": "npm run build --prefix web",
+    "start": "npm run start --prefix web",
+    "lint": "npm run lint --prefix web",
+    "db:generate": "npm run db:generate --prefix web",
+    "db:migrate": "npm run db:migrate --prefix web"
   }
 }

@@ -30,5 +30,6 @@ web
 
 ## Если Root Directory пустой (корень репо)
 
-Используется корневой `vercel.json`: `npm run build -w web`, выход `web/.next`.  
-Framework **не** должен быть Next.js на корне — в корневом `package.json` нет `next`.
+Корневой `vercel.json`: `cd web && npm install && npm run build`.
+
+Стили: **Tailwind CSS v3** (без lightningcss — стабильно на Vercel).
