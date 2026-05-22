@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import '../styles/stitch-components.css';
+@import '../styles/performance.css';
 
 @layer base {
   html {

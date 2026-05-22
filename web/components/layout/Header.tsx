@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { resolveAssetUrl } from '@/lib/resolve-asset-urls';
 import {
   FRICTION_CHILDREN,
   MECH_CHILDREN,
@@ -12,7 +13,7 @@ import {
 } from '@/lib/navigation';
 import { NavDropdown } from './NavDropdown';
 
-const LOGO = '/assets/img/e345e1d85b71d21e.png';
+const LOGO = resolveAssetUrl('/assets/img/e345e1d85b71d21e.png');
 
 function slugFromPathname(pathname: string): string {
   if (pathname === '/') return '';
@@ -45,7 +46,7 @@ export function Header() {
   const currentSlug = slugFromPathname(pathname);
 
   return (
-    <nav className="site-nav fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-3xl border-b border-white/10 flex flex-col overflow-visible">
+    <nav className="site-nav fixed top-0 left-0 w-full z-50 bg-surface/95 border-b border-white/10 flex flex-col overflow-visible">
       <div className="border-b border-white/5">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center">
           <Link

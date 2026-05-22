@@ -1,0 +1,44 @@
+/* Снижаем нагрузку при скролле: blur на fixed-элементах — главная причина лагов */
+
+nav.site-nav {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-color: rgba(18, 33, 49, 0.92) !important;
+}
+
+footer.site-footer {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-color: rgba(12, 22, 34, 0.95) !important;
+}
+
+nav.site-mobile-nav {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-color: rgba(18, 33, 49, 0.92) !important;
+}
+
+/* Glass-эффекты легче, чем blur(40px) из Stitch */
+.liquid-glass,
+.glass-panel,
+.glass-button,
+.glass-card {
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+.site-content section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
+}
+
+.site-content img {
+  content-visibility: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-content * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

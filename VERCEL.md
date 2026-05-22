@@ -46,23 +46,10 @@ http://localhost:3000
 
 ---
 
-## Картинки не грузятся (битые иконки / фото)
+## Картинки
 
-### Проверка после деплоя
+Сайт подставляет URL с **povpro.ru** (галерея) и **GitHub raw** (PNG из репозитория), потому что Vercel часто не отдаёт `/assets/img/` из `web/public`.
 
-Откройте в браузере (подставьте свой домен Vercel):
+В корне репозитория есть `vercel.json` с `"rootDirectory": "web"` — не удаляйте.
 
-`https://ВАШ-ДОМЕН.vercel.app/assets/img/povpro-gallery-1.jpg`
-
-- **200** — файлы на сервере есть, обновите страницу с Ctrl+F5.
-- **404** — на Vercel нет файлов из `web/public` или старый деплой.
-
-### Что сделать
-
-1. Убедитесь, что в Git есть `web/public/assets/img/` (коммит `Add site images to repo for Vercel deploy`).
-2. **Settings → General → Root Directory:** `web`
-3. **Output Directory:** пусто (Override выключен).
-4. **Deployments → Create Deployment** → ветка `main` (новый деплой, не Redeploy старого до push картинок).
-5. Локально: `npm run migrate:content` — копирует `assets` в `web/public`.
-
-Сборка падает с ошибкой про `web/public/assets/img`, если картинки не на месте — так Vercel не соберёт пустой сайт.
+После деплоя обновите страницу с **Ctrl+F5**.
