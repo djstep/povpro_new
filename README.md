@@ -1,6 +1,6 @@
 # ППО №3 — сайт
 
-Основной проект: **Next.js 15** в папке `web/`.
+Next.js 15 в папке `web/`. Деплой: [VERCEL.md](VERCEL.md).
 
 ## Запуск
 
@@ -8,54 +8,40 @@
 npm run dev
 ```
 
-Откройте **http://localhost:3000/**
+http://localhost:3000 — сайт, http://localhost:3000/admin — админка.
 
-Подробности: [web/README.md](web/README.md)
+## Команды
 
-## Деплой на Vercel
-
-**Root Directory = `web`** (обязательно). Подробно: [VERCEL.md](VERCEL.md).
-
-Переменные окружения (опционально): `DATABASE_URL`.
+| Команда | Описание |
+|---------|----------|
+| `npm run dev` | Разработка |
+| `npm run build` | Сборка |
+| `npm run migrate:content` | Обновить HTML из Stitch → `web/content/` |
+| `npm run styles:extract` | Стили Stitch → `web/styles/stitch-components.css` |
 
 ## Структура
 
 | Путь | Назначение |
 |------|------------|
-| `web/app/` | Страницы Next.js, API, админка |
-| `web/components/` | Header, Footer, UI |
-| `web/content/` | HTML-контент страниц (из Stitch) |
-| `web/app/globals.css` | Тема Tailwind + glass-стили |
-| `web/prisma/` | Схема PostgreSQL |
-| `web/public/assets/` | Изображения |
-| `site/pages/` | Исходники Stitch (HTML) |
-| `scripts/build-site.mjs` | Вспомогательная сборка (папка `public/` в gitignore) |
-| `scripts/migrate-content-to-next.mjs` | Stitch → `web/content/` |
+| `web/app/` | Страницы, API, админка |
+| `web/components/` | Шапка, подвал, навигация |
+| `web/content/` | HTML-контент страниц |
+| `web/public/assets/img/` | PNG-иллюстрации (галерея — с povpro.ru) |
+| `site/pages/` | Исходники Stitch |
+| `scripts/` | Миграция контента и стилей |
 
-## База данных
+## База данных (опционально)
 
 ```bash
-cd web
-cp .env.example .env
-# укажите DATABASE_URL
+cd web && cp .env.example .env
+# DATABASE_URL=postgresql://...
 npm run db:migrate
 ```
 
-## Админка
+Без БД страницы читаются из `web/content/*.html`.
 
-1. Запустите сайт: `npm run dev`
-2. Откройте в браузере: **http://localhost:3000/admin**
-
-Разделы:
-- `/admin` — обзор
-- `/admin/pages` — список страниц
-- `/admin/inquiries` — заявки (нужна БД)
-
-Пароль пока **не включён** — на продакшене добавьте авторизацию до выкладки в интернет.
-
-## Обновление контента из Stitch
+## Обновление из Stitch
 
 ```bash
 npm run migrate:content
-npm run dev
 ```

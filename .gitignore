@@ -9,3 +9,7 @@ web/.env
 # Тестовые артефакты
 test-*.html
 test-*.jpg
+
+# Артефакты Stitch / старый сайт
+screens.json
+povpro-source.html

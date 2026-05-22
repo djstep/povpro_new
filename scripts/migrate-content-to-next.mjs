@@ -68,6 +68,9 @@ function extractMain(html) {
   // Пути к картинкам и ссылкам
   body = body.replace(/\/\/assets\/img\//g, '/assets/img/');
   body = body.replace(/(\.\.\/)+assets\/img\//g, '/assets/img/');
+  body = body.replace(/src="assets\/img\//g, 'src="/assets/img/');
+  body = body.replace(/url\('assets\/img\//g, "url('/assets/img/");
+  body = body.replace(/url\("assets\/img\//g, 'url("/assets/img/');
   body = body.replace(/(?<![/"'])assets\/img\//g, '/assets/img/');
   body = body.replace(/url\('\/\/assets\//g, "url('/assets/");
   body = body.replace(/href="([^"]*\/index\.html)"/g, (_, p) => {
@@ -96,12 +99,16 @@ for (const [slug, file] of Object.entries(routes)) {
   console.log('OK', slug || '/', '→', outFile);
 }
 
-// Синхронизация картинок в Next
-const srcAssets = path.join(publicDir, 'assets');
-const destAssets = path.join(root, 'web', 'public', 'assets');
+// Синхронизация картинок в Next (без тяжёлой галереи — она с povpro.ru)
+const srcAssets = path.join(publicDir, 'assets', 'img');
+const destImg = path.join(root, 'web', 'public', 'assets', 'img');
 if (fs.existsSync(srcAssets)) {
-  fs.cpSync(srcAssets, destAssets, { recursive: true });
-  console.log('Assets → web/public/assets');
+  fs.mkdirSync(destImg, { recursive: true });
+  for (const name of fs.readdirSync(srcAssets)) {
+    if (name.startsWith('povpro-gallery-') && name.endsWith('.jpg')) continue;
+    fs.copyFileSync(path.join(srcAssets, name), path.join(destImg, name));
+  }
+  console.log('Assets (PNG/SVG) → web/public/assets/img');
 }
 
 console.log('\nDone →', outDir);
