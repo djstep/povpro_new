@@ -1,5 +1,5 @@
 node_modules/
-public/
+/public/
 site/dist/
 web/.next/
 .env
