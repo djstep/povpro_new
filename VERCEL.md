@@ -1,35 +1,41 @@
 # Деплой на Vercel
 
-Приложение Next.js лежит в папке **`web/`** (не в корне репозитория).
+## Обязательно
 
-## Обязательная настройка (один раз)
+**Settings → General → Root Directory:** `web` → **Save**
 
-**Vercel → Project → Settings → General → Root Directory**
-
-```
-web
-```
-
-Сохранить (**Save**).
+**Settings → Build and Deployment** — снимите все **Override** (Build / Install / Output должны быть пустыми или Default).
 
 | Поле | Значение |
 |------|----------|
 | Root Directory | `web` |
-| Framework Preset | Next.js (подтянется сам) |
+| Framework | Next.js |
+| Output Directory | *(пусто)* |
 | Build Command | *(пусто — из `web/vercel.json`)* |
-| Install Command | *(пусто)* |
-| Output Directory | *(пусто — `.next` по умолчанию)* |
 
-Снимите **Override**, если в Build стоят старые команды вроде `npm run build --prefix web`.
+**Не используйте** корневой `vercel.json` с `outputDirectory: web/.next` — при Root Directory `web` это даёт 404.
 
 ## Деплой
 
-1. `git push origin main`
-2. **Deployments → Create Deployment** → branch `main` → последний коммит  
-   (не **Redeploy** у старого failed build)
+```bash
+git push origin main
+```
 
-## Если Root Directory пустой (корень репо)
+**Deployments → Create Deployment** → `main` → последний коммит.
 
-Корневой `vercel.json`: `cd web && npm install && npm run build`.
+## Проверка
 
-Стили: **Tailwind CSS v3** (без lightningcss — стабильно на Vercel).
+- Статус деплоя: **Ready**
+- Открывайте URL **именно этого** деплоя (кнопка Visit)
+- Домен: `https://ваш-проект.vercel.app/` — не папку `web/` в браузере
+
+## Локально
+
+```bash
+cd web
+npm install
+npm run build
+npm run start
+```
+
+Откройте http://localhost:3000
