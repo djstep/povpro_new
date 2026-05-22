@@ -48,8 +48,8 @@ http://localhost:3000
 
 ## Картинки
 
-Сайт подставляет URL с **povpro.ru** (галерея) и **GitHub raw** (PNG из репозитория), потому что Vercel часто не отдаёт `/assets/img/` из `web/public`.
+Сайт подставляет URL с **povpro.ru** (галерея) и **GitHub raw** (PNG из репозитория).
 
-В корне репозитория есть `vercel.json` с `"rootDirectory": "web"` — не удаляйте.
+**Root Directory** задаётся только в **Settings → General** (`web`), не в `vercel.json` — иначе сборка падает с ошибкой schema validation.
 
 После деплоя обновите страницу с **Ctrl+F5**.
