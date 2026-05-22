@@ -1,35 +1,39 @@
-# Деплой на Vercel
+# Деплой на Vercel — настройки
 
-## Обязательно
+## Ошибка «No Output Directory named public found»
 
-**Settings → General → Root Directory:** `web` → **Save**
+В **Project Settings** указан неверный **Output Directory = `public`**.
 
-**Settings → Build and Deployment** — снимите все **Override** (Build / Install / Output должны быть пустыми или Default).
+Для Next.js это **неправильно**: `public/` — только картинки, сборка лежит в `.next` (Vercel подхватывает сам).
 
-| Поле | Значение |
-|------|----------|
-| Root Directory | `web` |
-| Framework | Next.js |
-| Output Directory | *(пусто)* |
-| Build Command | *(пусто — из `web/vercel.json`)* |
+### Исправление (2 минуты)
 
-**Не используйте** корневой `vercel.json` с `outputDirectory: web/.next` — при Root Directory `web` это даёт 404.
+1. **Settings → General**
+   - **Root Directory:** `web`
+   - **Save**
 
-## Деплой
+2. **Settings → Build and Deployment**
 
-```bash
-git push origin main
-```
+   | Поле | Должно быть |
+   |------|-------------|
+   | Framework Preset | **Next.js** |
+   | Build Command | пусто *(Override выкл.)* |
+   | Install Command | пусто *(Override выкл.)* |
+   | Output Directory | **пусто** *(Override выкл.)* — НЕ `public`, НЕ `web/.next` |
 
-**Deployments → Create Deployment** → `main` → последний коммит.
+   Если видите `public` в Output Directory — **удалите** и снимите галочку Override.
 
-## Проверка
+3. **Deployments → Create Deployment** → branch `main`
 
-- Статус деплоя: **Ready**
-- Открывайте URL **именно этого** деплоя (кнопка Visit)
-- Домен: `https://ваш-проект.vercel.app/` — не папку `web/` в браузере
+4. Открыть **Visit** у нового деплоя.
 
-## Локально
+---
+
+## Файл `web/vercel.json`
+
+Только install + build. **Без** `outputDirectory`.
+
+## Локальная проверка
 
 ```bash
 cd web
@@ -38,4 +42,27 @@ npm run build
 npm run start
 ```
 
-Откройте http://localhost:3000
+http://localhost:3000
+
+---
+
+## Картинки не грузятся (битые иконки / фото)
+
+### Проверка после деплоя
+
+Откройте в браузере (подставьте свой домен Vercel):
+
+`https://ВАШ-ДОМЕН.vercel.app/assets/img/povpro-gallery-1.jpg`
+
+- **200** — файлы на сервере есть, обновите страницу с Ctrl+F5.
+- **404** — на Vercel нет файлов из `web/public` или старый деплой.
+
+### Что сделать
+
+1. Убедитесь, что в Git есть `web/public/assets/img/` (коммит `Add site images to repo for Vercel deploy`).
+2. **Settings → General → Root Directory:** `web`
+3. **Output Directory:** пусто (Override выключен).
+4. **Deployments → Create Deployment** → ветка `main` (новый деплой, не Redeploy старого до push картинок).
+5. Локально: `npm run migrate:content` — копирует `assets` в `web/public`.
+
+Сборка падает с ошибкой про `web/public/assets/img`, если картинки не на месте — так Vercel не соберёт пустой сайт.

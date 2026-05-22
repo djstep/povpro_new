@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -53,7 +52,7 @@ export function Header() {
             href="/"
             className="font-headline-lg-mobile text-primary font-black tracking-tighter text-[2.5rem] leading-tight flex items-center gap-4 no-underline"
           >
-            <Image src={LOGO} alt="ППО №3" width={48} height={48} className="w-12 h-12 object-contain" />
+            <img src={LOGO} alt="ППО №3" width={48} height={48} className="w-12 h-12 object-contain" />
             ППО №3
           </Link>
           <div className="flex items-center gap-6">
