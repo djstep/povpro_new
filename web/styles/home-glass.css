@@ -1,0 +1,59 @@
+/* content-visibility на section обрезает внешнее свечение */
+.site-content section:has(.liquid-glass),
+.site-content main:has(.liquid-glass) {
+  content-visibility: visible !important;
+  overflow: visible !important;
+}
+
+.site-content section:has(.liquid-glass) .grid,
+.site-content section:has(.liquid-glass) [class*='grid-cols'] {
+  overflow: visible;
+  padding: 10px;
+  margin: -10px;
+}
+
+/* Карточки и блоки glass в контенте */
+.site-content .liquid-glass:not(.review-form):not(.review-form-success) {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+}
+
+.site-content .liquid-glass:not(.review-form):not(.review-form-success)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background: transparent;
+  transition: opacity 0.35s ease;
+  box-shadow:
+    0 0 6.5px 0 rgba(255, 255, 255, 0.255),
+    0 0 15px 0 rgba(255, 255, 255, 0.127);
+}
+
+.site-content .liquid-glass:not(.review-form):not(.review-form-success):hover::after {
+  opacity: 1;
+}
+
+.site-content .liquid-glass:not(.review-form):not(.review-form-success):hover {
+  transform: none;
+  background-color: rgba(18, 33, 49, 0.4) !important;
+  box-shadow: none !important;
+  filter: none;
+}
+
+.site-content .liquid-glass.overflow-hidden:hover {
+  overflow: visible;
+}
+
+/* Форма заказа — без hover-glow */
+.site-content #zakaz .liquid-glass::after {
+  content: none;
+}
+
+.site-content #zakaz .liquid-glass:hover {
+  background-color: inherit !important;
+}

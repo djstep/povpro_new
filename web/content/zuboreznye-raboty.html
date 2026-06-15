@@ -1,82 +1,114 @@
-<main class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 pt-40 md:pt-48">
+<!-- Top Navigation -->
+
+<!-- Side Navigation (Desktop) -->
+<aside class="hidden md:flex flex-col fixed left-0 top-32 h-full z-40 w-64 glass-panel rounded-r-lg shadow-xl p-6 border-l-0">
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile font-bold text-primary mb-6">Мехобработка</h2>
+<div class="flex flex-col gap-4">
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors" href="/../tokarnye-raboty">
+<span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+<span class="text-label-sm font-label-sm">Токарные работы</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors" href="/../frezernye-raboty">
+<span class="material-symbols-outlined text-primary">settings_suggest</span>
+<span class="text-label-sm font-label-sm">Фрезерные работы</span>
+</a>
+<a class="flex items-center gap-3 bg-on-tertiary-container/20 text-primary border-r-4 border-primary p-2 -mx-2 rounded-l" href="/">
+<span class="material-symbols-outlined text-primary">settings</span>
+<span class="text-label-sm font-label-sm font-bold">Зуборезные работы</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors" href="/../shlifovalnye-raboty">
+<span class="material-symbols-outlined text-primary">blur_circular</span>
+<span class="text-label-sm font-label-sm">Шлифовальные работы</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:text-primary transition-colors" href="/../dolbezhnye-raboty">
+<span class="material-symbols-outlined text-primary">handyman</span>
+<span class="text-label-sm font-label-sm">Долбежные работы</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="pt-32 pb-16 px-margin-mobile md:px-margin-desktop md:ml-64 max-w-container-max mx-auto space-y-16">
 <!-- Hero Section -->
-<section class="mb-24 relative overflow-hidden rounded-xl h-[400px] flex items-center p-8 md:p-16">
-<div class="absolute inset-0 z-0 bg-cover bg-center opacity-40" data-alt="A highly detailed, industrial setting showing precision mechanical engineering equipment in action. The atmosphere is dark and sophisticated, illuminated by cool, high-key white lights that highlight the metallic textures of the machinery. Sparks or focused laser lighting add dramatic, vibrant accents against the deep black and navy background. The overall aesthetic embodies 'Liquid Industrial' style, merging technical precision with an immersive, atmospheric void." style="background-image: url('/assets/img/povpro-gallery-11.jpg');"></div>
-<div class="absolute inset-0 z-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
-<div class="relative z-10 max-w-2xl">
-<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">Механическая обработка</h1>
-<p class="font-body-md text-body-md text-on-surface-variant mb-8 text-lg">Высокоточная обработка металла для производства деталей любой сложности. Гарантируем качество и соответствие строгим техническим требованиям.</p>
+<section class="glass-panel rounded-lg p-8 md:p-12 relative overflow-hidden flex flex-col md:flex-row gap-8 items-center border border-glass-border">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-50"></div>
+<div class="relative z-10 flex-1 space-y-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+<span class="text-mono-label font-mono-label tracking-widest uppercase">Высокоточная обработка</span>
 </div>
-</section>
-<!-- Services Bento Grid -->
-<section class="mb-24">
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 text-center md:text-left">Виды работ</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<!-- Feature Card 1 -->
-<div class="liquid-glass rounded-xl p-8 flex flex-col md:col-span-2">
-<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-primary text-2xl" data-icon="manufacturing">manufacturing</span>
-</div>
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Комплексная металлообработка</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Мы предлагаем полный цикл механической обработки, от заготовки до готовой детали, используя современное оборудование с ЧПУ.</p>
-<div class="flex flex-wrap gap-3">
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Зуборезные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Шлифовальные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Фрезерные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Токарные</span>
-</div>
-</div>
-<!-- Feature Card 2 -->
-<div class="liquid-glass rounded-xl p-8 flex flex-col">
-<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-primary text-2xl" data-icon="precision_manufacturing">precision_manufacturing</span>
-</div>
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Специфичные операции</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Выполняем сложные и узкоспециализированные виды механической обработки для деталей нестандартной геометрии.</p>
-<div class="flex flex-wrap gap-3">
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Координатно-расточные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Электроэрозионные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Долбежные работы</span>
-</div>
+<h1 class="text-headline-xl font-headline-xl text-primary">ЗУБОРЕЗНЫЕ РАБОТЫ</h1>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-2xl">
+                    ООО «Поволжское производственное объединение№3» (ППО№3) проводит зуборезные работы на заказ в Тольятти. Вы можете обратиться к нам, чтобы заказать: зубошлифовальные, зубодолбёжные, зубофрезерные и зубострогальные работы.
+                </p>
+<div class="flex gap-4 pt-4">
+<a class="bg-primary text-on-primary px-8 py-3 rounded-full text-label-sm font-label-sm uppercase tracking-widest font-bold hover:bg-primary-fixed-dim transition-colors shadow-lg" href="/zakaz">Заказать расчет</a>
 </div>
 </div>
 </section>
-<!-- Production Categories -->
-<section class="mb-24">
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 text-center md:text-left">Производство деталей</h2>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
-<div class="rounded-xl overflow-hidden h-[500px] relative">
-<img alt="A close-up shot of precision mechanical parts, such as gears and shafts, resting on a polished metal surface within a dark, industrial workshop. The scene is lit with a soft, cool blue hue typical of a high-tech glassmorphism aesthetic, featuring sharp reflections and deep shadows. The composition conveys precision engineering and high-quality manufacturing, emphasizing the intricate details of the metalwork." class="object-cover w-full h-full opacity-80 mix-blend-screen" data-alt="A close-up shot of precision mechanical parts, such as gears and shafts, resting on a polished metal surface within a dark, industrial workshop. The scene is lit with a soft, cool blue hue typical of a high-tech glassmorphism aesthetic, featuring sharp reflections and deep shadows. The composition conveys precision engineering and high-quality manufacturing, emphasizing the intricate details of the metalwork." src="/assets/img/povpro-gallery-20.jpg">
-<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<!-- Features Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="glass-panel p-6 rounded-lg border border-glass-border flex flex-col items-start gap-4 hover:border-primary transition-colors group">
+<div class="p-3 bg-surface-container-high rounded-full border border-glass-border group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary">blur_on</span>
 </div>
-<div class="space-y-6">
-<!-- Accordion/Card 1 -->
-<div class="liquid-glass rounded-xl p-6 group cursor-pointer">
-<div class="flex justify-between items-center mb-2">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface group-hover:text-primary transition-colors">Штампы и пресс-формы</h3>
-<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+<h3 class="text-label-sm font-label-sm font-bold text-primary uppercase tracking-wider">Зубошлифовальные</h3>
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant">Проектирование и изготовление технологической оснастки высокой точности для серийного производства.</p>
+<div class="glass-panel p-6 rounded-lg border border-glass-border flex flex-col items-start gap-4 hover:border-primary transition-colors group">
+<div class="p-3 bg-surface-container-high rounded-full border border-glass-border group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary">construction</span>
 </div>
-<!-- Accordion/Card 2 -->
-<div class="liquid-glass rounded-xl p-6 group cursor-pointer">
-<div class="flex justify-between items-center mb-2">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface group-hover:text-primary transition-colors">Валы</h3>
-<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+<h3 class="text-label-sm font-label-sm font-bold text-primary uppercase tracking-wider">Зубодолбёжные</h3>
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant">Токарная и фрезерная обработка валов различных типоразмеров с соблюдением допусков и посадок.</p>
+<div class="glass-panel p-6 rounded-lg border border-glass-border flex flex-col items-start gap-4 hover:border-primary transition-colors group">
+<div class="p-3 bg-surface-container-high rounded-full border border-glass-border group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary">settings_applications</span>
 </div>
-<!-- Accordion/Card 3 -->
-<div class="liquid-glass rounded-xl p-6 group cursor-pointer">
-<div class="flex justify-between items-center mb-2">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface group-hover:text-primary transition-colors">Шестерни</h3>
-<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+<h3 class="text-label-sm font-label-sm font-bold text-primary uppercase tracking-wider">Зубофрезерные</h3>
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant">Зубонарезные работы для создания шестерней с прямым, косым зубом, а также конических передач.</p>
+<div class="glass-panel p-6 rounded-lg border border-glass-border flex flex-col items-start gap-4 hover:border-primary transition-colors group">
+<div class="p-3 bg-surface-container-high rounded-full border border-glass-border group-hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary">architecture</span>
+</div>
+<h3 class="text-label-sm font-label-sm font-bold text-primary uppercase tracking-wider">Зубострогальные</h3>
+</div>
+</section>
+<!-- Content Section -->
+<section class="space-y-8">
+<div class="glass-panel p-8 rounded-lg border border-glass-border">
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary mb-6">Как мы проводим зуборезные работы</h2>
+<div class="space-y-4 text-body-md font-body-md text-on-surface-variant leading-relaxed">
+<p>Одно из основных направлений нашей деятельности — нарезка зубьев по типовым образцам или по эскизам заказчика. Над обработкой заготовок трудится опытный персонал, который отлично справляется со своей задачей. Среди всех предприятий, выполняющих зуборезные работы в Тольятти и поблизости, ООО «ППО 3» отличают профессионализм и индивидуальны подход при выполнении любых, даже самых сложных заказов.</p>
+<p>Кроме того, на заказ осуществляется нарезка шлицов, которые необходимы для успешной сборки, модернизации, ремонта и дальнейшего функционирования устройств. Мы изготавливаем шестерни, червячные пары, зубчатые колёса различных видов. Зубообработка проводится с учётом требований ГОСТ и международных стандартов.</p>
 </div>
 </div>
+<div class="glass-panel p-8 rounded-lg border border-glass-border">
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary mb-6">ООО «ППО №3» выполнит любой заказ</h2>
+<div class="space-y-4 text-body-md font-body-md text-on-surface-variant leading-relaxed">
+<p>Заказчики нашей продукции — руководители и представители тольяттинских предприятий, а также специалисты из других городов. Вы можете ознакомиться со списком предлагаемой продукции, прежде чем оформить заказ. Также сотрудник ООО «ППО №3» может проконсультировать вас, рассказать об особенностях работы и об используемом оборудовании.</p>
+<p>Наша цель — в полной мере оправдывать ожидания заказчиков и производить полностью исправные, готовые к использованию элементы. По этой причине нарезка зубьев и нарезка шлицов проводятся с применением новейшего оборудования и передовых технологий. Будьте уверены: заказывая зубообработку нам, вы не разочаруетесь.</p>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="glass-panel p-8 rounded-lg border border-primary/30 relative overflow-hidden">
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary mb-8 relative z-10">Цены на зуборезные работы</h2>
+<div class="overflow-x-auto relative z-10">
+<table class="w-full text-left text-body-md font-body-md text-on-surface-variant">
+<thead class="bg-surface-container-high/50 border-b border-glass-border">
+<tr>
+<th class="py-4 px-6 font-bold text-primary">Выполняемые работы</th>
+<th class="py-4 px-6 font-bold text-primary text-right">Стоимость нормо-часа, руб</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-glass-border hover:bg-liquid-glass transition-colors">
+<td class="py-4 px-6">Зубофрезерные работы</td>
+<td class="py-4 px-6 text-right font-mono text-primary">1000,00</td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
 </main>
-</div>
 <!-- Footer -->

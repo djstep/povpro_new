@@ -34,7 +34,7 @@ function NavLinkItem({
   return (
     <Link
       href={href}
-      className={`${active ? 'text-primary font-bold border-b-2 border-primary pb-1' : 'text-on-surface-variant hover:text-on-surface'} transition-colors font-label-sm text-label-sm uppercase tracking-widest whitespace-nowrap`}
+      className={`${active ? 'text-primary font-bold border-b-2 border-primary pb-1' : 'text-on-surface hover:text-primary font-bold'} transition-colors font-label-sm text-label-sm uppercase tracking-widest whitespace-nowrap`}
     >
       {label}
     </Link>
@@ -44,9 +44,8 @@ function NavLinkItem({
 export function Header() {
   const pathname = usePathname();
   const currentSlug = slugFromPathname(pathname);
-
   return (
-    <nav className="site-nav fixed top-0 left-0 w-full z-50 bg-surface/95 border-b border-white/10 flex flex-col overflow-visible">
+    <nav className="site-nav fixed top-0 left-0 w-full z-[100] bg-surface border-b border-white/10 flex flex-col overflow-visible isolate">
       <div className="border-b border-white/5">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center">
           <Link
@@ -57,36 +56,38 @@ export function Header() {
             ППО №3
           </Link>
           <div className="flex items-center gap-6">
-            <div className="hidden md:grid grid-cols-[auto_auto] gap-x-6 gap-y-0 items-center">
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary text-base">location_on</span>
-                <div className="text-on-surface-variant font-label-sm text-label-sm">г. Тольятти</div>
+            <div className="hidden md:flex flex-col gap-2 min-w-0 items-center">
+              <div className="flex items-center justify-center gap-6 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-primary text-base">mail</span>
+                  <a
+                    className="text-on-surface hover:text-primary font-label-sm text-label-sm font-bold whitespace-nowrap"
+                    href="mailto:office@povpro.ru"
+                  >
+                    office@povpro.ru
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="material-symbols-outlined text-primary text-base">call</span>
+                  <a
+                    className="text-on-surface hover:text-primary font-label-sm text-label-sm font-bold whitespace-nowrap"
+                    href="tel:+78482555900"
+                  >
+                    8 (8482) 555-900
+                  </a>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary text-base">call</span>
-                <a
-                  className="text-on-surface hover:text-primary font-label-sm text-label-sm font-bold"
-                  href="tel:+78482555900"
-                >
-                  8 (8482) 555-900
-                </a>
-              </div>
-              <div className="flex items-center gap-2 mt-1">
-                <div className="w-4" />
-                <div className="text-on-surface-variant font-label-sm text-label-sm">ул. Окраинная, 24</div>
-              </div>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="material-symbols-outlined text-primary text-base">mail</span>
-                <a
-                  className="text-on-surface hover:text-primary font-label-sm text-label-sm font-bold"
-                  href="mailto:office@povpro.ru"
-                >
-                  office@povpro.ru
-                </a>
+              <div className="border-t border-white/10 pt-2 w-full">
+                <div className="flex items-center justify-center gap-2">
+                  <span className="material-symbols-outlined text-primary text-base">location_on</span>
+                  <div className="text-on-surface font-label-sm text-label-sm font-bold whitespace-nowrap">
+                    г. Тольятти, ул. Окраинная, 24
+                  </div>
+                </div>
               </div>
             </div>
             <Link
-              href="/contacts"
+              href="/zakaz?from=header"
               className="bg-primary text-on-primary rounded-full px-5 py-3 font-label-sm text-label-sm hover:opacity-90 uppercase tracking-widest font-bold no-underline"
             >
               Запросить расчет

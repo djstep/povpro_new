@@ -1,82 +1,196 @@
-<main class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 pt-40 md:pt-48">
+<!-- Ambient Background Elements -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-secondary/5 rounded-full blur-[150px]"></div>
+</div>
+<!-- Top Navigation -->
+
+<main class="flex-grow pt-40 md:pt-48 pb-24 px-margin-desktop max-w-[1280px] mx-auto w-full flex flex-col gap-[128px]">
 <!-- Hero Section -->
-<section class="mb-24 relative overflow-hidden rounded-xl h-[400px] flex items-center p-8 md:p-16">
-<div class="absolute inset-0 z-0 bg-cover bg-center opacity-40" data-alt="A highly detailed, industrial setting showing precision mechanical engineering equipment in action. The atmosphere is dark and sophisticated, illuminated by cool, high-key white lights that highlight the metallic textures of the machinery. Sparks or focused laser lighting add dramatic, vibrant accents against the deep black and navy background. The overall aesthetic embodies 'Liquid Industrial' style, merging technical precision with an immersive, atmospheric void." style="background-image: url('/assets/img/povpro-gallery-11.jpg');"></div>
-<div class="absolute inset-0 z-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
-<div class="relative z-10 max-w-2xl">
-<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">Механическая обработка</h1>
-<p class="font-body-md text-body-md text-on-surface-variant mb-8 text-lg">Высокоточная обработка металла для производства деталей любой сложности. Гарантируем качество и соответствие строгим техническим требованиям.</p>
+<section class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="flex flex-col gap-8 z-10">
+<div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 w-max">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-mono-label text-mono-label text-primary">МЕХОБРАБОТКА</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface">ТОКАРНЫЕ РАБОТЫ</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
+                    Производство ООО "ППО№3" готово предоставить вам токарные работы по металлу с использованием нашего высокоточного оборудования.
+                </p>
+<div class="flex flex-wrap items-center gap-8 mt-4">
+<button class="bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-[0_4px_12px_rgba(216,226,255,0.15)] hover:bg-primary/90 transition-all flex items-center gap-2">
+                        УЗНАТЬ ЦЕНУ
+                    </button>
+<div class="flex items-center gap-3">
+<span class="w-2.5 h-2.5 bg-[#4caf50] rounded-full"></span>
+<span class="text-on-surface font-label-sm text-label-sm uppercase tracking-widest text-[13px]">РАБОТАЕМ В ШТАТНОМ РЕЖИМЕ</span>
+</div>
+</div>
+</div>
+<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden glass-border backdrop-blur-[40px] bg-glass-fill-heavy p-2 shadow-2xl">
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-base via-transparent to-primary/10 z-10 pointer-events-none rounded-xl"></div>
+<img alt="Высокоточная токарная обработка ЧПУ" class="w-full h-full object-cover rounded-lg filter contrast-125 saturate-50 mix-blend-luminosity opacity-80" src="/assets/img/povpro-gallery-18.jpg">
 </div>
 </section>
-<!-- Services Bento Grid -->
-<section class="mb-24">
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 text-center md:text-left">Виды работ</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<!-- Feature Card 1 -->
-<div class="liquid-glass rounded-xl p-8 flex flex-col md:col-span-2">
-<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-primary text-2xl" data-icon="manufacturing">manufacturing</span>
+<!-- Advantage Section (Bento Grid Style) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="liquid-card p-8 rounded-xl flex flex-col gap-4 group hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition-transform">precision_manufacturing</span>
+<h3 class="font-headline-lg-mobile text-lg text-on-surface">Сложные проекты</h3>
+<p class="text-on-surface-variant text-sm font-body-md">Реализуем запросы любой сложности, не ограничиваясь типовыми деталями.</p>
 </div>
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Комплексная металлообработка</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Мы предлагаем полный цикл механической обработки, от заготовки до готовой детали, используя современное оборудование с ЧПУ.</p>
-<div class="flex flex-wrap gap-3">
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Зуборезные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Шлифовальные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Фрезерные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Токарные</span>
+<div class="liquid-card p-8 rounded-xl flex flex-col gap-4 group hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition-transform">engineering</span>
+<h3 class="font-headline-lg-mobile text-lg text-on-surface">Опытные мастера</h3>
+<p class="text-on-surface-variant text-sm font-body-md">Специалисты с необходимыми допусками и профессиональной подготовкой.</p>
 </div>
+<div class="liquid-card p-8 rounded-xl flex flex-col gap-4 group hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition-transform">verified</span>
+<h3 class="font-headline-lg-mobile text-lg text-on-surface">Контроль качества</h3>
+<p class="text-on-surface-variant text-sm font-body-md">100% контроль каждой операции с помощью новейшего оснащения.</p>
 </div>
-<!-- Feature Card 2 -->
-<div class="liquid-glass rounded-xl p-8 flex flex-col">
-<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-primary text-2xl" data-icon="precision_manufacturing">precision_manufacturing</span>
-</div>
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Специфичные операции</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Выполняем сложные и узкоспециализированные виды механической обработки для деталей нестандартной геометрии.</p>
-<div class="flex flex-wrap gap-3">
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Координатно-расточные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Электроэрозионные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Долбежные работы</span>
-</div>
-</div>
+<div class="liquid-card p-8 rounded-xl flex flex-col gap-4 group hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition-transform">architecture</span>
+<h3 class="font-headline-lg-mobile text-lg text-on-surface">Работа по чертежам</h3>
+<p class="text-on-surface-variant text-sm font-body-md">Используем готовые чертежи, эскизы и технические описания.</p>
 </div>
 </section>
-<!-- Production Categories -->
-<section class="mb-24">
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 text-center md:text-left">Производство деталей</h2>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
-<div class="rounded-xl overflow-hidden h-[500px] relative">
-<img alt="A close-up shot of precision mechanical parts, such as gears and shafts, resting on a polished metal surface within a dark, industrial workshop. The scene is lit with a soft, cool blue hue typical of a high-tech glassmorphism aesthetic, featuring sharp reflections and deep shadows. The composition conveys precision engineering and high-quality manufacturing, emphasizing the intricate details of the metalwork." class="object-cover w-full h-full opacity-80 mix-blend-screen" data-alt="A close-up shot of precision mechanical parts, such as gears and shafts, resting on a polished metal surface within a dark, industrial workshop. The scene is lit with a soft, cool blue hue typical of a high-tech glassmorphism aesthetic, featuring sharp reflections and deep shadows. The composition conveys precision engineering and high-quality manufacturing, emphasizing the intricate details of the metalwork." src="/assets/img/povpro-gallery-20.jpg">
-<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<!-- Layout with Sidebar -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Main Content Area -->
+<div class="lg:col-span-8 flex flex-col gap-12">
+<!-- Text Content Blocks -->
+<article class="liquid-card rounded-xl p-12 relative overflow-hidden flex flex-col gap-8">
+<h2 class="font-headline-lg text-headline-lg text-primary relative z-10">Токарно-фрезерные работы на заказ</h2>
+<div class="space-y-6 text-on-surface-variant font-body-md leading-relaxed relative z-10">
+<p class="">
+<strong>Токарные работы</strong> - разновидность механической обработки металла, которая связана с резанием (точением) заготовок из разных видов металла.
+                        </p>
+<p class="">
+                            ППО предлагает выполнение токарных работ на высоком уровне, обеспечивает максимальный результат за счет современного и технологичного оборудования, отличных материалов и высокого профессионализма сотрудников. В наше время токарные услуги являются очень востребованы, так как необходимы для изготовления разных деталей, используемых в различных механизмах и конструкциях.
+                        </p>
+<p class="">
+                            Специалисты компании ППО №3 выполняют все <strong>токарные работы по чертежам заказчика</strong>, которые в точности соответствуют эскизам и расчетам, и это гарантирует изготовление и обработку изделия с максимальной точностью.
+                        </p>
 </div>
-<div class="space-y-6">
-<!-- Accordion/Card 1 -->
-<div class="liquid-glass rounded-xl p-6 group cursor-pointer">
-<div class="flex justify-between items-center mb-2">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface group-hover:text-primary transition-colors">Штампы и пресс-формы</h3>
-<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+</article>
+<article class="liquid-card rounded-xl p-12 relative overflow-hidden flex flex-col gap-8">
+<h2 class="font-headline-lg text-headline-lg text-primary relative z-10">Токарные работы ЧПУ</h2>
+<div class="space-y-6 text-on-surface-variant font-body-md leading-relaxed relative z-10">
+<p class="">
+                            ППО №3 проводит <strong>токарные работы ЧПУ</strong> с использованием станков с ЧПУ, а также крупногабаритных станков на обрабатывающем центре со снятием фасок фрезой (интерполяция в полярных координатах).
+                        </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-outline-variant/20">
+<div class="flex items-start gap-4">
+<div class="p-3 rounded-lg bg-surface-container-high border border-glass-border">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">factory</span>
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant">Проектирование и изготовление технологической оснастки высокой точности для серийного производства.</p>
-</div>
-<!-- Accordion/Card 2 -->
-<div class="liquid-glass rounded-xl p-6 group cursor-pointer">
-<div class="flex justify-between items-center mb-2">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface group-hover:text-primary transition-colors">Валы</h3>
-<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant">Токарная и фрезерная обработка валов различных типоразмеров с соблюдением допусков и посадок.</p>
-</div>
-<!-- Accordion/Card 3 -->
-<div class="liquid-glass rounded-xl p-6 group cursor-pointer">
-<div class="flex justify-between items-center mb-2">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface group-hover:text-primary transition-colors">Шестерни</h3>
-<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant">Зубонарезные работы для создания шестерней с прямым, косым зубом, а также конических передач.</p>
+<div>
+<h5 class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider mb-1">Оборудование</h5>
+<p class="font-mono-label text-mono-label text-on-surface-variant">Более 30 единиц станков, включая ЧПУ металлорежущие установки.</p>
 </div>
 </div>
+<div class="flex items-start gap-4">
+<div class="p-3 rounded-lg bg-surface-container-high border border-glass-border">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">straighten</span>
 </div>
+<div>
+<h5 class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider mb-1">Габариты обработки</h5>
+<p class="font-mono-label text-mono-label text-on-surface-variant">Длина до 5000 мм и диаметр до 800 мм.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Gallery -->
+<section class="mt-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-8">Примеры работ</h2>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+<div class="group relative rounded-xl overflow-hidden liquid-card p-2">
+<div class="aspect-[4/3] rounded-lg overflow-hidden">
+<img alt="Корпус генератора" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="/assets/img/bae1dff75a1564d4.png">
+</div>
+<div class="absolute bottom-0 left-0 w-full p-4 bg-glass-fill-heavy backdrop-blur-md border-t border-glass-border">
+<h3 class="font-label-sm text-label-sm text-on-surface text-center">Корпус генератора</h3>
+</div>
+</div>
+<div class="group relative rounded-xl overflow-hidden liquid-card p-2 flex items-center justify-center bg-surface-container-high"><div class="aspect-[4/3] rounded-lg overflow-hidden">
+<img alt="4 пуансона" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="/assets/img/bae1dff75a1564d4.png">
+</div>
+<div class="absolute bottom-0 left-0 w-full p-4 bg-glass-fill-heavy backdrop-blur-md border-t border-glass-border">
+<h3 class="font-label-sm text-label-sm text-on-surface text-center">4 пуансона</h3>
+</div></div>
+<div class="group relative rounded-xl overflow-hidden liquid-card p-2 flex items-center justify-center bg-surface-container-high"><div class="aspect-[4/3] rounded-lg overflow-hidden">
+<img alt="Бронзовый шар" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="/assets/img/bae1dff75a1564d4.png">
+</div>
+<div class="absolute bottom-0 left-0 w-full p-4 bg-glass-fill-heavy backdrop-blur-md border-t border-glass-border">
+<h3 class="font-label-sm text-label-sm text-on-surface text-center">Бронзовый шар</h3>
+</div></div>
+</div>
+</section>
+</div>
+<!-- Sidebar Pricing Block -->
+<aside class="lg:col-span-4 flex flex-col gap-8 sticky top-40">
+<div class="liquid-card p-8 rounded-xl flex flex-col gap-8 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="flex items-center gap-4 relative z-10">
+<span class="material-symbols-outlined text-primary text-3xl">payments</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Цены на работы</h2>
+</div>
+<div class="flex flex-col gap-6 relative z-10">
+<div class="flex flex-col gap-2 p-5 rounded-xl bg-white/5 border border-white/10 hover:border-primary/30 transition-colors">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Универсальная токарная обработка</span>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-bold text-on-surface tracking-tighter">900</span>
+<span class="text-lg text-on-surface-variant font-medium">₽ / час</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 p-5 rounded-xl bg-white/5 border border-white/10 hover:border-primary/30 transition-colors">
+<span class="font-label-sm text-label-sm text-on-surface-variant">ЧПУ токарные работы</span>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-bold text-primary tracking-tighter">1500</span>
+<span class="text-lg text-on-surface-variant font-medium">₽ / час</span>
+</div>
+</div>
+</div>
+<div class="space-y-3 relative z-10 pt-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+<span class="font-mono-label text-mono-label text-on-surface-variant">Контроль ОТК каждой партии</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+<span class="font-mono-label text-mono-label text-on-surface-variant">Работа строго по КД</span>
+</div>
+</div>
+<button class="bg-primary/10 border border-primary/20 text-primary py-4 rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary/20 transition-all shadow-xl shadow-primary/5 flex items-center justify-center gap-3 w-full relative z-10 mt-2">
+<span class="material-symbols-outlined text-xl">send</span>
+                        ОТПРАВИТЬ ЗАЯВКУ
+                    </button>
+</div>
+</aside>
+</div>
+<!-- CTA Section -->
+<section class="liquid-card rounded-3xl p-8 md:p-16 flex flex-col items-center text-center space-y-8 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none"></div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface tracking-tighter max-w-2xl relative z-10">Нужна токарная обработка деталей?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl relative z-10">
+                Оставьте заявку, предоставив чертежи или эскизы, и наши специалисты оперативно рассчитают стоимость и сроки выполнения заказа.
+            </p>
+<a class="bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider px-10 py-4 rounded-full hover:bg-primary/90 transition-colors inline-flex items-center gap-2 shadow-[0_4px_12px_rgba(216,226,255,0.15)] relative z-10" href="/zakaz">
+                ОСТАВИТЬ ЗАЯВКУ <span class="material-symbols-outlined">edit_document</span>
+</a>
 </section>
 </main>
-</div>
 <!-- Footer -->
+<script>
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', function (e) {
+                if (this.tagName === 'A' && this.getAttribute('href')?.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>

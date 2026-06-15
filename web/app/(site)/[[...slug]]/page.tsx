@@ -1,5 +1,8 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { ContactsMap } from '@/components/contacts/ContactsMap';
+import { FrictionTablesEnhancer } from '@/components/friction/FrictionTablesEnhancer';
+import { ReviewsPanel } from '@/components/reviews/ReviewsPanel';
 import { SiteMain } from '@/components/SiteMain';
 import { getAllSlugs, getPageContent, getPageTitle, normalizeSlugParam } from '@/lib/pages';
 import { prisma, isDbConfigured } from '@/lib/db';
@@ -38,7 +41,14 @@ export default async function SitePage({ params }: Props) {
         where: { slug: slugKey, published: true },
       });
       if (page?.body) {
-        return <SiteMain html={page.body} />;
+        return (
+          <>
+            <SiteMain html={page.body} />
+            {slugKey === 'frikcionnye-nakladki/nashi-izdeliya' && <FrictionTablesEnhancer />}
+            {slugKey === 'otzyvy-o-ppo' && <ReviewsPanel />}
+            {slugKey === 'contacts' && <ContactsMap />}
+          </>
+        );
       }
     } catch {
       /* fallback to file content */
@@ -48,5 +58,12 @@ export default async function SitePage({ params }: Props) {
   const html = getPageContent(slugKey);
   if (!html) notFound();
 
-  return <SiteMain html={html} />;
+  return (
+    <>
+      <SiteMain html={html} />
+      {slugKey === 'frikcionnye-nakladki/nashi-izdeliya' && <FrictionTablesEnhancer />}
+      {slugKey === 'otzyvy-o-ppo' && <ReviewsPanel />}
+      {slugKey === 'contacts' && <ContactsMap />}
+    </>
+  );
 }

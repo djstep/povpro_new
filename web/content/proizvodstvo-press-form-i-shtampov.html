@@ -1,82 +1,127 @@
-<main class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 pt-40 md:pt-48">
+<!-- Top Navigation -->
+
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-32 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full relative z-10 flex flex-col gap-16 md:gap-32">
 <!-- Hero Section -->
-<section class="mb-24 relative overflow-hidden rounded-xl h-[400px] flex items-center p-8 md:p-16">
-<div class="absolute inset-0 z-0 bg-cover bg-center opacity-40" data-alt="A highly detailed, industrial setting showing precision mechanical engineering equipment in action. The atmosphere is dark and sophisticated, illuminated by cool, high-key white lights that highlight the metallic textures of the machinery. Sparks or focused laser lighting add dramatic, vibrant accents against the deep black and navy background. The overall aesthetic embodies 'Liquid Industrial' style, merging technical precision with an immersive, atmospheric void." style="background-image: url('/assets/img/povpro-gallery-11.jpg');"></div>
-<div class="absolute inset-0 z-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
-<div class="relative z-10 max-w-2xl">
-<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">Механическая обработка</h1>
-<p class="font-body-md text-body-md text-on-surface-variant mb-8 text-lg">Высокоточная обработка металла для производства деталей любой сложности. Гарантируем качество и соответствие строгим техническим требованиям.</p>
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[60vh]">
+<div class="flex flex-col gap-8 z-20">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/10 w-fit self-start">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-mono-label text-mono-label text-primary">Мехобработка</span>
+</div>
+<h1 class="font-headline-lg-mobile md:font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface max-w-2xl">
+                    Изготовление штампов и пресс-форм
+                </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl opacity-90 leading-relaxed">
+                    Высокий профессионализм наших специалистов и современное оборудование позволяют изготавливать пресс-формы для деталей из металла любой сложности и высокого качества. Многолетний опыт работы гарантирует точность и долговечность.
+                </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="btn-primary font-label-sm text-label-sm uppercase tracking-widest px-8 py-3 rounded-full hover:scale-105 transition-transform duration-200">
+                        Узнать цену
+                    </button>
+<button class="btn-glass font-label-sm text-label-sm uppercase tracking-widest text-on-surface px-8 py-3 rounded-full hover:bg-white/10 transition-colors duration-200">
+                        Заказать
+                    </button>
+</div>
+</div>
+<div class="relative w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden liquid-panel group">
+<div class="absolute inset-0 bg-gradient-to-tr from-surface/80 to-transparent z-10"></div>
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out z-0" data-alt="A close-up shot of an advanced industrial CNC milling machine carving a complex metallic mold. High-precision engineering context. Deep navy background environment illuminated by cool, technical blue accent lighting. The metallic surface of the mold reflects a sophisticated, cutting-edge manufacturing atmosphere. Sparks and fine metal shavings highlight the active precision process. Overall aesthetic is dark, high-tech, and professional." src="/assets/img/58a43db29f55ca86.png">
 </div>
 </section>
-<!-- Services Bento Grid -->
-<section class="mb-24">
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 text-center md:text-left">Виды работ</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<!-- Feature Card 1 -->
-<div class="liquid-glass rounded-xl p-8 flex flex-col md:col-span-2">
-<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-primary text-2xl" data-icon="manufacturing">manufacturing</span>
-</div>
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Комплексная металлообработка</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Мы предлагаем полный цикл механической обработки, от заготовки до готовой детали, используя современное оборудование с ЧПУ.</p>
-<div class="flex flex-wrap gap-3">
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Зуборезные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Шлифовальные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Фрезерные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Токарные</span>
+<!-- Features / Grid Layout -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Press Molds Card -->
+<div class="col-span-1 md:col-span-6 liquid-panel rounded-2xl p-8 md:p-12 flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-500"></div>
+<span class="material-symbols-outlined text-primary text-4xl mb-2" style="font-variation-settings: 'FILL' 0;">precision_manufacturing</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Изготовление пресс-форм</h2>
+<p class="text-on-surface-variant font-body-md leading-relaxed flex-grow">
+                    Изготовление пресс-форм и штампов вот уже много лет является важным направлением компании в Тольятти. Передовые технологии позволяют получать отличное качество и высокую точность производимых пресс-форм.
+                </p>
+<div class="pt-4 border-t border-white/10">
+<p class="text-on-surface-variant font-mono-label opacity-80">Индивидуальные чертежи и эскизы</p>
 </div>
 </div>
-<!-- Feature Card 2 -->
-<div class="liquid-glass rounded-xl p-8 flex flex-col">
-<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-primary text-2xl" data-icon="precision_manufacturing">precision_manufacturing</span>
+<!-- Stamps Card -->
+<div class="col-span-1 md:col-span-6 liquid-panel rounded-2xl p-8 md:p-12 flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute -left-20 -bottom-20 w-64 h-64 bg-tertiary-container/5 rounded-full blur-3xl group-hover:bg-tertiary-container/10 transition-colors duration-500"></div>
+<span class="material-symbols-outlined text-tertiary-container text-4xl mb-2" style="font-variation-settings: 'FILL' 0;">construction</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Изготовление штампов</h2>
+<p class="text-on-surface-variant font-body-md leading-relaxed flex-grow">
+                    Производство штампованного изделия из металла осуществляется с помощью методов горячего и холодного типов. Обязательно учитывается степень утягивания или растяжения металла при пробивке и вырубке.
+                </p>
+<div class="pt-4 border-t border-white/10">
+<p class="text-on-surface-variant font-mono-label opacity-80">Горячая и холодная штамповка</p>
 </div>
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Специфичные операции</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Выполняем сложные и узкоспециализированные виды механической обработки для деталей нестандартной геометрии.</p>
-<div class="flex flex-wrap gap-3">
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Координатно-расточные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Электроэрозионные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Долбежные работы</span>
+</div>
+<!-- Advantages Banner -->
+<div class="col-span-1 md:col-span-12 liquid-panel rounded-2xl p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center justify-between border-primary/20 bg-surface-container/30">
+<div class="flex-1">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-4">Преимущества штамповки</h3>
+<p class="text-on-surface-variant font-body-md max-w-xl">
+                        Штампованные изделия из металла на сегодняшний день очень популярны благодаря ряду ключевых преимуществ для серийного производства.
+                    </p>
+</div>
+<div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
+<div class="bg-surface/50 p-6 rounded-xl border border-white/5 flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+<h4 class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface">Экономия</h4>
+<p class="font-mono-label text-on-surface-variant opacity-80 leading-relaxed">Процедура требует минимальных затрат материалов, что способствует умеренной стоимости.</p>
+</div>
+<div class="bg-surface/50 p-6 rounded-xl border border-white/5 flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">speed</span>
+<h4 class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface">Производительность</h4>
+<p class="font-mono-label text-on-surface-variant opacity-80 leading-relaxed">В сравнение с другими способами обработки, обладает высокой скоростью выпуска.</p>
+</div>
+</div>
+</div>
+<!-- Process List -->
+<div class="col-span-1 md:col-span-12 mt-8">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-8 text-center">Технологический процесс</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="liquid-panel rounded-xl p-8 text-center flex flex-col items-center gap-4 relative overflow-hidden">
+<div class="w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary font-bold text-xl mb-2">1</div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface">Анализ операций</h4>
+<p class="font-body-md text-on-surface-variant opacity-80">Определение необходимого количества штамповочных операций для детали.</p>
+</div>
+<div class="liquid-panel rounded-xl p-8 text-center flex flex-col items-center gap-4 relative overflow-hidden">
+<div class="w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary font-bold text-xl mb-2">2</div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface">Раскрой материала</h4>
+<p class="font-body-md text-on-surface-variant opacity-80">Выбор оптимального раскроя материала в зависимости от условий технологии.</p>
+</div>
+<div class="liquid-panel rounded-xl p-8 text-center flex flex-col items-center gap-4 relative overflow-hidden">
+<div class="w-12 h-12 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-primary font-bold text-xl mb-2">3</div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface">Выбор типа штампа</h4>
+<p class="font-body-md text-on-surface-variant opacity-80">Определение и проектирование оптимального типа штампа для задачи.</p>
 </div>
 </div>
 </div>
 </section>
-<!-- Production Categories -->
-<section class="mb-24">
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 text-center md:text-left">Производство деталей</h2>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
-<div class="rounded-xl overflow-hidden h-[500px] relative">
-<img alt="A close-up shot of precision mechanical parts, such as gears and shafts, resting on a polished metal surface within a dark, industrial workshop. The scene is lit with a soft, cool blue hue typical of a high-tech glassmorphism aesthetic, featuring sharp reflections and deep shadows. The composition conveys precision engineering and high-quality manufacturing, emphasizing the intricate details of the metalwork." class="object-cover w-full h-full opacity-80 mix-blend-screen" data-alt="A close-up shot of precision mechanical parts, such as gears and shafts, resting on a polished metal surface within a dark, industrial workshop. The scene is lit with a soft, cool blue hue typical of a high-tech glassmorphism aesthetic, featuring sharp reflections and deep shadows. The composition conveys precision engineering and high-quality manufacturing, emphasizing the intricate details of the metalwork." src="/assets/img/povpro-gallery-20.jpg">
-<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<!-- CTA Form -->
+<section class="max-w-4xl mx-auto w-full">
+<div class="liquid-panel rounded-2xl p-8 md:p-16 flex flex-col gap-8 relative overflow-hidden">
+<div class="absolute -inset-24 bg-gradient-to-tr from-primary/5 to-transparent opacity-50 blur-3xl pointer-events-none"></div>
+<div class="text-center flex flex-col gap-4 relative z-10">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Сделать заказ</h2>
+<p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">
+                        Оставьте заявку, и наши специалисты свяжутся с вами для обсуждения деталей проекта, сроков и стоимости изготовления оснастки.
+                    </p>
 </div>
-<div class="space-y-6">
-<!-- Accordion/Card 1 -->
-<div class="liquid-glass rounded-xl p-6 group cursor-pointer">
-<div class="flex justify-between items-center mb-2">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface group-hover:text-primary transition-colors">Штампы и пресс-формы</h3>
-<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+<form class="flex flex-col gap-6 relative z-10 mt-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<input class="bg-white/5 border border-white/10 rounded-full px-6 py-4 text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-on-surface-variant/50" placeholder="Ваше имя" type="text">
+<input class="bg-white/5 border border-white/10 rounded-full px-6 py-4 text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-on-surface-variant/50" placeholder="Номер телефона" type="tel">
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant">Проектирование и изготовление технологической оснастки высокой точности для серийного производства.</p>
-</div>
-<!-- Accordion/Card 2 -->
-<div class="liquid-glass rounded-xl p-6 group cursor-pointer">
-<div class="flex justify-between items-center mb-2">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface group-hover:text-primary transition-colors">Валы</h3>
-<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant">Токарная и фрезерная обработка валов различных типоразмеров с соблюдением допусков и посадок.</p>
-</div>
-<!-- Accordion/Card 3 -->
-<div class="liquid-glass rounded-xl p-6 group cursor-pointer">
-<div class="flex justify-between items-center mb-2">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface group-hover:text-primary transition-colors">Шестерни</h3>
-<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant">Зубонарезные работы для создания шестерней с прямым, косым зубом, а также конических передач.</p>
-</div>
-</div>
+<textarea class="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-on-surface-variant/50 resize-none" placeholder="Краткое описание задачи или ссылка на чертеж" rows="4"></textarea>
+<button class="btn-primary font-label-sm text-label-sm uppercase tracking-widest px-8 py-4 rounded-full hover:scale-[1.02] transition-transform duration-200 mt-2 w-full md:w-auto md:self-center" type="submit">
+                        Отправить заявку
+                    </button>
+<p class="text-center font-mono-label text-on-surface-variant opacity-60 mt-2">
+                        Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.
+                    </p>
+</form>
 </div>
 </section>
 </main>
-</div>
 <!-- Footer -->

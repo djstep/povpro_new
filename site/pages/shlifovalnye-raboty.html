@@ -1,0 +1,471 @@
+<!DOCTYPE html><html class="dark" lang="ru"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Шлифовальные работы | ППО №3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#0d1d2c",
+                    "on-secondary-fixed-variant": "#3a485a",
+                    "primary": "#d8e2ff",
+                    "surface-container-highest": "#273647",
+                    "glass-border": "rgba(255, 255, 255, 0.15)",
+                    "primary-container": "#adc6ff",
+                    "on-secondary-fixed": "#0e1c2d",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#2c4677",
+                    "tertiary-container": "#bbc6de",
+                    "surface-container-lowest": "#010f1e",
+                    "surface-container-high": "#1c2b3c",
+                    "inverse-primary": "#455e90",
+                    "surface-variant": "#273647",
+                    "primary-fixed-dim": "#adc6ff",
+                    "inverse-surface": "#d4e4fa",
+                    "tertiary-fixed": "#d8e3fb",
+                    "background": "#041424",
+                    "surface-bright": "#2b3a4b",
+                    "on-error": "#690005",
+                    "glass-fill": "rgba(28, 43, 60, 0.4)",
+                    "surface-container": "#112131",
+                    "tertiary-fixed-dim": "#bcc7de",
+                    "on-primary-fixed": "#001a42",
+                    "tertiary": "#d7e2fa",
+                    "inverse-on-surface": "#223242",
+                    "secondary-fixed": "#d5e4fb",
+                    "surface-deep": "#051424",
+                    "secondary-container": "#3c4a5d",
+                    "surface-dim": "#041424",
+                    "on-primary": "#122f5f",
+                    "outline": "#8e909a",
+                    "on-tertiary-fixed-variant": "#3c475a",
+                    "on-background": "#d4e4fa",
+                    "on-secondary": "#233143",
+                    "outline-variant": "#44474f",
+                    "on-surface-variant": "#c4c6d0",
+                    "on-primary-container": "#385283",
+                    "error-container": "#93000a",
+                    "liquid-fill": "rgba(255, 255, 255, 0.03)",
+                    "secondary": "#b9c8de",
+                    "surface-tint": "#adc6ff",
+                    "surface": "#041424",
+                    "secondary-fixed-dim": "#b9c8de",
+                    "on-tertiary-fixed": "#111c2d",
+                    "primary-fixed": "#d8e2ff",
+                    "on-tertiary-container": "#475266",
+                    "on-tertiary": "#263143",
+                    "on-surface": "#d4e4fa",
+                    "on-secondary-container": "#abb9d0",
+                    "error": "#ffb4ab"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "margin-desktop": "48px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "body-md": ["Geist", "sans-serif"],
+                    "label-sm": ["Geist", "sans-serif"],
+                    "headline-lg": ["Geist", "sans-serif"],
+                    "headline-lg-mobile": ["Geist", "sans-serif"],
+                    "mono-label": ["Geist", "monospace"],
+                    "headline-xl": ["Geist", "sans-serif"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-sm": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "mono-label": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(28, 43, 60, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+        .liquid-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .tactile-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.1);
+            border-color: rgba(216, 226, 255, 0.3);
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(216, 226, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col">
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-3xl border-b border-white/10 flex flex-col">
+<div class="border-b border-white/5">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center">
+<div class="font-headline-lg text-primary font-black tracking-tighter text-[2.5rem] leading-tight flex items-center gap-4">
+<img alt="Logo" class="w-12 h-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgjhQbl0Z_e1Euv3k-aJ5tx35PKaSs_7zJY8JHt_d__cffSYuJEAiU4zCiUOYNTUsuhmZnreXRqESDNRRqqPOFbLzfNJ91dHnA0fAlHE9h2TLojWUzA58oRhREJy6he7-mJJQdM1WWYoTRCqFTsxe8xBzdZksQeb1qGtX5FGk2vWGUFrPxbtXuOybmi9CWEXf1m8lEjMAPpqyQRdw9sxMQ8EVoKAopmizhtqC3aPwW6BgdZH_q1e1ELNjRSs8R0lqjDg8MmtH1U9nj">ВВВВ №3
+            </div>
+<div class="flex items-center gap-6">
+<div class="hidden md:grid grid-cols-[auto_auto] gap-x-6 gap-y-0 items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">location_on</span>
+<div class="text-on-surface-variant font-label-sm text-sm leading-[1.2]">г. Тагагтти</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">call</span>
+<a class="text-on-surface hover:text-primary transition-colors font-label-sm text-sm font-bold leading-[1.2]" href="tel:88482555900">8 (8482) 555-900</a>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-4"></div>
+<div class="text-on-surface-variant font-label-sm text-sm leading-[1.2]">уг. Вараиааар, 24</div>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-primary text-base">mail</span>
+<a class="text-on-surface hover:text-primary transition-colors font-label-sm text-sm font-bold leading-[1.2]" href="mailto:office@povpro.ru">office@povpro.ru</a>
+</div>
+</div>
+<button class="bg-primary text-on-primary rounded-full px-5 py-3 text-sm hover:opacity-90 transition-opacity uppercase tracking-widest font-bold">
+                    Заггаасиар гагчет
+                </button>
+</div>
+</div>
+</div>
+<div class="hidden lg:block">
+<div class="max-w-container-max mx-auto px-margin-desktop py-3 flex justify-center">
+<div class="flex items-center space-x-6">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">ГГАВВАР</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">ФРИВЦИВВВВВ ВАВГАДВИ</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 text-sm uppercase tracking-widest" href="#">ВЕХВБРАБВВВА</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">ИВТЕГГЕВТУАГСВТЕ СИСТЕВТ</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">УСГУГИ</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">ВВВТАВТВ</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">ВТЗТВТ</a>
+</div>
+</div>
+</div>
+</nav>
+<main class="flex-grow pt-28 pb-20">
+<div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop flex flex-col gap-[80px] md:gap-[120px]">
+<!-- Hero Section -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
+<!-- Background decorative elements -->
+<div class="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+<div class="flex flex-col gap-8 z-10">
+<div class="flex items-center gap-3">
+<span class="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-mono-label text-mono-label uppercase tracking-widest">Высокоточная обработка</span>
+<div class="h-px w-12 bg-primary/30"></div>
+</div>
+<h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-on-surface glow-text uppercase">
+                        Шлифовальные<br><span class="text-primary">Работы</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
+                        Обеспечиваем высочайшую точность (1-2 классы) и чистоту поверхности (7-9 классы шероховатости). Наш парк оборудования позволяет выполнять плоское, круглое, внутреннее и бесцентровое шлифование деталей любой сложности.
+                    </p>
+<div class="flex flex-wrap gap-4 mt-4">
+<button class="px-8 py-3 rounded-full bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-primary-container hover:scale-95 transition-all duration-200 shadow-[0_0_20px_rgba(216,226,255,0.2)]">
+                            Сделать заказ
+                        </button>
+<button class="px-8 py-3 rounded-full glass-panel text-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-white/10 hover:scale-95 transition-all duration-200">
+                            Техпроцесс
+                        </button>
+</div>
+</div>
+<div class="relative z-10 w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden glass-panel tactile-lift p-2 group">
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-deep/80 to-transparent z-10 pointer-events-none"></div>
+<img alt="Процесс высокоточного шлифования металлической детали на промышленном станке." class="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-105" data-alt="A macro shot of a precision industrial grinding process. A sparking grinding wheel makes contact with a cylindrical metal component. Coolant fluid splashes around the contact point. The scene is illuminated by harsh, cool machine lighting, contrasting with the warm orange sparks. The background is a dark, out-of-focus industrial machine setting." src="https://lh3.googleusercontent.com/aida/ADBb0ug9gYJlLuKne0o_IsSA-sfD6DXwuS7T2pBoQlM7d0-rz4UKCGj7PktgkD1t4jd2Bg195xGlm5gWy2l2FxnmB__Kg6_gPkRdFuVagxQEfrsV1t8Ij72oiauxB2ZwjC-YjO9NPCVhzjI8S5jS36Qv66VpzOaE_UOEP8Zi5Iy8Mnd_sMG2ltYS84D0UQvLSNWNrT4AN0YeFlDhxRoW6LIGdK1QFgjOVxVnSqiTekGNnWnB1JnXEP3Y0mHRdIBe">
+<div class="absolute bottom-6 left-6 right-6 z-20 flex justify-between items-end">
+<div>
+<div class="font-mono-label text-primary mb-1">Точность</div>
+<div class="font-headline-lg-mobile text-on-surface">1-2 Класс</div>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container/50 backdrop-blur-md flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-primary">zoom_in</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Grid -->
+<section class="flex flex-col gap-10">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight">
+                        Виды шлифования
+                    </h2>
+<div class="h-px flex-grow ml-8 bg-gradient-to-r from-outline-variant/30 to-transparent hidden md:block"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="liquid-panel rounded-2xl p-6 flex flex-col gap-4 tactile-lift transition-all duration-300 group cursor-default">
+<div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[28px]">layers</span>
+</div>
+<h3 class="font-headline-lg-mobile text-[20px] text-on-surface font-semibold">Плоское<br>шлифование</h3>
+<p class="font-body-md text-[14px] text-on-surface-variant mt-auto">
+                            Обработка плоских поверхностей с высокой степенью плоскостности и параллельности.
+                        </p>
+</div>
+<!-- Card 2 -->
+<div class="liquid-panel rounded-2xl p-6 flex flex-col gap-4 tactile-lift transition-all duration-300 group cursor-default">
+<div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[28px]">radio_button_unchecked</span>
+</div>
+<h3 class="font-headline-lg-mobile text-[20px] text-on-surface font-semibold">Бесцентровое<br>шлифование</h3>
+<p class="font-body-md text-[14px] text-on-surface-variant mt-auto">
+                            Высокопроизводительная обработка наружных цилиндрических поверхностей без базирования в центрах.
+                        </p>
+</div>
+<!-- Card 3 -->
+<div class="liquid-panel rounded-2xl p-6 flex flex-col gap-4 tactile-lift transition-all duration-300 group cursor-default">
+<div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[28px]">album</span>
+</div>
+<h3 class="font-headline-lg-mobile text-[20px] text-on-surface font-semibold">Внутреннее<br>шлифование</h3>
+<p class="font-body-md text-[14px] text-on-surface-variant mt-auto">
+                            Точная обработка внутренних цилиндрических и конических отверстий.
+                        </p>
+</div>
+<!-- Card 4 -->
+<div class="liquid-panel rounded-2xl p-6 flex flex-col gap-4 tactile-lift transition-all duration-300 group cursor-default">
+<div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[28px]">settings_input_component</span>
+</div>
+<h3 class="font-headline-lg-mobile text-[20px] text-on-surface font-semibold">Круглое<br>шлифование</h3>
+<p class="font-body-md text-[14px] text-on-surface-variant mt-auto">
+                            Обработка наружных цилиндрических и конических поверхностей с установкой в центрах.
+                        </p>
+</div>
+</div>
+</section>
+<!-- Fleet Gallery -->
+<section class="flex flex-col gap-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2 block">Производственные мощности</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight">
+                            Парк оборудования
+                        </h2>
+</div>
+<p class="font-body-md text-on-surface-variant max-w-md text-sm md:text-base">
+                        Современные и модернизированные станки для обеспечения заявленных параметров шероховатости и точности.
+                    </p>
+</div>
+<div class="flex flex-col gap-6">
+<p class="font-body-md text-on-surface">Предприятие владеет специальным оборудованием для производства шлифовальных работ:</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Machine Card 1 -->
+<div class="glass-panel rounded-2xl p-6 flex flex-col gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 text-primary mb-2">
+<span class="material-symbols-outlined">data_usage</span>
+</div>
+<h3 class="font-label-sm text-on-surface uppercase tracking-wider mb-2">Внутреннешлифовальный станок</h3>
+<ul class="font-mono-label text-on-surface-variant space-y-2">
+<li class="flex justify-between border-b border-white/5 pb-1">
+<span class="">Диаметр:</span>
+<span class="text-primary">до 500 мм</span>
+</li>
+<li class="flex justify-between border-b border-white/5 pb-1">
+<span class="">Длина:</span>
+<span class="text-primary">до 2000 мм</span>
+</li>
+</ul>
+</div>
+<!-- Machine Card 2 -->
+<div class="glass-panel rounded-2xl p-6 flex flex-col gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 text-primary mb-2">
+<span class="material-symbols-outlined">settings_input_component</span>
+</div>
+<h3 class="font-label-sm text-on-surface uppercase tracking-wider mb-2">Круглошлифовальный станок</h3>
+<ul class="font-mono-label text-on-surface-variant space-y-2">
+<li class="flex justify-between border-b border-white/5 pb-1">
+<span class="">Диаметр:</span>
+<span class="text-primary">до 600 мм</span>
+</li>
+<li class="flex justify-between border-b border-white/5 pb-1">
+<span class="">Длина:</span>
+<span class="text-primary">до 4000 мм</span>
+</li>
+</ul>
+</div>
+<!-- Machine Card 3 -->
+<div class="glass-panel rounded-2xl p-6 flex flex-col gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 text-primary mb-2">
+<span class="material-symbols-outlined">layers</span>
+</div>
+<h3 class="font-label-sm text-on-surface uppercase tracking-wider mb-2">Плоскошлифовальный станок</h3>
+<ul class="font-mono-label text-on-surface-variant space-y-2">
+<li class="flex justify-between border-b border-white/5 pb-1">
+<span class="text-primary">+ шлифовка под любым углом</span>
+</li>
+<li class="flex justify-between border-b border-white/5 pb-1">
+<span class="">Высота:</span>
+<span class="text-primary">до 1500 мм</span>
+</li>
+<li class="flex justify-between border-b border-white/5 pb-1">
+<span class="">Ширина:</span>
+<span class="text-primary">до 2000 мм</span>
+</li>
+<li class="flex justify-between border-b border-white/5 pb-1">
+<span class="">Длина:</span>
+<span class="text-primary">до 4000 мм</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[400px]">
+<div class="relative rounded-2xl overflow-hidden glass-panel group md:col-span-2 md:row-span-2 h-[200px] md:h-full">
+<img alt="Зеленый промышленный шлифовальный станок в работе." class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="A medium shot of a large, heavy-duty industrial grinding machine painted in a classic machine-tool green. The machine features complex mechanical assemblies, dials, and coolant nozzles. The environment is a dimly lit, authentic factory floor, highlighting the rugged nature of heavy manufacturing." src="https://lh3.googleusercontent.com/aida/ADBb0uihOq3rFZS7AWnO1mUAJHhpFOAJc0E9_8lYntSIuXdfEgrVdMfUkj25R4b6qz462jWjVv-r78BNahg5D8aVvI116Ym8iqM6zTViqRwWlBoU6JNBXGcRZkwFqGFfwf-WLbLXFFf-DINqngxAJYmknrbJTzCkyNeXCZw9iLhK7_sfpweKcFBJWsFlDrNz4M80JbCxRsCjt7bXJKd8mu7JIt608FLKr6OXCzpAfuVA5nvjtsPhy-elKGxsU-s">
+<div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent pointer-events-none"></div>
+<div class="absolute bottom-4 left-4 font-label-sm text-on-surface uppercase tracking-wider">Шлифовальный комплекс</div>
+</div>
+<div class="relative rounded-2xl overflow-hidden glass-panel group h-[192px]">
+<img alt="Набор шлифовальных кругов на полке." class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="A close-up shot of several abrasive grinding wheels organized on a heavy metal rack in a workshop. The wheels vary in color—grey, pale pink, and dull green—indicating different grit types. The lighting is functional and slightly gritty, emphasizing the texture of the abrasive materials." src="https://lh3.googleusercontent.com/aida/ADBb0uiMrwQDAeQYEwr-22xQEVFX-JgYD78T6H5_UaIaCxlpXjoul4QvOzwhIoxkbhosf_FBbil6VzxH48BRH3rBRJoH28qYvyIQTuXGHB168K_RomMT59B7Vn1nHeJy5Mv1uhdE-G35lQKI0Lbwu6V8sIrdufYs8u2ciqoKKmkla6n9g_pzNudAaah_EeJ3zIZv-w3_lJygExq8FHTnK4-UnfuB-qnaISLZSiDX4g8qO_WkNLTuXDRsaNibcjVq">
+</div>
+<div class="relative rounded-2xl overflow-hidden glass-panel group h-[192px]">
+<img alt="Металлические детали после шлифовки." class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="A detailed shot of two freshly ground cylindrical metal shafts resting on a worn metal workbench. The steel surfaces gleam with a highly polished, mirror-like finish, contrasting with the dark, textured surface of the table. A soft overhead light creates long reflections on the metallic curves." src="https://lh3.googleusercontent.com/aida/ADBb0uhxyvmaCU9xy5efbmVxUTwjFLlLBPwCsbBmij96kWvjU7ONI_MDq9wq4RuZaNycerMr4Yf4i_IQGcq8WQYP9N5il83M9WnzBYPSRrsrqh-JKYq9T42wDbAVXG_ZeddvriuVzmICQ6pT64kPj7TW8rFWay5hKB1joUQI5Z-8qlsxMn3-2C9iTOce1Ja0DDrrPPiR36Lk4Z5jauM7O5IbNM5ZPtp-rSFqXxCqc61aTNKix57WQ4UbsiTWRuHy">
+</div>
+<div class="relative rounded-2xl overflow-hidden glass-panel group col-span-2 md:col-span-2 h-[192px]">
+<img alt="Деталь зажатая в патроне токарно-шлифовального станка." class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="A focused view on the chuck of a precision machine tool holding a large, shiny metallic disc. The machine itself is painted green and shows signs of industrial use. The lighting highlights the concentric machined rings on the face of the metal workpiece." src="https://lh3.googleusercontent.com/aida/ADBb0ugd2bjCY26Ke1TSTG57DeAkmWpwI4RftVQzxXc6hVN3DoOicVN4C6aGFsYKnjg1qugCSXl06vRYKlBLO5VtDisyFjPGrGxo_OmrBXzKe2UkbdnVb6s2Nxr8priAlJ6attpwgdk6LIGI3ZSBl-Grvwcecp2_pkiVc6j3YlFDPoUGphaH6cjmZ0pFKDvIRPtQ3bwkON5ZBpBH6zpBVd6rGgje5eQgn2xI1FRS6bwe0930Su__JAfDjNO-GVc">
+</div>
+</div>
+</section>
+<!-- Featured Equipment / Technical Details -->
+<section class="glass-panel rounded-3xl overflow-hidden relative">
+<!-- Background ambient glow -->
+<div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+<div class="p-8 md:p-12 flex flex-col justify-center">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-4 inline-block bg-primary/10 px-3 py-1 rounded-full border border-primary/20 w-max">Новое оборудование</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface uppercase tracking-tight mb-6">
+                            Плоскошлифовальный станок M7160x16
+                        </h2>
+<p class="font-body-md text-on-surface-variant mb-8">
+                            Высокоточный станок с прямоугольным электромагнитным столом и горизонтальным шпинделем. Предназначен для шлифования плоских поверхностей деталей периферией круга.
+                        </p>
+<div class="bg-surface-container/50 rounded-xl border border-white/5 overflow-hidden">
+<table class="w-full text-left font-body-md text-sm">
+<tbody>
+<tr class="border-b border-white/5 bg-white/[0.02]">
+<th class="py-3 px-4 font-medium text-on-surface-variant w-1/2">Размеры рабочей поверхности стола</th>
+<td class="py-3 px-4 text-on-surface font-mono-label">1600 × 600 мм</td>
+</tr>
+<tr class="border-b border-white/5">
+<th class="py-3 px-4 font-medium text-on-surface-variant">Наиб. масса шлифуемой детали</th>
+<td class="py-3 px-4 text-on-surface font-mono-label">1500 кг</td>
+</tr>
+<tr class="border-b border-white/5 bg-white/[0.02]">
+<th class="py-3 px-4 font-medium text-on-surface-variant">Расстояние от оси шпинделя до стола</th>
+<td class="py-3 px-4 text-on-surface font-mono-label">140 - 700 мм</td>
+</tr>
+<tr class="border-b border-white/5">
+<th class="py-3 px-4 font-medium text-on-surface-variant">Размеры шлифовального круга</th>
+<td class="py-3 px-4 text-on-surface font-mono-label">Ø500 × 75 × Ø203 мм</td>
+</tr>
+<tr class="bg-white/[0.02]">
+<th class="py-3 px-4 font-medium text-on-surface-variant">Точность / Шероховатость</th>
+<td class="py-3 px-4 text-primary font-mono-label font-bold">1-2 кл. / 7-9 кл.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="relative min-h-[400px] lg:min-h-full bg-surface-container-lowest/50 flex items-center justify-center p-8 border-l border-white/5">
+<img alt="Новый плоскошлифовальный станок M7160x16 синего цвета." class="max-w-full max-h-[500px] object-contain drop-shadow-2xl" data-alt="A clean, brightly lit product shot of a brand new industrial surface grinding machine (model M7160x16). The base is painted a vibrant, clean blue, while the upper mechanisms are a pristine light grey. It features a long horizontal work table and a central control panel with various buttons and dials. The background is isolated or a very subtle, clean studio environment." src="https://lh3.googleusercontent.com/aida/ADBb0uhmxLnNIHNfDAnKFrmez88eihaTLXclwmhjiK5sgWLvy3qQuiJVFqOlVsNfWAcZCeKDXyiP1JXg3HtxiiWiDRtU4qbEPI7SdLfnJ0VJb3xODpiNPm34rvDKoPjaR7NolZhMMLehGDhY7w-RTgiZsbH4nju2-xD_N4L1vrvLDMQj-T0Hihyk4PafNviJu0aD8sHrlx20Tbr4m_4UMrkGqfw3zWuE6PDNJeoQiw7G0hC8jQFewYrINNBhE6Q">
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="glass-panel rounded-3xl p-8 md:p-16 text-center flex flex-col items-center relative overflow-hidden mt-10">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background z-0 pointer-events-none"></div>
+<div class="relative z-10 max-w-2xl flex flex-col items-center gap-6">
+<span class="material-symbols-outlined text-[48px] text-primary mb-2">engineering</span>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-xl text-on-surface uppercase tracking-tight">
+                        Запросить расчет и сроки
+                    </h2>
+<p class="font-body-md text-on-surface-variant mb-4">
+                        Оставьте заявку, прикрепите чертежи, и наши инженеры свяжутся с вами для обсуждения деталей заказа и технологического процесса.
+                    </p>
+<div class="w-full max-w-md bg-surface-container/30 p-1 rounded-full flex border border-white/10 backdrop-blur-md">
+<input class="flex-grow bg-transparent border-none text-on-surface focus:ring-0 px-6 font-body-md placeholder:text-on-surface-variant/50" placeholder="Ваш телефон или E-mail" type="text">
+<button class="px-8 py-3 rounded-full bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider hover:bg-primary-container transition-colors shadow-lg whitespace-nowrap">
+                            Оставить заявку
+                        </button>
+</div>
+<p class="font-mono-label text-[10px] text-on-surface-variant/50 mt-2">
+                        Нажимая кнопку, вы соглашаетесь с политикой обработки данных
+                    </p>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="bg-surface-container-lowest w-full border-t border-white/10 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="flex flex-col gap-6">
+<div class="font-headline-lg text-primary font-bold tracking-tighter uppercase">ВВВ №3</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                Вравршгеввте фривцивввте издегир. Гидер атрасги в разрабатве безасбеставтх ватериагав.
+            </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">public</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">chat_bubble</span>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2 text-xs">Вавигацир</span>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Ггаввар</a>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">ФривцивВВВВВ ВавгадВи</a>
+<a class="text-primary font-bold text-sm uppercase tracking-widest" href="#">Вехвбрабвтва</a>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Усгуги</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2 text-xs">Врадувцир</span>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Техвичесвие усгавир</a>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Ваши издегир</a>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">ВтзтвТ</a>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Варта сайта</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2 text-xs">ВавТаТТТ</span>
+<div class="flex items-start gap-3 text-on-surface-variant text-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-primary scale-90">location_on</span>
+<span class="">г. Тагагтти, уг. Вараиааар, 24</span>
+</div>
+<div class="flex items-start gap-3 text-on-surface-variant text-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-primary scale-90">phone</span>
+<span class="">8 (8482) 555-900</span>
+</div>
+<div class="flex items-start gap-3 text-on-surface-variant text-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-primary scale-90">mail</span>
+<span class="">office@povpro.ru</span>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-white/5 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="text-on-surface-variant text-xs uppercase tracking-wider">© 2024 ВВВ №3 (POVPRO). Все врава защищевт.</span>
+<a class="text-on-surface-variant text-xs hover:text-primary transition-colors uppercase tracking-widest" href="#">Вагитива вавфидевциагтввсти</a>
+</div>
+</footer>
+
+
+</body></html>

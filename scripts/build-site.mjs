@@ -14,17 +14,17 @@ const routes = {
   '/frikcionnye-nakladki/nashi-izdeliya': 'products.html',
   '/frikcionnye-nakladki/tu': 'specs.html',
   '/mekhanicheskaya-obrabotka': 'machining.html',
-  '/proizvodstvo_detalej': 'products.html',
-  '/proizvodstvo-press-form-i-shtampov': 'machining.html',
-  '/izgotovlenie-valov': 'machining.html',
-  '/izgotovlenie-shesteren-i-zubchatyh-koles': 'machining.html',
-  '/zuboreznye-raboty': 'machining.html',
-  '/shlifovalnye-raboty': 'machining.html',
-  '/frezernye-raboty': 'machining.html',
-  '/tokarnye-raboty': 'machining.html',
-  '/koordinatno-rastochnye-raboty': 'machining.html',
-  '/elektroerozionnye-raboty': 'machining.html',
-  '/dolbezhnye-raboty': 'machining.html',
+  '/proizvodstvo_detalej': 'proizvodstvo-detalej.html',
+  '/proizvodstvo-press-form-i-shtampov': 'press-forms.html',
+  '/izgotovlenie-valov': 'valy.html',
+  '/izgotovlenie-shesteren-i-zubchatyh-koles': 'shesteren.html',
+  '/zuboreznye-raboty': 'zuboreznye-raboty.html',
+  '/shlifovalnye-raboty': 'shlifovalnye-raboty.html',
+  '/frezernye-raboty': 'frezernye-raboty.html',
+  '/tokarnye-raboty': 'tokarnye-raboty.html',
+  '/koordinatno-rastochnye-raboty': 'koordinatno-rastochnye-raboty.html',
+  '/elektroerozionnye-raboty': 'elektroerozionnye-raboty.html',
+  '/dolbezhnye-raboty': 'dolbezhnye-raboty.html',
   '/irt': 'intelligent-systems.html',
   '/metalloobrabotka': 'services.html',
   '/mashiny-dlya-litya-pod-davleniem': 'mld.html',
@@ -400,9 +400,20 @@ async function build() {
   fs.rmSync(outDir, { recursive: true, force: true });
   fs.mkdirSync(assetsDir, { recursive: true });
 
+  const mechFallback = 'machining.html';
+
   for (const [routePath, srcFile] of Object.entries(routes)) {
-    const srcPath = path.join(srcDir, srcFile);
-    if (!fs.existsSync(srcPath)) {
+    let srcPath = path.join(srcDir, srcFile);
+    if (!fs.existsSync(srcPath) && srcFile !== mechFallback) {
+      const fallback = path.join(srcDir, mechFallback);
+      if (fs.existsSync(fallback)) {
+        console.warn('Fallback', srcFile, '→', mechFallback);
+        srcPath = fallback;
+      } else {
+        console.warn('Missing:', srcFile);
+        continue;
+      }
+    } else if (!fs.existsSync(srcPath)) {
       console.warn('Missing:', srcFile);
       continue;
     }

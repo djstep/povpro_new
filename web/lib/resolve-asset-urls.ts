@@ -14,25 +14,3 @@ export function resolveAssetUrl(assetPath: string): string {
   const file = normalized.replace(/^\/assets\/img\//, '');
   return `${GITHUB_ASSETS}/${file}`;
 }
-
-/** Подмена /assets/img/… на внешние URL перед рендером HTML-контента */
-export function rewriteContentAssets(html: string): string {
-  let out = html;
-
-  out = out.replace(/url\((['"]?)\/assets\/img\/([^'")]+)\1\)/g, (_, _q, file) => {
-    return `url('${resolveAssetUrl(`/assets/img/${file}`)}')`;
-  });
-
-  out = out.replace(/src="\/assets\/img\/([^"]+)"/g, (_, file) => {
-    return `src="${resolveAssetUrl(`/assets/img/${file}`)}"`;
-  });
-
-  let imgIndex = 0;
-  out = out.replace(/<img(?![^>]*\bloading=)/gi, () => {
-    imgIndex += 1;
-    if (imgIndex === 1) return '<img fetchpriority="high" ';
-    return '<img loading="lazy" decoding="async" ';
-  });
-
-  return out;
-}

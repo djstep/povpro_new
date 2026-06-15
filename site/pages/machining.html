@@ -1,311 +1,345 @@
 <!DOCTYPE html><html class="dark" lang="ru"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Мехобработка - ППО №3 (POVPRO)</title>
+<title>Мехобработка деталей | ППО №3</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "secondary": "#bec6e0",
-                        "on-primary-fixed": "#001a42",
-                        "error": "#ffb4ab",
-                        "tertiary-container": "#8691a7",
-                        "on-secondary-container": "#adb4ce",
-                        "outline-variant": "#424754",
-                        "on-error-container": "#ffdad6",
-                        "surface-container-highest": "#273647",
-                        "surface-container": "#122131",
-                        "secondary-fixed-dim": "#bec6e0",
-                        "on-tertiary-fixed-variant": "#3c475a",
-                        "on-secondary-fixed": "#131b2e",
-                        "on-tertiary": "#263143",
-                        "outline": "#8c909f",
-                        "on-tertiary-container": "#1f2a3c",
-                        "on-surface": "#d4e4fa",
-                        "secondary-fixed": "#dae2fd",
-                        "on-primary": "#002e6a",
-                        "inverse-on-surface": "#233143",
-                        "on-surface-variant": "#c2c6d6",
-                        "primary-container": "#4d8eff",
-                        "surface-container-low": "#0d1c2d",
-                        "primary-fixed-dim": "#adc6ff",
-                        "inverse-surface": "#d4e4fa",
-                        "background": "#051424",
-                        "tertiary-fixed-dim": "#bcc7de",
-                        "inverse-primary": "#005ac2",
-                        "surface-bright": "#2c3a4c",
-                        "primary": "#adc6ff",
-                        "on-tertiary-fixed": "#111c2d",
-                        "on-error": "#690005",
-                        "surface-variant": "#273647",
-                        "surface-container-lowest": "#010f1f",
-                        "surface-container-high": "#1c2b3c",
-                        "surface-tint": "#adc6ff",
-                        "on-background": "#d4e4fa",
-                        "on-primary-fixed-variant": "#004395",
-                        "on-secondary": "#283044",
-                        "error-container": "#93000a",
-                        "on-primary-container": "#00285d",
-                        "tertiary-fixed": "#d8e3fb",
-                        "secondary-container": "#3f465c",
-                        "primary-fixed": "#d8e2ff",
-                        "surface-dim": "#051424",
-                        "tertiary": "#bcc7de",
-                        "on-secondary-fixed-variant": "#3f465c",
-                        "surface": "#051424"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "1rem",
-                        "lg": "2rem",
-                        "xl": "3rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "container-max": "1280px",
-                        "margin-desktop": "48px",
-                        "unit": "4px",
-                        "margin-mobile": "16px",
-                        "gutter": "24px"
-                    },
-                    "fontFamily": {
-                        "body-md": [
-                            "Geist"
-                        ],
-                        "headline-lg": [
-                            "Geist"
-                        ],
-                        "headline-lg-mobile": [
-                            "Geist"
-                        ],
-                        "mono-label": [
-                            "Geist"
-                        ],
-                        "headline-xl": [
-                            "Geist"
-                        ],
-                        "label-sm": [
-                            "Geist"
-                        ]
-                    },
-                    "fontSize": {
-                        "body-md": [
-                            "16px",
-                            {
-                                "lineHeight": "1.6",
-                                "fontWeight": "400"
-                            }
-                        ],
-                        "headline-lg": [
-                            "32px",
-                            {
-                                "lineHeight": "1.2",
-                                "letterSpacing": "-0.01em",
-                                "fontWeight": "600"
-                            }
-                        ],
-                        "headline-lg-mobile": [
-                            "24px",
-                            {
-                                "lineHeight": "1.2",
-                                "fontWeight": "600"
-                            }
-                        ],
-                        "mono-label": [
-                            "12px",
-                            {
-                                "lineHeight": "1",
-                                "letterSpacing": "0.02em",
-                                "fontWeight": "400"
-                            }
-                        ],
-                        "headline-xl": [
-                            "48px",
-                            {
-                                "lineHeight": "1.1",
-                                "letterSpacing": "-0.02em",
-                                "fontWeight": "600"
-                            }
-                        ],
-                        "label-sm": [
-                            "13px",
-                            {
-                                "lineHeight": "1.4",
-                                "letterSpacing": "0.05em",
-                                "fontWeight": "500"
-                            }
-                        ]
-                    }
-                },
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#d4e4fb",
+                    "on-secondary-container": "#aebdd3",
+                    "primary-fixed": "#d8e2ff",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "tertiary-container": "#adc6ff",
+                    "surface-bright": "#2b3a4b",
+                    "surface-container-low": "#0d1d2c",
+                    "secondary": "#b8c8de",
+                    "outline-variant": "#44474f",
+                    "on-surface-variant": "#c4c6d0",
+                    "surface-container-high": "#1c2b3c",
+                    "primary": "#adc6ff",
+                    "surface": "#041424",
+                    "on-secondary-fixed-variant": "#39485a",
+                    "on-surface": "#d4e4fa",
+                    "on-secondary": "#233143",
+                    "surface-variant": "#273647",
+                    "glass-border": "rgba(255, 255, 255, 0.15)",
+                    "on-tertiary-fixed-variant": "#004495",
+                    "outline": "#8e909a",
+                    "background": "#041424",
+                    "on-error-container": "#ffdad6",
+                    "tertiary": "#d8e2ff",
+                    "surface-container-highest": "#273647",
+                    "glass-fill": "rgba(28, 43, 60, 0.4)",
+                    "surface-tint": "#adc6ff",
+                    "inverse-surface": "#d4e4fa",
+                    "on-primary-fixed": "#001a42",
+                    "surface-dim": "#041424",
+                    "secondary-container": "#3e4d5f",
+                    "primary-fixed-dim": "#adc6ff",
+                    "surface-base": "#051424",
+                    "inverse-primary": "#455e90",
+                    "on-primary-fixed-variant": "#2c4677",
+                    "inverse-on-surface": "#223242",
+                    "glass-fill-heavy": "rgba(28, 43, 60, 0.6)",
+                    "tertiary-fixed": "#d8e2ff",
+                    "surface-container": "#112131",
+                    "on-tertiary-container": "#004fab",
+                    "on-primary": "#122f5f",
+                    "primary-container": "#adc6ff",
+                    "on-secondary-fixed": "#0d1d2d",
+                    "error-container": "#93000a",
+                    "on-background": "#d4e4fa",
+                    "secondary-fixed-dim": "#b8c8de",
+                    "on-primary-container": "#385283",
+                    "on-tertiary-fixed": "#001a42",
+                    "liquid-glass": "rgba(255, 255, 255, 0.03)",
+                    "error": "#ffb4ab",
+                    "on-tertiary": "#002e6a",
+                    "surface-container-lowest": "#010f1e",
+                    "on-error": "#690005"
             },
-        }
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "container-max": "1280px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "margin-desktop": "48px"
+            },
+            "fontFamily": {
+                    "body-md": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "mono-label": ["Geist"],
+                    "label-sm": ["Geist"],
+                    "headline-xl": ["Geist"],
+                    "headline-lg-mobile": ["Geist"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "mono-label": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "label-sm": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
     </script>
 <style>
-        .liquid-glass {
-            background-color: rgba(39, 54, 71, 0.4); /* surface-variant */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
-        .liquid-glass:hover {
-            background-color: rgba(39, 54, 71, 0.6);
+        .liquid-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .liquid-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: #adc6ff;
+            transform: translateY(-4px);
+        }
+        .inner-glow-5 {
+            box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #041424;
+            color: #d4e4fa;
+            scroll-behavior: smooth;
+        }
+        .bg-industrial-mesh {
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.02) 1px, transparent 0);
+            background-size: 24px 24px;
         }
     </style>
 </head>
-<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex flex-col">
-<!-- TopNavBar -->
-<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-3xl border-b border-white/10 flex flex-col"><div class="border-b border-white/5"><div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center"><div class="font-headline-lg-mobile text-primary font-black tracking-tighter text-[2.5rem] leading-tight flex items-center gap-4"><img alt="Logo" class="w-12 h-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw1zyGa6_hMuOLcUA2Mr0FJpaeGkQ2hKvf5tDgzbhsRwHSOPaX6ReVckiVEIgUd_vqEWBdVIHFmttq-SbPuQYnAkvRvu8OqS7KP2ljh8kusDpM3lYHHJOptTa2AzTMXZsBACv3iXrPQQUJ5ydbMkaMBi_h_Z8yL3rAFM7gDhWB613xktopdgSRZOI9wjAjsHb8VN5O6rDoxZ7qrJhJ7erP6SLD4V0FlgEG2ov_Do_QnKzQGmZ98pVqpwNztUhjXqfMIIQ0RnVQUE-D">ППО №3</div><div class="flex items-center gap-6"><div class="hidden md:grid grid-cols-[auto_auto] gap-x-6 gap-y-0 items-center"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">location_on</span><div class="text-on-surface-variant font-label-sm text-label-sm leading-[1.2]">г. Тольятти</div></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">call</span><a class="text-on-surface hover:text-primary transition-colors font-label-sm text-label-sm font-bold leading-[1.2]" href="tel:88482555900">8 (8482) 555-900</a></div><div class="flex items-center gap-2 mt-1"><div class="w-4"></div><div class="text-on-surface-variant font-label-sm text-label-sm leading-[1.2]">ул. Окраинная, 24</div></div><div class="flex items-center gap-2 mt-1"><span class="material-symbols-outlined text-primary text-base">mail</span><a class="text-on-surface hover:text-primary transition-colors font-label-sm text-label-sm font-bold leading-[1.2]" href="mailto:office@povpro.ru">office@povpro.ru</a></div></div><button class="bg-primary text-on-primary rounded-full px-5 py-3 font-label-sm text-label-sm hover:opacity-90 transition-opacity uppercase tracking-widest font-bold">Запросить расчет</button></div></div></div><div class="hidden lg:block"><div class="max-w-container-max mx-auto px-margin-desktop py-3 flex justify-center"><div class="flex items-center space-x-6"><a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm uppercase tracking-widest" href="index.html">ГЛАВНАЯ</a><a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="friction-linings.html">ФРЕЗЕРНЫЕ РАБОТЫ</a><a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="machining.html">МЕХОБРАБОТКА</a><a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="intelligent-systems.html">ИНТЕЛЛЕКТУАЛЬНЫЕ СИСТЕМЫ</a><a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="services.html">УСЛУГИ</a><a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="contacts.html">КОНТАКТЫ</a><a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-sm text-label-sm uppercase tracking-widest" href="reviews.html">ОТЗЫВЫ</a></div></div></div></nav>
-<div class="flex flex-1">
-<!-- SideNavBar (Mobile) -->
-<nav class="bg-surface-container/90 dark:bg-surface-container/90 backdrop-blur-2xl border-r border-white/10 h-screen w-64 fixed left-0 top-0 z-40 hidden lg:hidden flex-col py-8 px-4">
-<div class="flex items-center space-x-4 mb-8 px-4">
-<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center">
-<span class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">P</span>
-</div>
-<div>
-<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">ППО №3</h2>
-<p class="font-mono-label text-mono-label text-on-surface-variant mt-1">г. Тольятти, ул. Окраинная, 24</p>
-</div>
-</div>
-<div class="flex-1 space-y-2">
-<a class="flex items-center space-x-3 text-on-surface-variant px-4 py-2 hover:bg-surface-variant/50 rounded-full transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="home">home</span>
-<span class="font-mono-label text-mono-label">Главная</span>
-</a>
-<a class="flex items-center space-x-3 text-on-surface-variant px-4 py-2 hover:bg-surface-variant/50 rounded-full transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="settings_input_component">settings_input_component</span>
-<span class="font-mono-label text-mono-label">Фрикционные накладки</span>
-</a>
-<a class="flex items-center space-x-3 bg-primary-container text-on-primary-container rounded-full px-4 py-2" href="#">
-<span class="material-symbols-outlined" data-icon="precision_manufacturing">precision_manufacturing</span>
-<span class="font-mono-label text-mono-label">Мехобработка</span>
-</a>
-<a class="flex items-center space-x-3 text-on-surface-variant px-4 py-2 hover:bg-surface-variant/50 rounded-full transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="memory">memory</span>
-<span class="font-mono-label text-mono-label">Интеллектуальные системы</span>
-</a>
-<a class="flex items-center space-x-3 text-on-surface-variant px-4 py-2 hover:bg-surface-variant/50 rounded-full transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="build">build</span>
-<span class="font-mono-label text-mono-label">Услуги</span>
-</a>
-<a class="flex items-center space-x-3 text-on-surface-variant px-4 py-2 hover:bg-surface-variant/50 rounded-full transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
-<span class="font-mono-label text-mono-label">Контакты</span>
-</a>
-<a class="flex items-center space-x-3 text-on-surface-variant px-4 py-2 hover:bg-surface-variant/50 rounded-full transition-colors" href="#">
-<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
-<span class="font-mono-label text-mono-label">Отзывы</span>
-</a>
-</div>
-<div class="mt-auto px-4">
-<button class="w-full bg-primary text-on-primary py-3 rounded-full font-label-sm text-label-sm font-semibold hover:opacity-90 transition-opacity">
-                    Связаться
-                </button>
-</div>
-</nav>
-<!-- Main Content Canvas -->
-<main class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 pt-40 md:pt-48">
+<body class="font-body-md bg-industrial-mesh">
+<!-- TopNavBar (Synchronized with SCREEN_175) -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-3xl border-b border-white/10 flex flex-col"><div class="border-b border-white/5"><div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center"><div class="font-headline-lg text-primary font-black tracking-tighter text-[2.5rem] leading-tight flex items-center gap-4"><img alt="Logo" class="w-12 h-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgjhQbl0Z_e1Euv3k-aJ5tx35PKaSs_7zJY8JHt_d__cffSYuJEAiU4zCiUOYNTUsuhmZnreXRqESDNRRqqPOFbLzfNJ91dHnA0fAlHE9h2TLojWUzA58oRhREJy6he7-mJJQdM1WWYoTRCqFTsxe8xBzdZksQeb1qGtX5FGk2vWGUFrPxbtXuOybmi9CWEXf1m8lEjMAPpqyQRdw9sxMQ8EVoKAopmizhtqC3aPwW6BgdZH_q1e1ELNjRSs8R0lqjDg8MmtH1U9nj">ППО №3</div><div class="flex items-center gap-6"><div class="hidden md:grid grid-cols-[auto_auto] gap-x-6 gap-y-0 items-center"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">location_on</span><div class="text-on-surface-variant font-label-sm text-sm leading-[1.2]">г. Тольятти</div></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">call</span><a class="text-on-surface hover:text-primary transition-colors font-label-sm text-sm font-bold leading-[1.2]" href="tel:88482555900">8 (8482) 555-900</a></div><div class="flex items-center gap-2 mt-1"><div class="w-4"></div><div class="text-on-surface-variant font-label-sm text-sm leading-[1.2]">ул. Окраинная, 24</div></div><div class="flex items-center gap-2 mt-1"><span class="material-symbols-outlined text-primary text-base">mail</span><a class="text-on-surface hover:text-primary transition-colors font-label-sm text-sm font-bold leading-[1.2]" href="mailto:office@povpro.ru">office@povpro.ru</a></div></div><button class="bg-primary text-on-primary rounded-full px-5 py-3 text-sm hover:opacity-90 transition-opacity uppercase tracking-widest font-bold">Запросить расчет</button></div></div></div><div class="hidden lg:block"><div class="max-w-container-max mx-auto px-margin-desktop py-3 flex justify-center"><div class="flex items-center space-x-6"><a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">ГЛАВНАЯ</a><a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">ФРИКЦИОННЫЕ НАКЛАДКИ</a><a class="text-primary font-bold border-b-2 border-primary pb-1 text-sm uppercase tracking-widest" href="#">МЕХОБРАБОТКА</a><a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">ИНТЕЛЛЕКТУАЛЬНЫЕ СИСТЕМЫ</a><a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">УСЛУГИ</a><a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">КОНТАКТЫ</a><a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">ОТЗЫВЫ</a></div></div></div></nav>
+<main class="pt-40 md:pt-48">
 <!-- Hero Section -->
-<section class="mb-24 relative overflow-hidden rounded-xl h-[400px] flex items-center p-8 md:p-16">
-<div class="absolute inset-0 z-0 bg-cover bg-center opacity-40" data-alt="A highly detailed, industrial setting showing precision mechanical engineering equipment in action. The atmosphere is dark and sophisticated, illuminated by cool, high-key white lights that highlight the metallic textures of the machinery. Sparks or focused laser lighting add dramatic, vibrant accents against the deep black and navy background. The overall aesthetic embodies 'Liquid Industrial' style, merging technical precision with an immersive, atmospheric void." style="background-image: url('https://lh3.googleusercontent.com/aida/ADBb0ujXtD2wSSdyDXL84B7be0rbrVwar97fZNT1_Ur1CnbJlrsFCoOfsflU4ocw-YCzjd7ceuS4epRsMspBv_wGUYDQSo7p-85Q5HQoiB52H-tMQ7PmkxwLm-YN8SjFz5RxJTB1ZFwOLiKZuY6yVO_PDAu9VPs8u2zEGbASbGMgIKuXHw6kktU4ULj_Ru_h94JZ0PLV04qNAo-HaD4jyMx8nbcFBpHOiwSXs_3ygdZjB5i5t7U9sYitO8_xLFaN');"></div>
-<div class="absolute inset-0 z-0 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
-<div class="relative z-10 max-w-2xl">
-<h1 class="font-headline-xl text-headline-xl text-on-surface mb-6">Механическая обработка</h1>
-<p class="font-body-md text-body-md text-on-surface-variant mb-8 text-lg">Высокоточная обработка металла для производства деталей любой сложности. Гарантируем качество и соответствие строгим техническим требованиям.</p>
+<section class="px-margin-desktop max-w-container-max mx-auto mb-32 relative overflow-hidden">
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+<div>
+<div class="flex items-center gap-3 mb-6">
+<span class="w-12 h-[1px] bg-primary"></span>
+<span class="font-mono-label text-mono-label text-primary uppercase tracking-[0.2em]">Промышленное производство</span>
 </div>
-</section>
-<!-- Services Bento Grid -->
-<section class="mb-24">
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 text-center md:text-left">Виды работ</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<!-- Feature Card 1 -->
-<div class="liquid-glass rounded-xl p-8 flex flex-col md:col-span-2">
-<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-primary text-2xl" data-icon="manufacturing">manufacturing</span>
-</div>
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Комплексная металлообработка</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Мы предлагаем полный цикл механической обработки, от заготовки до готовой детали, используя современное оборудование с ЧПУ.</p>
-<div class="flex flex-wrap gap-3">
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Зуборезные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Шлифовальные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Фрезерные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Токарные</span>
+<h1 class="font-headline-xl text-headline-xl mb-8 leading-none">Мехобработка<br><span class="text-primary/80">деталей</span></h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-10 max-w-lg">
+                        Мы специализируемся на проектировании и производстве оснастки и запасных деталей для технологического оборудования (станков, прессов, механизмов, приспособлений).
+                        Механическая обработка является неотъемлемой важной частью производства ООО «ППО №3» в Тольятти.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<a class="bg-primary/10 border border-primary/30 backdrop-blur-md px-8 py-4 rounded-full text-primary font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary/20 transition-all" href="#order">Узнать цену</a>
+<div class="flex items-center gap-2 px-6 py-4">
+<div class="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.5)]"></div>
+<span class="text-on-surface-variant font-mono-label uppercase">Работаем в штатном режиме</span>
 </div>
 </div>
-<!-- Feature Card 2 -->
-<div class="liquid-glass rounded-xl p-8 flex flex-col">
-<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-6">
-<span class="material-symbols-outlined text-primary text-2xl" data-icon="precision_manufacturing">precision_manufacturing</span>
 </div>
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-4">Специфичные операции</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6 flex-1">Выполняем сложные и узкоспециализированные виды механической обработки для деталей нестандартной геометрии.</p>
-<div class="flex flex-wrap gap-3">
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Координатно-расточные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Электроэрозионные</span>
-<span class="bg-surface-variant px-4 py-2 rounded-full font-mono-label text-mono-label text-on-surface">Долбежные работы</span>
+<div class="relative">
+<!-- Container style updated: rectangular, no tilt, no rounded corners -->
+<div class="glass-panel p-0 overflow-hidden border-0">
+<div class="aspect-video relative overflow-hidden border border-white/5 shadow-2xl">
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-dim via-transparent to-primary/10 mix-blend-overlay"></div>
+<div class="absolute bottom-4 left-4 z-20 glass-panel px-4 py-2 rounded-full border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">precision_manufacturing</span>
+<span class="font-mono-label text-[10px] uppercase">Точность до 0.01 мм</span>
+</div>
+<img alt="Металлообработка" class="w-full h-full object-cover grayscale-[0.2] contrast-125" data-alt="Horizontal high-precision industrial machining image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtAk4YeGhX0hz9clWx4964GbSe-cU5JBwIOeS-c3-AO04syTZeT7CSQa92_iJwbx_b0hTrt7ZfHsM8nNdAJHiGwQl9N6QkKN6saxxNLUo2e-w7K5NIuDc0C07s-idCukF3KJ-zCmHuo-7VMw04JrPq82OMxIA7Vv11BjtmdSZyCIXCGIf0MeM9f8lXgqX-Cx9zwXJVnaAqoaicTP10Cs7uBFBuMOtKotsFeWqyQEfaAbL9KLmCmc_xlaIXt5ZPrK4YFIyhYCcEQcVL">
+</div>
 </div>
 </div>
 </div>
 </section>
-<!-- Production Categories -->
-<section class="mb-24">
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12 text-center md:text-left">Производство деталей</h2>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
-<div class="rounded-xl overflow-hidden h-[500px] relative">
-<img alt="A close-up shot of precision mechanical parts, such as gears and shafts, resting on a polished metal surface within a dark, industrial workshop. The scene is lit with a soft, cool blue hue typical of a high-tech glassmorphism aesthetic, featuring sharp reflections and deep shadows. The composition conveys precision engineering and high-quality manufacturing, emphasizing the intricate details of the metalwork." class="object-cover w-full h-full opacity-80 mix-blend-screen" data-alt="A close-up shot of precision mechanical parts, such as gears and shafts, resting on a polished metal surface within a dark, industrial workshop. The scene is lit with a soft, cool blue hue typical of a high-tech glassmorphism aesthetic, featuring sharp reflections and deep shadows. The composition conveys precision engineering and high-quality manufacturing, emphasizing the intricate details of the metalwork." src="https://lh3.googleusercontent.com/aida/ADBb0uiZscxJX_KxMSk9VzycZkWtCVclzO7Ge3Wy8ITtZro4v9ln6aTwPMvIEVPCqIhmlg-9wIzaLjTwWv13npLieBKuk6sQiQW88SfuaOFJkhO3mL19fQDO3FI6fmWdf7GZskDPg3nTKPlIKRnoz5N-fzDPx5fMmnETgjbr2_GBmiQQiZHYTixckW9PrKXq3ibvJK_oldTEQj8x5bXjOpy6gWc1HfMojDCfpJcStoCVgjJr2EEcCRURY3dLoy-i">
-<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<!-- Services Grid -->
+<section class="px-margin-desktop max-w-container-max mx-auto mb-32">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg mb-4">Направления работ</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Полный цикл механической обработки металла на современном оборудовании с программным обеспечением последнего поколения.</p>
 </div>
-<div class="space-y-6">
-<!-- Accordion/Card 1 -->
-<div class="liquid-glass rounded-xl p-6 group cursor-pointer">
-<div class="flex justify-between items-center mb-2">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface group-hover:text-primary transition-colors">Штампы и пресс-формы</h3>
-<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+<!-- Updated Grid: 7 items only, "All Services" card removed -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1 -->
+<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
+<span class="material-symbols-outlined text-primary text-4xl">settings_input_component</span>
+<h3 class="font-headline-lg text-xl">Зуборезные работы</h3>
+<p class="text-on-surface-variant text-sm">Изготовление шестерен, зубчатых колес и венцов любой сложности.</p>
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant">Проектирование и изготовление технологической оснастки высокой точности для серийного производства.</p>
+<!-- Card 2 -->
+<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
+<span class="material-symbols-outlined text-primary text-4xl">blur_on</span>
+<h3 class="font-headline-lg text-xl">Шлифовальные работы</h3>
+<p class="text-on-surface-variant text-sm">Плоская и круглая шлифовка с точностью до микрона.</p>
 </div>
-<!-- Accordion/Card 2 -->
-<div class="liquid-glass rounded-xl p-6 group cursor-pointer">
-<div class="flex justify-between items-center mb-2">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface group-hover:text-primary transition-colors">Валы</h3>
-<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+<!-- Card 3 -->
+<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
+<span class="material-symbols-outlined text-primary text-4xl">grid_view</span>
+<h3 class="font-headline-lg text-xl">Фрезерные работы</h3>
+<p class="text-on-surface-variant text-sm">Высокоскоростное фрезерование на 3-х и 5-ти осевых центрах.</p>
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant">Токарная и фрезерная обработка валов различных типоразмеров с соблюдением допусков и посадок.</p>
+<!-- Card 4 -->
+<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
+<span class="material-symbols-outlined text-primary text-4xl">rotate_right</span>
+<h3 class="font-headline-lg text-xl">Токарные работы</h3>
+<p class="text-on-surface-variant text-sm">Обработка тел вращения диаметром до 1500 мм.</p>
 </div>
-<!-- Accordion/Card 3 -->
-<div class="liquid-glass rounded-xl p-6 group cursor-pointer">
-<div class="flex justify-between items-center mb-2">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface group-hover:text-primary transition-colors">Шестерни</h3>
-<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+<!-- Card 5 -->
+<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
+<span class="material-symbols-outlined text-primary text-4xl">adjust</span>
+<h3 class="font-headline-lg text-xl">Координатно-расточные</h3>
+<p class="text-on-surface-variant text-sm">Точное позиционирование отверстий в крупногабаритных деталях.</p>
 </div>
-<p class="font-body-md text-body-md text-on-surface-variant">Зубонарезные работы для создания шестерней с прямым, косым зубом, а также конических передач.</p>
+<!-- Card 6 -->
+<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
+<span class="material-symbols-outlined text-primary text-4xl">bolt</span>
+<h3 class="font-headline-lg text-xl">Электроэрозионные</h3>
+<p class="text-on-surface-variant text-sm">Обработка металлов любой твердости электрическим разрядом.</p>
+</div>
+<!-- Card 7 -->
+<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
+<span class="material-symbols-outlined text-primary text-4xl">vertical_align_bottom</span>
+<h3 class="font-headline-lg text-xl">Долбежные работы</h3>
+<p class="text-on-surface-variant text-sm">Нарезка шпоночных пазов и шлицевых соединений.</p>
+</div>
+</div>
+</section>
+<!-- CNC Section -->
+<section class="px-margin-desktop max-w-container-max mx-auto mb-32" id="order">
+<div class="glass-panel p-12 rounded-xl relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row gap-16 items-center">
+<div class="lg:w-3/5">
+<h2 class="font-headline-lg text-headline-xl mb-8">Услуги мехобработки на заказ</h2>
+<div class="space-y-6 text-on-surface-variant font-body-md">
+<p class="">Предприятие обладает специальным современным оборудованием, куда входят универсальные станки и металлообрабатывающие центры с ЧПУ, которые могут провести механическую обработку с высокой точностью.</p>
+<p class="">Это позволяет нам выпускать продукцию в широких масштабах как для серийного и мелкосерийного производства, так и для поштучного выпуска деталей в индивидуальном порядке.</p>
+<p class="">ООО «Поволжское производственное объединение» предоставляет услуги по мехобработке металла, проектированию, модернизации технологических процессов, написанию управляющих программ.</p>
+</div>
+</div>
+<div class="lg:w-2/5 w-full">
+<div class="bg-surface-container-high p-8 rounded-lg border border-white/5 space-y-8">
+<h4 class="font-headline-lg text-xl text-primary">Технические возможности</h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center border-b border-white/10 pb-2">
+<span class="text-on-surface-variant">Расточка до</span>
+<span class="font-mono-label text-primary">4000 х 2000 х 2000 мм</span>
+</div>
+<div class="flex justify-between items-center border-b border-white/10 pb-2">
+<span class="text-on-surface-variant">Шлифовка до</span>
+<span class="font-mono-label text-primary">5000 х 2000 х 1000 мм</span>
+</div>
+<div class="flex justify-between items-center border-b border-white/10 pb-2">
+<span class="text-on-surface-variant">Токарная обр. Ø</span>
+<span class="font-mono-label text-primary">до 1500 мм</span>
+</div>
+<div class="flex justify-between items-center border-b border-white/10 pb-2">
+<span class="text-on-surface-variant">Длина токарной обр.</span>
+<span class="font-mono-label text-primary">до 5000 мм</span>
+</div>
+</div>
+<button class="w-full bg-primary py-4 rounded-full text-on-primary font-label-sm uppercase tracking-widest hover:shadow-lg transition-all">Запросить расчет</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Portfolio Gallery -->
+<section class="px-margin-desktop max-w-container-max mx-auto mb-32">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-xl">
+<h2 class="font-headline-lg text-headline-lg mb-4">Примеры продукции</h2>
+<p class="text-on-surface-variant">Результаты выполненных работ по мехобработке на нашем предприятии в Тольятти.</p>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 flex items-center justify-center rounded-full border border-white/10 hover:border-primary/50 text-primary transition-all">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full border border-white/10 hover:border-primary/50 text-primary transition-all">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="group relative aspect-square overflow-hidden rounded-lg cursor-pointer">
+<img alt="Мехобработка гидропанели" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/ADBb0uipvbzfEBZypzJyyVk1hFmqMHe1hx02Uiupe2Shhz3r8TvNqQ4hOVqq0YyyOVdDmecE0k5S4F2vzj1a8LpyNMmxYwCWXNT-vJKMOTRYA6DsCXKCB3Ndd5hz3pmpN9qYeyY7jqyl1BnNXluACke6c8Fh0wFW6oaB-cT6j-6f19kWEF1LcD2l2JQymAMt-lDx65yyvS4cn8xfCn-HD-zxA9ld9xhEfgqCZ2QIY-9t5JGLxxTtqU7n1fDhN-T7">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-60"></div>
+<div class="absolute bottom-6 left-6 right-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="font-mono-label text-[10px] uppercase text-primary mb-2 block">Гидравлика</span>
+<h4 class="font-headline-lg text-lg text-on-surface">Мехобработка гидропанели</h4>
+</div>
+</div>
+<div class="group relative aspect-square overflow-hidden rounded-lg cursor-pointer">
+<img alt="Механическая обработка крыльчатки" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/ADBb0uiralbYh2pWxJvNnEV_qpyd-DOo_BGTp7Lry8A6AxVfEnNyid9wTClYE_atX--mN3O6Qi1W_MoukCdsxUHCp-Vwg6ZOCFGxJuaFtx7oTvf8icPOEozXtJiFqf9zTmaPA77PqFveVIX0txWIAXwdHH8PmuARWwXGq4h0GA8MwRuegLP_aJXuiWLy-aF9zTyhOlOlEzcl8Tn_wY0VazSjI04nl9vpkUU2-pD3tIRVpqHk-rw8rMJP4QGQAwOR">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-60"></div>
+<div class="absolute bottom-6 left-6 right-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="font-mono-label text-[10px] uppercase text-primary mb-2 block">Центробежные насосы</span>
+<h4 class="font-headline-lg text-lg text-on-surface">Крыльчатка насоса</h4>
+</div>
+</div>
+<div class="group relative aspect-square overflow-hidden rounded-lg cursor-pointer">
+<img alt="Мехобработка корпусных деталей" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/ADBb0uiiw4Ux0lVK3lIbYwis6kQ2Ofq7AWRX-wdzRVMvXXtPXn7d1sYxSzYu6b0mSlsH_ZLw8pDmjpy6yR4W2Qfk0oKDWBzbfSSS3NoD9vr18713DIha5SPEtfMl5SuFkZxwAWcFsu31Mb_tvbaUaAtDsGEL1Qe51uh9vX8T9BFEHEyey0OLLTxIdopIrgWKi3L3IChk_iN_OhXr8kpA_5G0co2kZMTAlr4boeRSeonL4DKqiTfny6LIS7xqD2qN">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-60"></div>
+<div class="absolute bottom-6 left-6 right-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="font-mono-label text-[10px] uppercase text-primary mb-2 block">Корпуса</span>
+<h4 class="font-headline-lg text-lg text-on-surface">Корпусные детали</h4>
+</div>
+</div>
+<div class="group relative aspect-square overflow-hidden rounded-lg cursor-pointer">
+<img alt="Мехобработка топливного насоса" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida/ADBb0uiV3lvTE2fW4Xq547A_YD2AbLiUH-mHaifntmAVX0L70e01nbl4NDURQjS80a8sh0gKqng3HY7WSDud4WllXYU86cH5GyGDjSGWbGEqb4SAXSJJeWP1EbbS94PNwZ_uNWnkEHByK3JXPzifclgsc__m-bFfLYaamHWqKUBumQT3vYSfk-n81nHla9ZY-IniXxLOasuatidQxmcjQ6kRmm3XGRmrFFiBd_604cmOj9FiQkcNOFzFefWJLges">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-60"></div>
+<div class="absolute bottom-6 left-6 right-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<span class="font-mono-label text-[10px] uppercase text-primary mb-2 block">Топливные системы</span>
+<h4 class="font-headline-lg text-lg text-on-surface">Топливный насос</h4>
 </div>
 </div>
 </div>
 </section>
 </main>
-</div>
-<!-- Footer -->
-<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-white/5 w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto mt-auto">
-<div class="font-headline-lg text-headline-lg text-on-surface mb-6 md:mb-0">
-            ППО №3 (POVPRO)
-        </div>
-<div class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Карта сайта</a>
-<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Политика конфиденциальности</a>
-<span class="font-label-sm text-label-sm text-secondary">office@povpro.ru</span>
-<span class="font-label-sm text-label-sm text-secondary">г. Тольятти / ул. Окраинная, 24</span>
-</div>
-<div class="font-label-sm text-label-sm text-secondary">
-            © 2024 ППО №3 (POVPRO)
-        </div>
-</footer>
+<!-- Footer (Synchronized with SCREEN_175) -->
+<footer class="bg-surface-container-lowest w-full border-t border-white/10 mt-20"><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto"><div class="flex flex-col gap-6"><div class="font-headline-lg text-primary font-bold tracking-tighter uppercase">ППО №3</div><p class="text-on-surface-variant text-sm leading-relaxed">Промышленные фрикционные изделия. Лидер отрасли в разработке безасбестовых материалов.</p><div class="flex gap-4"><span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">public</span><span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">chat_bubble</span></div></div><div class="flex flex-col gap-4"><span class="font-mono-label text-primary uppercase tracking-widest mb-2 text-xs">Навигация</span><a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Главная</a><a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Фрикционные накладки</a><a class="text-primary font-bold text-sm uppercase tracking-widest" href="#">Мехобработка</a><a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Услуги</a></div><div class="flex flex-col gap-4"><span class="font-mono-label text-primary uppercase tracking-widest mb-2 text-xs">Продукция</span><a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Технические условия</a><a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Наши изделия</a><a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Отзывы</a><a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Карта сайта</a></div><div class="flex flex-col gap-4"><span class="font-mono-label text-primary uppercase tracking-widest mb-2 text-xs">Контакты</span><div class="flex items-start gap-3 text-on-surface-variant text-sm uppercase tracking-widest"><span class="material-symbols-outlined text-primary scale-90">location_on</span><span class="">г. Тольятти, ул. Окраинная, 24</span></div><div class="flex items-start gap-3 text-on-surface-variant text-sm uppercase tracking-widest"><span class="material-symbols-outlined text-primary scale-90">phone</span><span class="">8 (8482) 555-900</span></div><div class="flex items-start gap-3 text-on-surface-variant text-sm uppercase tracking-widest"><span class="material-symbols-outlined text-primary scale-90">mail</span><span class="">office@povpro.ru</span></div></div></div><div class="px-margin-desktop py-8 border-t border-white/5 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4"><span class="text-on-surface-variant text-xs uppercase tracking-wider">© 2024 ППО №3 (POVPRO). Все права защищены.</span><a class="text-on-surface-variant text-xs hover:text-primary transition-colors uppercase tracking-widest" href="#">Политика конфиденциальности</a></div></footer>
+<script>
+        // Micro-interactions and effects
+        document.addEventListener('mousemove', (e) => {
+            const cursorGlow = document.querySelector('.cursor-glow');
+            if (cursorGlow) {
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+            }
+        });
+
+        // Sticky Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-2xl', 'bg-surface/90');
+            } else {
+                header.classList.remove('shadow-2xl', 'bg-surface/90');
+            }
+        });
+    </script>
+<div class="cursor-glow fixed w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -translate-x-1/2 -translate-y-1/2 z-0 hidden md:block"></div>
+
+
 </body></html>

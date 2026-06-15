@@ -1,4 +1,4 @@
-import { rewriteContentAssets } from '@/lib/resolve-asset-urls';
+import { rewriteContentAssets } from '@/lib/rewrite-content-assets';
 
 /** Контент страницы (HTML из Stitch, извлечённый при миграции) */
 export function SiteMain({ html }: { html: string }) {

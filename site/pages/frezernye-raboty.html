@@ -1,0 +1,413 @@
+<!DOCTYPE html><html class="dark" lang="ru"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ФРЕЗЕРНЫЕ РАБОТЫ - ППО №3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#010f1e",
+                      "tertiary-fixed": "#d8e2ff",
+                      "on-surface-variant": "#c2c6d6",
+                      "on-secondary-container": "#aebdd3",
+                      "surface-container-high": "#1c2b3c",
+                      "on-secondary-fixed-variant": "#39485a",
+                      "liquid-glass": "rgba(255, 255, 255, 0.03)",
+                      "surface-base": "#051424",
+                      "background": "#041424",
+                      "tertiary-container": "#adc6ff",
+                      "surface-container-highest": "#273647",
+                      "glass-fill-heavy": "rgba(28, 43, 60, 0.6)",
+                      "inverse-surface": "#d4e4fa",
+                      "error": "#ffb4ab",
+                      "on-secondary": "#233143",
+                      "glass-fill": "rgba(28, 43, 60, 0.4)",
+                      "surface-dim": "#041424",
+                      "on-primary-fixed": "#001a42",
+                      "on-error-container": "#ffdad6",
+                      "surface": "#041424",
+                      "primary-fixed": "#d8e2ff",
+                      "on-surface": "#d4e4fa",
+                      "on-error": "#690005",
+                      "primary-container": "#adc6ff",
+                      "surface-bright": "#2b3a4b",
+                      "on-secondary-fixed": "#0d1d2d",
+                      "surface-tint": "#adc6ff",
+                      "inverse-primary": "#455e90",
+                      "surface-variant": "#273647",
+                      "on-tertiary-fixed-variant": "#004495",
+                      "on-tertiary-fixed": "#001a42",
+                      "on-tertiary-container": "#004fab",
+                      "secondary-container": "#3e4d5f",
+                      "primary-fixed-dim": "#adc6ff",
+                      "secondary-fixed": "#d4e4fb",
+                      "on-primary": "#122f5f",
+                      "inverse-on-surface": "#223242",
+                      "glass-border": "rgba(255, 255, 255, 0.15)",
+                      "error-container": "#93000a",
+                      "on-primary-container": "#385283",
+                      "outline": "#8e909a",
+                      "tertiary-fixed-dim": "#adc6ff",
+                      "outline-variant": "#44474f",
+                      "tertiary": "#d8e2ff",
+                      "secondary-fixed-dim": "#b8c8de",
+                      "on-tertiary": "#002e6a",
+                      "on-background": "#d4e4fa",
+                      "surface-container": "#112131",
+                      "secondary": "#b8c8de",
+                      "surface-container-low": "#0d1d2c",
+                      "primary": "#d8e2ff",
+                      "on-primary-fixed-variant": "#2c4677"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "container-max": "1280px",
+                      "gutter": "24px",
+                      "margin-desktop": "48px",
+                      "unit": "4px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ],
+                      "label-sm": [
+                              "Geist"
+                      ],
+                      "headline-xl": [
+                              "Geist"
+                      ],
+                      "mono-label": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-xl": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "mono-label": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .inner-glow-5 {
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        .liquid-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col relative overflow-x-hidden selection:bg-primary/30 selection:text-primary pt-40 md:pt-48">
+<!-- Ambient Background Elements -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-secondary/5 rounded-full blur-[150px]"></div>
+</div>
+<!-- Top Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-3xl border-b border-white/10 flex flex-col">
+<div class="border-b border-white/5">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center">
+<div class="font-headline-lg text-primary font-black tracking-tighter text-[2.5rem] leading-tight flex items-center gap-4">
+<img alt="Logo" class="w-12 h-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgjhQbl0Z_e1Euv3k-aJ5tx35PKaSs_7zJY8JHt_d__cffSYuJEAiU4zCiUOYNTUsuhmZnreXRqESDNRRqqPOFbLzfNJ91dHnA0fAlHE9h2TLojWUzA58oRhREJy6he7-mJJQdM1WWYoTRCqFTsxe8xBzdZksQeb1qGtX5FGk2vWGUFrPxbtXuOybmi9CWEXf1m8lEjMAPpqyQRdw9sxMQ8EVoKAopmizhtqC3aPwW6BgdZH_q1e1ELNjRSs8R0lqjDg8MmtH1U9nj">ППО №3
+            </div>
+<div class="flex items-center gap-6">
+<div class="hidden md:grid grid-cols-[auto_auto] gap-x-6 gap-y-0 items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">location_on</span>
+<div class="text-on-surface-variant font-label-sm text-sm leading-[1.2]">г. Тольятти</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">call</span>
+<a class="text-on-surface hover:text-primary transition-colors font-label-sm text-sm font-bold leading-[1.2]" href="tel:88482555900">8 (8482) 555-900</a>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-4"></div>
+<div class="text-on-surface-variant font-label-sm text-sm leading-[1.2]">ул. Окраинная, 24</div>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-primary text-base">mail</span>
+<a class="text-on-surface hover:text-primary transition-colors font-label-sm text-sm font-bold leading-[1.2]" href="mailto:office@povpro.ru">office@povpro.ru</a>
+</div>
+</div>
+<button class="bg-primary text-on-primary rounded-full px-5 py-3 text-sm hover:opacity-90 transition-opacity uppercase tracking-widest font-bold">
+                    ЗАПРОСИТЬ РАСЧЕТ
+                </button>
+</div>
+</div>
+</div>
+<div class="hidden lg:block">
+<div class="max-w-container-max mx-auto px-margin-desktop py-3 flex justify-center">
+<div class="flex items-center space-x-6">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">Главная</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">Фрикционные накладки</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 text-sm uppercase tracking-widest" href="#">Мехобработка</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">Интеллектуальные системы</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">Услуги</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">Контакты</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-sm uppercase tracking-widest" href="#">Отзывы</a>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 flex flex-col gap-16 md:gap-32">
+<!-- Hero Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="flex flex-col gap-8 z-10">
+<div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 w-max">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-mono-label text-mono-label text-primary">ВЫСОКАЯ ТОЧНОСТЬ</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface">ФРЕЗЕРНЫЕ РАБОТЫ</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">Производство ООО «ПОВОЛЖСКОЕ ПРОИЗВОДСТВЕННОЕ ОБЪЕДИНЕНИЕ» (ППО№3) выполняет фрезерные работы по металлу на заказ. Применение новейших технологий позволяет получать сложные объекты и элементы.</p>
+</div>
+<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden glass-border backdrop-blur-[40px] bg-glass-fill-heavy p-2 shadow-2xl">
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-base via-transparent to-primary/10 z-10 pointer-events-none rounded-xl"></div>
+<img alt="A high-tech CNC milling machine in a dark, atmospheric industrial setting. The machine is illuminated by intense technical blue lighting, cutting through a piece of heavy metal. Cool white highlights reflect off the polished metallic surfaces, emphasizing the precision and modern engineering of the equipment. The mood is highly professional and precise, fitting a dark glassmorphism aesthetic." class="w-full h-full object-cover rounded-lg filter contrast-125 saturate-50 mix-blend-luminosity opacity-80" data-alt="A high-tech CNC milling machine in a dark, atmospheric industrial setting. The machine is illuminated by intense technical blue lighting, cutting through a piece of heavy metal. Cool white highlights reflect off the polished metallic surfaces, emphasizing the precision and modern engineering of the equipment. The mood is highly professional and precise, fitting a dark glassmorphism aesthetic." src="https://lh3.googleusercontent.com/aida/AP1WRLtr2spIgIJvRmbInmtruBNbQlz3_PIW2GuQDJHxvSnQWhtdxB5IYeVbqwFXYMjxNr9jerA6CNsivbX9kRDQT5zY64fOXSSFXb-L7iEB9C6PaPABv4N-cV54w0mJQraK5b76JQ-ai6JdhY2d1wDXAysQIIuubXZyGolGHHBFrzEkpAA5nXoap4QfEnZg9_ndd_xRqCWwdyu7RPqRXCxC394T9CYqurPZIegjVSnZQkAfONKGeCUsUfLnGLVA">
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="liquid-card p-8 rounded-xl flex flex-col gap-4 group hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+<h3 class="font-headline-lg-mobile text-lg text-on-surface">Сложные проекты</h3>
+<p class="font-body-md text-sm text-on-surface-variant">Реализуем запросы любой сложности.</p>
+</div>
+<div class="liquid-card p-8 rounded-xl flex flex-col gap-4 group hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">engineering</span>
+<h3 class="font-headline-lg-mobile text-lg text-on-surface">Опытные мастера</h3>
+<p class="font-body-md text-sm text-on-surface-variant">Мастера имеют необходимые допуски и подготовку.</p>
+</div>
+<div class="liquid-card p-8 rounded-xl flex flex-col gap-4 group hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">verified</span>
+<h3 class="font-headline-lg-mobile text-lg text-on-surface">Контроль качества</h3>
+<p class="font-body-md text-sm text-on-surface-variant">Контролируем качество каждой операции с помощью новейшего оснащения.</p>
+</div>
+<div class="liquid-card p-8 rounded-xl flex flex-col gap-4 group hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-primary text-4xl group-hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<h3 class="font-headline-lg-mobile text-lg text-on-surface">Работа по чертежам</h3>
+<p class="font-body-md text-sm text-on-surface-variant">Используем готовые чертежи, эскизы и технические описания заказчика.</p>
+</div>
+</section>
+<!-- Content & Pricing Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<div class="lg:col-span-8 flex flex-col gap-12">
+<article class="liquid-card rounded-xl p-12 relative overflow-hidden flex flex-col gap-8">
+<h2 class="font-headline-lg text-headline-lg text-primary relative z-10">Фрезерные работы по металлу</h2>
+<div class="space-y-6 text-on-surface-variant font-body-md leading-relaxed relative z-10">
+<p>ООО «Поволжское производственное объединение» (ППО№3) выполняет <strong>фрезерные работы по металлу</strong> на заказ. Мастера нашей компании применяют современное оборудование, чтобы создавать металлические заготовки различной формы. Применение новейших технологий позволяет получать сложные объекты и элементы, которые в дальнейшем задействуются в различных производственных областях.</p>
+<p>Когда фрезерные работы выполняются на заказ, вы можете получить не только типовую деталь, но и изделия с не типовыми характеристиками — исходя из того, в каких расходных материалах нуждается ваше производство. Программное управление позволяет гарантировать максимальную точность резки, вплоть до мельчайших долей миллиметра. Контролирующее наши <strong>фрезерные работы ЧПУ</strong> (числовое программное управление) сводит к нулю процент брака и проблемных изделий.</p>
+</div>
+</article>
+<article class="liquid-card rounded-xl p-12 relative overflow-hidden flex flex-col gap-8">
+<h2 class="font-headline-lg text-headline-lg text-primary relative z-10">Токарно-фрезерные работы на заказ</h2>
+<div class="space-y-6 text-on-surface-variant font-body-md leading-relaxed relative z-10">
+<p>Обработка металлических заготовок — производственная сфера, которая требует повышенной точности. В ООО «ППО№3» заказывают <strong>токарно-фрезерные работы</strong> представители машиностроительных фирм и других промышленных предприятий, расположенных в Тольятти и поблизости.</p>
+<p>Потенциальных исполнителей вашего заказа всегда наберётся довольно много даже в пределах отдельно взятого региона. Однако есть несколько причин, по которым заказчики выбирают именно нас среди множества компаний:</p>
+<ul class="list-disc pl-6 space-y-2">
+<li>Мы не ограничиваемся типовыми металлическими заготовками, а реализуем запросы любой сложности.</li>
+<li>Наши мастера имеют необходимые допуски и профессиональную подготовку, что гарантирует отличный результат.</li>
+<li>Выполняя <strong>токарно-фрезерные работы по металлу</strong>, мы контролируем качество выполнения каждой операции с помощью новейшего технического оснащения.</li>
+</ul>
+<p>Для реализации вашего запроса могут быть использованы готовые чертежи, эскизы, технические описания, составленные с учётом производственных нужд. Мы выполним <strong>токарно-фрезерные работы любой специфики на заказ</strong> — профессионально и в срок.</p>
+</div>
+</article>
+<article class="liquid-card rounded-xl p-12 relative overflow-hidden flex flex-col gap-8">
+<h2 class="font-headline-lg text-headline-lg text-primary relative z-10">Фрезерная обработка на заказ в Тольятти</h2>
+<div class="space-y-6 text-on-surface-variant font-body-md leading-relaxed relative z-10">
+<p>Основу нашей работы составляет индивидуальный подход. Прежде чем начнётся сама <strong>фрезерная обработка металла на заказ</strong>, персонал ООО «ППО№3» проведёт необходимые расчёты, составит проект и заложит нужные параметры в память оборудования.</p>
+<p>Станки, установленные на нашем заводе, работают под управлением передового программного обеспечения. Как результат, <strong>фрезерная обработка</strong> проводится с высокой точностью — в отличие от тех случаев, когда решающую роль может сыграть человеческий фактор. Любые линейные параметры, в том числе выраженные в долях миллиметра, соблюдаются в строгом соответствии с изначальным чертежом. Проводимая нами <strong>фрезерная обработка металла</strong> не разочаровывает заказчиков, поэтому нам доверяют.</p>
+<p>Если вам требуется изготовление деталей для механизмов, изделий специального или типового назначения, металлических комплектующих для различных устройств — обратитесь к нам. ООО «ППО№3» выполнит ваш заказ в оговорённый срок, полностью следуя изначальным требованиям. В любое время вы можете обратиться к нам, чтобы заказать <strong>услуги фрезерной обработки</strong> в Тольятти. Мы вас не подведём!</p>
+</div>
+</article>
+</div>
+<!-- Sidebar Pricing Block -->
+<aside class="lg:col-span-4 flex flex-col gap-8 sticky top-40">
+<div class="liquid-card p-8 rounded-xl flex flex-col gap-8 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="flex items-center gap-4 relative z-10">
+<span class="material-symbols-outlined text-primary text-3xl">payments</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Цены на работы</h2>
+</div>
+<div class="flex flex-col gap-6 relative z-10">
+<div class="flex flex-col gap-2 p-5 rounded-xl bg-white/5 border border-white/10 hover:border-primary/30 transition-colors">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Универсальные фрезерные работы</span>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-bold text-on-surface tracking-tighter">900</span>
+<span class="text-lg text-on-surface-variant font-medium">₽ / час</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 p-5 rounded-xl bg-white/5 border border-white/10 hover:border-primary/30 transition-colors">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Фрезерные работы ЧПУ</span>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-bold text-primary tracking-tighter">1500</span>
+<span class="text-lg text-on-surface-variant font-medium">₽ / час</span>
+</div>
+</div>
+</div>
+<button class="bg-primary/10 border border-primary/20 text-primary py-4 rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary/20 transition-all shadow-xl shadow-primary/5 flex items-center justify-center gap-3 w-full relative z-10 mt-2">
+<span class="material-symbols-outlined text-xl">send</span>
+                        ОТПРАВИТЬ ЗАЯВКУ
+                    </button>
+</div>
+</aside>
+</div>
+<!-- Gallery -->
+<section class="mt-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-8">Примеры работ и оборудование</h2>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+<div class="group relative rounded-xl overflow-hidden liquid-card p-2">
+<div class="aspect-[4/3] rounded-lg overflow-hidden">
+<img alt="Close-up macro shot of newly manufactured metal tooling matrices. The pristine, shiny metal surfaces reflect cool ambient lighting in a dark industrial environment. The details showcase extreme precision and flawless mechanical engineering. Deep shadows contrast with bright, crisp highlights on the metal edges." class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="Close-up macro shot of newly manufactured metal tooling matrices. The pristine, shiny metal surfaces reflect cool ambient lighting in a dark industrial environment. The details showcase extreme precision and flawless mechanical engineering. Deep shadows contrast with bright, crisp highlights on the metal edges." src="https://lh3.googleusercontent.com/aida/AP1WRLt2dlSz8Jx0_ZcyWqzBTh4Y4uSPfaUQ-ajCOu0UBp4S3cY1h2jOWEH_KG6QIdvCOmKRROAOnpRACRasTSlNWTIkzsLqN-PqUOf-9Chq9YbC6Y4kjVKdU48k1hPiKk3JPookWoB-7FS74mZZYrHk8Y8Sj5qHQOCC_ptmF7_0xpJvJstR1kMJAJLbpetlcENk6GS6LQFcG80JX7_Dx_Qh_UMODrpBxQE6Sts-xX798bn-qGgCaTUreADDdZc">
+</div>
+<div class="absolute bottom-0 left-0 w-full p-4 bg-glass-fill-heavy backdrop-blur-md border-t border-glass-border">
+<h3 class="font-label-sm text-label-sm text-on-surface text-center">Оснастка - матрицы</h3>
+</div>
+</div>
+<div class="group relative rounded-xl overflow-hidden liquid-card p-2 flex items-center justify-center bg-surface-container-high">
+<div class="aspect-[4/3] rounded-lg overflow-hidden">
+<img alt="Detailed view of metal punch tooling (puansony) sitting on a dark workbench. The intricately machined steel components gleam under focused technical lighting. The background is a blurred dark navy, emphasizing the sharp, exact geometry of the manufactured parts. The aesthetic is clean, technical, and precise." class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="Detailed view of metal punch tooling (puansony) sitting on a dark workbench. The intricately machined steel components gleam under focused technical lighting. The background is a blurred dark navy, emphasizing the sharp, exact geometry of the manufactured parts. The aesthetic is clean, technical, and precise." src="https://lh3.googleusercontent.com/aida/AP1WRLsK3ECdZO-uPJA__uCFATBoPtLQJxl3YRtGSAQOzxB3RHzwY0db1yNwClR3FUB3MkPKj1TmagOdY0Yu_8LioENkLPGzA5V0QiegMgrr5sO1FJeclnc6XV3FHA2OO7Hnbzv537gDfCeOzcSDDvwJUckSphv-vI2fFtR5xq5hGBiEJWekj7pArQiUK0KdoMXRZhcfmHFNe3aA-kkeFVvHmUj5LYzgGg9Lcg3PgysgfI5RNR8slDBBtHcmu6A0">
+</div>
+<div class="absolute bottom-0 left-0 w-full p-4 bg-glass-fill-heavy backdrop-blur-md border-t border-glass-border">
+<h3 class="font-label-sm text-label-sm text-on-surface text-center">Оснастка - пуансоны</h3>
+</div>
+</div>
+<div class="group relative rounded-xl overflow-hidden liquid-card p-2 flex items-center justify-center bg-surface-container-high">
+<div class="aspect-[4/3] rounded-lg overflow-hidden">
+<img alt="Wide shot of a massive, state-of-the-art CNC processing center in a heavy industry facility. The machine is encased in safety glass, with glowing interface panels visible. The factory environment is dark and moody, punctuated by the bright, clean light emitting from the machine's work area. High-end industrial aesthetic." class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100" data-alt="Wide shot of a massive, state-of-the-art CNC processing center in a heavy industry facility. The machine is encased in safety glass, with glowing interface panels visible. The factory environment is dark and moody, punctuated by the bright, clean light emitting from the machine's work area. High-end industrial aesthetic." src="https://lh3.googleusercontent.com/aida/AP1WRLtr2spIgIJvRmbInmtruBNbQlz3_PIW2GuQDJHxvSnQWhtdxB5IYeVbqwFXYMjxNr9jerA6CNsivbX9kRDQT5zY64fOXSSFXb-L7iEB9C6PaPABv4N-cV54w0mJQraK5b76JQ-ai6JdhY2d1wDXAysQIIuubXZyGolGHHBFrzEkpAA5nXoap4QfEnZg9_ndd_xRqCWwdyu7RPqRXCxC394T9CYqurPZIegjVSnZQkAfONKGeCUsUfLnGLVA">
+</div>
+<div class="absolute bottom-0 left-0 w-full p-4 bg-glass-fill-heavy backdrop-blur-md border-t border-glass-border">
+<h3 class="font-label-sm text-label-sm text-on-surface text-center">Обрабатывающий центр</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="liquid-card rounded-3xl p-8 md:p-16 flex flex-col items-center text-center space-y-8 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none"></div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface tracking-tighter max-w-2xl relative z-10">Нужна фрезерная обработка деталей?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl relative z-10">Свяжитесь с нами для расчета стоимости и сроков выполнения вашего заказа.</p>
+<a class="bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider px-10 py-4 rounded-full hover:bg-primary/90 transition-colors inline-flex items-center gap-2 shadow-[0_4px_12px_rgba(216,226,255,0.15)] relative z-10" href="#">
+                ОСТАВИТЬ ЗАЯВКУ <span class="material-symbols-outlined">edit_document</span>
+</a>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full border-t border-white/10 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="flex flex-col gap-6">
+<div class="font-headline-lg text-primary font-bold tracking-tighter uppercase">ППО №3</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">Промышленное производство и инжиниринг.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">public</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">chat_bubble</span>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2 text-xs">НАВИГАЦИЯ</span>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Главная</a>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Продукция</a>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Услуги</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2 text-xs">ИНФОРМАЦИЯ</span>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Технические условия</a>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Отзывы</a>
+<a class="text-on-surface-variant hover:text-primary transition-all text-sm uppercase tracking-widest" href="#">Карта сайта</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-mono-label text-primary uppercase tracking-widest mb-2 text-xs">КОНТАКТЫ</span>
+<div class="flex items-start gap-3 text-on-surface-variant text-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-primary scale-90">location_on</span>
+<span class="">г.Тольятти, ул. Окраинная, 24</span>
+</div>
+<div class="flex items-start gap-3 text-on-surface-variant text-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-primary scale-90">phone</span>
+<span class="">8 (8482) 555-900</span>
+</div>
+<div class="flex items-start gap-3 text-on-surface-variant text-sm uppercase tracking-widest">
+<span class="material-symbols-outlined text-primary scale-90">mail</span>
+<span class="">office@povpro.ru</span>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-white/5 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="text-on-surface-variant text-xs uppercase tracking-wider">© 2026 ППО №3 (POVPRO). Промышленное производство и инжиниринг.</span>
+<a class="text-on-surface-variant text-xs hover:text-primary transition-colors uppercase tracking-widest" href="#">ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</a>
+</div>
+</footer>
+<script>
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', function (e) {
+                if (this.tagName === 'A' && this.getAttribute('href')?.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body></html>

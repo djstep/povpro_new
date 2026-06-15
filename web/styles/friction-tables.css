@@ -1,0 +1,209 @@
+.friction-table-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* Badge в шапке таблицы + артикулы в ячейках */
+.site-content main section.glass-panel .bg-primary\/20.text-primary,
+.site-content main section.glass-panel span.rounded-full.font-mono-label {
+  background-color: rgba(173, 198, 255, 0.2) !important;
+  color: #adc6ff !important;
+}
+
+.site-content main section.glass-panel tbody td.font-mono-label {
+  color: inherit;
+}
+
+.site-content main section.glass-panel thead th {
+  color: #adc6ff;
+}
+
+.friction-table-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.friction-table-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 4.5rem;
+}
+
+.friction-table-filter-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #adc6ff;
+}
+
+.friction-table-filter-input {
+  width: 5.5rem;
+  padding: 0.375rem 0.625rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.friction-table-filter-input:focus {
+  border-color: rgba(255, 184, 77, 0.45);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.friction-table-filter-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.friction-table-reset {
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  align-self: flex-end;
+}
+
+.friction-table-reset:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.friction-table-match-count {
+  margin: 0;
+  font-size: 0.75rem;
+  color: rgba(255, 184, 77, 0.9);
+}
+
+/* ——— Сворачивание: линия + стрелка + мягкий fade ——— */
+
+.friction-table-clip {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.friction-table-clip.is-collapsed {
+  padding-bottom: 1.25rem;
+}
+
+.friction-table-clip.is-expanded {
+  padding-bottom: 0;
+}
+
+.friction-table-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4.5rem;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 33, 49, 0) 0%,
+    rgba(18, 33, 49, 0.72) 52%,
+    #122131 88%,
+    #122131 100%
+  );
+  transition: opacity 0.25s ease;
+}
+
+.friction-table-fade[hidden] {
+  display: none;
+}
+
+.friction-table-expand {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 3rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.friction-table-clip.is-expanded .friction-table-expand {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.friction-table-expand[hidden] {
+  display: none;
+}
+
+.friction-table-expand-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 14%,
+    rgba(255, 255, 255, 0.1) 86%,
+    transparent 100%
+  );
+}
+
+.friction-table-expand-circle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #122131;
+  box-shadow: none;
+  transition: border-color 0.2s ease;
+}
+
+.friction-table-expand:hover .friction-table-expand-circle {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.friction-table-expand-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.55);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+}
+
+.friction-table-expand:hover .friction-table-expand-icon {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.friction-table-clip.is-expanded .friction-table-expand-icon {
+  transform: rotate(180deg);
+}
+
+tr.friction-row-filtered {
+  display: none;
+}

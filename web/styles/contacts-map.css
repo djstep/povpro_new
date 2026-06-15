@@ -1,0 +1,6 @@
+.contacts-map iframe,
+.contacts-map > ymaps {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+}

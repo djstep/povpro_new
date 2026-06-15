@@ -35,9 +35,10 @@ model Review {
   id        String   @id @default(cuid())
   author    String
   company   String?
+  email     String?
   text      String   @db.Text
   rating    Int?
-  published Boolean  @default(true)
+  published Boolean  @default(false)
   createdAt DateTime @default(now())
 }
 

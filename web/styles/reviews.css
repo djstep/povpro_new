@@ -1,0 +1,47 @@
+.site-content .reviews-list {
+  gap: 1.68rem;
+}
+
+.site-content .review-card {
+  width: 100%;
+  max-width: 67.2rem;
+  min-height: 252px;
+  padding: 1.68rem;
+  gap: 1.68rem;
+  border-radius: 2.52rem;
+}
+
+@media (min-width: 768px) {
+  .site-content .review-card {
+    padding: 2.52rem 3.36rem;
+    border-radius: 9999px;
+  }
+}
+
+.site-content .review-card__avatar {
+  width: 5.04rem;
+  height: 5.04rem;
+  padding: 0.84rem;
+}
+
+@media (min-width: 768px) {
+  .site-content .review-card__avatar {
+    width: 6.72rem;
+    height: 6.72rem;
+  }
+}
+
+.site-content .review-card__avatar .material-symbols-outlined {
+  font-size: 1.89rem;
+}
+
+.site-content .review-card__meta {
+  gap: 0.63rem;
+  margin-bottom: 0.84rem;
+}
+
+.site-content .review-card__quote {
+  font-size: 20.16px;
+  line-height: 1.35;
+  font-weight: 500;
+}

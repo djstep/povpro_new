@@ -3,6 +3,9 @@
   "private": true,
   "scripts": {
     "migrate:content": "node scripts/migrate-content-to-next.mjs",
+    "stitch:fetch-mech": "node scripts/fetch-stitch-mech.mjs",
+    "stitch:sync": "node scripts/fetch-stitch-mech.mjs && npm run migrate:content && npm run styles:extract",
+    "import:friction-tables": "node scripts/import-friction-tables.mjs",
     "styles:extract": "node scripts/extract-stitch-styles.mjs",
     "dev": "npm run dev --prefix web",
     "build": "npm run build --prefix web",

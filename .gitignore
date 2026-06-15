@@ -12,4 +12,5 @@ test-*.jpg
 
 # Артефакты Stitch / старый сайт
 screens.json
+stitch-screens-list.json
 povpro-source.html

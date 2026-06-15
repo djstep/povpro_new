@@ -63,25 +63,25 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 md:min-w-[15.5rem]">
           <span className="font-mono-label text-primary uppercase tracking-widest mb-2">Контакты</span>
-          <div className="flex items-start gap-3 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
-            <span className="material-symbols-outlined text-primary scale-90">location_on</span>
-            <span>г. Тольятти, ул. Окраинная, 24</span>
+          <div className="flex items-center gap-3 text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-widest">
+            <span className="material-symbols-outlined text-primary scale-90 shrink-0">location_on</span>
+            <span className="whitespace-nowrap">г. Тольятти, ул. Окраинная, 24</span>
           </div>
           <a
             href="tel:+78482555900"
-            className="flex items-start gap-3 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest hover:text-primary transition-colors"
+            className="flex items-center gap-3 text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
           >
-            <span className="material-symbols-outlined text-primary scale-90">phone</span>
-            <span>8 (8482) 555-900</span>
+            <span className="material-symbols-outlined text-primary scale-90 shrink-0">phone</span>
+            <span className="whitespace-nowrap">8 (8482) 555-900</span>
           </a>
           <a
             href="mailto:office@povpro.ru"
-            className="flex items-start gap-3 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest hover:text-primary transition-colors"
+            className="flex items-center gap-3 text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
           >
-            <span className="material-symbols-outlined text-primary scale-90">mail</span>
-            <span>office@povpro.ru</span>
+            <span className="material-symbols-outlined text-primary scale-90 shrink-0">mail</span>
+            <span className="whitespace-nowrap">office@povpro.ru</span>
           </a>
         </div>
       </div>
