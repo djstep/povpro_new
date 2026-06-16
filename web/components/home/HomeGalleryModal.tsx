@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import {
@@ -27,11 +28,11 @@ function GalleryCard({ item, onOpen }: GalleryCardProps) {
       onClick={() => onOpen(item)}
       aria-label={`Открыть: ${item.title}`}
     >
-      <img
+      <Image
         src={homeGalleryImageUrl(item.id)}
         alt={item.title}
-        loading="lazy"
-        decoding="async"
+        fill
+        sizes="(max-width: 640px) 100vw, 33vw"
         className="home-gallery-modal__img"
       />
       <span className="home-gallery-modal__caption">
@@ -109,11 +110,13 @@ function GalleryLightbox({ item, index, total, onClose, onPrev, onNext }: Lightb
 
         <figure className="home-gallery-lightbox__figure">
           <div className="home-gallery-lightbox__viewport">
-            <img
+            <Image
               src={homeGalleryImageUrl(item.id)}
               alt={item.title}
+              fill
+              sizes="96vw"
               className="home-gallery-lightbox__img"
-              decoding="async"
+              priority
             />
           </div>
           <figcaption className="home-gallery-lightbox__caption">
