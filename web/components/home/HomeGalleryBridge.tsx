@@ -23,9 +23,9 @@ export function HomeGalleryBridge() {
     const root = document.querySelector('.site-content');
     if (!root) return;
 
-    const onClick = (e: MouseEvent) => {
-      const target = e.target as Element;
-      const btn = target.closest('#manufacturing button');
+    const onClick = (e: Event) => {
+      if (!(e.target instanceof Element)) return;
+      const btn = e.target.closest('#manufacturing button');
       if (!btn || !isGalleryTrigger(btn)) return;
       e.preventDefault();
       setOpen(true);
