@@ -73,12 +73,12 @@ const config: Config = {
         unit: '4px',
       },
       fontFamily: {
-        'headline-xl': ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        'headline-lg': ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        'headline-lg-mobile': ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        'body-md': ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        'label-sm': ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        'mono-label': ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'headline-xl': ['var(--font-geist-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'headline-lg': ['var(--font-geist-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'headline-lg-mobile': ['var(--font-geist-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'body-md': ['var(--font-geist-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'label-sm': ['var(--font-geist-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'mono-label': ['var(--font-geist-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'headline-xl': ['48px', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '600' }],

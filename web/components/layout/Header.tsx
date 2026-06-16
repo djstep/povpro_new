@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -96,7 +97,7 @@ export function Header() {
             href="/"
             className="font-headline-lg-mobile text-primary font-black tracking-tighter text-[2rem] md:text-[2.5rem] leading-tight flex items-center gap-3 md:gap-4 no-underline shrink-0"
           >
-            <img src={LOGO} alt="ППО №3" width={48} height={48} className="w-10 h-10 md:w-12 md:h-12 object-contain" />
+            <Image src={LOGO} alt="ППО №3" width={48} height={48} className="w-10 h-10 md:w-12 md:h-12 object-contain" />
             ППО №3
           </Link>
           <div className="flex items-center gap-4 md:gap-6 min-w-0">
