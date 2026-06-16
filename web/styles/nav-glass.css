@@ -1,0 +1,139 @@
+/* Оболочка хедера */
+.site-nav-shell {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  overflow: visible;
+  pointer-events: none;
+  padding: 0;
+  transition: padding 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site-nav-shell--scrolled {
+  padding: 0.75rem 0.75rem 0;
+}
+
+@media (min-width: 768px) {
+  .site-nav-shell--scrolled {
+    padding: 1rem 1rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-nav-shell--scrolled {
+    padding: 1rem 1.5rem 0;
+  }
+}
+
+/* Вверху страницы — как футер: на всю ширину, скругление снизу */
+nav.site-nav.nav-glass-bar {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  pointer-events: auto;
+  overflow: visible;
+  isolation: isolate;
+  border-radius: 0 0 1.2rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: none;
+  background-color: rgba(18, 33, 49, 0.52) !important;
+  backdrop-filter: blur(40px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(160%) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition:
+    border-radius 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    max-width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    backdrop-filter 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* После скролла — овал с liquid glass */
+nav.site-nav.nav-glass-bar--floating {
+  max-width: min(1664px, 100%);
+  border-radius: 9999px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: rgba(18, 33, 49, 0.52) !important;
+  backdrop-filter: blur(40px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(160%) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Разделитель хедер / меню */
+nav.site-nav .nav-bar-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: margin 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav.site-nav:not(.nav-glass-bar--floating) .nav-bar-divider {
+  margin-top: 0;
+}
+
+nav.site-nav.nav-glass-bar--floating .nav-bar-divider {
+  margin-left: 2.75rem;
+  margin-right: 2.75rem;
+}
+
+@media (min-width: 768px) {
+  nav.site-nav.nav-glass-bar--floating .nav-bar-divider {
+    margin-left: 4rem;
+    margin-right: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  nav.site-nav.nav-glass-bar--floating .nav-bar-divider {
+    margin-left: 5rem;
+    margin-right: 5rem;
+  }
+}
+
+nav.site-mobile-nav.nav-glass-mobile {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0.75rem;
+  width: calc(100% - 2rem);
+  border-radius: 9999px;
+  background-color: rgba(18, 33, 49, 0.58) !important;
+  backdrop-filter: blur(40px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow:
+    0 -4px 24px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+nav.site-nav .nav-dropdown-panel,
+.nav-dropdown-root .nav-dropdown-panel,
+.nav-dropdown-flyout .nav-dropdown-panel {
+  background-color: rgba(28, 43, 60, 0.58) !important;
+  backdrop-filter: blur(40px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(160%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow:
+    0 10px 40px -10px rgba(0, 0, 0, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.12) !important;
+}
+
+nav.site-nav .liquid-glass,
+.nav-dropdown-root .liquid-glass,
+.nav-dropdown-flyout .liquid-glass {
+  backdrop-filter: blur(40px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(160%) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav-shell,
+  nav.site-nav.nav-glass-bar,
+  nav.site-nav .nav-bar-divider {
+    transition-duration: 0.01ms !important;
+  }
+}

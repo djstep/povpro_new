@@ -20,7 +20,7 @@ export function MobileNav() {
   const contacts = slug === 'contacts' ? 'text-primary' : 'text-on-surface-variant';
 
   return (
-    <nav className="site-mobile-nav lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-6 pt-2 bg-surface-container/95 border-t border-white/10">
+    <nav className="site-mobile-nav nav-glass-mobile lg:hidden fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center px-2 pb-5 pt-2">
       <Link className={`flex flex-col items-center px-3 py-1 ${home}`} href="/">
         <span className="material-symbols-outlined text-xl">home</span>
         <span className="text-xs">Главная</span>
