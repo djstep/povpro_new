@@ -1,11 +1,11 @@
 <!-- Top Navigation Bar -->
 
 <!-- Main Content Area -->
-<main class="pb-32">
+<main class="pt-40 md:pt-48 pb-32">
 <!-- Hero Section -->
-<section class="home-hero relative w-full min-h-[80vh] flex items-center justify-center px-margin-mobile md:px-margin-desktop mb-24">
+<section class="relative w-full min-h-[80vh] flex items-center justify-center px-margin-mobile md:px-margin-desktop mb-24">
 <!-- Background Image with Overlay -->
-<div class="home-hero__bg absolute inset-0 z-0 overflow-hidden">
+<div class="absolute inset-0 z-0 overflow-hidden rounded-b-[3rem]">
 <img alt="Industrial machinery close up" class="w-full h-full object-cover object-center opacity-40" src="/assets/img/povpro-gallery-22.jpg">
 <div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent mix-blend-multiply"></div>
 <div class="absolute inset-0 bg-surface/30 backdrop-blur-sm"></div>
@@ -27,74 +27,31 @@
 <span class="material-symbols-outlined">present_to_all</span>
     Презентация компании
 </button>
-<button class="glass-button text-primary font-label-sm text-label-sm pl-[1.6rem] pr-8 py-4 rounded-full uppercase tracking-widest hover:bg-white/10 transition-colors w-full sm:w-auto text-center inline-flex items-center justify-center gap-[0.4rem]">
-<img alt="" src="/assets/img/nozh-nadreznachik.png" class="size-[1.62rem] object-contain shrink-0 leading-none" aria-hidden="true">Нож надрезчик
+<button class="glass-button text-primary font-label-sm text-label-sm px-8 py-4 rounded-full uppercase tracking-widest hover:bg-white/10 transition-colors w-full sm:w-auto text-center inline-flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">content_cut</span>
+    Наше производство
 </button></div>
 </div>
 </section>
 <!-- Stats Section (Volumetric Glass) -->
 <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-24" id="about">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter home-stats-grid">
-<article class="stat-card">
-<div class="stat-card__surface">
-<div class="stat-card__fill liquid-glass" aria-hidden="true"></div>
-<svg class="stat-card__shape" viewBox="0 0 200 130" preserveAspectRatio="none" aria-hidden="true">
-<path d="M 16 130 Q 0 130 0 114 L 0 28 Q 0 16 16 16 L 64 16 C 70 16 72 15 73 13 L 85 4 C 92 0 108 0 115 4 L 127 13 C 128 15 130 16 136 16 L 184 16 Q 200 16 200 28 L 200 114 Q 200 130 184 130 Z" fill="none" stroke="rgba(255, 255, 255, 0.1)"></path>
-</svg>
-</div>
-<div class="stat-card__content">
-<span class="material-symbols-outlined text-primary stat-card__icon">history</span>
-<div class="stat-card__body">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="p-8 flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-all liquid-glass">
 <span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-2 text-white">&gt; 10</span>
 <span class="font-label-sm text-label-sm uppercase tracking-widest text-white/70">Лет на рынке</span>
 </div>
-</div>
-</article>
-<article class="stat-card">
-<div class="stat-card__surface">
-<div class="stat-card__fill liquid-glass" aria-hidden="true"></div>
-<svg class="stat-card__shape" viewBox="0 0 200 130" preserveAspectRatio="none" aria-hidden="true">
-<path d="M 16 130 Q 0 130 0 114 L 0 28 Q 0 16 16 16 L 64 16 C 70 16 72 15 73 13 L 85 4 C 92 0 108 0 115 4 L 127 13 C 128 15 130 16 136 16 L 184 16 Q 200 16 200 28 L 200 114 Q 200 130 184 130 Z" fill="none" stroke="rgba(255, 255, 255, 0.1)"></path>
-</svg>
-</div>
-<div class="stat-card__content">
-<span class="material-symbols-outlined text-primary stat-card__icon">receipt_long</span>
-<div class="stat-card__body">
+<div class="p-8 flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-all liquid-glass">
 <span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-2 text-white">10k+</span>
 <span class="font-label-sm text-label-sm uppercase tracking-widest text-white/70">Заказов</span>
 </div>
-</div>
-</article>
-<article class="stat-card">
-<div class="stat-card__surface">
-<div class="stat-card__fill liquid-glass" aria-hidden="true"></div>
-<svg class="stat-card__shape" viewBox="0 0 200 130" preserveAspectRatio="none" aria-hidden="true">
-<path d="M 16 130 Q 0 130 0 114 L 0 28 Q 0 16 16 16 L 64 16 C 70 16 72 15 73 13 L 85 4 C 92 0 108 0 115 4 L 127 13 C 128 15 130 16 136 16 L 184 16 Q 200 16 200 28 L 200 114 Q 200 130 184 130 Z" fill="none" stroke="rgba(255, 255, 255, 0.1)"></path>
-</svg>
-</div>
-<div class="stat-card__content">
-<span class="material-symbols-outlined text-primary stat-card__icon">precision_manufacturing</span>
-<div class="stat-card__body">
+<div class="p-8 flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-all liquid-glass">
 <span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-2 text-white">30+</span>
 <span class="font-label-sm text-label-sm uppercase tracking-widest text-white/70">Единиц станков</span>
 </div>
-</div>
-</article>
-<article class="stat-card">
-<div class="stat-card__surface">
-<div class="stat-card__fill liquid-glass" aria-hidden="true"></div>
-<svg class="stat-card__shape" viewBox="0 0 200 130" preserveAspectRatio="none" aria-hidden="true">
-<path d="M 16 130 Q 0 130 0 114 L 0 28 Q 0 16 16 16 L 64 16 C 70 16 72 15 73 13 L 85 4 C 92 0 108 0 115 4 L 127 13 C 128 15 130 16 136 16 L 184 16 Q 200 16 200 28 L 200 114 Q 200 130 184 130 Z" fill="none" stroke="rgba(255, 255, 255, 0.1)"></path>
-</svg>
-</div>
-<div class="stat-card__content">
-<span class="material-symbols-outlined text-primary stat-card__icon">groups</span>
-<div class="stat-card__body">
+<div class="p-8 flex flex-col items-center justify-center text-center hover:-translate-y-1 transition-all liquid-glass">
 <span class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-2 text-white">500+</span>
 <span class="font-label-sm text-label-sm uppercase tracking-widest text-white/70">Клиентов</span>
 </div>
-</div>
-</article>
 </div>
 </section>
 <!-- Services/Advantages (Volumetric Glass) -->
@@ -104,7 +61,7 @@
 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Полный цикл производства от чертежа до готовой детали с контролем качества на каждом этапе.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<div class="liquid-glass p-8 flex flex-col items-start">
+<div class="liquid-glass p-8 flex flex-col items-start hover:-translate-y-1 transition-all">
 <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-6">
 <span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
 </div>
@@ -113,7 +70,7 @@
                         Токарные и фрезерные работы высокой точности. Обработка сложных сплавов, титана, нержавеющей стали.
                     </p>
 </div>
-<div class="liquid-glass p-8 flex flex-col items-start">
+<div class="liquid-glass p-8 flex flex-col items-start hover:-translate-y-1 transition-all">
 <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-6">
 <span class="material-symbols-outlined text-3xl">construction</span>
 </div>
@@ -122,7 +79,7 @@
                         Комплексная сборка механических узлов и агрегатов по спецификации заказчика с проведением испытаний.
                     </p>
 </div>
-<div class="liquid-glass p-8 flex flex-col items-start">
+<div class="liquid-glass p-8 flex flex-col items-start hover:-translate-y-1 transition-all">
 <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-6">
 <span class="material-symbols-outlined text-3xl">engineering</span>
 </div>
@@ -140,13 +97,13 @@
 <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-4">Производство в деталях</h2>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">Примеры нашей продукции и производственных мощностей.</p>
 </div>
-<button type="button" data-home-gallery-open class="hidden md:inline-flex glass-button text-primary font-label-sm text-label-sm px-8 py-4 rounded-full uppercase tracking-widest hover:bg-white/10 transition-colors items-center justify-center gap-2 shrink-0">
+<button class="hidden md:flex font-label-sm text-label-sm px-6 py-3 uppercase tracking-widest hover:brightness-105 transition-all items-center gap-2 glass-button text-primary border-primary/20">
                     Смотреть все <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </button>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
 <!-- Gallery Item 1 -->
-<div class="home-gallery-card rounded-[2rem] overflow-hidden group aspect-[4/3] relative border-none liquid-glass">
+<div class="rounded-[2rem] overflow-hidden group aspect-[4/3] relative hover:-translate-y-1 transition-all border-none liquid-glass">
 <img alt="Rotor detail" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="/assets/img/povpro-gallery-13.jpg">
 <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent flex flex-col justify-end p-6">
 <span class="font-mono-label text-mono-label font-medium px-3 py-1 rounded-full self-start mb-2 backdrop-blur-md bg-primary/20 text-primary border border-primary/30">ЧПУ Токарная</span>
@@ -154,7 +111,7 @@
 </div>
 </div>
 <!-- Gallery Item 2 -->
-<div class="home-gallery-card rounded-[2rem] overflow-hidden group aspect-[4/3] relative border-none liquid-glass">
+<div class="rounded-[2rem] overflow-hidden group aspect-[4/3] relative hover:-translate-y-1 transition-all border-none liquid-glass">
 <img alt="Gearbox housing" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="/assets/img/povpro-gallery-1.jpg">
 <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent flex flex-col justify-end p-6">
 <span class="font-mono-label text-mono-label font-medium px-3 py-1 rounded-full self-start mb-2 backdrop-blur-md bg-primary/20 text-primary border border-primary/30">Фрезеровка 5-осей</span>
@@ -162,7 +119,7 @@
 </div>
 </div>
 <!-- Gallery Item 3 -->
-<div class="home-gallery-card rounded-[2rem] overflow-hidden group aspect-[4/3] relative border-none liquid-glass">
+<div class="rounded-[2rem] overflow-hidden group aspect-[4/3] relative hover:-translate-y-1 transition-all border-none liquid-glass">
 <img alt="Assembled unit" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="/assets/img/povpro-gallery-27.jpg">
 <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent flex flex-col justify-end p-6">
 <span class="font-mono-label text-mono-label font-medium px-3 py-1 rounded-full self-start mb-2 backdrop-blur-md bg-primary/20 text-primary border border-primary/30">Сборка</span>
@@ -170,7 +127,7 @@
 </div>
 </div>
 </div>
-<button type="button" data-home-gallery-open class="md:hidden mt-8 w-full glass-button text-primary font-label-sm text-label-sm px-8 py-4 rounded-full uppercase tracking-widest hover:bg-white/10 transition-colors flex items-center justify-center gap-2">Смотреть всю галерею</button>
+<button class="md:hidden mt-8 w-full font-label-sm text-label-sm px-6 py-4 uppercase tracking-widest hover:brightness-105 transition-all flex items-center justify-center gap-2 glass-button text-primary border-primary/20">Смотреть всю галерею</button>
 </section>
 <!-- Clients Section -->
 <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-32" id="clients">
@@ -178,12 +135,11 @@
 <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-4">Наши заказчики</h2>
 <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Компании, которые доверяют нам производство ответственных деталей.</p>
 </div>
-<div class="home-clients-row">
-<div class="home-client-card liquid-glass"><img alt="Технодинамика Авиаагрегат" loading="lazy" decoding="async" src="/assets/img/bg-6.png"/></div>
-<div class="home-client-card liquid-glass"><img alt="АвтоВАЗ" loading="lazy" decoding="async" src="/assets/img/bg-7.png"/></div>
-<div class="home-client-card liquid-glass"><img alt="Мечел" loading="lazy" decoding="async" src="/assets/img/bg-8.png"/></div>
-<div class="home-client-card liquid-glass"><img alt="DSK Group" loading="lazy" decoding="async" src="/assets/img/bg-9.png"/></div>
-<div class="home-client-card liquid-glass"><img alt="ГАЗ" loading="lazy" decoding="async" src="/assets/img/bg-10.png"/></div>
+<div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70">
+<div class="text-xl md:text-2xl font-bold text-on-surface-variant tracking-wider uppercase">Аэромаш</div>
+<div class="text-xl md:text-2xl font-bold text-on-surface-variant tracking-wider uppercase">Технострой</div>
+<div class="text-xl md:text-2xl font-bold text-on-surface-variant tracking-wider uppercase">Русгазаппарат</div>
+<div class="text-xl md:text-2xl font-bold text-on-surface-variant tracking-wider uppercase">Глобал Инжиниринг</div>
 </div>
 </section>
 <!-- Contact Section -->

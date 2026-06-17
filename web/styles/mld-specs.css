@@ -1,0 +1,28 @@
+.mld-specs-lightbox__panel {
+  width: min(98vw, 96rem);
+}
+
+.mld-specs-lightbox__viewport {
+  overflow: auto;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.mld-specs-lightbox__img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(88dvh, 1200px);
+  margin: 0 auto;
+  border-radius: 0.5rem;
+}
+
+.site-content [data-mld-specs-trigger] {
+  cursor: zoom-in;
+}
+
+.site-content [data-mld-specs-trigger]:focus-visible {
+  outline: 2px solid rgba(173, 198, 255, 0.55);
+  outline-offset: 3px;
+}

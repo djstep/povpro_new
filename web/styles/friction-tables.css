@@ -204,6 +204,7 @@
   transform: rotate(180deg);
 }
 
-tr.friction-row-filtered {
+tr.friction-row-filtered,
+.friction-row-filtered {
   display: none;
 }

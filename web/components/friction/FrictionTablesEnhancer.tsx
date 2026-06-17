@@ -36,7 +36,127 @@ function matchesParam(cellText: string, filter: string): boolean {
   return cell.toLowerCase().includes(f.toLowerCase());
 }
 
+function getVisibleCount(section: HTMLElement): number {
+  const fromItems = Number.parseInt(section.dataset.visibleItems ?? '', 10);
+  if (Number.isFinite(fromItems) && fromItems > 0) return fromItems;
+  const fromRows = Number.parseInt(section.dataset.visibleRows ?? '', 10);
+  if (Number.isFinite(fromRows) && fromRows > 0) return fromRows;
+  return VISIBLE_ROWS;
+}
+
+function enhanceGridSection(section: HTMLElement): (() => void) | undefined {
+  if (section.querySelector('.friction-table-clip')) return undefined;
+
+  const grid = section.querySelector<HTMLElement>('[data-friction-grid]');
+  if (!grid) return undefined;
+
+  const items = Array.from(grid.querySelectorAll<HTMLElement>('[data-friction-item]'));
+  if (!items.length) return undefined;
+
+  const wrapper = grid.parentElement;
+  if (!wrapper) return undefined;
+
+  let expanded = false;
+  let searchQuery = '';
+  const visibleCount = getVisibleCount(section);
+
+  const searchInput = section.querySelector<HTMLInputElement>('[data-friction-search]');
+  const onSearch = () => {
+    searchQuery = searchInput?.value.trim() ?? '';
+    if (searchQuery) expanded = true;
+    update();
+  };
+  searchInput?.addEventListener('input', onSearch);
+
+  const clip = document.createElement('div');
+  clip.className = 'friction-table-clip is-collapsed';
+
+  const fade = document.createElement('div');
+  fade.className = 'friction-table-fade';
+  fade.setAttribute('aria-hidden', 'true');
+
+  const toggleBtn = document.createElement('button');
+  toggleBtn.type = 'button';
+  toggleBtn.className = 'friction-table-expand';
+  toggleBtn.setAttribute('aria-label', 'Развернуть список');
+  toggleBtn.innerHTML = `
+    <span class="friction-table-expand-line" aria-hidden="true"></span>
+    <span class="friction-table-expand-circle">
+      <span class="material-symbols-outlined friction-table-expand-icon" aria-hidden="true">keyboard_arrow_down</span>
+    </span>
+  `;
+  toggleBtn.addEventListener('click', () => {
+    expanded = !expanded;
+    update();
+  });
+
+  grid.parentNode?.insertBefore(clip, grid);
+  clip.append(grid, fade, toggleBtn);
+
+  function itemMatches(item: HTMLElement): boolean {
+    if (!searchQuery) return true;
+    const text = item.textContent ?? '';
+    return text.toLowerCase().includes(searchQuery.toLowerCase());
+  }
+
+  function measureClipHeight(matching: HTMLElement[]): number {
+    const count = Math.min(visibleCount, matching.length);
+    if (!count) return 0;
+    const gridRect = grid!.getBoundingClientRect();
+    const last = matching[count - 1]!.getBoundingClientRect();
+    return last.bottom - gridRect.top + COLLAPSE_PEEK_PX;
+  }
+
+  function update() {
+    const matching = items.filter(itemMatches);
+    const hasFilter = searchQuery.length > 0;
+    const canCollapse = matching.length > visibleCount;
+
+    items.forEach((item) => {
+      item.classList.toggle('friction-row-filtered', !matching.includes(item));
+    });
+
+    const showExpanded = hasFilter || expanded || !canCollapse;
+
+    clip.classList.toggle('is-collapsed', !showExpanded);
+    clip.classList.toggle('is-expanded', showExpanded && canCollapse);
+
+    if (showExpanded) {
+      clip.style.maxHeight = '';
+    } else {
+      clip.style.maxHeight = `${measureClipHeight(matching)}px`;
+    }
+
+    fade.hidden = showExpanded;
+    toggleBtn.hidden = !canCollapse;
+    toggleBtn.setAttribute('aria-expanded', String(showExpanded));
+    toggleBtn.setAttribute(
+      'aria-label',
+      showExpanded ? 'Свернуть список' : 'Развернуть список'
+    );
+  }
+
+  const ro = new ResizeObserver(() => {
+    if (!expanded && !searchQuery) update();
+  });
+  ro.observe(grid);
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(update);
+  });
+
+  section.dataset.frictionReady = 'true';
+
+  return () => {
+    ro.disconnect();
+    searchInput?.removeEventListener('input', onSearch);
+  };
+}
+
 function enhanceSection(section: HTMLElement): (() => void) | undefined {
+  if (section.dataset.frictionLayout === 'grid' || section.querySelector('[data-friction-grid]')) {
+    return enhanceGridSection(section);
+  }
   if (section.querySelector('.friction-table-clip')) return undefined;
 
   const table = section.querySelector('table');
@@ -53,7 +173,17 @@ function enhanceSection(section: HTMLElement): (() => void) | undefined {
   if (!wrapper) return undefined;
 
   let expanded = false;
+  let searchQuery = '';
+  const visibleRows = getVisibleCount(section);
   const filters = new Map<number, string>();
+
+  const searchInput = section.querySelector<HTMLInputElement>('[data-friction-search]');
+  const onSearch = () => {
+    searchQuery = searchInput?.value.trim() ?? '';
+    if (searchQuery) expanded = true;
+    update();
+  };
+  searchInput?.addEventListener('input', onSearch);
 
   const toolbar = document.createElement('div');
   toolbar.className = 'friction-table-toolbar';
@@ -131,6 +261,12 @@ function enhanceSection(section: HTMLElement): (() => void) | undefined {
   clip.append(table, fade, toggleBtn);
 
   function rowMatches(row: HTMLTableRowElement): boolean {
+    if (searchQuery) {
+      const text = Array.from(row.querySelectorAll('td'))
+        .map((cell) => cell.textContent ?? '')
+        .join(' ');
+      if (!text.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+    }
     if (!filters.size) return true;
     const cells = row.querySelectorAll('td');
     for (const [colIndex, value] of filters) {
@@ -143,7 +279,7 @@ function enhanceSection(section: HTMLElement): (() => void) | undefined {
   function measureClipHeight(matching: HTMLTableRowElement[]): number {
     const thead = table!.querySelector('thead');
     let height = thead?.getBoundingClientRect().height ?? 0;
-    const visible = Math.min(VISIBLE_ROWS, matching.length);
+    const visible = Math.min(visibleRows, matching.length);
     for (let i = 0; i < visible; i++) {
       height += matching[i].getBoundingClientRect().height;
     }
@@ -153,7 +289,7 @@ function enhanceSection(section: HTMLElement): (() => void) | undefined {
   function update() {
     const matching = rows.filter(rowMatches);
     const hasFilter = filters.size > 0;
-    const canCollapse = matching.length > VISIBLE_ROWS;
+    const canCollapse = matching.length > visibleRows;
 
     rows.forEach((row) => {
       row.classList.toggle('friction-row-filtered', !matching.includes(row));
@@ -211,7 +347,10 @@ function enhanceSection(section: HTMLElement): (() => void) | undefined {
 
   section.dataset.frictionReady = 'true';
 
-  return () => ro.disconnect();
+  return () => {
+    ro.disconnect();
+    searchInput?.removeEventListener('input', onSearch);
+  };
 }
 
 function enhanceAllTables(): Array<() => void> {

@@ -1,6 +1,9 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { ContactsMap } from '@/components/contacts/ContactsMap';
+import { MldSpecsLightbox } from '@/components/mld/MldSpecsLightbox';
+import { KpoEquipmentSearch } from '@/components/kpo/KpoEquipmentSearch';
+import { HookahGallerySlider } from '@/components/hookah/HookahGallerySlider';
 import { FrictionTablesEnhancer } from '@/components/friction/FrictionTablesEnhancer';
 import { ReviewsPanel } from '@/components/reviews/ReviewsPanel';
 import { SiteMain } from '@/components/SiteMain';
@@ -47,6 +50,9 @@ export default async function SitePage({ params }: Props) {
             {slugKey === 'frikcionnye-nakladki/nashi-izdeliya' && <FrictionTablesEnhancer />}
             {slugKey === 'otzyvy-o-ppo' && <ReviewsPanel />}
             {slugKey === 'contacts' && <ContactsMap />}
+            {slugKey === 'izgotovlenie-kalyanovs' && <HookahGallerySlider />}
+            {slugKey === 'remont-kuznechno-pressovogo-oborudovaniya' && <KpoEquipmentSearch />}
+            {slugKey === 'mashiny-dlya-litya-pod-davleniem' && <MldSpecsLightbox />}
           </>
         );
       }
@@ -64,6 +70,9 @@ export default async function SitePage({ params }: Props) {
       {slugKey === 'frikcionnye-nakladki/nashi-izdeliya' && <FrictionTablesEnhancer />}
       {slugKey === 'otzyvy-o-ppo' && <ReviewsPanel />}
       {slugKey === 'contacts' && <ContactsMap />}
+      {slugKey === 'izgotovlenie-kalyanovs' && <HookahGallerySlider />}
+      {slugKey === 'remont-kuznechno-pressovogo-oborudovaniya' && <KpoEquipmentSearch />}
+      {slugKey === 'mashiny-dlya-litya-pod-davleniem' && <MldSpecsLightbox />}
     </>
   );
 }

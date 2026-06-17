@@ -14,6 +14,7 @@ const MCP_URL = 'https://stitch.googleapis.com/mcp';
 
 /** Порядок важен: более специфичные паттерны выше */
 const MATCHERS = [
+  { re: /^Изготовление кальянов/i, file: 'hookahs.html', priority: 20 },
   // Раздел «Продукция» (мехобработка)
   { re: /^Изготовление деталей/i, file: 'proizvodstvo-detalej.html', priority: 10 },
   { re: /^Изготовление штампов/i, file: 'press-forms.html', priority: 10 },

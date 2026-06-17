@@ -13,6 +13,8 @@
 @import '../styles/reviews-form.css';
 @import '../styles/home-glass.css';
 @import '../styles/home-gallery-modal.css';
+@import '../styles/kpo-equipment.css';
+@import '../styles/mld-specs.css';
 @import '../styles/contacts-map.css';
 
 @layer base {

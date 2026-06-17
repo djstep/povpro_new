@@ -91,29 +91,81 @@
 }
 
 .site-content .home-hero__bg {
-  border-radius: 3rem;
+  top: calc(-1 * var(--site-nav-height, 10rem));
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 0 0 3rem 3rem;
 }
 
-/* Логотипы заказчиков — в ряд, liquid-glass */
+/* Логотипы заказчиков — карусель с автопрокруткой */
+.site-content .home-clients-carousel {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.site-content .home-clients-track {
+  display: flex;
+  width: max-content;
+  animation: home-clients-scroll 25.0s linear infinite;
+}
+
+.site-content .home-clients-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-content .home-clients-track {
+    animation: none;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .site-content .home-clients-track .home-clients-row:last-child {
+    display: none;
+  }
+
+  .site-content .home-clients-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-content .home-clients-carousel {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+@keyframes home-clients-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .site-content .home-clients-row {
   display: flex;
   flex-wrap: nowrap;
   align-items: stretch;
-  justify-content: center;
+  flex-shrink: 0;
   gap: 0.75rem;
-  overflow-x: auto;
-  padding-bottom: 0.25rem;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.site-content .home-clients-row::-webkit-scrollbar {
-  display: none;
+  padding: 0 0.25rem;
 }
 
 .site-content .home-client-card {
-  flex: 1 1 0;
-  min-width: 5.5rem;
+  flex: 0 0 auto;
+  width: 8.5rem;
+  min-width: 8.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -131,24 +183,40 @@
   object-position: center;
 }
 
-.site-content .home-client-card:first-child img {
+/* Технодинамика — чуть крупнее */
+.site-content .home-client-card:nth-child(2) img {
   height: calc(2.75rem * 1.3);
 }
 
 /* Логотип с чёрным фоном в файле (DSK Group) — blend вместо правки пикселей */
-.site-content .home-client-card:nth-child(4) img {
+.site-content .home-client-card:nth-child(7) img {
   mix-blend-mode: lighten;
+}
+
+/* КуйбышевАзот — вертикальный логотип с подписью */
+.site-content .home-client-card:nth-child(3) img {
+  height: 3.25rem;
+}
+
+/* Akron — вертикальный логотип с подписью */
+.site-content .home-client-card:nth-child(1) img {
+  height: 3.25rem;
+}
+
+/* KAMAZ — вертикальный логотип */
+.site-content .home-client-card:nth-child(9) img {
+  height: 3.9rem;
 }
 
 @media (min-width: 768px) {
   .site-content .home-clients-row {
     gap: 1rem;
-    overflow-x: visible;
-    padding-bottom: 0;
+    padding: 0 0.5rem;
   }
 
   .site-content .home-client-card {
-    min-width: 0;
+    width: 10rem;
+    min-width: 10rem;
     padding: 1.25rem 1rem;
     border-radius: 1.5rem;
   }
@@ -157,13 +225,27 @@
     height: 3.25rem;
   }
 
-  .site-content .home-client-card:first-child img {
+  .site-content .home-client-card:nth-child(2) img {
     height: calc(3.25rem * 1.3);
+  }
+
+  .site-content .home-client-card:nth-child(3) img {
+    height: 3.75rem;
+  }
+
+  .site-content .home-client-card:nth-child(1) img {
+    height: 3.75rem;
+  }
+
+  .site-content .home-client-card:nth-child(9) img {
+    height: 4.5rem;
   }
 }
 
 @media (min-width: 1024px) {
   .site-content .home-client-card {
+    width: 11rem;
+    min-width: 11rem;
     padding: 1.5rem 1.25rem;
   }
 
@@ -171,8 +253,20 @@
     height: 3.5rem;
   }
 
-  .site-content .home-client-card:first-child img {
+  .site-content .home-client-card:nth-child(2) img {
     height: calc(3.5rem * 1.3);
+  }
+
+  .site-content .home-client-card:nth-child(3) img {
+    height: 4rem;
+  }
+
+  .site-content .home-client-card:nth-child(1) img {
+    height: 4rem;
+  }
+
+  .site-content .home-client-card:nth-child(9) img {
+    height: 4.8rem;
   }
 }
 
