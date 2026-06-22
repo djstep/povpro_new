@@ -1,0 +1,25 @@
+.site-content .tokarnye-price-aside,
+.site-content .frezernye-price-aside,
+.site-content .shlifovalnye-price-aside,
+.site-content .zuboreznye-price-aside {
+  position: sticky !important;
+  top: 10rem !important;
+  align-self: start !important;
+}
+
+.site-content .tokarnye-page .liquid-card:hover,
+.site-content .frezernye-page .liquid-card:hover,
+.site-content .shlifovalnye-page .liquid-card:hover,
+.site-content .zuboreznye-page .liquid-card:hover,
+.site-content .shlifovalnye-page .liquid-panel.tactile-lift:hover,
+.site-content .shlifovalnye-page .glass-panel.tactile-lift:hover {
+  transform: none !important;
+}
+
+.site-content .tokarnye-cta-card:hover,
+.site-content .frezernye-cta-card:hover,
+.site-content .shlifovalnye-cta-card:hover,
+.site-content .zuboreznye-cta-card:hover {
+  transform: none !important;
+  border: 1px solid #adc6ff !important;
+}

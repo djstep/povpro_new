@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Интеллектуальные системы — ППО №3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#041424",
+                    "inverse-surface": "#d4e4fa",
+                    "outline": "#8e909a",
+                    "surface-container": "#112131",
+                    "on-background": "#d4e4fa",
+                    "on-tertiary-container": "#004fab",
+                    "primary-container": "#adc6ff",
+                    "surface-tint": "#adc6ff",
+                    "primary": "#d8e2ff",
+                    "on-surface": "#d4e4fa",
+                    "on-secondary": "#233143",
+                    "error": "#ffb4ab",
+                    "secondary-container": "#3e4d5f",
+                    "surface-container-high": "#1c2b3c",
+                    "glass-fill-heavy": "rgba(28, 43, 60, 0.6)",
+                    "secondary-fixed-dim": "#b8c8de",
+                    "surface-container-highest": "#273647",
+                    "tertiary-fixed": "#d8e2ff",
+                    "on-tertiary-fixed-variant": "#004495",
+                    "primary-fixed-dim": "#adc6ff",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#adc6ff",
+                    "liquid-glass": "rgba(255, 255, 255, 0.03)",
+                    "glass-border": "rgba(255, 255, 255, 0.15)",
+                    "surface-container-low": "#0d1d2c",
+                    "inverse-on-surface": "#223242",
+                    "surface": "#041424",
+                    "surface-base": "#051424",
+                    "tertiary": "#d8e2ff",
+                    "on-tertiary": "#002e6a",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed": "#d4e4fb",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "on-primary-fixed-variant": "#2c4677",
+                    "outline-variant": "#44474f",
+                    "on-surface-variant": "#c2c6d6",
+                    "on-secondary-fixed-variant": "#39485a",
+                    "secondary": "#b8c8de",
+                    "surface-dim": "#041424",
+                    "on-primary": "#122f5f",
+                    "on-error": "#690005",
+                    "on-primary-container": "#385283",
+                    "on-secondary-container": "#aebdd3",
+                    "inverse-primary": "#455e90",
+                    "on-secondary-fixed": "#0d1d2d",
+                    "surface-container-lowest": "#010f1e",
+                    "surface-variant": "#273647",
+                    "surface-bright": "#2b3a4b",
+                    "primary-fixed": "#d8e2ff",
+                    "glass-fill": "rgba(28, 43, 60, 0.4)",
+                    "on-tertiary-fixed": "#001a42",
+                    "on-primary-fixed": "#001a42"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "48px",
+                    "unit": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Geist"],
+                    "headline-xl": ["Geist"],
+                    "label-sm": ["Geist"],
+                    "body-md": ["Geist"],
+                    "mono-label": ["Geist"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #041424;
+            color: #d4e4fa;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(28, 43, 60, 0.4);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .liquid-glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
+        }
+
+        .liquid-glass-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-4px);
+        }
+
+        .inner-glow-5 {
+            box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .industrial-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 30%, rgba(21, 33, 49, 1) 0%, rgba(4, 20, 36, 1) 100%);
+        }
+
+        .glow-dot {
+            width: 8px;
+            height: 8px;
+            background: #adc6ff;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #adc6ff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+<!-- Background Decoration -->
+<div class="industrial-bg"></div>
+<div class="fixed top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+
+</div>
+<!-- Header (Shared Component: TopNavBar Large) -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-margin-desktop h-20 bg-surface/60 backdrop-blur-[40px] dark:bg-surface/60 border-b border-white/10 inner-glow-5 shadow-xl">
+<div class="flex items-center gap-8">
+<div class="font-headline-lg text-headline-lg font-bold text-on-surface dark:text-on-surface tracking-tighter uppercase">ППО №3</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors" href="#">Главная</a>
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors" href="#">Фрикционные накладки</a>
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors" href="#">Мехобработка</a>
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-primary dark:text-primary border-b-2 border-primary pb-1" href="#">Интеллектуальные системы</a>
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors" href="#">Услуги</a>
+<a class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors" href="#">Контакты</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden xl:flex flex-col items-end mr-4">
+<span class="text-label-sm font-label-sm text-primary">+7 (8482) 55-66-77</span>
+<span class="text-mono-label font-mono-label text-on-surface-variant opacity-60 uppercase">Тольятти, Россия</span>
+</div>
+<button class="px-6 py-2 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-widest rounded-full hover:bg-white transition-all duration-300 transform active:scale-95">Связаться</button>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center hover:bg-white/5 transition-all duration-300 rounded-full">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">language</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-white/5 transition-all duration-300 rounded-full">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-32">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-32">
+<div class="glass-panel rounded-xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+<div class="p-8 md:p-16 flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-6">
+<div class="glow-dot"></div>
+<span class="font-mono-label text-mono-label text-primary uppercase tracking-[0.2em]">Технологии будущего</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl mb-8 leading-tight">Интеллектуальные системы</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-12 max-w-xl">
+                        Интеграция систем промышленной робототехники в технологический процесс предприятия повышает производительность, окупаемость и точность производства. Мы предлагаем комплексные решения "под ключ" для автоматизации ваших цехов.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<a class="inline-flex items-center gap-3 px-8 py-4 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-[0.1em] rounded-full hover:shadow-[0_0_20px_rgba(173,198,255,0.4)] transition-all" href="https://srtlt.ru">
+                            Visit SRT site
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">open_in_new</span>
+</a>
+</div>
+</div>
+<div class="relative overflow-hidden group">
+<img alt="High-tech industrial robotic arm in a dark futuristic factory setting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLsU_0YzW86ilnr8uK4302KEtJh1omi8JdErEgzCygtYfwtNpBEMSW41AFiC67uG2EH-WJ_f1hQ34jvt0imznM8rzn6cvxHYp5EULjfn33fqhziUaf8sv3DLp7m-62pFhazdD6Zu2L91DRONDL7vIkPyvfgZBfGJS9lcQLk6a83at2PIqAsxsA-Vt8tnAP7nP4o9uCuFTzlLRuVDgDylkfrawDEUyXOtyXLubt6sKJxgS0jKR2lrdhwMo0Kx"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background/80 to-transparent lg:hidden"></div>
+</div>
+</div>
+</section>
+<!-- Features Section: Наши возможности -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-32">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg mb-4">Наши возможности</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Профессиональный инжиниринг и проектирование систем автоматизации</p>
+</div>
+<div class="h-[1px] flex-grow bg-white/10 mx-8 hidden md:block mb-4"></div>
+<div class="font-mono-label text-mono-label text-primary opacity-40">01 — 03 / CAPABILITIES</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="liquid-glass-card p-10 rounded-lg flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 0;">precision_manufacturing</span>
+<div>
+<h3 class="font-headline-lg text-headline-lg mb-4 text-[24px]">Роботы-манипуляторы</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Подбор и внедрение современных манипуляторов, адаптированных под специфические задачи вашего производства, от сварки до паллетирования.
+                        </p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="liquid-glass-card p-10 rounded-lg flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 0;">settings_suggest</span>
+<div>
+<h3 class="font-headline-lg text-headline-lg mb-4 text-[24px]">Оснастка</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Проектирование и изготовление специализированной оснастки для роботизированных комплексов любой сложности по индивидуальным чертежам.
+                        </p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="liquid-glass-card p-10 rounded-lg flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 0;">smart_toy</span>
+<div>
+<h3 class="font-headline-lg text-headline-lg mb-4 text-[24px]">Автоматизация</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Полная автоматизация технологических процессов с использованием систем машинного зрения и искусственного интеллекта для контроля качества.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="relative rounded-xl overflow-hidden p-12 md:p-24 text-center glass-panel">
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+
+</div>
+<div class="relative z-10 max-w-2xl mx-auto">
+<h2 class="font-headline-xl text-headline-xl mb-6">Заинтересовали наши решения?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-12">
+                        Предлагаем посетить наш сайт и более подробно ознакомиться с нашими возможностями в области промышленной автоматизации и робототехники.
+                    </p>
+<a class="inline-block px-12 py-5 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-[0.15em] rounded-full hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-primary/20" href="https://srtlt.ru" target="_blank">
+                        Перейти на srtlt.ru
+                    </a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component: Footer) -->
+<footer class="w-full py-16 px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="flex flex-col gap-6">
+<div class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary uppercase tracking-tighter">ППО №3</div>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-70">
+                © 2024 ППО №3 (POVPRO). Промышленное производство и инжиниринг.
+            </p>
+<div class="flex gap-4 mt-4">
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center cursor-pointer hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-sm">alternate_email</span>
+</div>
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center cursor-pointer hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-sm">call</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-4">Навигация</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Главная</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Продукция</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Услуги</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Технические условия</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-4">Информация</h4>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Отзывы</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Контакты</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Карта сайта</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Политика конфиденциальности</a>
+</div>
+<div class="flex flex-col gap-6">
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-4">Контакты</h4>
+<div class="flex flex-col gap-2">
+<span class="text-on-surface-variant text-body-md">г. Тольятти, ул. Коммунальная 39</span>
+<span class="text-on-surface-variant text-body-md">info@povpro.ru</span>
+<span class="text-primary font-bold text-headline-lg text-[20px]">+7 (8482) 55-66-77</span>
+</div>
+<div class="mt-4 p-4 rounded-lg bg-surface-container-high flex items-center justify-between">
+<span class="text-mono-label uppercase tracking-widest opacity-60">Status</span>
+<div class="flex items-center gap-2">
+<span class="text-mono-label uppercase text-primary">Live</span>
+<div class="glow-dot scale-75"></div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) / 50;
+            const moveY = (e.clientY - window.innerHeight / 2) / 50;
+            
+            const bg = document.querySelector('.industrial-bg');
+            if(bg) {
+                bg.style.background = `radial-gradient(circle at ${20 + moveX}% ${30 + moveY}%, rgba(21, 33, 49, 1) 0%, rgba(4, 20, 36, 1) 100%)`;
+            }
+        });
+
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body></html>

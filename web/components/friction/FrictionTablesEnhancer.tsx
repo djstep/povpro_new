@@ -333,8 +333,9 @@ function enhanceSection(section: HTMLElement): (() => void) | undefined {
   }
 
   const note = wrapper.querySelector('p.text-on-surface-variant');
-  if (note) wrapper.insertBefore(toolbar, note.nextSibling);
-  else wrapper.insertBefore(toolbar, clip);
+  const schema = wrapper.querySelector('.friction-table-schema');
+  const toolbarAnchor = schema?.nextElementSibling ?? note?.nextElementSibling ?? clip;
+  wrapper.insertBefore(toolbar, toolbarAnchor);
 
   const ro = new ResizeObserver(() => {
     if (!expanded && filters.size === 0) update();

@@ -1,0 +1,15 @@
+.site-content main.flex.flex-col.gap-gutter {
+  gap: 24px !important;
+}
+
+.site-content .page-cta-section,
+.site-content .page-spaced-section,
+.site-content .edm-spaced-section,
+.site-content .koord-spaced-section {
+  margin-top: 1.5rem !important;
+}
+
+.site-content .page-cta-card:hover {
+  transform: none !important;
+  border: 1px solid #adc6ff !important;
+}

@@ -1,0 +1,10 @@
+.site-content .proizvodstvo-page .liquid-card:hover,
+.site-content .proizvodstvo-page .liquid-glass-panel:hover,
+.site-content .proizvodstvo-page .liquid-panel:hover {
+  transform: none !important;
+}
+
+.site-content .proizvodstvo-cta-card:hover {
+  transform: none !important;
+  border: 1px solid #adc6ff !important;
+}

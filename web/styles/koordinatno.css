@@ -1,0 +1,12 @@
+.site-content .koord-spaced-section {
+  margin-top: 1.5rem !important;
+}
+
+.site-content .koord-section-title {
+  color: #adc6ff !important;
+}
+
+.site-content .koord-cta-card:hover {
+  transform: none !important;
+  border: 1px solid #adc6ff !important;
+}

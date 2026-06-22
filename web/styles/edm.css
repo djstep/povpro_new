@@ -1,0 +1,76 @@
+.site-content .edm-gallery-grid {
+  display: grid !important;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem !important;
+}
+
+.site-content .edm-spaced-section {
+  margin-top: 1.5rem !important;
+}
+
+.site-content .edm-wire-block {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.site-content .edm-wire-intro {
+  display: flex !important;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .site-content .edm-wire-intro {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 1.5rem;
+  }
+
+  .site-content .edm-wire-image,
+  .site-content .edm-wire-text {
+    width: 50%;
+    flex-shrink: 0;
+  }
+}
+
+.site-content .edm-wire-machine {
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .site-content .edm-wire-machine {
+    width: 50%;
+  }
+}
+
+@media (min-width: 768px) {
+  .site-content .edm-gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.site-content .edm-gallery-card {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.site-content .edm-gallery-photo {
+  padding-top: 1rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1rem;
+}
+
+.site-content .edm-gallery-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.site-content .edm-cta-card:hover {
+  transform: none !important;
+  border: 1px solid #adc6ff !important;
+}

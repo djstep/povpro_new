@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Интеллектуальные системы — ППО №3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#004495",
+                    "liquid-glass": "rgba(255, 255, 255, 0.03)",
+                    "on-primary": "#122f5f",
+                    "on-surface": "#d4e4fa",
+                    "primary-container": "#adc6ff",
+                    "surface-container-lowest": "#010f1e",
+                    "outline-variant": "#44474f",
+                    "on-surface-variant": "#c4c6d0",
+                    "glass-fill-heavy": "rgba(28, 43, 60, 0.6)",
+                    "tertiary-container": "#adc6ff",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed": "#001a42",
+                    "tertiary": "#d8e2ff",
+                    "on-tertiary-container": "#004fab",
+                    "surface-container-high": "#1c2b3c",
+                    "on-primary-fixed-variant": "#2c4677",
+                    "surface-container-low": "#0d1d2c",
+                    "glass-fill": "rgba(28, 43, 60, 0.4)",
+                    "glass-border": "rgba(255, 255, 255, 0.15)",
+                    "on-secondary": "#233143",
+                    "on-background": "#d4e4fa",
+                    "on-tertiary": "#002e6a",
+                    "surface-base": "#051424",
+                    "on-error": "#690005",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-container": "#aebdd3",
+                    "inverse-primary": "#455e90",
+                    "error": "#ffb4ab",
+                    "tertiary-fixed-dim": "#adc6ff",
+                    "tertiary-fixed": "#d8e2ff",
+                    "surface-container-highest": "#273647",
+                    "on-secondary-fixed-variant": "#39485a",
+                    "inverse-surface": "#d4e4fa",
+                    "secondary-fixed-dim": "#b8c8de",
+                    "primary-fixed-dim": "#adc6ff",
+                    "surface-variant": "#273647",
+                    "surface-container": "#112131",
+                    "on-primary-container": "#385283",
+                    "background": "#041424",
+                    "surface-tint": "#adc6ff",
+                    "inverse-on-surface": "#223242",
+                    "surface-bright": "#2b3a4b",
+                    "primary": "#d8e2ff",
+                    "secondary-fixed": "#d4e4fb",
+                    "secondary": "#b8c8de",
+                    "outline": "#8e909a",
+                    "secondary-container": "#3e4d5f",
+                    "on-secondary-fixed": "#0d1d2d",
+                    "on-primary-fixed": "#001a42",
+                    "surface-dim": "#041424",
+                    "surface": "#041424",
+                    "primary-fixed": "#d8e2ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Geist"],
+                    "headline-lg-mobile": ["Geist"],
+                    "mono-label": ["Geist"],
+                    "label-sm": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "body-md": ["Geist"]
+            },
+            "fontSize": {
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "mono-label": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "label-sm": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #051424;
+            color: #d4e4fa;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-button {
+            background: rgba(59, 130, 246, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0);
+        }
+
+        .glass-button:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .liquid-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .liquid-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .glow-accent {
+            filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
+        }
+
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.1) 0px, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-surface-base">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 flex flex-col items-center bg-surface/80 backdrop-blur-[40px] border-b border-glass-border shadow-lg">
+<div class="w-full max-w-container-max px-margin-desktop flex items-center justify-between h-20">
+<!-- Brand Identity -->
+<div class="flex items-center gap-4">
+<img alt="PPO #3 Logo" class="h-12 w-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf1Yzu_X5i_QSKlcAX6ANg3QT4T6j4W-Ya-UbwB3R-mpnAYeoozNzdkpVVjNmtDk-IX9-8mMdn_JywhWe3RSgfXKQEVcgDKEPj2Vy8Kc271bYRw3ZsParCrSxYZ2yyCqG-fh2W9hudlH21IB2IjVdZ86NKvs25r0fpIv5sWLazUNpK4j70CQ_W8A3zwJeBc8n5wkOCn7CRnVOgDJlUfaFlbpUPy0hnoATgQaAUFyC0TdlLDrczT1jB9A3rlEeJQ2CWqyfhx5uikDUo"/>
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">ППО №3</span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors" href="#">ГЛАВНАЯ</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors" href="#">НАКЛАДКИ</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors" href="#">МЕХОБРАБОТКА</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-primary border-b-2 border-primary pb-1" href="#">СИСТЕМЫ</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors" href="#">УСЛУГИ</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-on-surface transition-colors" href="#">КОНТАКТЫ</a>
+</nav>
+<!-- Trailing Action -->
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all">
+                ЗАПРОСИТЬ РАСЧЕТ
+            </button>
+</div>
+</header>
+<main class="relative pt-32 mesh-gradient">
+<!-- Hero Section -->
+<section class="relative px-margin-desktop max-w-container-max mx-auto py-32 overflow-hidden">
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="grid grid-cols-12 gap-gutter items-center">
+<div class="col-span-12 lg:col-span-7 z-10">
+<div class="flex items-center gap-3 mb-6">
+<span class="w-12 h-[1px] bg-primary"></span>
+<span class="font-mono-label text-mono-label uppercase tracking-[0.2em] text-primary">High-Tech Automation</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-8">
+                        Интеллектуальные <br/><span class="text-primary">системы</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mb-12 leading-relaxed">
+                        Внедрение современных решений промышленной автоматизации позволяет кратно повысить рентабельность производства, гарантирует стабильное качество и обеспечивает полную независимость от дефицита квалифицированного персонала.
+                    </p>
+<div class="flex gap-6">
+<a class="glass-button px-10 py-4 rounded-full font-label-sm text-label-sm uppercase tracking-widest text-on-surface flex items-center gap-3" href="https://srtlt.ru/">
+                            Посетить сайт SRT
+                            <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-5 relative">
+<div class="aspect-square glass-panel rounded-lg overflow-hidden relative group">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-60" data-alt="A futuristic industrial robotic arm performing high-precision assembly in a clean, dark manufacturing environment. The lighting is dominated by deep blues and crisp white highlights, reflecting off metallic surfaces and dark glass panels. The atmosphere is sophisticated, showcasing cutting-edge automation technology without any human presence." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRkT-zn67c3zjkv3s4WO4rDw3rWzPD8tdf2kiDs5Un_HMFQTH53aWEJClwH9uRslALsG4N63DSMvOl98aS03RO0VmzNUO4GrzZt_gZl3fDtaOvQV23o2_utyNcXQvFm--aGEkr_UoBYq_idxrbsPs7R__TFRrQLGwnxC8roazb1zIpvIyLltpsH6D612vyGrB9c7oed3LkI7x-rSQZoYE1MUoinDBhcI_yVFDfWFnJm_CP3u5_oWw2qmz6-jRZYYnH5vs421bsZCgV')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-base via-transparent to-transparent"></div>
+<!-- Floating Tech Detail Card -->
+<div class="absolute bottom-8 left-8 right-8 glass-panel p-6 rounded-lg translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+<div class="flex items-center justify-between mb-2">
+<span class="font-mono-label text-mono-label text-primary">Precision: 0.02mm</span>
+<span class="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+</div>
+<div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="w-3/4 h-full bg-primary shadow-[0_0_8px_#3b82f6]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="px-margin-desktop max-w-container-max mx-auto py-32 border-t border-glass-border">
+<div class="text-center mb-24">
+<h2 class="font-headline-lg text-headline-lg mb-4">Наши возможности</h2>
+<div class="h-1 w-24 bg-primary mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Feature 1 -->
+<div class="col-span-12 md:col-span-8 liquid-card p-12 rounded-lg flex flex-col justify-between group">
+<div class="flex justify-between items-start mb-16">
+<div class="p-4 rounded-xl bg-primary/10 border border-primary/20 text-primary glow-accent">
+<span class="material-symbols-outlined text-[40px]" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<span class="font-mono-label text-mono-label opacity-30 text-[48px]">01</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg mb-6 group-hover:text-primary transition-colors">Роботы-манипуляторы</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Мы предлагаем широкую номенклатуру роботов манипуляторов, интегрируем их в Ваш технологический процесс и запрограммируем под Ваши задачи. Полноцикловое сопровождение от подбора до запуска.
+                        </p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="col-span-12 md:col-span-4 liquid-card p-12 rounded-lg group">
+<div class="mb-12">
+<div class="p-4 w-fit rounded-xl bg-primary/10 border border-primary/20 text-primary glow-accent mb-8">
+<span class="material-symbols-outlined text-[32px]" data-icon="settings_input_component">settings_input_component</span>
+</div>
+<span class="font-mono-label text-mono-label opacity-30 text-[32px]">02</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-6 group-hover:text-primary transition-colors">Оснастка</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Спроектируем и изготовим сопутствующую оснастку и оборудование для бесшовной интеграции роботов.
+                    </p>
+</div>
+<!-- Feature 3 -->
+<div class="col-span-12 md:col-span-4 liquid-card p-12 rounded-lg group">
+<div class="mb-12">
+<div class="p-4 w-fit rounded-xl bg-primary/10 border border-primary/20 text-primary glow-accent mb-8">
+<span class="material-symbols-outlined text-[32px]" data-icon="hub">hub</span>
+</div>
+<span class="font-mono-label text-mono-label opacity-30 text-[32px]">03</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-6 group-hover:text-primary transition-colors">Автоматизация</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Автоматизируем Ваш технологический процесс под ключ, создавая единую интеллектуальную экосистему.
+                    </p>
+</div>
+<!-- Visual Accent Box -->
+<div class="col-span-12 md:col-span-8 rounded-lg overflow-hidden relative glass-panel min-h-[320px]">
+<div class="absolute inset-0 bg-cover bg-center opacity-40" data-alt="Close-up of high-speed industrial automation sensors and glowing fiber optic cables inside a technical control cabinet. Cool blue ambient lighting reflects off sleek black glass surfaces. Minimalist industrial aesthetic, sharp focus on technical details, professional laboratory atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDwKuzddpE55nw-SdNZfKgSCgiNq4IGZLtWlc2G4GhJgRe3K0fpOZVyeBRz_Prw5tzq-avk7xXA1c_Cw4kL7KDb5jsTgcM-5b31CpeK3fsHzoQ8Gs_CJUk7gTofz30H2SoVbnKHpNZZLWOtEDcUTF-bD09n96AZcKmXv9lYSZ-KDYSPhdprgN2BDVGo4wHs7DiGUGFpZBxBv-LtR1q8Dmmu3vQLDihNUj2_is_yL7I5QsnUUMYNjyzfwq072Hv35cVNKGPwC7GZ-_ii')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-base to-transparent p-12 flex flex-col justify-center">
+<div class="max-w-sm">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary">System Performance</span>
+</div>
+<p class="font-headline-lg text-headline-lg-mobile text-on-surface">Комплексный подход к модернизации производства</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="relative px-margin-desktop max-w-container-max mx-auto py-32">
+<div class="glass-panel p-16 rounded-lg text-center relative overflow-hidden">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mb-8">Готовы к трансформации?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto mb-12">
+                    Узнайте больше о наших реализованных проектах и технических характеристиках оборудования на специализированном ресурсе SRT.
+                </p>
+<a class="inline-flex glass-button px-16 py-5 rounded-full font-label-sm text-label-sm uppercase tracking-widest text-on-surface items-center gap-4 group" href="https://srtlt.ru/">
+                    Посетить сайт SRT
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-margin-desktop bg-surface-container-lowest border-t border-glass-border">
+<div class="max-w-container-max mx-auto grid grid-cols-12 gap-gutter">
+<!-- Brand Column -->
+<div class="col-span-12 md:col-span-4">
+<div class="flex items-center gap-4 mb-8">
+<img alt="PPO #3 Logo" class="h-10 w-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf1Yzu_X5i_QSKlcAX6ANg3QT4T6j4W-Ya-UbwB3R-mpnAYeoozNzdkpVVjNmtDk-IX9-8mMdn_JywhWe3RSgfXKQEVcgDKEPj2Vy8Kc271bYRw3ZsParCrSxYZ2yyCqG-fh2W9hudlH21IB2IjVdZ86NKvs25r0fpIv5sWLazUNpK4j70CQ_W8A3zwJeBc8n5wkOCn7CRnVOgDJlUfaFlbpUPy0hnoATgQaAUFyC0TdlLDrczT1jB9A3rlEeJQ2CWqyfhx5uikDUo"/>
+<span class="font-headline-lg text-headline-lg font-bold text-primary">ППО №3</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-xs">
+                    Ваш надежный партнер в области промышленной автоматизации и прецизионной металлообработки.
+                </p>
+</div>
+<!-- Links Column -->
+<div class="col-span-12 md:col-span-4">
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface mb-8">Навигация</h4>
+<ul class="space-y-4">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Продукция</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Услуги</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">О компании</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Контакты</a></li>
+</ul>
+</div>
+<!-- Info Column -->
+<div class="col-span-12 md:col-span-4">
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface mb-8">Поддержка</h4>
+<ul class="space-y-4">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Техническая поддержка</a></li>
+<li class="flex items-center gap-3 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-primary text-[20px]">mail</span>
+                        info@ppo3.ru
+                    </li>
+<li class="flex items-center gap-3 text-on-surface-variant font-body-md">
+<span class="material-symbols-outlined text-primary text-[20px]">phone</span>
+                        +7 (800) 555-33-22
+                    </li>
+</ul>
+</div>
+<!-- Copyright -->
+<div class="col-span-12 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-md text-body-md text-on-surface-variant opacity-50 text-sm">
+                    © 2024 ППО №3. Все права защищены.
+                </p>
+<div class="flex gap-8">
+<a class="text-xs text-on-surface-variant/50 hover:text-primary transition-colors" href="#">Политика конфиденциальности</a>
+<a class="text-xs text-on-surface-variant/50 hover:text-primary transition-colors" href="#">Условия использования</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Smooth hover interactions for glass panels
+        document.querySelectorAll('.liquid-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

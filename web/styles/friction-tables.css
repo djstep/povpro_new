@@ -5,6 +5,21 @@
   margin-bottom: 1rem;
 }
 
+.friction-table-schema {
+  margin-bottom: 1rem;
+}
+
+.friction-table-schema__img {
+  display: block;
+  width: 100%;
+  max-width: 42rem;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 /* Badge в шапке таблицы + артикулы в ячейках */
 .site-content main section.glass-panel .bg-primary\/20.text-primary,
 .site-content main section.glass-panel span.rounded-full.font-mono-label {

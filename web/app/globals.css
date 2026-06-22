@@ -15,6 +15,13 @@
 @import '../styles/home-gallery-modal.css';
 @import '../styles/kpo-equipment.css';
 @import '../styles/mld-specs.css';
+@import '../styles/irt.css';
+@import '../styles/dolbezh.css';
+@import '../styles/edm.css';
+@import '../styles/koordinatno.css';
+@import '../styles/tokarnye.css';
+@import '../styles/page-layout.css';
+@import '../styles/proizvodstvo.css';
 @import '../styles/contacts-map.css';
 
 @layer base {

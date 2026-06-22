@@ -1,0 +1,41 @@
+/* Интеллектуальные системы — Fidelity Layout Sync (Stitch) */
+
+.site-content main.irt-page .inner-glow-5 {
+  box-shadow: inset 0 0 2px 0 rgba(255, 255, 255, 0.05);
+}
+
+.site-content main.irt-page .glow-dot {
+  width: 8px;
+  height: 8px;
+  background: #adc6ff;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #adc6ff;
+  animation: irt-glow-pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes irt-glow-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-content main.irt-page .glow-dot {
+    animation: none;
+  }
+
+  .site-content main.irt-page .hover\:scale-\[0\.98\]:hover,
+  .site-content main.irt-page .hover\:scale-105:hover {
+    transform: none;
+  }
+}
