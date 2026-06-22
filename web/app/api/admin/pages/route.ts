@@ -48,7 +48,7 @@ export async function GET() {
       }),
     ]);
 
-    const staticSlugs = new Set(staticRoutes.map((r) => r.slug));
+    const staticSlugs = new Set<string>(staticRoutes.map((r) => r.slug));
     const merged = [
       ...staticRoutes.map((r) => {
         const db = dbPages.find((p) => p.slug === r.slug);
