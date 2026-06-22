@@ -13,3 +13,10 @@
   transform: none !important;
   border: 1px solid #adc6ff !important;
 }
+
+.site-content .mech-hero-photo,
+.site-content .mech-hero-photo img {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}

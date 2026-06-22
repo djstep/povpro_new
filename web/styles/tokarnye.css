@@ -1,3 +1,4 @@
+.site-content .mech-price-aside,
 .site-content .tokarnye-price-aside,
 .site-content .frezernye-price-aside,
 .site-content .shlifovalnye-price-aside,
@@ -5,6 +6,27 @@
   position: sticky !important;
   top: 10rem !important;
   align-self: start !important;
+}
+
+/* content-visibility на section ломает position: sticky */
+.site-content section:has(.mech-price-aside),
+.site-content section:has(.tokarnye-price-aside),
+.site-content section:has(.frezernye-price-aside),
+.site-content section:has(.zuboreznye-price-aside),
+.site-content section:has(.shlifovalnye-price-aside) {
+  content-visibility: visible !important;
+  overflow: visible !important;
+}
+
+@media (max-width: 1023px) {
+  .site-content .mech-price-aside,
+  .site-content .tokarnye-price-aside,
+  .site-content .frezernye-price-aside,
+  .site-content .shlifovalnye-price-aside,
+  .site-content .zuboreznye-price-aside {
+    position: static !important;
+    top: auto !important;
+  }
 }
 
 .site-content .tokarnye-page .liquid-card:hover,

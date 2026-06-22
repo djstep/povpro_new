@@ -1,0 +1,24 @@
+/* Ореолы подсветки: сверху справа и снизу слева — на всех страницах через .site-content */
+.site-content::before,
+.site-content::after {
+  content: '';
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  filter: blur(120px);
+}
+
+.site-content::before {
+  top: -20%;
+  right: -10%;
+  background: rgba(173, 198, 255, 0.125);
+}
+
+.site-content::after {
+  bottom: -20%;
+  left: -10%;
+  background: rgba(190, 198, 224, 0.125);
+}

@@ -1,0 +1,85 @@
+/* Фрикционные накладки — отступ hero → «История» (−50% от исходного) */
+.site-content main:has(.friction-history-section) > .home-hero {
+  margin-bottom: 2.1rem;
+}
+
+.site-content .friction-history-section {
+  padding-top: 2.1rem;
+  padding-bottom: 4.2rem;
+}
+
+.site-content .friction-production-section {
+  padding-top: 4.2rem;
+  padding-bottom: 3rem;
+}
+
+.site-content .friction-production-actions {
+  margin-top: 3rem;
+}
+
+.site-content .friction-video-section {
+  padding-top: 3rem;
+  padding-bottom: 6rem;
+}
+
+.site-content .friction-material-section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+/* Логотипы партнёров */
+.site-content .friction-partners-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.site-content .friction-partner-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.25rem;
+  border-radius: 1.25rem;
+  min-width: 8.5rem;
+  min-height: 4.5rem;
+}
+
+.site-content .friction-partner-logo img {
+  display: block;
+  max-height: 2.75rem;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.site-content .friction-partner-logo--avtovaz img {
+  height: 2.75rem;
+  mix-blend-mode: lighten;
+}
+
+.site-content .friction-partner-logo--ppo img {
+  height: 3rem;
+}
+
+.site-content .friction-partners-divider {
+  width: 1px;
+  height: 3rem;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .site-content .friction-partner-logo img {
+    max-height: 3.25rem;
+  }
+
+  .site-content .friction-partner-logo--avtovaz img {
+    height: 3.25rem;
+  }
+
+  .site-content .friction-partner-logo--ppo img {
+    height: 3.5rem;
+  }
+}

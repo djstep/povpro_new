@@ -8,6 +8,7 @@
 @import '../styles/performance.css';
 @import '../styles/nav-glass.css';
 @import '../styles/friction-tables.css';
+@import '../styles/friction-page.css';
 @import '../styles/zakaz-form.css';
 @import '../styles/reviews.css';
 @import '../styles/reviews-form.css';
@@ -23,6 +24,7 @@
 @import '../styles/page-layout.css';
 @import '../styles/proizvodstvo.css';
 @import '../styles/contacts-map.css';
+@import '../styles/ambient-glow.css';
 
 @layer base {
   html {
@@ -68,10 +70,6 @@
 
   .site-footer {
     @apply relative z-10;
-  }
-
-  .site-ambient-glow {
-    z-index: 0;
   }
 
   .material-symbols-outlined {
