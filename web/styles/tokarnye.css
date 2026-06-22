@@ -4,7 +4,7 @@
 .site-content .shlifovalnye-price-aside,
 .site-content .zuboreznye-price-aside {
   position: sticky !important;
-  top: 10rem !important;
+  top: var(--site-nav-height, 10rem) !important;
   align-self: start !important;
 }
 
@@ -13,8 +13,14 @@
 .site-content section:has(.tokarnye-price-aside),
 .site-content section:has(.frezernye-price-aside),
 .site-content section:has(.zuboreznye-price-aside),
-.site-content section:has(.shlifovalnye-price-aside) {
+.site-content section:has(.shlifovalnye-price-aside),
+.site-content main:has(.mech-price-aside) {
   content-visibility: visible !important;
+  overflow: visible !important;
+}
+
+.site-content section:has(.mech-price-aside) [class*='grid-cols'],
+.site-content section:has(.frezernye-price-aside) [class*='grid-cols'] {
   overflow: visible !important;
 }
 
@@ -29,13 +35,29 @@
   }
 }
 
-.site-content .tokarnye-page .liquid-card:hover,
-.site-content .frezernye-page .liquid-card:hover,
-.site-content .shlifovalnye-page .liquid-card:hover,
-.site-content .zuboreznye-page .liquid-card:hover,
-.site-content .shlifovalnye-page .liquid-panel.tactile-lift:hover,
-.site-content .shlifovalnye-page .glass-panel.tactile-lift:hover {
-  transform: none !important;
+.site-content .frezernye-price-section,
+.site-content section:has(.frezernye-price-aside),
+.site-content .frezernye-price-grid {
+  overflow: visible !important;
+  content-visibility: visible !important;
+}
+
+.site-content .frezernye-price-grid {
+  align-items: start;
+}
+
+.site-content .frezernye-price-aside {
+  position: sticky !important;
+  top: calc(var(--site-nav-height, 10rem) + 1rem) !important;
+  align-self: start !important;
+  z-index: 5;
+}
+
+@media (max-width: 1023px) {
+  .site-content .frezernye-price-aside {
+    position: static !important;
+    top: auto !important;
+  }
 }
 
 .site-content .tokarnye-cta-card:hover,
@@ -43,5 +65,4 @@
 .site-content .shlifovalnye-cta-card:hover,
 .site-content .zuboreznye-cta-card:hover {
   transform: none !important;
-  border: 1px solid #adc6ff !important;
 }

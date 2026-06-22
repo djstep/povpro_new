@@ -1,0 +1,105 @@
+/* Unified corner radii for glass/card blocks — loaded last in globals.css */
+
+.site-content {
+  --site-radius: 1rem;
+  --site-radius-lg: 2rem;
+  --site-radius-xl: 3rem;
+}
+
+.site-content :where(
+    .liquid-glass,
+    .liquid-card,
+    .liquid-glass-panel,
+    .liquid-panel,
+    .glass-panel,
+    .glass-card,
+    .volumetric-glass,
+    .glass-panel-heavy,
+    .dolbezh-check-item
+  ):not(
+    [class*='rounded-full'],
+    .stat-card__fill,
+    .stat-card__surface,
+    .nav-dropdown-panel,
+    .mobile-menu-panel,
+    .site-mobile-nav,
+    .site-nav,
+    .glass-button,
+    .glass-button-light,
+    .home-gallery-card,
+    .home-client-card
+  ) {
+  /* backdrop-filter + border without this shows square corners */
+  overflow: hidden;
+  border-radius: var(--site-radius-xl) !important;
+}
+
+/* Fallback radius when HTML has no Tailwind rounded-* — same as card standard */
+.site-content :where(
+    .liquid-glass,
+    .liquid-card,
+    .liquid-glass-panel,
+    .liquid-panel,
+    .glass-panel,
+    .glass-card,
+    .volumetric-glass,
+    .glass-panel-heavy,
+    .dolbezh-check-item
+  ):not([class*='rounded']):not(
+    .stat-card__fill,
+    .nav-dropdown-panel,
+    .mobile-menu-panel,
+    .site-mobile-nav,
+    .site-nav,
+    .glass-button,
+    .glass-button-light
+  ) {
+  border-radius: var(--site-radius-xl);
+}
+
+.site-content :where(
+    .liquid-glass,
+    .liquid-card,
+    .liquid-glass-panel,
+    .liquid-panel,
+    .glass-panel,
+    .glass-card,
+    .volumetric-glass
+  ):not([class*='rounded']):is(section, article) {
+  border-radius: var(--site-radius-xl);
+}
+
+/* Image / media wrappers */
+.site-content :where(
+    .aspect-\[4\/3\],
+    .mech-hero-photo,
+    .edm-gallery-photo,
+    .shlifovalnye-featured-photo,
+    .mld-hero-photo
+  ):not([class*='rounded']) {
+  border-radius: var(--site-radius);
+  overflow: hidden;
+}
+
+.site-content :where(
+    .liquid-glass,
+    .liquid-card,
+    .glass-panel,
+    .glass-card,
+    .volumetric-glass
+  ) :where(img, video):not([class*='rounded-full']) {
+  border-radius: inherit;
+}
+
+.site-content .friction-partner-logo.liquid-glass {
+  border-radius: var(--site-radius-xl) !important;
+}
+
+/* bg-white/5 and surface blocks used as cards */
+.site-content :where(
+    .bg-white\/5,
+    .bg-surface-container\/50
+  ).border:not([class*='rounded-full']) {
+  border-radius: var(--site-radius-xl) !important;
+  overflow: hidden;
+}

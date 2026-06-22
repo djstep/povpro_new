@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { submitInquiry } from '@/lib/inquiry-api';
+import { trackFormSubmit } from '@/components/analytics/AnalyticsTracker';
 import { OrderForm } from './OrderForm';
 
 function splitLegacyContact(contact: string): { phone: string; email: string } {
@@ -67,6 +68,7 @@ export function InquiryPageContent() {
       source: from ?? 'zakaz',
     });
     if (result.ok) {
+      trackFormSubmit(from ?? 'zakaz');
       setStatus('success');
       return;
     }

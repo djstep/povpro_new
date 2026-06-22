@@ -1,0 +1,10 @@
+/* M7160 block — same width as other sections, no grid bleed from card-hover-glow */
+.site-content .shlifovalnye-featured-grid {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.site-content .shlifovalnye-featured-photo img {
+  border-radius: var(--site-radius-lg);
+}

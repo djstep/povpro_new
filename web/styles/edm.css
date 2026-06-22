@@ -72,5 +72,24 @@
 
 .site-content .edm-cta-card:hover {
   transform: none !important;
-  border: 1px solid #adc6ff !important;
+}
+
+/* Spec tables — taller collapse + section layout */
+.site-content .edm-spec-collapse.active {
+  max-height: 3200px;
+}
+
+.site-content .edm-spec-table td:first-child {
+  width: 52%;
+}
+
+@media (min-width: 768px) {
+  .site-content .edm-spec-table td:first-child {
+    width: 45%;
+  }
+}
+
+.site-content .edm-spec-table tr.edm-spec-section td {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
 }

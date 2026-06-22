@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { SITE_CONTACTS } from '@/lib/site-contacts';
 
 const NAV = [
   { href: '/', label: 'Главная' },
@@ -27,13 +28,25 @@ export function Footer() {
           <p className="text-on-surface-variant text-body-md leading-relaxed">
             Промышленные фрикционные изделия. Лидер отрасли в разработке безасбестовых материалов.
           </p>
-          <div className="flex gap-4">
-            <span className="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">
-              public
-            </span>
-            <span className="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">
-              chat_bubble
-            </span>
+          <div className="flex items-center gap-3">
+            <a
+              href={SITE_CONTACTS.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Telegram"
+              className="footer-social-link"
+            >
+              <img src="/assets/icons/telegram.svg" alt="" width={24} height={24} className="w-6 h-6" />
+            </a>
+            <a
+              href={SITE_CONTACTS.maxMessenger}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="MAX"
+              className="footer-social-link"
+            >
+              <img src="/assets/icons/max-messenger.svg" alt="" width={24} height={24} className="w-6 h-6" />
+            </a>
           </div>
         </div>
 
@@ -63,7 +76,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-4 md:min-w-[15.5rem]">
+        <div className="flex flex-col gap-4 md:min-w-[19rem]">
           <span className="font-mono-label text-primary uppercase tracking-widest mb-2">Контакты</span>
           <div className="flex items-center gap-3 text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-widest">
             <span className="material-symbols-outlined text-primary scale-90 shrink-0">location_on</span>
@@ -74,14 +87,14 @@ export function Footer() {
             className="flex items-center gap-3 text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
           >
             <span className="material-symbols-outlined text-primary scale-90 shrink-0">phone</span>
-            <span className="whitespace-nowrap">8 (8482) 555-900</span>
+            <span className="break-words">8 (8482) 555-900</span>
           </a>
           <a
             href="mailto:office@povpro.ru"
             className="flex items-center gap-3 text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-widest hover:text-primary transition-colors"
           >
             <span className="material-symbols-outlined text-primary scale-90 shrink-0">mail</span>
-            <span className="whitespace-nowrap">office@povpro.ru</span>
+            <span className="break-all">office@povpro.ru</span>
           </a>
         </div>
       </div>

@@ -62,6 +62,8 @@ const config: Config = {
         DEFAULT: '1rem',
         lg: '2rem',
         xl: '3rem',
+        '2xl': '3rem',
+        '3xl': '3rem',
       },
       maxWidth: {
         'container-max': '1280px',

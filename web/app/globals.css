@@ -21,10 +21,19 @@
 @import '../styles/edm.css';
 @import '../styles/koordinatno.css';
 @import '../styles/tokarnye.css';
+@import '../styles/mech-advantage.css';
+@import '../styles/zuboreznye.css';
+@import '../styles/shlifovalnye.css';
 @import '../styles/page-layout.css';
 @import '../styles/proizvodstvo.css';
 @import '../styles/contacts-map.css';
 @import '../styles/ambient-glow.css';
+@import '../styles/typography.css';
+@import '../styles/responsive.css';
+@import '../styles/rounded-blocks.css';
+@import '../styles/photo-hover-clip.css';
+@import '../styles/card-hover-glow.css';
+@import '../styles/mech-service-icons.css';
 
 @layer base {
   html {
@@ -32,7 +41,7 @@
   }
 
   body {
-    @apply bg-background text-on-background min-h-screen antialiased overflow-x-hidden font-body-md text-body-md;
+    @apply bg-background text-on-background min-h-screen antialiased overflow-x-clip font-body-md text-body-md;
   }
 
   body ::selection {
@@ -50,7 +59,7 @@
   }
 
   .site-content {
-    @apply pt-40 pb-24 md:pt-48 lg:pt-56 relative z-10;
+    @apply pt-36 pb-24 md:pt-48 lg:pt-56 relative z-10;
   }
 
   @media (min-width: 1024px) {
@@ -59,8 +68,10 @@
     }
   }
 
+  .site-content main[class*='pt-32'],
   .site-content main[class*='pt-40'],
-  .site-content main[class*='pt-48'] {
+  .site-content main[class*='pt-48'],
+  .site-content main[class*='pt-[160px]'] {
     padding-top: 0 !important;
   }
 
@@ -70,6 +81,10 @@
 
   .site-footer {
     @apply relative z-10;
+  }
+
+  .footer-social-link {
+    @apply inline-flex opacity-80 transition-all duration-200 hover:opacity-100 hover:scale-110;
   }
 
   .material-symbols-outlined {

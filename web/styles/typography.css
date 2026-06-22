@@ -1,0 +1,49 @@
+/* Unified typography inside page content — respects Tailwind token classes in HTML */
+
+.site-content main h1.font-headline-xl:not([class*='text-on-background']) {
+  color: #d4e4fa;
+}
+
+.site-content main h2.font-headline-lg,
+.site-content main h3.font-headline-lg-mobile,
+.site-content main h3.font-headline-lg,
+.site-content main h4.font-headline-lg-mobile {
+  color: inherit;
+}
+
+.site-content main .text-on-surface-variant,
+.site-content main p.font-body-md {
+  color: #c2c6d6;
+}
+
+.site-content main h2.text-primary,
+.site-content main h3.text-primary,
+.site-content main h4.text-primary {
+  color: #adc6ff;
+}
+
+/* Price / sidebar headings */
+.site-content main .mech-price-aside h3 {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: #d4e4fa;
+}
+
+/* Article body blocks without explicit color */
+.site-content main article .space-y-6,
+.site-content main article .leading-relaxed {
+  color: #c2c6d6;
+}
+
+.site-content main article .space-y-6 p,
+.site-content main article .leading-relaxed p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Benefit / feature card descriptions */
+.site-content main .liquid-glass p.font-body-md,
+.site-content main .liquid-card p.font-body-md {
+  color: #c2c6d6;
+}

@@ -18,6 +18,28 @@
   border-radius: 0.5rem;
 }
 
+/* Белая подсветка по контуру при hover — как на остальных страницах */
+.site-content .mld-page .liquid-glass:hover {
+  transform: none !important;
+}
+
+.site-content .mld-page section:has(.liquid-glass) .grid {
+  overflow: visible;
+  padding: 10px;
+  margin: -10px;
+}
+
+.site-content .mld-hero-photo,
+.site-content .mld-hero-photo img {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.site-content .mld-cta-card:hover {
+  transform: none !important;
+}
+
 .site-content [data-mld-specs-trigger] {
   cursor: zoom-in;
 }

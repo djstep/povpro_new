@@ -1,22 +1,22 @@
-<!-- TopNavBar (Synchronized with SCREEN_175) -->
+﻿<!-- TopNavBar (Synchronized with SCREEN_175) -->
 
 <main class="pt-40 md:pt-48">
 <!-- Hero Section -->
 <section class="px-margin-desktop max-w-container-max mx-auto mb-32 relative overflow-hidden">
 <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 blur-[120px] rounded-full"></div>
-<div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 <div>
 <div class="flex items-center gap-3 mb-6">
 <span class="w-12 h-[1px] bg-primary"></span>
 <span class="font-mono-label text-mono-label text-primary uppercase tracking-[0.2em]">Промышленное производство</span>
 </div>
-<h1 class="font-headline-xl text-headline-xl mb-8 leading-none">Мехобработка<br><span class="text-primary/80">деталей</span></h1>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-8">Мехобработка<br><span class="text-primary/80">деталей</span></h1>
 <p class="font-body-md text-body-md text-on-surface-variant mb-10 max-w-lg">
                         Мы специализируемся на проектировании и производстве оснастки и запасных деталей для технологического оборудования (станков, прессов, механизмов, приспособлений).
                         Механическая обработка является неотъемлемой важной частью производства ООО «ППО №3» в Тольятти.
                     </p>
 <div class="flex flex-wrap gap-4">
-<a class="bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-[0_4px_12px_rgba(216,226,255,0.15)] hover:bg-primary/90 transition-all" href="#order">УЗНАТЬ ЦЕНУ</a>
+<a class="bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-[0_4px_12px_rgba(216,226,255,0.15)] hover:bg-primary/90 transition-all inline-flex items-center gap-2 no-underline" href="/zakaz">СДЕЛАТЬ ЗАКАЗ<span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
 </div>
 </div>
 <div class="relative">
@@ -33,53 +33,53 @@
 <!-- Services Grid -->
 <section class="px-margin-desktop max-w-container-max mx-auto mb-32">
 <div class="text-center mb-16">
-<h2 class="font-headline-lg text-headline-lg mb-4">Направления работ</h2>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">Направления работ</h2>
 <p class="text-on-surface-variant max-w-2xl mx-auto">Полный цикл механической обработки металла на современном оборудовании с программным обеспечением последнего поколения.</p>
 </div>
 <!-- Updated Grid: 7 items only, "All Services" card removed -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
 <!-- Card 1 -->
-<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
+<a class="liquid-card p-8 rounded-lg flex flex-col gap-6 h-full no-underline group cursor-pointer" href="/zuboreznye-raboty">
 <span class="material-symbols-outlined text-primary text-4xl">settings_input_component</span>
-<h3 class="font-headline-lg text-xl">Зуборезные работы</h3>
-<p class="text-on-surface-variant text-sm">Изготовление шестерен, зубчатых колес и венцов любой сложности.</p>
-</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface text-balance">Зуборезные работы</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Изготовление шестерен, зубчатых колес и венцов любой сложности.</p>
+</a>
 <!-- Card 2 -->
-<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
-<span class="material-symbols-outlined text-primary text-4xl">blur_on</span>
-<h3 class="font-headline-lg text-xl">Шлифовальные работы</h3>
-<p class="text-on-surface-variant text-sm">Плоская и круглая шлифовка с точностью до микрона.</p>
-</div>
+<a class="liquid-card p-8 rounded-lg flex flex-col gap-6 h-full no-underline group cursor-pointer" href="/shlifovalnye-raboty">
+<span class="mech-service-icon mech-service-icon--grinding text-primary" aria-hidden="true"></span>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface text-balance">Шлифовальные работы</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Плоская и круглая шлифовка с точностью до микрона.</p>
+</a>
 <!-- Card 3 -->
-<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
-<span class="material-symbols-outlined text-primary text-4xl">grid_view</span>
-<h3 class="font-headline-lg text-xl">Фрезерные работы</h3>
-<p class="text-on-surface-variant text-sm">Высокоскоростное фрезерование на 3-х и 5-ти осевых центрах.</p>
-</div>
+<a class="liquid-card p-8 rounded-lg flex flex-col gap-6 h-full no-underline group cursor-pointer" href="/frezernye-raboty">
+<span class="mech-service-icon mech-service-icon--milling text-primary" aria-hidden="true"></span>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface text-balance">Фрезерные работы</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Высокоскоростное фрезерование на 3-х и 5-ти осевых центрах.</p>
+</a>
 <!-- Card 4 -->
-<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
-<span class="material-symbols-outlined text-primary text-4xl">rotate_right</span>
-<h3 class="font-headline-lg text-xl">Токарные работы</h3>
-<p class="text-on-surface-variant text-sm">Обработка тел вращения диаметром до 1500 мм.</p>
-</div>
+<a class="liquid-card p-8 rounded-lg flex flex-col gap-6 h-full no-underline group cursor-pointer" href="/tokarnye-raboty">
+<span class="mech-service-icon mech-service-icon--turning text-primary" aria-hidden="true"></span>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface text-balance">Токарные работы</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Обработка тел вращения диаметром до 1500 мм.</p>
+</a>
 <!-- Card 5 -->
-<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
+<a class="liquid-card p-8 rounded-lg flex flex-col gap-6 h-full no-underline group cursor-pointer" href="/koordinatno-rastochnye-raboty">
 <span class="material-symbols-outlined text-primary text-4xl">adjust</span>
-<h3 class="font-headline-lg text-xl">Координатно-расточные</h3>
-<p class="text-on-surface-variant text-sm">Точное позиционирование отверстий в крупногабаритных деталях.</p>
-</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface text-balance">Координатно-расточные работы</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Точное позиционирование отверстий в крупногабаритных деталях.</p>
+</a>
 <!-- Card 6 -->
-<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
+<a class="liquid-card p-8 rounded-lg flex flex-col gap-6 h-full no-underline group cursor-pointer" href="/elektroerozionnye-raboty">
 <span class="material-symbols-outlined text-primary text-4xl">bolt</span>
-<h3 class="font-headline-lg text-xl">Электроэрозионные</h3>
-<p class="text-on-surface-variant text-sm">Обработка металлов любой твердости электрическим разрядом.</p>
-</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface text-balance">Электроэрозионные работы</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Обработка металлов любой твердости электрическим разрядом.</p>
+</a>
 <!-- Card 7 -->
-<div class="liquid-card p-8 rounded-lg flex flex-col gap-6">
-<span class="material-symbols-outlined text-primary text-4xl">vertical_align_bottom</span>
-<h3 class="font-headline-lg text-xl">Долбежные работы</h3>
-<p class="text-on-surface-variant text-sm">Нарезка шпоночных пазов и шлицевых соединений.</p>
-</div>
+<a class="liquid-card p-8 rounded-lg flex flex-col gap-6 h-full no-underline group cursor-pointer" href="/dolbezhnye-raboty">
+<span class="mech-service-icon mech-service-icon--slotting text-primary" aria-hidden="true"></span>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface text-balance">Долбежные работы</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Нарезка шпоночных пазов и шлицевых соединений.</p>
+</a>
 </div>
 </section>
 <!-- CNC Section -->
@@ -88,16 +88,16 @@
 <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent pointer-events-none"></div>
 <div class="relative z-10 flex flex-col lg:flex-row gap-16 items-center">
 <div class="lg:w-3/5">
-<h2 class="font-headline-lg text-headline-xl mb-8">Услуги мехобработки на заказ</h2>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8">Услуги мехобработки на заказ</h2>
 <div class="space-y-6 text-on-surface-variant font-body-md">
-<p class="">Предприятие обладает специальным современным оборудованием, куда входят универсальные станки и металлообрабатывающие центры с ЧПУ, которые могут провести механическую обработку с высокой точностью.</p>
-<p class="">Это позволяет нам выпускать продукцию в широких масштабах как для серийного и мелкосерийного производства, так и для поштучного выпуска деталей в индивидуальном порядке.</p>
-<p class="">ООО «Поволжское производственное объединение» предоставляет услуги по мехобработке металла, проектированию, модернизации технологических процессов, написанию управляющих программ.</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Предприятие обладает специальным современным оборудованием, куда входят универсальные станки и металлообрабатывающие центры с ЧПУ, которые могут провести механическую обработку с высокой точностью.</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Это позволяет нам выпускать продукцию в широких масштабах как для серийного и мелкосерийного производства, так и для поштучного выпуска деталей в индивидуальном порядке.</p>
+<p class="font-body-md text-body-md text-on-surface-variant">ООО «Поволжское производственное объединение» предоставляет услуги по мехобработке металла, проектированию, модернизации технологических процессов, написанию управляющих программ.</p>
 </div>
 </div>
 <div class="lg:w-2/5 w-full">
 <div class="bg-surface-container-high p-8 rounded-lg border border-white/5 space-y-8">
-<h4 class="font-headline-lg text-xl text-primary">Технические возможности</h4>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Технические возможности</h4>
 <div class="space-y-4">
 <div class="flex justify-between items-center border-b border-white/10 pb-2">
 <span class="text-on-surface-variant">Расточка до</span>
@@ -116,7 +116,7 @@
 <span class="font-mono-label text-primary">до 5000 мм</span>
 </div>
 </div>
-<button class="w-full bg-primary py-4 rounded-full text-on-primary font-label-sm uppercase tracking-widest hover:shadow-lg transition-all">Запросить расчет</button>
+<button class="w-full bg-primary py-4 rounded-full text-on-primary font-label-sm uppercase tracking-widest hover:shadow-lg transition-all inline-flex items-center justify-center gap-2">Запросить расчет<span class="material-symbols-outlined text-[18px]">arrow_forward</span></button>
 </div>
 </div>
 </div>
@@ -126,7 +126,7 @@
 <section class="px-margin-desktop max-w-container-max mx-auto mb-32">
 <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
 <div class="max-w-xl">
-<h2 class="font-headline-lg text-headline-lg mb-4">Примеры продукции</h2>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">Примеры продукции</h2>
 <p class="text-on-surface-variant">Результаты выполненных работ по мехобработке на нашем предприятии в Тольятти.</p>
 </div>
 <div class="flex gap-4">
@@ -144,7 +144,7 @@
 <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-60"></div>
 <div class="absolute bottom-6 left-6 right-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
 <span class="font-mono-label text-[10px] uppercase text-primary mb-2 block">Гидравлика</span>
-<h4 class="font-headline-lg text-lg text-on-surface">Мехобработка гидропанели</h4>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Мехобработка гидропанели</h4>
 </div>
 </div>
 <div class="group relative aspect-square overflow-hidden rounded-lg cursor-pointer">
@@ -152,7 +152,7 @@
 <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-60"></div>
 <div class="absolute bottom-6 left-6 right-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
 <span class="font-mono-label text-[10px] uppercase text-primary mb-2 block">Центробежные насосы</span>
-<h4 class="font-headline-lg text-lg text-on-surface">Крыльчатка насоса</h4>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Крыльчатка насоса</h4>
 </div>
 </div>
 <div class="group relative aspect-square overflow-hidden rounded-lg cursor-pointer">
@@ -160,7 +160,7 @@
 <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-60"></div>
 <div class="absolute bottom-6 left-6 right-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
 <span class="font-mono-label text-[10px] uppercase text-primary mb-2 block">Корпуса</span>
-<h4 class="font-headline-lg text-lg text-on-surface">Корпусные детали</h4>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Корпусные детали</h4>
 </div>
 </div>
 <div class="group relative aspect-square overflow-hidden rounded-lg cursor-pointer">
@@ -168,7 +168,7 @@
 <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent opacity-60"></div>
 <div class="absolute bottom-6 left-6 right-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
 <span class="font-mono-label text-[10px] uppercase text-primary mb-2 block">Топливные системы</span>
-<h4 class="font-headline-lg text-lg text-on-surface">Топливный насос</h4>
+<h4 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Топливный насос</h4>
 </div>
 </div>
 </div>

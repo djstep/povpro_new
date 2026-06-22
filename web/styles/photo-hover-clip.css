@@ -1,0 +1,53 @@
+/* Clip photos on hover-zoom — card-hover-glow sets overflow:visible on glass cards for glow */
+
+.site-content img[class*='group-hover:scale'] {
+  transform-origin: center center;
+}
+
+/* Glass / card shells that contain zooming photos */
+.site-content :is(
+    .glass-panel,
+    .glass-card,
+    .liquid-glass,
+    .liquid-card
+  ):has(img[class*='group-hover:scale']),
+.site-content :is(
+    .glass-panel,
+    .glass-card,
+    .liquid-glass,
+    .liquid-card
+  ):has(img[class*='group-hover:scale']):hover {
+  overflow: hidden !important;
+}
+
+/* Generic group frames (portfolio tiles, friction history, etc.) */
+.site-content .group:has(> img[class*='group-hover:scale']),
+.site-content .group:has(> img[class*='group-hover:scale']):hover,
+.site-content .group.overflow-hidden:has(img[class*='group-hover:scale']),
+.site-content .group.overflow-hidden:has(img[class*='group-hover:scale']):hover {
+  overflow: hidden !important;
+}
+
+/* Inner aspect-ratio photo frames */
+.site-content :is(.aspect-\[4\/3\], .aspect-square, [class*='aspect-']).overflow-hidden,
+.site-content :is(.aspect-\[4\/3\], .aspect-square, [class*='aspect-']).overflow-hidden:hover {
+  overflow: hidden !important;
+}
+
+/* Shlifovalnye gallery mosaic */
+.site-content .shlifovalnye-gallery-grid > div,
+.site-content .shlifovalnye-gallery-grid > div:hover {
+  overflow: hidden !important;
+}
+
+/* Featured equipment block — keep rounded clip on hover */
+.site-content .shlifovalnye-featured,
+.site-content .shlifovalnye-featured:hover {
+  overflow: hidden !important;
+}
+
+/* Kalyan product cards — clip PNG zoom inside image well */
+.site-content .liquid-glass.overflow-hidden:has(img[class*='group-hover:scale']) > .h-32,
+.site-content .liquid-glass.overflow-hidden:has(img[class*='group-hover:scale']) > .h-32:hover {
+  overflow: hidden !important;
+}

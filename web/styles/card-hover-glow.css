@@ -1,0 +1,262 @@
+/* Site-wide white contour glow on hover — same as home page blocks.
+   Glow via element box-shadow (works with overflow:hidden on the card). */
+
+.site-content {
+  --card-hover-glow:
+    0 0 6.5px 0 rgba(255, 255, 255, 0.255),
+    0 0 15px 0 rgba(255, 255, 255, 0.127);
+  --card-hover-bg: rgba(18, 33, 49, 0.4);
+}
+
+/* Parent sections must not clip outer glow */
+.site-content section:has(.liquid-glass),
+.site-content section:has(.liquid-card),
+.site-content section:has(.liquid-glass-panel),
+.site-content section:has(.liquid-panel),
+.site-content section:has(.glass-panel),
+.site-content section:has(.glass-card),
+.site-content section:has(.volumetric-glass),
+.site-content section:has(.volumetric-panel),
+.site-content section:has(.dolbezh-check-item),
+.site-content section:has(.stat-card),
+.site-content section:has([class*='bg-white/5'][class*='border']),
+.site-content main:has(.liquid-glass),
+.site-content main:has(.liquid-card),
+.site-content main:has(.liquid-panel),
+.site-content main:has(.glass-card),
+.site-content main:has(.volumetric-glass) {
+  content-visibility: visible !important;
+  overflow: visible !important;
+}
+
+.site-content section:has(.liquid-glass) .grid,
+.site-content section:has(.liquid-card) .grid,
+.site-content section:has(.liquid-glass-panel) .grid,
+.site-content section:has(.liquid-panel) .grid,
+.site-content section:has(.glass-panel) .grid,
+.site-content section:has(.glass-card) .grid,
+.site-content section:has(.volumetric-glass) .grid,
+.site-content section:has(.stat-card) .grid,
+.site-content section:has(.liquid-glass) [class*='grid-cols'],
+.site-content section:has(.liquid-card) [class*='grid-cols'],
+.site-content section:has(.liquid-panel) [class*='grid-cols'],
+.site-content section:has(.glass-card) [class*='grid-cols'],
+.site-content section:has(.volumetric-glass) [class*='grid-cols'],
+.site-content section:has([class*='bg-white/5'][class*='border']) [class*='grid-cols'] {
+  overflow: visible;
+  padding: 10px;
+  margin: -10px;
+}
+
+.site-content :where(
+    .liquid-glass,
+    .liquid-card,
+    .liquid-glass-panel,
+    .liquid-panel,
+    .glass-panel,
+    .glass-panel-heavy,
+    .glass-card,
+    .volumetric-glass,
+    .volumetric-panel,
+    .dolbezh-check-item,
+    .edm-gallery-card,
+    .edm-wire-block,
+    .bg-white\/5.border.border-white\/10.rounded-xl,
+    .bg-white\/5.border.border-white\/10.rounded-2xl,
+    .bg-white\/5.border.border-white\/10.rounded-lg,
+    [class*='bg-white/5'][class*='border-white'][class*='rounded-xl'],
+    [class*='bg-white/5'][class*='border-white'][class*='rounded-2xl'],
+    [class*='bg-white/5'][class*='border-white'][class*='rounded-lg'],
+    [class*='bg-white/5'][class*='border-white'][class*='rounded-3xl'],
+    [class*='bg-surface-container-high'][class*='border'][class*='rounded-xl'],
+    [class*='bg-surface-container-high'][class*='border'][class*='rounded-lg'],
+    [class*='bg-surface-container-low'][class*='border'][class*='rounded-xl'],
+    [class*='bg-surface-container-low'][class*='border'][class*='rounded-lg'],
+    .bg-surface-container\/50.border,
+    #kpo-equipment-catalog [data-kpo-equipment-item]
+  ):not(
+    .review-form,
+    .review-form-success,
+    .home-gallery-card,
+    .home-client-card,
+    .glass-button,
+    .glass-button-light,
+    .spec-toggle-btn,
+    .stat-card,
+    .stat-card__fill,
+    .stat-card__surface,
+    .contacts-map,
+    .glass-panel.rounded-full,
+    input,
+    textarea,
+    select,
+    button
+  ) {
+  transition:
+    background-color 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.site-content :where(
+    .liquid-glass,
+    .liquid-card,
+    .liquid-glass-panel,
+    .liquid-panel,
+    .glass-panel,
+    .glass-panel-heavy,
+    .glass-card,
+    .volumetric-glass,
+    .volumetric-panel,
+    .dolbezh-check-item,
+    .edm-gallery-card,
+    .edm-wire-block,
+    .bg-white\/5.border.border-white\/10.rounded-xl,
+    .bg-white\/5.border.border-white\/10.rounded-2xl,
+    .bg-white\/5.border.border-white\/10.rounded-lg,
+    [class*='bg-white/5'][class*='border-white'][class*='rounded-xl'],
+    [class*='bg-white/5'][class*='border-white'][class*='rounded-2xl'],
+    [class*='bg-white/5'][class*='border-white'][class*='rounded-lg'],
+    [class*='bg-white/5'][class*='border-white'][class*='rounded-3xl'],
+    [class*='bg-surface-container-high'][class*='border'][class*='rounded-xl'],
+    [class*='bg-surface-container-high'][class*='border'][class*='rounded-lg'],
+    [class*='bg-surface-container-low'][class*='border'][class*='rounded-xl'],
+    [class*='bg-surface-container-low'][class*='border'][class*='rounded-lg'],
+    .bg-surface-container\/50.border,
+    #kpo-equipment-catalog [data-kpo-equipment-item]
+  ):not(
+    .review-form,
+    .review-form-success,
+    .home-gallery-card,
+    .home-client-card,
+    .glass-button,
+    .glass-button-light,
+    .spec-toggle-btn,
+    .stat-card,
+    .stat-card__fill,
+    .stat-card__surface,
+    .contacts-map,
+    .glass-panel.rounded-full,
+    input,
+    textarea,
+    select,
+    button
+  ):hover {
+  transform: none !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: var(--card-hover-glow) !important;
+  filter: none !important;
+}
+
+.site-content :where(
+    .liquid-glass,
+    .liquid-card,
+    .liquid-glass-panel,
+    .liquid-panel,
+    .glass-panel,
+    .glass-panel-heavy,
+    .glass-card,
+    .volumetric-glass,
+    .volumetric-panel,
+    .dolbezh-check-item,
+    .edm-gallery-card,
+    .edm-wire-block,
+    #kpo-equipment-catalog [data-kpo-equipment-item]
+  ):not(
+    .review-form,
+    .review-form-success,
+    .home-gallery-card,
+    .home-client-card,
+    .glass-button,
+    .glass-button-light,
+    .spec-toggle-btn,
+    .stat-card,
+    .stat-card__fill,
+    .stat-card__surface,
+    .contacts-map,
+    .glass-panel.rounded-full
+  ):hover {
+  background-color: var(--card-hover-bg) !important;
+}
+
+.site-content :where(
+    .bg-white\/5.border.border-white\/10.rounded-xl,
+    .bg-white\/5.border.border-white\/10.rounded-2xl,
+    .bg-white\/5.border.border-white\/10.rounded-lg,
+    [class*='bg-white/5'][class*='border-white'][class*='rounded-xl'],
+    [class*='bg-white/5'][class*='border-white'][class*='rounded-2xl'],
+    [class*='bg-white/5'][class*='border-white'][class*='rounded-lg'],
+    [class*='bg-white/5'][class*='border-white'][class*='rounded-3xl'],
+    [class*='bg-surface-container-high'][class*='border'][class*='rounded-xl'],
+    [class*='bg-surface-container-high'][class*='border'][class*='rounded-lg'],
+    [class*='bg-surface-container-low'][class*='border'][class*='rounded-xl'],
+    [class*='bg-surface-container-low'][class*='border'][class*='rounded-lg'],
+    .bg-surface-container\/50.border
+  ):hover {
+  background-color: var(--card-hover-bg) !important;
+}
+
+/* Form page — no glow */
+.site-content #zakaz .liquid-glass:hover,
+.site-content #zakaz .glass-card:hover {
+  box-shadow: none !important;
+  background-color: inherit !important;
+}
+
+/* Gallery / client carousel — keep their own hover */
+.site-content .home-gallery-card.liquid-glass:hover {
+  box-shadow: none !important;
+  background-color: inherit !important;
+}
+
+.site-content .home-client-card.liquid-glass:hover {
+  box-shadow: none !important;
+  background-color: var(--card-hover-bg) !important;
+}
+
+/* Neutralize legacy hover styles from stitch / tailwind utilities */
+.site-content .hover\:border-primary\/30:hover,
+.site-content .hover\:border-primary\/50:hover,
+.site-content .group:hover .group-hover\:border-primary\/30,
+.site-content .group:hover .group-hover\:border-primary\/50 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.site-content .hover\:-translate-y-1:hover,
+.site-content .hover\:scale-\[0\.98\]:hover,
+.site-content .tactile-lift:hover {
+  transform: none !important;
+}
+
+.site-content .liquid-card.group:hover .group-hover\:scale-110,
+.site-content .liquid-glass-panel.group:hover .group-hover\:scale-110 {
+  transform: none !important;
+}
+
+/* Sticky price block */
+.site-content .mech-price-aside,
+.site-content .frezernye-price-aside {
+  position: sticky !important;
+  top: var(--site-nav-height, 10rem) !important;
+  align-self: start !important;
+}
+
+.site-content section:has(.frezernye-price-aside),
+.site-content .frezernye-price-section,
+.site-content main.frezernye-page:has(.mech-price-aside) {
+  content-visibility: visible !important;
+  overflow: visible !important;
+}
+
+.site-content .frezernye-price-grid,
+.site-content section:has(.mech-price-aside) [class*='grid-cols'] {
+  overflow: visible !important;
+}
+
+@media (max-width: 1023px) {
+  .site-content .mech-price-aside,
+  .site-content .frezernye-price-aside {
+    position: static !important;
+    top: auto !important;
+  }
+}

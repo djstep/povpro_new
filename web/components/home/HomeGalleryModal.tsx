@@ -6,9 +6,9 @@ import { createPortal } from 'react-dom';
 import {
   ALL_HOME_GALLERY_ITEMS,
   HOME_GALLERY_SECTIONS,
-  homeGalleryImageUrl,
   type HomeGalleryItem,
 } from '@/lib/home-gallery';
+import { useGalleryImageResolver } from './useGalleryImageResolver';
 
 type Props = {
   open: boolean;
@@ -17,10 +17,11 @@ type Props = {
 
 type GalleryCardProps = {
   item: HomeGalleryItem;
+  imageSrc: string;
   onOpen: (item: HomeGalleryItem) => void;
 };
 
-function GalleryCard({ item, onOpen }: GalleryCardProps) {
+function GalleryCard({ item, imageSrc, onOpen }: GalleryCardProps) {
   return (
     <button
       type="button"
@@ -29,7 +30,7 @@ function GalleryCard({ item, onOpen }: GalleryCardProps) {
       aria-label={`Открыть: ${item.title}`}
     >
       <Image
-        src={homeGalleryImageUrl(item.id)}
+        src={imageSrc}
         alt={item.title}
         fill
         sizes="(max-width: 640px) 100vw, 33vw"
@@ -45,6 +46,7 @@ function GalleryCard({ item, onOpen }: GalleryCardProps) {
 
 type LightboxProps = {
   item: HomeGalleryItem;
+  imageSrc: string;
   index: number;
   total: number;
   onClose: () => void;
@@ -52,7 +54,7 @@ type LightboxProps = {
   onNext: () => void;
 };
 
-function GalleryLightbox({ item, index, total, onClose, onPrev, onNext }: LightboxProps) {
+function GalleryLightbox({ item, imageSrc, index, total, onClose, onPrev, onNext }: LightboxProps) {
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -111,7 +113,7 @@ function GalleryLightbox({ item, index, total, onClose, onPrev, onNext }: Lightb
         <figure className="home-gallery-lightbox__figure">
           <div className="home-gallery-lightbox__viewport">
             <Image
-              src={homeGalleryImageUrl(item.id)}
+              src={imageSrc}
               alt={item.title}
               fill
               sizes="96vw"
@@ -136,6 +138,7 @@ function GalleryLightbox({ item, index, total, onClose, onPrev, onNext }: Lightb
 }
 
 export function HomeGalleryModal({ open, onClose }: Props) {
+  const resolveGalleryImage = useGalleryImageResolver();
   const panelRef = useRef<HTMLDivElement>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -240,7 +243,12 @@ export function HomeGalleryModal({ open, onClose }: Props) {
                 </div>
                 <div className="home-gallery-modal__grid">
                   {section.items.map((item) => (
-                    <GalleryCard key={item.id} item={item} onOpen={openLightbox} />
+                    <GalleryCard
+                      key={item.id}
+                      item={item}
+                      imageSrc={resolveGalleryImage(item.id)}
+                      onOpen={openLightbox}
+                    />
                   ))}
                 </div>
               </section>
@@ -252,6 +260,7 @@ export function HomeGalleryModal({ open, onClose }: Props) {
       {lightboxItem && lightboxIndex !== null && (
         <GalleryLightbox
           item={lightboxItem}
+          imageSrc={resolveGalleryImage(lightboxItem.id)}
           index={lightboxIndex}
           total={ALL_HOME_GALLERY_ITEMS.length}
           onClose={closeLightbox}

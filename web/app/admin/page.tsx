@@ -13,8 +13,8 @@ export default function AdminHomePage() {
         <p className="font-medium">{db ? 'База данных настроена' : 'База данных не подключена'}</p>
         <p className="text-sm text-zinc-400 mt-1">
           {db
-            ? 'Контент страниц можно хранить в PostgreSQL (модель Page).'
-            : 'Укажите DATABASE_URL в web/.env и выполните: npx prisma migrate dev'}
+            ? 'Редактирование контента, медиа, заявок и аналитики доступно через меню.'
+            : 'Укажите DATABASE_URL в web/.env и выполните: npm run db:push'}
         </p>
       </div>
       <ul className="grid gap-3 sm:grid-cols-2">
@@ -24,7 +24,16 @@ export default function AdminHomePage() {
             className="block rounded-lg border border-zinc-800 p-4 hover:border-zinc-600"
           >
             <span className="font-medium">Страницы</span>
-            <p className="text-sm text-zinc-500 mt-1">Редактирование HTML/текста (в разработке)</p>
+            <p className="text-sm text-zinc-500 mt-1">Создание, категории, контент</p>
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/admin/media"
+            className="block rounded-lg border border-zinc-800 p-4 hover:border-zinc-600"
+          >
+            <span className="font-medium">Медиа</span>
+            <p className="text-sm text-zinc-500 mt-1">Фото и видео на всех страницах</p>
           </Link>
         </li>
         <li>
@@ -33,7 +42,16 @@ export default function AdminHomePage() {
             className="block rounded-lg border border-zinc-800 p-4 hover:border-zinc-600"
           >
             <span className="font-medium">Заявки</span>
-            <p className="text-sm text-zinc-500 mt-1">Запросы расчёта с сайта</p>
+            <p className="text-sm text-zinc-500 mt-1">База обращений с сайта</p>
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/admin/analytics"
+            className="block rounded-lg border border-zinc-800 p-4 hover:border-zinc-600"
+          >
+            <span className="font-medium">Аналитика</span>
+            <p className="text-sm text-zinc-500 mt-1">Просмотры, клики, UTM для рекламы</p>
           </Link>
         </li>
       </ul>

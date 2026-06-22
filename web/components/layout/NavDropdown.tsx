@@ -276,7 +276,7 @@ export function NavDropdown({ href, label, items, currentSlug, prefixRe }: Props
     <>
       <div
         ref={triggerRef}
-        className="relative shrink-0"
+        className={`relative shrink-0${panelVisible ? ' nav-dropdown-trigger--open' : ''}`}
         onMouseEnter={() => {
           triggerHoveredRef.current = true;
           showMenu();
@@ -288,9 +288,7 @@ export function NavDropdown({ href, label, items, currentSlug, prefixRe }: Props
       >
         <Link
           href={href}
-          className={`${
-            mainActive ? 'text-primary font-bold' : 'text-on-surface hover:text-primary font-bold'
-          } transition-colors font-label-sm text-label-sm uppercase tracking-widest whitespace-nowrap flex items-center gap-1`}
+          className={`site-nav-link font-label-sm text-label-sm uppercase tracking-widest whitespace-nowrap flex items-center gap-1${mainActive ? ' site-nav-link--active' : ''}`}
         >
           {label}
           <span className="material-symbols-outlined text-sm">expand_more</span>

@@ -1,0 +1,29 @@
+.site-content .mech-service-icon {
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  background-color: currentColor;
+  -webkit-mask: center / contain no-repeat;
+  mask: center / contain no-repeat;
+}
+
+.site-content .mech-service-icon--turning {
+  -webkit-mask-image: url('/assets/icons/mech-turning.svg');
+  mask-image: url('/assets/icons/mech-turning.svg');
+}
+
+.site-content .mech-service-icon--milling {
+  -webkit-mask-image: url('/assets/icons/mech-milling.svg');
+  mask-image: url('/assets/icons/mech-milling.svg');
+}
+
+.site-content .mech-service-icon--slotting {
+  -webkit-mask-image: url('/assets/icons/mech-slotting.svg');
+  mask-image: url('/assets/icons/mech-slotting.svg');
+}
+
+.site-content .mech-service-icon--grinding {
+  -webkit-mask-image: url('/assets/icons/mech-grinding.svg');
+  mask-image: url('/assets/icons/mech-grinding.svg');
+}

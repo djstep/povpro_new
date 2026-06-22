@@ -9,9 +9,8 @@
   margin-top: 1.5rem !important;
 }
 
-.site-content .page-cta-card:hover {
-  transform: none !important;
-  border: 1px solid #adc6ff !important;
+.site-content .termoobrabotka-page .page-cta-section {
+  margin-top: 3rem !important;
 }
 
 .site-content .mech-hero-photo,

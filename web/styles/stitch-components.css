@@ -131,12 +131,6 @@
             box-shadow: none !important;
             border-radius: 2rem;
         }
-        .liquid-glass h3, .liquid-glass h4 {
-            color: #ffffff !important;
-        }
-        .liquid-glass p {
-            color: rgba(255, 255, 255, 0.7) !important;
-        }
         .liquid-glass .material-symbols-outlined {
             color: #adc6ff !important;
         }
@@ -200,12 +194,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: none !important;
             border-radius: 2rem;
-        }
-        .liquid-glass h3, .liquid-glass h4 {
-            color: #ffffff !important;
-        }
-        .liquid-glass p {
-            color: rgba(255, 255, 255, 0.7) !important;
         }
         .liquid-glass .material-symbols-outlined {
             color: #adc6ff !important;
