@@ -6,11 +6,14 @@ import { KpoEquipmentSearch } from '@/components/kpo/KpoEquipmentSearch';
 import { HookahGallerySlider } from '@/components/hookah/HookahGallerySlider';
 import { FrictionTablesEnhancer } from '@/components/friction/FrictionTablesEnhancer';
 import { ReviewsPanel } from '@/components/reviews/ReviewsPanel';
+import { SiteReviews } from '@/components/reviews/SiteReviews';
 import { SiteMain } from '@/components/SiteMain';
 import { getPageTitle, normalizeSlugParam } from '@/lib/pages';
 import { resolvePageHtml, getPageRecord } from '@/lib/cms/resolve-page-html';
 
-export const dynamic = 'force-dynamic';
+// Страницы рендерятся статически и периодически ревалидируются (ISR).
+// Правки в админке применяются сразу за счёт revalidatePath в API-роутах.
+export const revalidate = 3600;
 
 type Props = { params: Promise<{ slug?: string[] }> };
 
@@ -32,6 +35,7 @@ function PageEnhancers({ slugKey }: { slugKey: string }) {
   return (
     <>
       {slugKey === 'frikcionnye-nakladki/nashi-izdeliya' && <FrictionTablesEnhancer />}
+      {slugKey === 'otzyvy-o-ppo' && <SiteReviews />}
       {slugKey === 'otzyvy-o-ppo' && <ReviewsPanel />}
       {slugKey === 'contacts' && <ContactsMap />}
       {slugKey === 'izgotovlenie-kalyanovs' && <HookahGallerySlider />}

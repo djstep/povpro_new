@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { requireAdminApi } from '@/lib/admin-api-guard';
 import { isDbConfigured, prisma } from '@/lib/db';
@@ -162,6 +163,7 @@ export async function POST(request: Request) {
       },
     });
 
+    revalidatePath('/', 'layout');
     return NextResponse.json({ ok: true, page: { id: page.id, slug: page.slug } });
   } catch (e) {
     console.error(e);

@@ -1,14 +1,11 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import {
-  ADMIN_COOKIE,
-  isAdminPasswordConfigured,
-  verifyAdminSessionToken,
-} from '@/lib/admin-auth';
+import { ADMIN_COOKIE, getAdminAuthMode } from '@/lib/admin-auth-constants';
+import { verifyAdminSessionToken } from '@/lib/admin-auth-crypto';
 
 const PUBLIC_ADMIN_PATHS = ['/admin/login'];
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const isAdminPage = pathname.startsWith('/admin');
@@ -26,12 +23,26 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (!isAdminPasswordConfigured()) {
+  const mode = getAdminAuthMode();
+
+  if (mode === 'open') {
     return NextResponse.next();
   }
 
+  if (mode === 'locked') {
+    if (isAdminApi) {
+      return NextResponse.json(
+        { error: 'Админка отключена: на сервере не задан ADMIN_PASSWORD' },
+        { status: 503 },
+      );
+    }
+    const loginUrl = new URL('/admin/login', request.url);
+    loginUrl.searchParams.set('locked', '1');
+    return NextResponse.redirect(loginUrl);
+  }
+
   const token = request.cookies.get(ADMIN_COOKIE)?.value;
-  if (!verifyAdminSessionToken(token)) {
+  if (!(await verifyAdminSessionToken(token))) {
     if (isAdminApi) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }

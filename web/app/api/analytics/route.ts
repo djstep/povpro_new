@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { isDbConfigured, prisma } from '@/lib/db';
+import { getClientIp, rateLimit } from '@/lib/rate-limit';
 
 const schema = z.object({
   sessionId: z.string().min(8).max(100),
@@ -16,6 +17,11 @@ const schema = z.object({
 });
 
 export async function POST(request: Request) {
+  const limit = rateLimit(`analytics:${getClientIp(request)}`, 120, 60 * 1000);
+  if (!limit.ok) {
+    return NextResponse.json({ ok: true, stored: false }, { status: 429 });
+  }
+
   let body: unknown;
   try {
     body = await request.json();

@@ -4,12 +4,20 @@ import { resolveAssetUrl } from './resolve-asset-urls';
 
 const publicImgDir = path.join(process.cwd(), 'public', 'assets', 'img');
 
-/** Локальный файл из public/ — иначе CDN (GitHub / povpro.ru) */
+/** Локальный файл из public/ — иначе CDN (GitHub / povpro.ru).
+ *  Если рядом есть .webp-версия — отдаём её (оригинал остаётся запасным вариантом). */
 function resolveContentAssetUrl(assetPath: string): string {
   const normalized = assetPath.startsWith('/') ? assetPath : `/${assetPath}`;
   const match = normalized.match(/^\/assets\/img\/(.+)$/);
-  if (match && fs.existsSync(path.join(publicImgDir, match[1]))) {
-    return normalized;
+  if (match) {
+    const rel = match[1];
+    const webpRel = rel.replace(/\.(png|jpe?g)$/i, '.webp');
+    if (webpRel !== rel && fs.existsSync(path.join(publicImgDir, webpRel))) {
+      return `/assets/img/${webpRel}`;
+    }
+    if (fs.existsSync(path.join(publicImgDir, rel))) {
+      return normalized;
+    }
   }
   return resolveAssetUrl(assetPath);
 }

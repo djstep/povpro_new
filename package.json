@@ -7,11 +7,17 @@
     "stitch:sync": "node scripts/fetch-stitch-mech.mjs && npm run migrate:content && npm run styles:extract",
     "import:friction-tables": "node scripts/import-friction-tables.mjs",
     "styles:extract": "node scripts/extract-stitch-styles.mjs",
+    "images:webp": "node scripts/convert-images-to-webp.mjs",
     "dev": "npm run dev --prefix web",
     "build": "npm run build --prefix web",
     "start": "npm run start --prefix web",
     "lint": "npm run lint --prefix web",
     "db:generate": "npm run db:generate --prefix web",
-    "db:migrate": "npm run db:migrate --prefix web"
+    "db:migrate": "npm run db:migrate --prefix web",
+    "db:push": "npm run db:push --prefix web",
+    "db:local:up": "docker compose up -d",
+    "db:local:down": "docker compose down",
+    "db:local:setup": "npm run db:local:setup --prefix web",
+    "db:docker:setup": "docker compose up -d && npm run db:push --prefix web"
   }
 }

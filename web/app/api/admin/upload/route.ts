@@ -4,12 +4,13 @@ import { NextResponse } from 'next/server';
 import { requireAdminApi } from '@/lib/admin-api-guard';
 
 const MAX_BYTES = 25 * 1024 * 1024;
+// SVG намеренно НЕ разрешён: SVG может содержать встроенный JavaScript и при
+// открытии файла напрямую с того же домена приводит к XSS.
 const ALLOWED = new Set([
   'image/jpeg',
   'image/png',
   'image/webp',
   'image/gif',
-  'image/svg+xml',
   'video/mp4',
   'video/webm',
   'video/ogg',
@@ -46,7 +47,6 @@ export async function POST(request: Request) {
       'image/png': '.png',
       'image/webp': '.webp',
       'image/gif': '.gif',
-      'image/svg+xml': '.svg',
       'video/mp4': '.mp4',
       'video/webm': '.webm',
       'video/ogg': '.ogg',

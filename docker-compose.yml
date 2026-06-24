@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: povpro-postgres
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: ppo3
+      POSTGRES_PASSWORD: ppo3local
+      POSTGRES_DB: ppo3
+    volumes:
+      - povpro_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ppo3 -d ppo3']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  povpro_pg_data:

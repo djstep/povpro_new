@@ -47,6 +47,15 @@ export default function AdminHomePage() {
         </li>
         <li>
           <Link
+            href="/admin/reviews"
+            className="block rounded-lg border border-zinc-800 p-4 hover:border-zinc-600"
+          >
+            <span className="font-medium">Отзывы</span>
+            <p className="text-sm text-zinc-500 mt-1">Модерация и публикация отзывов</p>
+          </Link>
+        </li>
+        <li>
+          <Link
             href="/admin/analytics"
             className="block rounded-lg border border-zinc-800 p-4 hover:border-zinc-600"
           >

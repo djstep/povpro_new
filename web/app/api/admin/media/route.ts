@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { requireAdminApi } from '@/lib/admin-api-guard';
 import { isDbConfigured, prisma } from '@/lib/db';
@@ -105,6 +106,7 @@ export async function POST(request: Request) {
         kind,
       },
     });
+    revalidatePath('/', 'layout');
     return NextResponse.json({ ok: true, id: row.id });
   } catch (e) {
     console.error(e);
@@ -138,6 +140,7 @@ export async function DELETE(request: Request) {
 
   try {
     await prisma.mediaOverride.deleteMany({ where: { originalSrc: parsed.data.originalSrc } });
+    revalidatePath('/', 'layout');
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error(e);

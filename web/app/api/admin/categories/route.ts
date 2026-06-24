@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { requireAdminApi } from '@/lib/admin-api-guard';
 import { isDbConfigured, prisma } from '@/lib/db';
@@ -52,6 +53,7 @@ export async function POST(request: Request) {
 
   try {
     const category = await prisma.pageCategory.create({ data: parsed.data });
+    revalidatePath('/', 'layout');
     return NextResponse.json({ ok: true, category });
   } catch (e) {
     console.error(e);

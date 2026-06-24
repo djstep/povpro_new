@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { requireAdminApi } from '@/lib/admin-api-guard';
 import { getEditablePageHtml, getPageRecord, isProtectedSlug } from '@/lib/cms/resolve-page-html';
@@ -143,6 +144,7 @@ export async function PUT(request: Request, { params }: Params) {
         sortOrder: parsed.data.sortOrder ?? undefined,
       },
     });
+    revalidatePath('/', 'layout');
     return NextResponse.json({ ok: true, id: page.id, updatedAt: page.updatedAt.toISOString() });
   } catch (e) {
     console.error(e);
@@ -175,6 +177,7 @@ export async function DELETE(_request: Request, { params }: Params) {
 
     await prisma.textBlock.deleteMany({ where: { pageSlug: slug || 'home' } });
     await prisma.page.delete({ where: { id: page.id } });
+    revalidatePath('/', 'layout');
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error(e);

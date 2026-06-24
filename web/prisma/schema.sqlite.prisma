@@ -1,0 +1,146 @@
+// Локальная разработка без Docker/PostgreSQL: npm run db:local:setup
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum InquiryStatus {
+  NEW
+  IN_PROGRESS
+  DONE
+  ARCHIVED
+}
+
+enum MediaKind {
+  IMAGE
+  VIDEO
+}
+
+enum NavSection {
+  NONE
+  FRICTION
+  MECH
+  USLUGI
+  TOP_LINK
+}
+
+model PageCategory {
+  id         String         @id @default(cuid())
+  navSection NavSection
+  title      String
+  parentId   String?
+  parent     PageCategory?  @relation("CategoryTree", fields: [parentId], references: [id], onDelete: SetNull)
+  children   PageCategory[] @relation("CategoryTree")
+  sortOrder  Int            @default(0)
+  pages      Page[]
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  @@index([navSection, sortOrder])
+}
+
+model Page {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  title         String
+  body          String?
+  contentBlocks String?
+  metaTitle     String?
+  metaDesc      String?
+  navSection    NavSection    @default(NONE)
+  categoryId    String?
+  category      PageCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  sortOrder     Int           @default(0)
+  showInNav     Boolean       @default(false)
+  isProtected   Boolean       @default(false)
+  published     Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([navSection, sortOrder])
+  @@index([categoryId])
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String?
+  imagePath   String?
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  author    String
+  company   String?
+  email     String?
+  text      String
+  rating    Int?
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Inquiry {
+  id        String        @id @default(cuid())
+  name      String
+  phone     String?
+  email     String?
+  message   String?
+  source    String?
+  status    InquiryStatus @default(NEW)
+  adminNote String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model MediaOverride {
+  id             String    @id @default(cuid())
+  originalSrc    String    @unique
+  replacementSrc String
+  alt            String?
+  kind           MediaKind @default(IMAGE)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model TextBlock {
+  id           String   @id @default(cuid())
+  pageSlug     String
+  blockKey     String
+  label        String?
+  originalText String
+  content      String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([pageSlug, blockKey])
+  @@index([pageSlug])
+}
+
+model AnalyticsEvent {
+  id          String   @id @default(cuid())
+  sessionId   String
+  eventType   String
+  path        String?
+  referrer    String?
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  utmContent  String?
+  utmTerm     String?
+  metadata    String?
+  createdAt   DateTime @default(now())
+
+  @@index([eventType, createdAt])
+  @@index([sessionId])
+  @@index([createdAt])
+  @@index([path])
+}

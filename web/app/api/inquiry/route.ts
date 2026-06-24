@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { prisma, isDbConfigured } from '@/lib/db';
+import { getClientIp, rateLimit } from '@/lib/rate-limit';
 
 const schema = z.object({
   name: z.string().min(1).max(200),
@@ -11,6 +12,14 @@ const schema = z.object({
 });
 
 export async function POST(request: Request) {
+  const limit = rateLimit(`inquiry:${getClientIp(request)}`, 5, 60 * 1000);
+  if (!limit.ok) {
+    return NextResponse.json(
+      { error: 'Слишком много заявок подряд. Подождите минуту.' },
+      { status: 429, headers: { 'Retry-After': String(limit.retryAfter) } },
+    );
+  }
+
   let body: unknown;
   try {
     body = await request.json();

@@ -9,7 +9,11 @@
     "lint": "eslint",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
-    "db:push": "prisma db push"
+    "db:push": "prisma db push",
+    "db:local:generate": "prisma generate --schema=prisma/schema.sqlite.prisma",
+    "db:local:push": "prisma db push --schema=prisma/schema.sqlite.prisma",
+    "db:local:setup": "npm run db:local:generate && npm run db:local:push",
+    "db:prod:generate": "prisma generate --schema=prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",
