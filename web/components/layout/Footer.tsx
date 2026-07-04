@@ -3,16 +3,17 @@ import { SITE_CONTACTS } from '@/lib/site-contacts';
 
 const NAV = [
   { href: '/', label: 'Главная' },
-  { href: '/frikcionnye-nakladki', label: 'Фрикционные накладки' },
   { href: '/mekhanicheskaya-obrabotka', label: 'Мехобработка' },
   { href: '/metalloobrabotka', label: 'Услуги' },
+  { href: '/irt', label: 'Интеллектуальные системы' },
+  { href: '/otzyvy-o-ppo', label: 'Отзывы' },
+  { href: '/contacts', label: 'Контакты' },
 ];
 
 const PRODUCTS = [
-  { href: '/frikcionnye-nakladki/tu', label: 'Технические условия' },
-  { href: '/frikcionnye-nakladki/nashi-izdeliya', label: 'Наши изделия' },
-  { href: '/otzyvy-o-ppo', label: 'Отзывы' },
-  { href: '/contacts', label: 'Контакты' },
+  { href: '/proizvodstvo-press-form-i-shtampov', label: 'Штампы и пресс-формы' },
+  { href: '/izgotovlenie-valov', label: 'Валы' },
+  { href: '/izgotovlenie-shesteren-i-zubchatyh-koles', label: 'Шестерни и зубчатые колеса' },
 ];
 
 export function Footer() {
@@ -26,7 +27,7 @@ export function Footer() {
             ППО №3
           </div>
           <p className="text-on-surface-variant text-body-md leading-relaxed">
-            Промышленные фрикционные изделия. Лидер отрасли в разработке безасбестовых материалов.
+            Промышленные фрикционные изделия. Лидер отрасли в обработке безасбестовых материалов.
           </p>
           <div className="flex items-center gap-3">
             <a
@@ -104,7 +105,7 @@ export function Footer() {
           © {year} ППО №3 (POVPRO). Промышленное производство и инжиниринг. Все права защищены.
         </span>
         <Link
-          href="/contacts"
+          href="/policy"
           className="text-on-surface-variant text-mono-label hover:text-primary transition-colors font-label-sm text-label-sm uppercase tracking-widest"
         >
           Политика конфиденциальности

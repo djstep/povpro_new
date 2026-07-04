@@ -5,10 +5,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import {
   ALL_HOME_GALLERY_ITEMS,
-  HOME_GALLERY_SECTIONS,
+  homeGalleryItemKey,
   type HomeGalleryItem,
 } from '@/lib/home-gallery';
-import { useGalleryImageResolver } from './useGalleryImageResolver';
+import { useGalleryMediaResolver } from './useGalleryImageResolver';
 
 type Props = {
   open: boolean;
@@ -17,36 +17,45 @@ type Props = {
 
 type GalleryCardProps = {
   item: HomeGalleryItem;
-  imageSrc: string;
-  onOpen: (item: HomeGalleryItem) => void;
+  index: number;
+  posterSrc: string | undefined;
+  onOpen: (index: number) => void;
 };
 
-function GalleryCard({ item, imageSrc, onOpen }: GalleryCardProps) {
+function GalleryCard({ item, index, posterSrc, onOpen }: GalleryCardProps) {
+  const isVideo = item.kind === 'video';
+
   return (
     <button
       type="button"
       className="home-gallery-modal__card"
-      onClick={() => onOpen(item)}
-      aria-label={`Открыть: ${item.title}`}
+      onClick={() => onOpen(index)}
+      aria-label={isVideo ? `Открыть видео ${index + 1}` : `Открыть фото ${index + 1}`}
     >
-      <Image
-        src={imageSrc}
-        alt={item.title}
-        fill
-        sizes="(max-width: 640px) 100vw, 33vw"
-        className="home-gallery-modal__img"
-      />
-      <span className="home-gallery-modal__caption">
-        <span className="home-gallery-modal__tag">{item.tag}</span>
-        <span className="home-gallery-modal__title">{item.title}</span>
-      </span>
+      {posterSrc ? (
+        <Image
+          src={posterSrc}
+          alt=""
+          fill
+          sizes="(max-width: 640px) 100vw, 33vw"
+          className="home-gallery-modal__img"
+        />
+      ) : (
+        <div className="home-gallery-modal__img home-gallery-modal__video-placeholder" />
+      )}
+      {isVideo && (
+        <span className="home-gallery-modal__play" aria-hidden="true">
+          <span className="material-symbols-outlined">play_circle</span>
+        </span>
+      )}
     </button>
   );
 }
 
 type LightboxProps = {
   item: HomeGalleryItem;
-  imageSrc: string;
+  mediaSrc: string;
+  posterSrc?: string;
   index: number;
   total: number;
   onClose: () => void;
@@ -54,7 +63,19 @@ type LightboxProps = {
   onNext: () => void;
 };
 
-function GalleryLightbox({ item, imageSrc, index, total, onClose, onPrev, onNext }: LightboxProps) {
+function GalleryLightbox({
+  item,
+  mediaSrc,
+  posterSrc,
+  index,
+  total,
+  onClose,
+  onPrev,
+  onNext,
+}: LightboxProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isVideo = item.kind === 'video';
+
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -76,6 +97,11 @@ function GalleryLightbox({ item, imageSrc, index, total, onClose, onPrev, onNext
     return () => document.removeEventListener('keydown', handleKeyDown, true);
   }, [handleKeyDown]);
 
+  useEffect(() => {
+    if (!isVideo) return;
+    void videoRef.current?.play().catch(() => undefined);
+  }, [isVideo, mediaSrc]);
+
   return createPortal(
     <div
       className="home-gallery-lightbox"
@@ -84,7 +110,12 @@ function GalleryLightbox({ item, imageSrc, index, total, onClose, onPrev, onNext
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="home-gallery-lightbox__panel" role="dialog" aria-modal="true" aria-label={item.title}>
+      <div
+        className="home-gallery-lightbox__panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${isVideo ? 'Видео' : 'Фото'} ${index + 1} из ${total}`}
+      >
         <button type="button" className="home-gallery-lightbox__close" onClick={onClose} aria-label="Закрыть просмотр">
           <span className="material-symbols-outlined">close</span>
         </button>
@@ -95,7 +126,7 @@ function GalleryLightbox({ item, imageSrc, index, total, onClose, onPrev, onNext
               type="button"
               className="home-gallery-lightbox__nav home-gallery-lightbox__nav--prev"
               onClick={onPrev}
-              aria-label="Предыдущее фото"
+              aria-label="Предыдущий элемент"
             >
               <span className="material-symbols-outlined">chevron_left</span>
             </button>
@@ -103,7 +134,7 @@ function GalleryLightbox({ item, imageSrc, index, total, onClose, onPrev, onNext
               type="button"
               className="home-gallery-lightbox__nav home-gallery-lightbox__nav--next"
               onClick={onNext}
-              aria-label="Следующее фото"
+              aria-label="Следующий элемент"
             >
               <span className="material-symbols-outlined">chevron_right</span>
             </button>
@@ -112,24 +143,34 @@ function GalleryLightbox({ item, imageSrc, index, total, onClose, onPrev, onNext
 
         <figure className="home-gallery-lightbox__figure">
           <div className="home-gallery-lightbox__viewport">
-            <Image
-              src={imageSrc}
-              alt={item.title}
-              fill
-              sizes="96vw"
-              className="home-gallery-lightbox__img"
-              priority
-            />
+            {isVideo ? (
+              <video
+                ref={videoRef}
+                src={mediaSrc}
+                poster={posterSrc}
+                className="home-gallery-lightbox__video"
+                controls
+                playsInline
+                preload="metadata"
+              />
+            ) : (
+              <Image
+                src={mediaSrc}
+                alt=""
+                fill
+                sizes="96vw"
+                className="home-gallery-lightbox__img"
+                priority
+              />
+            )}
           </div>
-          <figcaption className="home-gallery-lightbox__caption">
-            <span className="home-gallery-lightbox__tag">{item.tag}</span>
-            <span className="home-gallery-lightbox__title">{item.title}</span>
-            {total > 1 && (
+          {total > 1 && (
+            <figcaption className="home-gallery-lightbox__caption">
               <span className="home-gallery-lightbox__counter">
                 {index + 1} / {total}
               </span>
-            )}
-          </figcaption>
+            </figcaption>
+          )}
         </figure>
       </div>
     </div>,
@@ -138,15 +179,14 @@ function GalleryLightbox({ item, imageSrc, index, total, onClose, onPrev, onNext
 }
 
 export function HomeGalleryModal({ open, onClose }: Props) {
-  const resolveGalleryImage = useGalleryImageResolver();
+  const { resolveImage, resolvePoster, resolveVideo } = useGalleryMediaResolver();
   const panelRef = useRef<HTMLDivElement>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
 
-  const openLightbox = useCallback((item: HomeGalleryItem) => {
-    const index = ALL_HOME_GALLERY_ITEMS.findIndex((entry) => entry.id === item.id);
-    setLightboxIndex(index >= 0 ? index : 0);
+  const openLightbox = useCallback((index: number) => {
+    setLightboxIndex(index);
   }, []);
 
   const goPrev = useCallback(() => {
@@ -195,6 +235,16 @@ export function HomeGalleryModal({ open, onClose }: Props) {
 
   const lightboxItem = lightboxIndex !== null ? ALL_HOME_GALLERY_ITEMS[lightboxIndex] : null;
 
+  function cardPoster(item: HomeGalleryItem): string | undefined {
+    if (item.kind === 'video') return resolvePoster(item.poster);
+    return resolveImage(item.id);
+  }
+
+  function lightboxMedia(item: HomeGalleryItem): string {
+    if (item.kind === 'video') return resolveVideo(item.src);
+    return resolveImage(item.id);
+  }
+
   return createPortal(
     <>
       <div
@@ -235,24 +285,17 @@ export function HomeGalleryModal({ open, onClose }: Props) {
           </header>
 
           <div className="home-gallery-modal__body">
-            {HOME_GALLERY_SECTIONS.map((section) => (
-              <section key={section.id} className="home-gallery-modal__section">
-                <div className="home-gallery-modal__section-head">
-                  <h3 className="home-gallery-modal__section-title">{section.title}</h3>
-                  <p className="home-gallery-modal__section-desc">{section.description}</p>
-                </div>
-                <div className="home-gallery-modal__grid">
-                  {section.items.map((item) => (
-                    <GalleryCard
-                      key={item.id}
-                      item={item}
-                      imageSrc={resolveGalleryImage(item.id)}
-                      onOpen={openLightbox}
-                    />
-                  ))}
-                </div>
-              </section>
-            ))}
+            <div className="home-gallery-modal__grid">
+              {ALL_HOME_GALLERY_ITEMS.map((item, index) => (
+                <GalleryCard
+                  key={homeGalleryItemKey(item)}
+                  item={item}
+                  index={index}
+                  posterSrc={cardPoster(item)}
+                  onOpen={openLightbox}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -260,7 +303,8 @@ export function HomeGalleryModal({ open, onClose }: Props) {
       {lightboxItem && lightboxIndex !== null && (
         <GalleryLightbox
           item={lightboxItem}
-          imageSrc={resolveGalleryImage(lightboxItem.id)}
+          mediaSrc={lightboxMedia(lightboxItem)}
+          posterSrc={lightboxItem.kind === 'video' ? resolvePoster(lightboxItem.poster) : undefined}
           index={lightboxIndex}
           total={ALL_HOME_GALLERY_ITEMS.length}
           onClose={closeLightbox}

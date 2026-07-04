@@ -209,6 +209,11 @@
   background-color: inherit !important;
 }
 
+/* EDM wire-cut block — keep layout, no outer glow / zoom on machine photo */
+.site-content .edm-wire-block.liquid-glass:hover {
+  box-shadow: inset 0 0 2px 1px rgba(255, 255, 255, 0.05) !important;
+}
+
 .site-content .home-client-card.liquid-glass:hover {
   box-shadow: none !important;
   background-color: var(--card-hover-bg) !important;

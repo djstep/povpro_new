@@ -37,7 +37,6 @@ const routes = {
   'remont-mashin-dlya-litya-pod-davleniem': 'index.html',
   'termoobrabotka': 'index.html',
   'remont-kuznechno-pressovogo-oborudovaniya': 'index.html',
-  'izgotovlenie-kalyanovs': 'index.html',
   'contacts': 'index.html',
   'otzyvy-o-ppo': 'index.html',
 };

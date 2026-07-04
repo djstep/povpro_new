@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { revalidatePath } from 'next/cache';
+import { revalidateSiteContent } from '@/lib/revalidate-site';
 import { z } from 'zod';
 import { requireAdminApi } from '@/lib/admin-api-guard';
 import { isDbConfigured, prisma } from '@/lib/db';
@@ -59,7 +59,7 @@ export async function POST(request: Request) {
             }),
       ),
     );
-    revalidatePath('/', 'layout');
+    revalidateSiteContent();
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error(e);

@@ -35,8 +35,8 @@
 }
 
 /* Shlifovalnye gallery mosaic */
-.site-content .shlifovalnye-gallery-grid > div,
-.site-content .shlifovalnye-gallery-grid > div:hover {
+.site-content .shlifovalnye-gallery-grid > :is(div, button),
+.site-content .shlifovalnye-gallery-grid > :is(div, button):hover {
   overflow: hidden !important;
 }
 

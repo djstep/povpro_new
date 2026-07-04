@@ -1,3 +1,83 @@
+.site-content .edm-hero-photo,
+.site-content .edm-hero-photo img,
+.site-content .edm-machine-photo,
+.site-content .edm-machine-photo img {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.site-content .edm-machine-photo__img:not(.bg-white) {
+  background: transparent !important;
+}
+
+.site-content .edm-hero-photo {
+  line-height: 0;
+  align-self: start;
+}
+
+.site-content .edm-hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 !important;
+}
+
+.site-content .edm-wire-intro {
+  display: flex !important;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+  .site-content .edm-wire-intro {
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 1.5rem;
+  }
+
+  .site-content .edm-wire-image,
+  .site-content .edm-wire-text {
+    width: 50%;
+    flex-shrink: 0;
+  }
+
+  .site-content .edm-wire-image {
+    align-self: flex-start;
+  }
+}
+
+.site-content .edm-machine-photo {
+  line-height: 0;
+  overflow: hidden;
+  transform: none !important;
+  transition: none !important;
+}
+
+.site-content .edm-wire-block .edm-machine-photo,
+.site-content .edm-wire-block .edm-machine-photo img,
+.site-content .edm-wire-block .edm-wire-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0 !important;
+  transform: none !important;
+  scale: 1 !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.site-content .edm-wire-block:hover .edm-machine-photo,
+.site-content .edm-wire-block:hover .edm-machine-photo img,
+.site-content .edm-wire-block:hover .edm-wire-image img,
+.site-content .edm-wire-block.liquid-glass:hover .edm-machine-photo img {
+  transform: none !important;
+  scale: 1 !important;
+}
+
 .site-content .edm-gallery-grid {
   display: grid !important;
   grid-template-columns: 1fr;
@@ -11,26 +91,6 @@
 
 .site-content .edm-wire-block {
   border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.site-content .edm-wire-intro {
-  display: flex !important;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-@media (min-width: 1024px) {
-  .site-content .edm-wire-intro {
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 1.5rem;
-  }
-
-  .site-content .edm-wire-image,
-  .site-content .edm-wire-text {
-    width: 50%;
-    flex-shrink: 0;
-  }
 }
 
 .site-content .edm-wire-machine {

@@ -45,7 +45,7 @@ function NavLinkItem({
 
 export function Header() {
   const pathname = usePathname();
-  const { friction, mech, uslugi, topLinks } = useSiteNavigation();
+  const { mech, uslugi, topLinks } = useSiteNavigation();
   const currentSlug = slugFromPathname(pathname);
   const { toggleMenu, open: menuOpen } = useMobileMenu();
   const [scrolled, setScrolled] = useState(false);
@@ -158,12 +158,6 @@ export function Header() {
           <div className="nav-row-scroll px-5 md:px-8 lg:px-margin-desktop py-3">
             <div className="nav-row-inner flex items-center gap-3 xl:gap-5 flex-wrap justify-center">
               <NavLinkItem href="/" label="Главная" currentSlug={currentSlug} />
-              <NavDropdown
-                href="/frikcionnye-nakladki"
-                label="Фрикционные накладки"
-                items={friction}
-                currentSlug={currentSlug}
-              />
               <NavDropdown
                 href="/mekhanicheskaya-obrabotka"
                 label="Мехобработка"

@@ -1,5 +1,6 @@
 import { ROUTES } from '@/lib/routes';
 import { getPageContent } from '@/lib/pages';
+import { unstable_cache } from 'next/cache';
 import { isDbConfigured, prisma } from '@/lib/db';
 import {
   parseContentBlocks,
@@ -65,7 +66,7 @@ export async function getAllSiteSlugs(): Promise<{ slug: string[] | undefined }[
   }
 }
 
-async function loadOverrides() {
+async function loadOverridesFromDb() {
   if (!isDbConfigured()) {
     return { media: [], text: [] as Awaited<ReturnType<typeof prisma.textBlock.findMany>> };
   }
@@ -79,6 +80,11 @@ async function loadOverrides() {
     return { media: [], text: [] };
   }
 }
+
+const loadOverrides = unstable_cache(loadOverridesFromDb, ['cms-overrides'], {
+  revalidate: 300,
+  tags: ['cms-overrides'],
+});
 
 function blocksToHtml(contentBlocks: string | null, body: string | null): string | null {
   const blocks = parseContentBlocks(contentBlocks);
@@ -106,7 +112,7 @@ export async function getBasePageHtml(slug: string): Promise<string | null> {
   return getPageContent(normalized);
 }
 
-export async function resolvePageHtml(slug: string): Promise<string | null> {
+async function resolvePageHtmlInner(slug: string): Promise<string | null> {
   const normalized = slug === 'home' ? '' : slug;
   const base = await getBasePageHtml(normalized);
   if (!base) return null;
@@ -120,6 +126,15 @@ export async function resolvePageHtml(slug: string): Promise<string | null> {
   html = applyMediaOverrides(html, media);
   html = rewriteContentAssets(html);
   return html;
+}
+
+export async function resolvePageHtml(slug: string): Promise<string | null> {
+  const normalized = slug === 'home' ? '' : slug;
+  return unstable_cache(
+    () => resolvePageHtmlInner(normalized),
+    ['page-html', normalized],
+    { revalidate: 3600, tags: ['pages', `page-${normalized || 'home'}`] },
+  )();
 }
 
 export async function getEditablePageHtml(slug: string): Promise<string | null> {

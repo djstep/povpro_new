@@ -1,5 +1,6 @@
 import type { NavMenuItem, SiteNavConfig } from '@/lib/navigation-config';
 import { STATIC_NAV } from '@/lib/navigation-config';
+import { unstable_cache } from 'next/cache';
 import { isDbConfigured, prisma } from '@/lib/db';
 
 type NavSectionKey = 'NONE' | 'FRICTION' | 'MECH' | 'USLUGI' | 'TOP_LINK';
@@ -95,12 +96,11 @@ async function buildSectionNav(
   return mergeNavItems(staticItems, [...dbTree, ...uncategorized]);
 }
 
-export async function getSiteNavigation(): Promise<SiteNavConfig> {
+async function fetchSiteNavigation(): Promise<SiteNavConfig> {
   if (!isDbConfigured()) return STATIC_NAV;
 
   try {
-    const [friction, mech, uslugi, topPages] = await Promise.all([
-      buildSectionNav('FRICTION', STATIC_NAV.friction),
+    const [mech, uslugi, topPages] = await Promise.all([
       buildSectionNav('MECH', STATIC_NAV.mech),
       buildSectionNav('USLUGI', STATIC_NAV.uslugi),
       prisma.page.findMany({
@@ -115,8 +115,17 @@ export async function getSiteNavigation(): Promise<SiteNavConfig> {
       topPages.map(pageToNavItem),
     );
 
-    return { friction, mech, uslugi, topLinks };
+    return { mech, uslugi, topLinks };
   } catch {
     return STATIC_NAV;
   }
+}
+
+const getSiteNavigationCached = unstable_cache(fetchSiteNavigation, ['site-navigation'], {
+  revalidate: 300,
+  tags: ['site-navigation'],
+});
+
+export async function getSiteNavigation(): Promise<SiteNavConfig> {
+  return getSiteNavigationCached();
 }

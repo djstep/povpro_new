@@ -106,33 +106,12 @@
 .home-gallery-modal__body {
   overflow-y: auto;
   padding: 1rem 1.5rem 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
 }
 
 @media (min-width: 768px) {
   .home-gallery-modal__body {
     padding: 1.25rem 2rem 2.25rem;
-    gap: 3rem;
   }
-}
-
-.home-gallery-modal__section-head {
-  margin-bottom: 1.25rem;
-}
-
-.home-gallery-modal__section-title {
-  margin: 0 0 0.35rem;
-  font-size: clamp(1.125rem, 2vw, 1.375rem);
-  font-weight: 600;
-  color: rgb(var(--color-on-background, 255 255 255));
-}
-
-.home-gallery-modal__section-desc {
-  margin: 0;
-  font-size: 0.9rem;
-  color: rgb(var(--color-on-surface-variant, 180 190 200));
 }
 
 .home-gallery-modal__grid {
@@ -157,7 +136,9 @@
 /* Карточка без liquid-glass — иначе border/inset дают белые швы */
 .home-gallery-modal__card {
   position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -185,44 +166,32 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   transition: transform 0.5s ease;
 }
 
 .home-gallery-modal__card:hover .home-gallery-modal__img {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
-.home-gallery-modal__caption {
+.home-gallery-modal__play {
   position: absolute;
   inset: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 0.35rem;
-  padding: 1rem 1.1rem;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.92), transparent 55%);
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
 }
 
-.home-gallery-modal__tag {
-  align-self: flex-start;
-  padding: 0.2rem 0.65rem;
-  border-radius: 9999px;
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgb(var(--color-primary, 120 180 255));
-  background: rgba(96, 165, 250, 0.16);
-  border: none;
+.home-gallery-modal__play .material-symbols-outlined {
+  font-size: 3.25rem;
 }
 
-.home-gallery-modal__title {
-  font-size: 0.95rem;
-  line-height: 1.3;
-  font-weight: 600;
-  color: #fff;
+.home-gallery-modal__video-placeholder {
+  background: rgba(10, 18, 30, 0.9);
 }
 
 /* Lightbox — полноразмерный просмотр */
@@ -330,32 +299,24 @@
   border-radius: 0.5rem;
 }
 
+.home-gallery-lightbox__video {
+  display: block;
+  width: 100%;
+  max-height: min(78dvh, 100%);
+  border-radius: 0.5rem;
+  background: #000;
+  object-fit: contain;
+}
+
 .home-gallery-lightbox__caption {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem 1rem;
   flex-shrink: 0;
   margin-top: 1rem;
   padding-bottom: 0.25rem;
   text-align: center;
-}
-
-.home-gallery-lightbox__tag {
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgb(var(--color-primary, 120 180 255));
-  background: rgba(96, 165, 250, 0.16);
-}
-
-.home-gallery-lightbox__title {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #fff;
 }
 
 .home-gallery-lightbox__counter {

@@ -1,9 +1,12 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { homeGalleryImageUrl } from '@/lib/home-gallery';
+import {
+  homeGalleryImageUrl,
+  type HomeGalleryItem,
+} from '@/lib/home-gallery';
 
-export function useGalleryImageResolver() {
+export function useGalleryMediaResolver() {
   const [overrides, setOverrides] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -13,7 +16,7 @@ export function useGalleryImageResolver() {
       .catch(() => undefined);
   }, []);
 
-  return useCallback(
+  const resolveImage = useCallback(
     (id: number) => {
       const resolved = homeGalleryImageUrl(id);
       const localPath = `/assets/img/povpro-gallery-${id}.jpg`;
@@ -21,4 +24,24 @@ export function useGalleryImageResolver() {
     },
     [overrides],
   );
+
+  const resolvePoster = useCallback(
+    (src: string | undefined) => {
+      if (!src) return undefined;
+      return overrides[src] ?? src;
+    },
+    [overrides],
+  );
+
+  const resolveVideo = useCallback(
+    (src: string) => overrides[src] ?? src,
+    [overrides],
+  );
+
+  return { resolveImage, resolvePoster, resolveVideo };
+}
+
+export function getGalleryCardPoster(item: HomeGalleryItem, resolveImage: (id: number) => string): string | undefined {
+  if (item.kind === 'video') return item.poster;
+  return resolveImage(item.id);
 }

@@ -1,6 +1,6 @@
 <main class="flex-grow pt-32 md:pt-40 w-full flex flex-col gap-gutter">
 <!-- Hero Section -->
-<section class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center py-6 md:py-8 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<section class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start py-6 md:py-8 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
 <div class="flex flex-col gap-3 z-10">
 <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 w-max">
 <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
@@ -14,8 +14,8 @@
 <a class="bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-[0_4px_12px_rgba(216,226,255,0.15)] hover:bg-primary/90 transition-all inline-flex items-center gap-2 no-underline" href="/zakaz">СДЕЛАТЬ ЗАКАЗ<span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
 </div>
 </div>
-<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
-<img alt="Электроэрозионная обработка" class="w-full h-full object-cover filter contrast-125 saturate-50 mix-blend-luminosity opacity-80" src="/assets/img/b65d30a23c448e79.png">
+<div class="edm-hero-photo relative w-full aspect-[3/2] rounded-xl overflow-hidden">
+<img alt="Электроэрозионная обработка" class="absolute inset-0 w-full h-full object-cover object-center" src="/assets/img/edm-hero.png">
 </div>
 </section>
 <!-- EDM Processing Section -->
@@ -56,7 +56,9 @@
 <div class="edm-wire-block liquid-glass rounded-xl p-6 md:p-8">
 <div class="edm-wire-intro">
 <div class="edm-wire-image">
-<img alt="DK7750H" class="w-full h-auto object-contain rounded-lg bg-white" src="/assets/img/povpro-gallery-2.jpg">
+<div class="edm-machine-photo rounded-xl overflow-hidden">
+<img alt="DK7750H" class="w-full h-auto object-contain bg-white" src="/assets/img/edm-dk7750h.png">
+</div>
 </div>
 <div class="edm-wire-text">
 <h2 class="font-headline-lg text-headline-lg text-primary mb-4">Проволочная электроэрозионная резка</h2>
@@ -70,7 +72,7 @@
 <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">DK7750H</h3>
 <p class="font-body-md text-body-md text-on-surface-variant mb-6">Электроэрозионный проволочно-вырезной многопроходной станок</p>
 <div class="border-t border-white/10 pt-6">
-<button class="spec-toggle-btn w-full flex items-center justify-between py-4 px-6 rounded-lg liquid-glass hover:bg-white/5 transition-all group" onclick="toggleSpecs('specs-dk7750h', this)">
+<button type="button" class="spec-toggle-btn w-full flex items-center justify-between py-4 px-6 rounded-lg liquid-glass hover:bg-white/5 transition-all group" data-edm-spec-target="specs-dk7750h">
 <span class="font-label-sm text-primary uppercase tracking-widest font-bold">Таблица характеристик</span>
 <span class="material-symbols-outlined spec-toggle-icon text-primary">expand_more</span>
 </button>
@@ -146,35 +148,15 @@
 </div>
 </div>
 </div>
-<div class="edm-gallery-grid">
-<div class="edm-gallery-card liquid-glass p-4 rounded-xl">
-<div class="edm-gallery-photo">
-<img alt="Математическая модель конической шестерни" src="/assets/img/povpro-gallery-6.jpg">
-</div>
-<p class="font-mono-label text-primary uppercase text-xs tracking-widest text-center">Математическая модель конической шестерни</p>
-</div>
-<div class="edm-gallery-card liquid-glass p-4 rounded-xl">
-<div class="edm-gallery-photo">
-<img alt="Коническая шестерня" src="/assets/img/povpro-gallery-13.jpg">
-</div>
-<p class="font-mono-label text-primary uppercase text-xs tracking-widest text-center">Коническая шестерня</p>
-</div>
-<div class="edm-gallery-card liquid-glass p-4 rounded-xl">
-<div class="edm-gallery-photo">
-<img alt="Фасонный резец" src="/assets/img/povpro-gallery-11.jpg">
-</div>
-<p class="font-mono-label text-primary uppercase text-xs tracking-widest text-center">Фасонный резец</p>
-</div>
-</div>
 </section>
 <!-- Die-sinking EDM Section -->
 <section class="edm-spaced-section max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop w-full">
 <div class="flex flex-col lg:flex-row-reverse gap-6 items-start">
 <div class="lg:w-1/2 w-full">
-<div class="liquid-glass p-6 md:p-8 rounded-xl relative overflow-hidden">
-<img alt="D7150" class="w-full h-auto object-contain rounded-lg bg-white" src="/assets/img/povpro-gallery-9.jpg">
+<div class="liquid-glass p-6 md:p-8 rounded-xl relative">
+<img alt="D7150" class="w-full h-auto object-contain rounded-lg bg-white" src="/assets/img/edm-d7150.png">
 <div class="mt-6 border-t border-white/10 pt-6">
-<button class="spec-toggle-btn w-full flex items-center justify-between py-4 px-6 rounded-lg liquid-glass hover:bg-white/5 transition-all group" onclick="toggleSpecs('specs-d7150', this)">
+<button type="button" class="spec-toggle-btn w-full flex items-center justify-between py-4 px-6 rounded-lg liquid-glass hover:bg-white/5 transition-all group" data-edm-spec-target="specs-d7150">
 <span class="font-label-sm text-primary uppercase tracking-widest font-bold">Таблица характеристик</span>
 <span class="material-symbols-outlined spec-toggle-icon text-primary">expand_more</span>
 </button>
@@ -283,16 +265,3 @@
 </div>
 </section>
 </main>
-<script>
-        function toggleSpecs(id, btn) {
-            const content = document.getElementById(id);
-            const isActive = content.classList.contains('active');
-            if (!isActive) {
-                content.classList.add('active');
-                btn.classList.add('active');
-            } else {
-                content.classList.remove('active');
-                btn.classList.remove('active');
-            }
-        }
-    </script>

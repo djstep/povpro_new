@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { revalidatePath } from 'next/cache';
+import { revalidateSiteContent } from '@/lib/revalidate-site';
 import { z } from 'zod';
 import { requireAdminApi } from '@/lib/admin-api-guard';
 import { isDbConfigured, prisma } from '@/lib/db';
@@ -36,7 +36,7 @@ export async function PATCH(request: Request, { params }: Params) {
 
   try {
     const category = await prisma.pageCategory.update({ where: { id }, data: parsed.data });
-    revalidatePath('/', 'layout');
+    revalidateSiteContent();
     return NextResponse.json({ ok: true, category });
   } catch (e) {
     console.error(e);
@@ -58,7 +58,7 @@ export async function DELETE(_request: Request, { params }: Params) {
     await prisma.page.updateMany({ where: { categoryId: id }, data: { categoryId: null } });
     await prisma.pageCategory.updateMany({ where: { parentId: id }, data: { parentId: null } });
     await prisma.pageCategory.delete({ where: { id } });
-    revalidatePath('/', 'layout');
+    revalidateSiteContent();
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error(e);

@@ -2,8 +2,9 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { ContactsMap } from '@/components/contacts/ContactsMap';
 import { MldSpecsLightbox } from '@/components/mld/MldSpecsLightbox';
+import { ExamplesLightbox } from '@/components/ExamplesLightbox';
 import { KpoEquipmentSearch } from '@/components/kpo/KpoEquipmentSearch';
-import { HookahGallerySlider } from '@/components/hookah/HookahGallerySlider';
+import { EdmSpecToggles } from '@/components/edm/EdmSpecToggles';
 import { FrictionTablesEnhancer } from '@/components/friction/FrictionTablesEnhancer';
 import { ReviewsPanel } from '@/components/reviews/ReviewsPanel';
 import { SiteReviews } from '@/components/reviews/SiteReviews';
@@ -38,9 +39,12 @@ function PageEnhancers({ slugKey }: { slugKey: string }) {
       {slugKey === 'otzyvy-o-ppo' && <SiteReviews />}
       {slugKey === 'otzyvy-o-ppo' && <ReviewsPanel />}
       {slugKey === 'contacts' && <ContactsMap />}
-      {slugKey === 'izgotovlenie-kalyanovs' && <HookahGallerySlider />}
       {slugKey === 'remont-kuznechno-pressovogo-oborudovaniya' && <KpoEquipmentSearch />}
+      {slugKey === 'elektroerozionnye-raboty' && <EdmSpecToggles />}
       {slugKey === 'mashiny-dlya-litya-pod-davleniem' && <MldSpecsLightbox />}
+      {(slugKey === 'tokarnye-raboty' || slugKey === 'frezernye-raboty' || slugKey === 'shlifovalnye-raboty') && (
+        <ExamplesLightbox />
+      )}
     </>
   );
 }

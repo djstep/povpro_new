@@ -215,30 +215,19 @@ function ReviewForm() {
   );
 }
 
-export function ReviewsPanel() {
-  const [anchor, setAnchor] = useState<HTMLElement | null>(null);
-  const [open, setOpen] = useState(false);
-  const [formKey, setFormKey] = useState(0);
+type ReviewsPanelBodyProps = {
+  open: boolean;
+  formKey: number;
+  onToggle: () => void;
+};
 
-  useEffect(() => {
-    setAnchor(document.getElementById('reviews-form-anchor'));
-  }, []);
-
-  function toggleOpen() {
-    setOpen((v) => {
-      if (v) setFormKey((k) => k + 1);
-      return !v;
-    });
-  }
-
-  if (!anchor) return null;
-
-  return createPortal(
+function ReviewsPanelBody({ open, formKey, onToggle }: ReviewsPanelBodyProps) {
+  return (
     <div className="reviews-panel w-full flex flex-col items-center">
       <button
         type="button"
-        className="glass-button text-primary font-label-sm text-label-sm px-8 py-4 rounded-full uppercase tracking-widest hover:bg-white/10 transition-all duration-300 active:scale-95 inline-flex items-center justify-center gap-2 mb-6"
-        onClick={toggleOpen}
+        className="glass-button text-primary font-label-sm text-label-sm px-8 py-4 rounded-full uppercase tracking-widest hover:bg-white/10 transition-all duration-300 active:scale-95 inline-flex items-center justify-center gap-2"
+        onClick={onToggle}
         aria-expanded={open}
         aria-controls="review-form-panel"
       >
@@ -249,11 +238,47 @@ export function ReviewsPanel() {
       </button>
 
       {open && (
-        <div id="review-form-panel" className="w-full max-w-2xl">
+        <div id="review-form-panel" className="w-full max-w-2xl mt-6">
           <ReviewForm key={formKey} />
         </div>
       )}
-    </div>,
-    anchor,
+    </div>
+  );
+}
+
+export function ReviewsPanel() {
+  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
+  const [open, setOpen] = useState(false);
+  const [formKey, setFormKey] = useState(0);
+
+  useEffect(() => {
+    const syncTarget = () => {
+      const el = document.getElementById('reviews-form-anchor');
+      setPortalTarget(el && el.isConnected ? el : null);
+    };
+
+    syncTarget();
+    const observer = new MutationObserver(syncTarget);
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
+
+  function toggleOpen() {
+    setOpen((v) => {
+      if (v) setFormKey((k) => k + 1);
+      return !v;
+    });
+  }
+
+  const body = <ReviewsPanelBody open={open} formKey={formKey} onToggle={toggleOpen} />;
+
+  if (portalTarget) {
+    return createPortal(body, portalTarget);
+  }
+
+  return (
+    <div className="reviews-form-fallback max-w-container-max mx-auto w-full px-margin-mobile md:px-gutter flex justify-center relative z-20">
+      {body}
+    </div>
   );
 }

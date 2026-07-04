@@ -46,9 +46,9 @@ export const ROUTES = {
     slug: 'remont-kuznechno-pressovogo-oborudovaniya',
     title: 'Ремонт кузнечно-прессового оборудования',
   },
-  '/izgotovlenie-kalyanovs': { slug: 'izgotovlenie-kalyanovs', title: 'Изготовление кальянов' },
   '/contacts': { slug: 'contacts', title: 'Контакты' },
   '/otzyvy-o-ppo': { slug: 'otzyvy-o-ppo', title: 'Отзывы' },
+  '/policy': { slug: 'policy', title: 'Политика обработки персональных данных' },
 } as const;
 
 export type RouteKey = keyof typeof ROUTES;

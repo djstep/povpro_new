@@ -12,6 +12,7 @@
 @import '../styles/zakaz-form.css';
 @import '../styles/reviews.css';
 @import '../styles/reviews-form.css';
+@import '../styles/order-cta.css';
 @import '../styles/home-glass.css';
 @import '../styles/home-gallery-modal.css';
 @import '../styles/kpo-equipment.css';
@@ -26,6 +27,7 @@
 @import '../styles/shlifovalnye.css';
 @import '../styles/page-layout.css';
 @import '../styles/proizvodstvo.css';
+@import '../styles/policy.css';
 @import '../styles/contacts-map.css';
 @import '../styles/ambient-glow.css';
 @import '../styles/typography.css';

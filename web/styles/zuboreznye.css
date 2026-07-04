@@ -1,8 +1,42 @@
+/* Match hero width to type-cards row (card-hover-glow grid bleed) */
+.site-content .zuboreznye-hero-section .zuboreznye-hero-grid,
+.site-content .zuboreznye-types-section .zuboreznye-types-grid {
+  margin: -10px;
+  padding: 10px;
+  overflow: visible;
+}
+
 .site-content .zuboreznye-type-card__title {
   font-size: clamp(1rem, 1.35vw, 1.125rem);
   line-height: 1.3;
   font-weight: 600;
   letter-spacing: -0.015em;
+}
+
+.site-content .zuboreznye-type-card__icon {
+  font-size: 2.75rem !important;
+  line-height: 1;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48 !important;
+}
+
+.site-content .zuboreznye-hero-photo,
+.site-content .zuboreznye-hero-photo img {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.site-content .zuboreznye-hero-photo {
+  line-height: 0;
+  align-self: start;
+}
+
+.site-content .zuboreznye-hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 !important;
 }
 
 @media (min-width: 1024px) {

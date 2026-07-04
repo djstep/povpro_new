@@ -152,7 +152,7 @@ function MobileMenuGroup({
 export function MobileMenu({ open, onClose }: Props) {
   const pathname = usePathname();
   const currentSlug = slugFromPathname(pathname);
-  const { friction, mech, uslugi, topLinks } = useSiteNavigation();
+  const { mech, uslugi, topLinks } = useSiteNavigation();
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
 
@@ -220,22 +220,6 @@ export function MobileMenu({ open, onClose }: Props) {
         </div>
         <nav className="mobile-menu-nav flex flex-col gap-2 overflow-y-auto overscroll-contain px-4 py-4 flex-1">
           <MobileMenuLink href="/" label="Главная" currentSlug={currentSlug} onNavigate={onClose} stagger={stagger} />
-          <div className="pt-1 pb-1">
-            <p
-              className="mobile-menu-item px-4 py-1 font-mono-label text-mono-label text-primary uppercase tracking-widest"
-              style={menuItemStyle(stagger())}
-            >
-              Фрикционные накладки
-            </p>
-            <div className="mt-1 flex flex-col gap-1">
-              <MobileMenuLink href="/frikcionnye-nakladki" label="О разделе" currentSlug={currentSlug} onNavigate={onClose} stagger={stagger} indent />
-              {friction.map((item) =>
-                item.href ? (
-                  <MobileMenuLink key={item.href} href={item.href} label={item.label} currentSlug={currentSlug} onNavigate={onClose} stagger={stagger} indent />
-                ) : null
-              )}
-            </div>
-          </div>
           <div className="pt-1 pb-1">
             <p
               className="mobile-menu-item px-4 py-1 font-mono-label text-mono-label text-primary uppercase tracking-widest"

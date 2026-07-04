@@ -1,0 +1,35 @@
+.site-content .policy-page__link {
+  color: #adc6ff;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.site-content .policy-page__link:hover {
+  color: #d4e4fa;
+}
+
+.site-content .policy-page__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-content .policy-page__list li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.site-content .policy-page__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 9999px;
+  background: rgba(173, 198, 255, 0.75);
+}
+
+.site-content .policy-page__sections .liquid-glass:hover {
+  transform: none !important;
+}

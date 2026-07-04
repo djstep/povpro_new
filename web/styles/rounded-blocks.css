@@ -75,7 +75,10 @@
     .mech-hero-photo,
     .edm-gallery-photo,
     .shlifovalnye-featured-photo,
-    .mld-hero-photo
+    .mld-hero-photo,
+    .termo-photo,
+    .dolbezh-photo,
+    .edm-machine-photo
   ):not([class*='rounded']) {
   border-radius: var(--site-radius);
   overflow: hidden;

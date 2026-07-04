@@ -22,3 +22,16 @@
 .site-content .dolbezh-check-item .material-symbols-outlined {
   flex-shrink: 0;
 }
+
+.site-content .dolbezh-photo {
+  line-height: 0;
+  align-self: start;
+}
+
+.site-content .dolbezh-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0 !important;
+}

@@ -1,21 +1,40 @@
 import fs from 'fs';
 import path from 'path';
+import { cache } from 'react';
 import { resolveAssetUrl } from './resolve-asset-urls';
 
 const publicImgDir = path.join(process.cwd(), 'public', 'assets', 'img');
 
+/** Один проход по public/assets/img за запрос вместо fs.existsSync на каждую картинку в HTML. */
+const getPublicImgIndex = cache((): Set<string> => {
+  const index = new Set<string>();
+  function walk(dir: string, rel = '') {
+    if (!fs.existsSync(dir)) return;
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const relPath = (rel ? `${rel}/` : '') + entry.name;
+      if (entry.isDirectory()) {
+        walk(path.join(dir, entry.name), relPath);
+      } else {
+        index.add(relPath.replace(/\\/g, '/'));
+      }
+    }
+  }
+  walk(publicImgDir);
+  return index;
+});
+
 /** Локальный файл из public/ — иначе CDN (GitHub / povpro.ru).
  *  Если рядом есть .webp-версия — отдаём её (оригинал остаётся запасным вариантом). */
-function resolveContentAssetUrl(assetPath: string): string {
+function resolveContentAssetUrl(assetPath: string, imgIndex: Set<string>): string {
   const normalized = assetPath.startsWith('/') ? assetPath : `/${assetPath}`;
   const match = normalized.match(/^\/assets\/img\/(.+)$/);
   if (match) {
     const rel = match[1];
     const webpRel = rel.replace(/\.(png|jpe?g)$/i, '.webp');
-    if (webpRel !== rel && fs.existsSync(path.join(publicImgDir, webpRel))) {
+    if (webpRel !== rel && imgIndex.has(webpRel)) {
       return `/assets/img/${webpRel}`;
     }
-    if (fs.existsSync(path.join(publicImgDir, rel))) {
+    if (imgIndex.has(rel)) {
       return normalized;
     }
   }
@@ -24,20 +43,21 @@ function resolveContentAssetUrl(assetPath: string): string {
 
 /** Подмена /assets/img/… на внешние URL перед рендером HTML-контента */
 export function rewriteContentAssets(html: string): string {
+  const imgIndex = getPublicImgIndex();
   let out = html;
 
   out = out.replace(/url\((['"]?)\/assets\/img\/([^'")]+)\1\)/g, (_, _q, file) => {
-    return `url('${resolveContentAssetUrl(`/assets/img/${file}`)}')`;
+    return `url('${resolveContentAssetUrl(`/assets/img/${file}`, imgIndex)}')`;
   });
 
   out = out.replace(/src="\/assets\/img\/([^"]+)"/g, (_, file) => {
-    return `src="${resolveContentAssetUrl(`/assets/img/${file}`)}"`;
+    return `src="${resolveContentAssetUrl(`/assets/img/${file}`, imgIndex)}"`;
   });
 
-  let imgIndex = 0;
+  let imgLazyIndex = 0;
   out = out.replace(/<img(?![^>]*\bloading=)/gi, () => {
-    imgIndex += 1;
-    if (imgIndex === 1) return '<img fetchpriority="high" ';
+    imgLazyIndex += 1;
+    if (imgLazyIndex === 1) return '<img fetchpriority="high" ';
     return '<img loading="lazy" decoding="async" ';
   });
 

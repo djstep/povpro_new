@@ -2,10 +2,27 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  min-height: 3.5rem;
+  position: relative;
+  z-index: 20;
+  margin-top: 4rem;
+  padding-bottom: 6rem;
 }
 
 .reviews-panel {
   width: 100%;
+}
+
+/* На десктопе зазор до футера задаёт padding-bottom у якоря (6rem) */
+@media (min-width: 1024px) {
+  .site-content:has(.reviews-page) ~ footer.site-footer {
+    margin-top: 0 !important;
+  }
+}
+
+.reviews-form-fallback {
+  margin-top: 4rem;
+  padding-bottom: max(6rem, calc(5.5rem + env(safe-area-inset-bottom, 0px)));
 }
 
 .review-form,

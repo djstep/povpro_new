@@ -1,3 +1,30 @@
+.site-content .shesteren-hero-photo,
+.site-content .shesteren-hero-photo img {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.site-content .shesteren-hero-photo {
+  line-height: 0;
+  align-self: start;
+}
+
+.site-content .shesteren-hero-photo img {
+  display: block;
+  border-radius: 0 !important;
+}
+
 .site-content .proizvodstvo-cta-card:hover {
   transform: none !important;
+}
+
+.site-content .proizvodstvo-feature-card__icon {
+  font-size: 2.75rem !important;
+  line-height: 1;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48 !important;
+}
+
+.site-content .valov-type-card__title {
+  min-height: 2.4em;
 }

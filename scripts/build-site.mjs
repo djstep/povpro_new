@@ -31,7 +31,6 @@ const routes = {
   '/remont-mashin-dlya-litya-pod-davleniem': 'mld.html',
   '/termoobrabotka': 'heat-treatment.html',
   '/remont-kuznechno-pressovogo-oborudovaniya': 'kpo.html',
-  '/izgotovlenie-kalyanovs': 'hookahs.html',
   '/contacts': 'contacts.html',
   '/otzyvy-o-ppo': 'reviews.html',
 };
@@ -59,7 +58,6 @@ const pageTitles = {
   '/remont-mashin-dlya-litya-pod-davleniem': 'Ремонт МЛД',
   '/termoobrabotka': 'Термообработка',
   '/remont-kuznechno-pressovogo-oborudovaniya': 'Ремонт кузнечно-прессового оборудования',
-  '/izgotovlenie-kalyanovs': 'Изготовление кальянов',
   '/contacts': 'Контакты',
   '/otzyvy-o-ppo': 'Отзывы',
 };
@@ -262,12 +260,11 @@ function getNavHtml(activePath) {
       ['/remont-mashin-dlya-litya-pod-davleniem', 'Ремонт МЛД'],
       ['/termoobrabotka', 'Термообработка'],
       ['/remont-kuznechno-pressovogo-oborudovaniya', 'Ремонт кузнечно-прессового оборудования'],
-      ['/izgotovlenie-kalyanovs', 'Изготовление кальянов'],
     ],
-    /^\/(metalloobrabotka|mashiny-dlya|remont-mashin|termoobrabotka|remont-kuznechno|izgotovlenie-kalyanov)/
+    /^\/(metalloobrabotka|mashiny-dlya|remont-mashin|termoobrabotka|remont-kuznechno)/
   );
 
-  const mobileUslugi = /^\/(metalloobrabotka|mashiny-dlya|remont-mashin|termoobrabotka|remont-kuznechno|izgotovlenie-kalyanov)/.test(activePath)
+  const mobileUslugi = /^\/(metalloobrabotka|mashiny-dlya|remont-mashin|termoobrabotka|remont-kuznechno)/.test(activePath)
     ? 'text-primary'
     : 'text-on-surface-variant';
   const mobileMech = /^\/(mekhanicheskaya-obrabotka|proizvodstvo|izgotovlenie-|zuboreznye|shlifovalnye|frezernye|tokarnye|koordinatno|elektroerozionnye|dolbezhnye)/.test(activePath)
@@ -359,7 +356,6 @@ function patchHtml(html, routePath, title) {
     ['mld.html', '/mashiny-dlya-litya-pod-davleniem'],
     ['heat-treatment.html', '/termoobrabotka'],
     ['kpo.html', '/remont-kuznechno-pressovogo-oborudovaniya'],
-    ['hookahs.html', '/izgotovlenie-kalyanovs'],
     ['contacts.html', '/contacts'],
     ['reviews.html', '/otzyvy-o-ppo'],
   ];

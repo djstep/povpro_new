@@ -106,7 +106,7 @@
     height: auto;
   }
 
-  .site-content .shlifovalnye-gallery-grid > div {
+  .site-content .shlifovalnye-gallery-grid > :is(div, button) {
     min-height: 12rem;
     height: auto !important;
   }
@@ -118,7 +118,7 @@
     height: auto;
   }
 
-  .site-content .shlifovalnye-gallery-grid > div:first-child {
+  .site-content .shlifovalnye-gallery-grid > :is(div, button):first-child {
     grid-column: span 2;
     min-height: 14rem;
   }

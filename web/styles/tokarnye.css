@@ -66,3 +66,60 @@
 .site-content .zuboreznye-cta-card:hover {
   transform: none !important;
 }
+
+.examples-lightbox__panel {
+  width: min(98vw, 72rem);
+}
+
+.examples-lightbox__viewport {
+  overflow: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.examples-lightbox__img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(88dvh, 960px);
+  margin: 0 auto;
+  border-radius: 0.5rem;
+}
+
+.site-content main.tokarnye-page .page-cta-section,
+.site-content main.frezernye-page .page-cta-section {
+  margin-top: 3rem !important;
+}
+
+.site-content .example-lightbox-thumb {
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+}
+
+.site-content .example-lightbox-thumb:focus-visible {
+  outline: 2px solid rgba(216, 226, 255, 0.6);
+  outline-offset: 2px;
+}
+
+.site-content .frezernye-hero-photo,
+.site-content .frezernye-hero-photo img {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.site-content .frezernye-hero-photo {
+  line-height: 0;
+  align-self: start;
+}
+
+.site-content .frezernye-hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 !important;
+}

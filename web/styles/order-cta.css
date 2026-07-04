@@ -1,0 +1,21 @@
+/* Кнопки «Сделать заказ» / «Оставить заявку» — единое выравнивание как на hero-страницах */
+.site-content a.bg-primary.text-on-primary.rounded-full[href="/zakaz"],
+.site-content a.bg-primary.text-on-primary.rounded-full[href^="/zakaz?"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* Inside liquid-glass, icons default to primary blue — match button text on CTA */
+.site-content a.bg-primary.text-on-primary .material-symbols-outlined,
+.site-content button.bg-primary.text-on-primary .material-symbols-outlined {
+  color: inherit !important;
+}
+
+.site-content .page-cta-section a.bg-primary.rounded-full[href="/zakaz"],
+.site-content .page-cta-section a.bg-primary.rounded-full[href^="/zakaz?"] {
+  justify-content: center;
+}

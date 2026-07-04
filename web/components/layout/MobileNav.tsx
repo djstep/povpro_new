@@ -21,13 +21,6 @@ type Tab = {
 const TABS: Tab[] = [
   { href: '/', label: 'Главная', shortLabel: 'Главная', icon: 'home', isActive: (slug) => slug === '' },
   {
-    href: '/frikcionnye-nakladki',
-    label: 'Фрикционы',
-    shortLabel: 'Фрикционы',
-    icon: 'layers',
-    isActive: (slug) => slug.startsWith('frikcionnye-nakladki'),
-  },
-  {
     href: '/mekhanicheskaya-obrabotka',
     label: 'Мехобработка',
     shortLabel: 'Мехобр.',

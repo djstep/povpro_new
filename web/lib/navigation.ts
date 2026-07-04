@@ -19,7 +19,7 @@ export const MECH_PREFIX =
   /^\/(mekhanicheskaya-obrabotka|proizvodstvo|izgotovlenie-|zuboreznye|shlifovalnye|frezernye|tokarnye|koordinatno|elektroerozionnye|dolbezhnye)/;
 
 export const USLUGI_PREFIX =
-  /^\/(metalloobrabotka|mashiny-dlya|remont-mashin|termoobrabotka|remont-kuznechno|izgotovlenie-kalyanov)/;
+  /^\/(metalloobrabotka|mashiny-dlya|remont-mashin|termoobrabotka|remont-kuznechno)/;
 
 export type NavMenuItem = {
   label: string;
@@ -71,5 +71,4 @@ export const USLUGI_CHILDREN: NavMenuItem[] = [
   },
   { href: '/termoobrabotka', label: 'Термообработка' },
   { href: '/remont-kuznechno-pressovogo-oborudovaniya', label: 'Ремонт КПО' },
-  { href: '/izgotovlenie-kalyanovs', label: 'Изготовление кальянов' },
 ];

@@ -258,14 +258,7 @@ export function OrderForm({
             />
             <span className="zakaz-consent-text">
               Я согласен с{' '}
-              <a
-                className="zakaz-consent-link"
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                }}
-              >
+              <a className="zakaz-consent-link" href="/policy" target="_blank" rel="noopener noreferrer">
                 политикой конфиденциальности
               </a>
             </span>
@@ -282,14 +275,7 @@ export function OrderForm({
             />
             <span className="zakaz-consent-text">
               Я даю согласие на{' '}
-              <a
-                className="zakaz-consent-link"
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                }}
-              >
+              <a className="zakaz-consent-link" href="/policy" target="_blank" rel="noopener noreferrer">
                 обработку персональных данных
               </a>
             </span>

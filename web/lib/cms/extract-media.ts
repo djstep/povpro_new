@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { ROUTES } from '@/lib/routes';
 import { getPageContent } from '@/lib/pages';
-import { HOME_GALLERY_SECTIONS, homeGalleryImageUrl } from '@/lib/home-gallery';
+import { ALL_HOME_GALLERY_ITEMS, homeGalleryImageUrl } from '@/lib/home-gallery';
 
 export type SiteMediaRef = {
   src: string;
@@ -92,10 +92,14 @@ export function scanSiteMedia(): SiteMediaRef[] {
     if (html) scanHtml(html, route.slug || 'home', map);
   }
 
-  for (const section of HOME_GALLERY_SECTIONS) {
-    for (const item of section.items) {
-      addRef(map, homeGalleryImageUrl(item.id), 'home', item.title);
-      addRef(map, `/assets/img/povpro-gallery-${item.id}.jpg`, 'home', item.title);
+  for (const item of ALL_HOME_GALLERY_ITEMS) {
+    if (item.kind === 'image') {
+      const label = `Галерея ${item.id}`;
+      addRef(map, homeGalleryImageUrl(item.id), 'home', label);
+      addRef(map, `/assets/img/povpro-gallery-${item.id}.jpg`, 'home', label);
+    } else {
+      addRef(map, item.src, 'home', 'Видео галерея');
+      if (item.poster) addRef(map, item.poster, 'home', 'Видео галерея — постер');
     }
   }
 
