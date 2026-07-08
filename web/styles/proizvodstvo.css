@@ -1,16 +1,20 @@
 .site-content .shesteren-hero-photo,
-.site-content .shesteren-hero-photo img {
+.site-content .shesteren-hero-photo img,
+.site-content .valov-hero-photo,
+.site-content .valov-hero-photo img {
   border: none !important;
   box-shadow: none !important;
   outline: none !important;
 }
 
-.site-content .shesteren-hero-photo {
+.site-content .shesteren-hero-photo,
+.site-content .valov-hero-photo {
   line-height: 0;
   align-self: start;
 }
 
-.site-content .shesteren-hero-photo img {
+.site-content .shesteren-hero-photo img,
+.site-content .valov-hero-photo img {
   display: block;
   border-radius: 0 !important;
 }
