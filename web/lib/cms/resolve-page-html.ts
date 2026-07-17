@@ -1,3 +1,4 @@
+import type { Locale } from '@/lib/i18n/config';
 import { ROUTES } from '@/lib/routes';
 import { getPageContent } from '@/lib/pages';
 import { unstable_cache } from 'next/cache';
@@ -9,6 +10,7 @@ import {
 } from './content-blocks';
 import { applyMediaOverrides, applyTextBlockOverrides } from './apply-overrides';
 import { rewriteContentAssets } from '@/lib/rewrite-content-assets';
+import { rewriteHtmlLinksForLocale } from '@/lib/i18n/rewrite-html-links';
 
 const PROTECTED_SLUGS = new Set(['', 'home', 'contacts']);
 
@@ -92,7 +94,7 @@ function blocksToHtml(contentBlocks: string | null, body: string | null): string
   return body;
 }
 
-export async function getBasePageHtml(slug: string): Promise<string | null> {
+export async function getBasePageHtml(slug: string, locale: Locale = 'ru'): Promise<string | null> {
   const normalized = slug === 'home' ? '' : slug;
 
   if (isDbConfigured()) {
@@ -109,12 +111,12 @@ export async function getBasePageHtml(slug: string): Promise<string | null> {
     }
   }
 
-  return getPageContent(normalized);
+  return getPageContent(normalized, locale);
 }
 
-async function resolvePageHtmlInner(slug: string): Promise<string | null> {
+async function resolvePageHtmlInner(slug: string, locale: Locale): Promise<string | null> {
   const normalized = slug === 'home' ? '' : slug;
-  const base = await getBasePageHtml(normalized);
+  const base = await getBasePageHtml(normalized, locale);
   if (!base) return null;
 
   const { media, text } = await loadOverrides();
@@ -125,15 +127,19 @@ async function resolvePageHtmlInner(slug: string): Promise<string | null> {
   let html = applyTextBlockOverrides(base, slugText);
   html = applyMediaOverrides(html, media);
   html = rewriteContentAssets(html);
+  html = rewriteHtmlLinksForLocale(html, locale);
   return html;
 }
 
-export async function resolvePageHtml(slug: string): Promise<string | null> {
+export async function resolvePageHtml(slug: string, locale: Locale = 'ru'): Promise<string | null> {
   const normalized = slug === 'home' ? '' : slug;
   return unstable_cache(
-    () => resolvePageHtmlInner(normalized),
-    ['page-html', normalized],
-    { revalidate: 3600, tags: ['pages', `page-${normalized || 'home'}`] },
+    () => resolvePageHtmlInner(normalized, locale),
+    ['page-html', normalized, locale],
+    {
+      revalidate: 3600,
+      tags: ['pages', `page-${normalized || 'home'}`, `page-${normalized || 'home'}-${locale}`],
+    },
   )();
 }
 
@@ -160,7 +166,7 @@ export async function getEditablePageHtml(slug: string): Promise<string | null> 
     }
   }
 
-  const fileHtml = getPageContent(normalized);
+  const fileHtml = getPageContent(normalized, 'ru');
   if (!fileHtml) return null;
   const { media, text } = await loadOverrides();
   const slugText = text.filter(

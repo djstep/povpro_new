@@ -15,7 +15,7 @@ function collectExamples(root: HTMLElement): ExampleItem[] {
     .map((el) => {
       const img = el.querySelector('img');
       return {
-        src: img?.currentSrc || img?.src || '',
+        src: img?.currentSrc || img?.getAttribute('src') || img?.src || '',
         alt: img?.alt || '',
       };
     })
@@ -48,38 +48,30 @@ export function ExamplesLightbox() {
   }, []);
 
   useEffect(() => {
-    let cleanup = () => {};
+    const root = document.querySelector('.site-content');
+    if (!(root instanceof HTMLElement)) return;
 
-    const bind = () => {
-      cleanup();
-      const root = document.querySelector('.site-content');
-      if (!(root instanceof HTMLElement)) return;
+    const refresh = () => setItems(collectExamples(root));
+    refresh();
+
+    const onClick = (e: Event) => {
+      if (!(e.target instanceof Element)) return;
+      const trigger = e.target.closest(TRIGGER_SELECTOR);
+      if (!(trigger instanceof HTMLElement) || !root.contains(trigger)) return;
+
+      e.preventDefault();
+      e.stopPropagation();
 
       const examples = collectExamples(root);
+      const nextIndex = Array.from(root.querySelectorAll(TRIGGER_SELECTOR)).indexOf(trigger);
+      if (nextIndex < 0) return;
+
       setItems(examples);
-
-      const triggers = root.querySelectorAll<HTMLElement>(TRIGGER_SELECTOR);
-      const handlers: Array<() => void> = [];
-
-      triggers.forEach((trigger, i) => {
-        const onClick = (e: Event) => {
-          e.preventDefault();
-          setIndex(i);
-        };
-        trigger.addEventListener('click', onClick);
-        handlers.push(() => trigger.removeEventListener('click', onClick));
-      });
-
-      cleanup = () => handlers.forEach((off) => off());
+      setIndex(nextIndex);
     };
 
-    bind();
-    const retries = [50, 150].map((ms) => setTimeout(bind, ms));
-
-    return () => {
-      retries.forEach(clearTimeout);
-      cleanup();
-    };
+    root.addEventListener('click', onClick);
+    return () => root.removeEventListener('click', onClick);
   }, []);
 
   useEffect(() => {

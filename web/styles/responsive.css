@@ -1,19 +1,13 @@
 /* Cross-device layout: phones, tablets, desktops */
 
-/* Safe areas (notch / home indicator) */
-@supports (padding: env(safe-area-inset-bottom)) {
-  nav.site-mobile-nav.nav-glass-mobile {
-    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
-  }
+/* Safe areas (notch / home indicator) — bottom tab bar removed; no extra content padding */
 
-  .site-content {
-    padding-bottom: max(7rem, calc(6.5rem + env(safe-area-inset-bottom)));
-  }
-
-  @media (min-width: 1024px) {
-    .site-content {
-      padding-bottom: 0;
-    }
+/* Mobile: блоки почти на всю ширину, небольшие боковые поля */
+@media (max-width: 767px) {
+  .site-content :is(.px-margin-mobile, .px-margin-desktop),
+  footer.site-footer :is(.px-margin-mobile, .px-margin-desktop) {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 

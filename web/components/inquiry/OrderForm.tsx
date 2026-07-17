@@ -1,6 +1,8 @@
 'use client';
 
 import { useCallback, useRef, useState } from 'react';
+import { useLocale, useT } from '@/components/i18n/LocaleProvider';
+import { localizedPath } from '@/lib/i18n/locale';
 
 const ACCEPT = '.pdf,.dwg,.docx,.zip,application/pdf,application/zip';
 const MAX_FILE_BYTES = 20 * 1024 * 1024;
@@ -59,6 +61,9 @@ export function OrderForm({
   error,
   autoFocus,
 }: OrderFormProps) {
+  const t = useT();
+  const { locale } = useLocale();
+  const policyHref = localizedPath('/policy', locale);
   const inputRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [dragOver, setDragOver] = useState(false);
@@ -73,13 +78,13 @@ export function OrderForm({
     const next: File[] = [];
     for (const file of Array.from(list)) {
       if (file.size > MAX_FILE_BYTES) {
-        setFileError(`Файл «${file.name}» превышает 20 МБ`);
+        setFileError(`${t.forms.attachFile}: «${file.name}» ${t.forms.fileTooLarge}`);
         continue;
       }
       next.push(file);
     }
     if (next.length) setFiles((prev) => [...prev, ...next]);
-  }, []);
+  }, [t.forms.fileTooLarge]);
 
   function removeFile(index: number) {
     setFiles((prev) => prev.filter((_, i) => i !== index));
@@ -88,7 +93,7 @@ export function OrderForm({
   function handleFormSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!privacyAccepted || !personalDataAccepted) {
-      setConsentError('Подтвердите согласие с политикой и обработкой персональных данных');
+      setConsentError(t.forms.consentError);
       return;
     }
     setConsentError('');
@@ -97,17 +102,17 @@ export function OrderForm({
 
   return (
     <form className="flex flex-col gap-8 font-body-md text-body-md" onSubmit={handleFormSubmit} noValidate>
-      <p className="font-mono-label text-mono-label text-on-surface-variant/60">* Обязательные поля</p>
+      <p className="font-mono-label text-mono-label text-on-surface-variant/60">{t.forms.requiredFields}</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         <div>
           <label className={LABEL} htmlFor="order-name">
-            <span className="text-primary">*</span> Имя
+            <span className="text-primary">*</span> {t.forms.name}
           </label>
           <input
             id="order-name"
             className={INPUT_FIELD}
-            placeholder="Введите ваше имя"
+            placeholder={t.forms.namePlaceholder}
             type="text"
             value={name}
             onChange={(e) => onNameChange(e.target.value)}
@@ -116,12 +121,12 @@ export function OrderForm({
         </div>
         <div>
           <label className={LABEL} htmlFor="order-company">
-            Компания
+            {t.forms.company}
           </label>
           <input
             id="order-company"
             className={INPUT_FIELD}
-            placeholder="Название компании"
+            placeholder={t.forms.companyPlaceholder}
             type="text"
             value={company}
             onChange={(e) => onCompanyChange(e.target.value)}
@@ -129,12 +134,12 @@ export function OrderForm({
         </div>
         <div>
           <label className={LABEL} htmlFor="order-phone">
-            <span className="text-primary">*</span> Телефон
+            <span className="text-primary">*</span> {t.forms.phone}
           </label>
           <input
             id="order-phone"
             className={INPUT_FIELD}
-            placeholder="+7 (___) ___-__-__"
+            placeholder={t.forms.phonePlaceholder}
             type="tel"
             value={phone}
             onChange={(e) => onPhoneChange(e.target.value)}
@@ -142,12 +147,12 @@ export function OrderForm({
         </div>
         <div>
           <label className={LABEL} htmlFor="order-email">
-            <span className="text-primary">*</span> E-mail
+            <span className="text-primary">*</span> {t.forms.email}
           </label>
           <input
             id="order-email"
             className={INPUT_FIELD}
-            placeholder="email@example.com"
+            placeholder={t.forms.emailPlaceholder}
             type="email"
             value={email}
             onChange={(e) => onEmailChange(e.target.value)}
@@ -157,12 +162,12 @@ export function OrderForm({
 
       <div>
         <label className={LABEL} htmlFor="order-message">
-          Комментарии к заказу
+          {t.forms.orderComments}
         </label>
         <textarea
           id="order-message"
           className={TEXTAREA_DARK}
-          placeholder="Опишите детали вашего заказа..."
+          placeholder={t.forms.messagePlaceholder}
           rows={5}
           value={message}
           onChange={(e) => onMessageChange(e.target.value)}
@@ -171,7 +176,7 @@ export function OrderForm({
 
       <div>
         <label className={LABEL} htmlFor="order-files">
-          Прикрепить файл
+          {t.forms.attachFile}
         </label>
         <input
           ref={inputRef}
@@ -211,10 +216,10 @@ export function OrderForm({
             <span className="material-symbols-outlined text-on-surface-variant text-3xl">cloud_upload</span>
           </div>
           <p className="font-body-md text-body-md text-on-surface text-center mb-2">
-            Перетащите файлы сюда или нажмите для выбора
+            {t.forms.dropHint}
           </p>
           <p className="font-mono-label text-mono-label text-on-surface-variant/50 text-center">
-            Поддерживаемые форматы: PDF, DWG, DOCX, ZIP (до 20МБ)
+            {t.forms.formatsHint}
           </p>
         </div>
         {files.length > 0 && (
@@ -228,7 +233,7 @@ export function OrderForm({
                 <button
                   type="button"
                   className="text-on-surface-variant hover:text-primary transition-colors shrink-0"
-                  aria-label={`Удалить ${file.name}`}
+                  aria-label={`${t.forms.removeFile} ${file.name}`}
                   onClick={() => removeFile(i)}
                 >
                   <span className="material-symbols-outlined text-xl">close</span>
@@ -257,9 +262,9 @@ export function OrderForm({
               }}
             />
             <span className="zakaz-consent-text">
-              Я согласен с{' '}
-              <a className="zakaz-consent-link" href="/policy" target="_blank" rel="noopener noreferrer">
-                политикой конфиденциальности
+              {t.forms.consentPrivacy}{' '}
+              <a className="zakaz-consent-link" href={policyHref} target="_blank" rel="noopener noreferrer">
+                {t.forms.privacyLink}
               </a>
             </span>
           </label>
@@ -274,15 +279,15 @@ export function OrderForm({
               }}
             />
             <span className="zakaz-consent-text">
-              Я даю согласие на{' '}
-              <a className="zakaz-consent-link" href="/policy" target="_blank" rel="noopener noreferrer">
-                обработку персональных данных
+              {t.forms.consentPersonalData}{' '}
+              <a className="zakaz-consent-link" href={policyHref} target="_blank" rel="noopener noreferrer">
+                {t.forms.privacyLink}
               </a>
             </span>
           </label>
         </div>
         <button type="submit" className="zakaz-submit-btn shrink-0 self-end lg:self-auto" disabled={loading}>
-          <span className="zakaz-submit-label">Оформить заявку</span>
+          <span className="zakaz-submit-label">{t.forms.submitOrder}</span>
           <SubmitSendIcon />
         </button>
       </div>

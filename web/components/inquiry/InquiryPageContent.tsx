@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { submitInquiry } from '@/lib/inquiry-api';
 import { trackFormSubmit } from '@/components/analytics/AnalyticsTracker';
+import { useLocale, useT } from '@/components/i18n/LocaleProvider';
 import { OrderForm } from './OrderForm';
 
 function splitLegacyContact(contact: string): { phone: string; email: string } {
@@ -14,6 +15,8 @@ function splitLegacyContact(contact: string): { phone: string; email: string } {
 }
 
 export function InquiryPageContent() {
+  const { locale } = useLocale();
+  const t = useT();
   const searchParams = useSearchParams();
   const from = searchParams.get('from') ?? undefined;
 
@@ -37,35 +40,33 @@ export function InquiryPageContent() {
     e.preventDefault();
     if (!name.trim()) {
       setStatus('error');
-      setErrorText('Укажите имя');
+      setErrorText(t.forms.nameRequired);
       return;
     }
     if (!phone.trim()) {
       setStatus('error');
-      setErrorText('Укажите телефон');
+      setErrorText(t.forms.phoneRequired);
       return;
     }
     if (!email.trim()) {
       setStatus('error');
-      setErrorText('Укажите email');
+      setErrorText(t.forms.emailRequired);
       return;
     }
     setStatus('loading');
     setErrorText('');
 
     const parts: string[] = [];
-    if (company.trim()) parts.push(`Компания: ${company.trim()}`);
     if (message.trim()) parts.push(message.trim());
-    if (files.length > 0) {
-      parts.push(`Прикреплённые файлы: ${files.map((f) => f.name).join(', ')}`);
-    }
 
     const result = await submitInquiry({
       name: name.trim(),
       phone: phone.trim() || undefined,
       email: email.trim() || undefined,
+      company: company.trim() || undefined,
       message: parts.length > 0 ? parts.join('\n\n') : undefined,
       source: from ?? 'zakaz',
+      files,
     });
     if (result.ok) {
       trackFormSubmit(from ?? 'zakaz');
@@ -81,15 +82,10 @@ export function InquiryPageContent() {
       <main className="pt-40 md:pt-48 pb-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
         <section className="max-w-4xl mx-auto w-full" id="zakaz">
           <div className="mb-10 md:mb-12">
-            <h1 className="font-headline-xl text-headline-xl text-on-surface mb-6">Сделать заказ</h1>
+            <h1 className="font-headline-xl text-headline-xl text-on-surface mb-6">{t.forms.orderTitle}</h1>
             <div className="space-y-4 font-body-md text-body-md text-on-surface-variant max-w-3xl">
-              <p>
-                Примем заказ на изготовление металлоизделий по чертежам, на обработку металла в кратчайшие сроки.
-              </p>
-              <p>
-                Заполните форму для того, чтобы наши специалисты смогли сделать вам полный расчет стоимости продукции.
-                Прикрепите чертежи, технические условия, сопроводительную документацию.
-              </p>
+              <p>{t.forms.orderLead1}</p>
+              <p>{t.forms.orderLead2}</p>
             </div>
           </div>
 
@@ -100,9 +96,9 @@ export function InquiryPageContent() {
               {status === 'success' ? (
                 <div className="flex flex-col items-center gap-4 py-12 text-center">
                   <span className="material-symbols-outlined text-primary text-5xl">check_circle</span>
-                  <h2 className="font-headline-lg text-headline-lg text-on-surface">Заявка отправлена</h2>
+                  <h2 className="font-headline-lg text-headline-lg text-on-surface">{t.forms.successTitle}</h2>
                   <p className="font-body-md text-body-md text-on-surface-variant max-w-md">
-                    Специалист свяжется с вами в ближайшее время для уточнения деталей заказа.
+                    {t.forms.successBody}
                   </p>
                 </div>
               ) : (

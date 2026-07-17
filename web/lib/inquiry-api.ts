@@ -2,8 +2,10 @@ export type InquiryPayload = {
   name: string;
   phone?: string;
   email?: string;
+  company?: string;
   message?: string;
   source?: string;
+  files?: File[];
 };
 
 export type InquiryResult =
@@ -19,14 +21,25 @@ export function parseContact(value: string): Pick<InquiryPayload, 'phone' | 'ema
 
 export async function submitInquiry(payload: InquiryPayload): Promise<InquiryResult> {
   try {
+    const form = new FormData();
+    form.set('name', payload.name);
+    if (payload.phone) form.set('phone', payload.phone);
+    if (payload.email) form.set('email', payload.email);
+    if (payload.company) form.set('company', payload.company);
+    if (payload.message) form.set('message', payload.message);
+    if (payload.source) form.set('source', payload.source);
+    for (const file of payload.files ?? []) {
+      form.append('files', file, file.name);
+    }
+
     const res = await fetch('/api/inquiry', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      body: form,
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
-      return { ok: false, error: data.error ? 'Проверьте данные формы' : 'Не удалось отправить заявку' };
+      const err = typeof data.error === 'string' ? data.error : 'Не удалось отправить заявку';
+      return { ok: false, error: err };
     }
     return { ok: true, message: data.message };
   } catch {

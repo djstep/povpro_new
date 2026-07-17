@@ -1,9 +1,24 @@
-/* Match hero width to type-cards row (card-hover-glow grid bleed) */
-.site-content .zuboreznye-hero-section .zuboreznye-hero-grid,
-.site-content .zuboreznye-types-section .zuboreznye-types-grid {
+/* Hero: bleed для glow + двойной отступ от кнопки до карточек */
+.site-content .zuboreznye-hero-section .zuboreznye-hero-grid {
   margin: -10px;
-  padding: 10px;
+  padding: calc(1.5rem + 10px) 10px calc(3rem + 10px);
   overflow: visible;
+}
+
+@media (min-width: 768px) {
+  .site-content .zuboreznye-hero-section .zuboreznye-hero-grid {
+    padding: calc(2rem + 10px) 10px calc(4rem + 10px);
+  }
+}
+
+.site-content .zuboreznye-types-section {
+  margin-top: 1.5rem;
+}
+
+/* Без bleed — левая/правая плашки на одной линии с блоком ниже */
+.site-content .zuboreznye-types-section .zuboreznye-types-grid {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .site-content .zuboreznye-type-card__title {

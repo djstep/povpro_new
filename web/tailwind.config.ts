@@ -71,7 +71,7 @@ const config: Config = {
       spacing: {
         gutter: '24px',
         'margin-desktop': '48px',
-        'margin-mobile': '16px',
+        'margin-mobile': '8px',
         unit: '4px',
       },
       fontFamily: {

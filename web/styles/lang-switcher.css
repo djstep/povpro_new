@@ -1,0 +1,26 @@
+.site-lang-switcher__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 1.75rem;
+  padding: 0 0.55rem;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: rgba(212, 228, 250, 0.72);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.site-lang-switcher__btn:hover {
+  color: #adc6ff;
+}
+
+.site-lang-switcher__btn--active {
+  background: rgba(173, 198, 255, 0.18);
+  color: #adc6ff;
+}

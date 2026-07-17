@@ -72,7 +72,7 @@
 }
 
 .examples-lightbox__viewport {
-  overflow: auto;
+  overflow: hidden;
   align-items: center;
   justify-content: center;
 }
@@ -97,11 +97,19 @@
   background: transparent;
   font: inherit;
   color: inherit;
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+  cursor: zoom-in;
 }
 
 .site-content .example-lightbox-thumb:focus-visible {
   outline: 2px solid rgba(216, 226, 255, 0.6);
   outline-offset: 2px;
+}
+
+.site-content .example-lightbox-thumb img {
+  pointer-events: none;
 }
 
 .site-content .frezernye-hero-photo,
@@ -113,13 +121,16 @@
 
 .site-content .frezernye-hero-photo {
   line-height: 0;
-  align-self: start;
+  align-self: center;
+  aspect-ratio: 4 / 3 !important;
+  background: #fff !important;
 }
 
 .site-content .frezernye-hero-photo img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   border-radius: 0 !important;
 }

@@ -1,3 +1,26 @@
+.site-content .shlifovalnye-hero-photo,
+.site-content .shlifovalnye-hero-photo img {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.site-content .shlifovalnye-hero-photo {
+  line-height: 0;
+  align-self: center;
+  aspect-ratio: 4 / 3 !important;
+  background: #fff !important;
+}
+
+.site-content .shlifovalnye-hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0 !important;
+}
+
 /* M7160 block — same width as other sections, no grid bleed from card-hover-glow */
 .site-content .shlifovalnye-featured-grid {
   margin: 0 !important;

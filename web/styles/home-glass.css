@@ -24,6 +24,17 @@
   width: 100%;
 }
 
+/* Главная: вдвое меньше зазор между формой заявки и футером (только мобилка) */
+@media (max-width: 767px) {
+  .site-content:has(.home-hero) > main {
+    padding-bottom: 4rem; /* half of pb-32 */
+  }
+
+  .site-content:has(.home-hero) ~ footer.site-footer {
+    margin-top: 2.5rem; /* half of mt-20 */
+  }
+}
+
 .site-content .home-hero-doc-btn {
   min-height: 3.25rem;
   line-height: 1.25;

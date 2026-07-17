@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { resolveAssetUrl } from '@/lib/resolve-asset-urls';
 import {
   MECH_PREFIX,
@@ -13,13 +13,20 @@ import {
 import { useSiteNavigation } from '@/components/layout/NavigationProvider';
 import { NavDropdown } from './NavDropdown';
 import { useMobileMenu } from './MobileMenuProvider';
+import { useLocale, useT } from '@/components/i18n/LocaleProvider';
+import { LanguageSwitcher } from '@/components/i18n/LanguageSwitcher';
+import { localizeNavConfig } from '@/lib/i18n/nav-localize';
+import { localizedPath, parseLocaleFromPathname } from '@/lib/i18n/locale';
 
 const LOGO = resolveAssetUrl('/assets/img/e345e1d85b71d21e.png');
 const SCROLL_THRESHOLD = 24;
 
-function slugFromPathname(pathname: string): string {
-  if (pathname === '/') return '';
-  return pathname.replace(/^\//, '');
+function slugFromHref(href: string): string {
+  let path = href.split('?')[0] || '/';
+  if (path === '/en' || path.startsWith('/en/')) {
+    path = path === '/en' ? '/' : path.slice('/en'.length);
+  }
+  return path === '/' ? '' : path.replace(/^\//, '');
 }
 
 function NavLinkItem({
@@ -31,7 +38,7 @@ function NavLinkItem({
   label: string;
   currentSlug: string;
 }) {
-  const targetSlug = href === '/' ? '' : href.replace(/^\//, '');
+  const targetSlug = slugFromHref(href);
   const active = isActivePath(currentSlug, targetSlug);
   return (
     <Link
@@ -45,8 +52,12 @@ function NavLinkItem({
 
 export function Header() {
   const pathname = usePathname();
-  const { mech, uslugi, topLinks } = useSiteNavigation();
-  const currentSlug = slugFromPathname(pathname);
+  const { locale } = useLocale();
+  const t = useT();
+  const rawNav = useSiteNavigation();
+  const nav = useMemo(() => localizeNavConfig(rawNav, locale, t), [rawNav, locale, t]);
+  const { slugKey } = parseLocaleFromPathname(pathname);
+  const currentSlug = slugKey;
   const { toggleMenu, open: menuOpen } = useMobileMenu();
   const [scrolled, setScrolled] = useState(false);
   const shellRef = useRef<HTMLDivElement>(null);
@@ -96,11 +107,11 @@ export function Header() {
       >
         <div className="site-nav-top px-3 sm:px-5 md:px-8 lg:px-margin-desktop py-2.5 sm:py-3 md:py-4 flex justify-between items-center gap-2 sm:gap-4 max-w-container-max mx-auto w-full min-w-0">
           <Link
-            href="/"
+            href={localizedPath('/', locale)}
             className="site-nav-logo font-headline-lg-mobile text-primary font-black tracking-tighter text-[1.35rem] sm:text-[1.65rem] md:text-[2.5rem] leading-tight flex items-center gap-2 sm:gap-3 md:gap-4 no-underline min-w-0 shrink"
           >
-            <Image src={LOGO} alt="ППО №3" width={48} height={48} className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain shrink-0" />
-            <span className="truncate">ППО №3</span>
+            <Image src={LOGO} alt={t.common.companyName} width={48} height={48} className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain shrink-0" />
+            <span className="truncate">{t.common.companyName}</span>
           </Link>
           <div className="flex items-center gap-2 sm:gap-3 md:gap-6 min-w-0 shrink-0">
             <div className="hidden md:flex flex-col gap-2 min-w-0 items-center nav-contact-row">
@@ -128,27 +139,38 @@ export function Header() {
                 <div className="flex items-center justify-center gap-2">
                   <span className="material-symbols-outlined text-primary text-base">location_on</span>
                   <div className="text-on-surface font-label-sm text-label-sm font-bold whitespace-nowrap">
-                    г. Тольятти, ул. Окраинная, 24
+                    {t.common.cityAddress}
                   </div>
                 </div>
               </div>
             </div>
+            <span className="hidden md:inline-flex">
+              <LanguageSwitcher />
+            </span>
             <button
               type="button"
               className={`site-nav-menu-btn md:hidden flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-surface-container-high/80 text-on-surface shrink-0${menuOpen ? ' site-nav-menu-btn--open' : ''}`}
-              aria-label={menuOpen ? 'Закрыть меню' : 'Открыть меню'}
+              aria-label={menuOpen ? t.header.closeMenu : t.header.openMenu}
               aria-expanded={menuOpen}
               onClick={toggleMenu}
             >
-              <span className="site-nav-menu-icon site-nav-menu-icon--menu material-symbols-outlined text-2xl">menu</span>
-              <span className="site-nav-menu-icon site-nav-menu-icon--close material-symbols-outlined text-2xl">close</span>
+              <span className="site-nav-menu-icon site-nav-menu-icon--menu" aria-hidden="true">
+                <span className="site-nav-burger">
+                  <span />
+                  <span />
+                  <span />
+                </span>
+              </span>
+              <span className="site-nav-menu-icon site-nav-menu-icon--close" aria-hidden="true">
+                <span className="site-nav-burger-close" />
+              </span>
             </button>
             <Link
-              href="/zakaz?from=header"
+              href={localizedPath('/zakaz?from=header', locale)}
               className="site-nav-cta bg-primary text-on-primary rounded-full px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 font-label-sm text-label-sm hover:opacity-90 uppercase tracking-wider font-bold no-underline shrink-0 inline-flex items-center gap-1.5"
             >
-              <span className="md:hidden">Заказ</span>
-              <span className="hidden md:inline">Запросить расчет</span>
+              <span className="md:hidden">{t.header.orderShort}</span>
+              <span className="hidden md:inline">{t.header.requestQuote}</span>
               <span className="material-symbols-outlined text-[18px] md:hidden">arrow_forward</span>
             </Link>
           </div>
@@ -157,15 +179,15 @@ export function Header() {
           <div className="nav-bar-divider mx-5 md:mx-8 lg:mx-margin-desktop" aria-hidden="true" />
           <div className="nav-row-scroll px-5 md:px-8 lg:px-margin-desktop py-3">
             <div className="nav-row-inner flex items-center gap-3 xl:gap-5 flex-wrap justify-center">
-              <NavLinkItem href="/" label="Главная" currentSlug={currentSlug} />
+              <NavLinkItem href={localizedPath('/', locale)} label={t.nav.home} currentSlug={currentSlug} />
               <NavDropdown
-                href="/mekhanicheskaya-obrabotka"
-                label="Мехобработка"
-                items={mech}
+                href={localizedPath('/mekhanicheskaya-obrabotka', locale)}
+                label={t.nav.machining}
+                items={nav.mech}
                 currentSlug={currentSlug}
                 prefixRe={MECH_PREFIX}
               />
-              {topLinks.map((item) =>
+              {nav.topLinks.map((item) =>
                 item.href ? (
                   <NavLinkItem
                     key={item.href}
@@ -176,14 +198,14 @@ export function Header() {
                 ) : null,
               )}
               <NavDropdown
-                href="/metalloobrabotka"
-                label="Услуги"
-                items={uslugi}
+                href={localizedPath('/metalloobrabotka', locale)}
+                label={t.nav.services}
+                items={nav.uslugi}
                 currentSlug={currentSlug}
                 prefixRe={USLUGI_PREFIX}
               />
-              <NavLinkItem href="/contacts" label="Контакты" currentSlug={currentSlug} />
-              <NavLinkItem href="/otzyvy-o-ppo" label="Отзывы" currentSlug={currentSlug} />
+              <NavLinkItem href={localizedPath('/contacts', locale)} label={t.nav.contacts} currentSlug={currentSlug} />
+              <NavLinkItem href={localizedPath('/otzyvy-o-ppo', locale)} label={t.nav.reviews} currentSlug={currentSlug} />
             </div>
           </div>
         </div>

@@ -153,7 +153,8 @@ function SubMenu({
 }
 
 export function NavDropdown({ href, label, items, currentSlug, prefixRe }: Props) {
-  const targetSlug = href === '/' ? '' : href.replace(/^\//, '');
+  const rawPath = href === '/' || href === '/en' ? '/' : href.replace(/^\/en(?=\/|$)/, '') || '/';
+  const targetSlug = rawPath === '/' ? '' : rawPath.replace(/^\//, '');
   const mainActive = isActivePath(currentSlug, targetSlug, prefixRe);
   const triggerRef = useRef<HTMLDivElement>(null);
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);

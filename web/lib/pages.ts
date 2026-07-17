@@ -1,5 +1,7 @@
 import fs from 'fs';
 import path from 'path';
+import type { Locale } from './i18n/config';
+import { EN_PAGE_TITLES } from './i18n/page-titles';
 import { ROUTES, pathToSlug } from './routes';
 
 const contentDir = path.join(process.cwd(), 'content');
@@ -16,15 +18,27 @@ export function getAllSlugs(): { slug: string[] | undefined }[] {
   }));
 }
 
-export function getPageTitle(slug: string): string {
+export function getPageTitle(slug: string, locale: Locale = 'ru'): string {
+  if (locale === 'en') {
+    const enTitle = EN_PAGE_TITLES[slug];
+    if (enTitle) return enTitle;
+  }
   const key = slug === '' ? '/' : (`/${slug}` as keyof typeof ROUTES);
   const route = ROUTES[key as keyof typeof ROUTES];
-  return route?.title ?? 'Страница';
+  return route?.title ?? (locale === 'en' ? 'Page' : 'Страница');
 }
 
-export function getPageContent(slug: string): string | null {
+export function getPageContent(slug: string, locale: Locale = 'ru'): string | null {
   const file = SLUG_TO_FILE[slug];
   if (!file) return null;
+
+  if (locale === 'en') {
+    const enPath = path.join(contentDir, 'en', file);
+    if (fs.existsSync(enPath)) {
+      return fs.readFileSync(enPath, 'utf8');
+    }
+  }
+
   const filePath = path.join(contentDir, file);
   if (!fs.existsSync(filePath)) return null;
   return fs.readFileSync(filePath, 'utf8');
