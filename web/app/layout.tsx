@@ -3,7 +3,7 @@ import { geistSans } from '@/lib/fonts';
 import './globals.css';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://povpro.ru';
-const siteTitle = 'ППО №3 — Поволжское производственное объединение';
+const siteTitle = '«ППО №3» — Поволжское производственное объединение';
 const siteDescription =
   'Металлообработка, фрикционные накладки, мехобработка, ремонт оборудования. г. Тольятти.';
 
@@ -11,17 +11,17 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: siteTitle,
-    template: '%s — ППО №3',
+    template: '%s — «ППО №3»',
   },
   description: siteDescription,
-  applicationName: 'ППО №3',
+  applicationName: '«ППО №3»',
   alternates: { canonical: '/' },
   robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
     url: '/',
-    siteName: 'ППО №3',
+    siteName: '«ППО №3»',
     title: siteTitle,
     description: siteDescription,
     images: [{ url: '/assets/img/povpro-logo.png' }],

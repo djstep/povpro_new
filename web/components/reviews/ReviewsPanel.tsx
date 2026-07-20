@@ -194,7 +194,7 @@ function ReviewForm() {
         <textarea
           id="review-text"
           className={TEXTAREA_DARK}
-          placeholder="Расскажите о вашем опыте работы с ППО №3"
+          placeholder="Расскажите о вашем опыте работы с «ППО №3»"
           value={text}
           onChange={(e) => setText(e.target.value)}
           required

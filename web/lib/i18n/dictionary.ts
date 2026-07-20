@@ -133,7 +133,7 @@ const ru: Dictionary = {
   },
   common: {
     page: 'Страница',
-    companyName: 'ППО №3',
+    companyName: '«ППО №3»',
     cityAddress: 'г. Тольятти, ул. Окраинная, 24',
   },
   forms: {

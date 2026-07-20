@@ -278,7 +278,7 @@ function getNavHtml(activePath) {
 <div class="border-b border-white/5">
 <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 flex justify-between items-center">
 <a href="${h('/')}" class="font-headline-lg-mobile text-primary font-black tracking-tighter text-[2.5rem] leading-tight flex items-center gap-4 no-underline">
-<img alt="ППО №3" class="w-12 h-12 object-contain" src="${LOGO}">ППО №3
+<img alt="«ППО №3»" class="w-12 h-12 object-contain" src="${LOGO}">«ППО №3»
 </a>
 <div class="flex items-center gap-6">
 <div class="hidden md:grid grid-cols-[auto_auto] gap-x-6 gap-y-0 items-center">
@@ -342,7 +342,7 @@ function patchHtml(html, routePath, title) {
   html = replaceSiteNav(html, routePath);
   html = patchContentLinks(html, routePath);
   if (title) {
-    html = html.replace(/<title>[^<]*<\/title>/, `<title>${title} — ППО №3</title>`);
+    html = html.replace(/<title>[^<]*<\/title>/, `<title>${title} — «ППО №3»</title>`);
   }
 
   const legacy = [

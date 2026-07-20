@@ -16,7 +16,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       <header className="border-b border-zinc-800 px-6 py-4 flex items-center justify-between gap-4 flex-wrap">
         <div className="flex items-center gap-6 flex-wrap">
           <Link href="/admin" className="font-semibold text-white">
-            ППО №3 — Админка
+            «ППО №3» — Админка
           </Link>
           <nav className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-zinc-400">
             <Link href="/admin" className="hover:text-white">

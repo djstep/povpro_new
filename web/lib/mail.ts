@@ -50,7 +50,7 @@ export async function sendInquiryMail(payload: InquiryMailPayload): Promise<void
   const from = process.env.MAIL_FROM || process.env.SMTP_USER!;
 
   const lines = [
-    'Новая заявка с сайта ППО №3',
+    'Новая заявка с сайта «ППО №3»',
     '',
     `Имя: ${payload.name}`,
     payload.company ? `Компания: ${payload.company}` : null,
@@ -64,7 +64,7 @@ export async function sendInquiryMail(payload: InquiryMailPayload): Promise<void
 
   const transport = createTransport();
   await transport.sendMail({
-    from: `"ППО №3 — сайт" <${from}>`,
+    from: `"«ППО №3» — сайт" <${from}>`,
     to,
     replyTo: payload.email || undefined,
     subject: `Заявка с сайта: ${payload.name}${payload.company ? ` (${payload.company})` : ''}`,

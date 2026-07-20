@@ -133,6 +133,9 @@ async function resolvePageHtmlInner(slug: string, locale: Locale): Promise<strin
 
 export async function resolvePageHtml(slug: string, locale: Locale = 'ru'): Promise<string | null> {
   const normalized = slug === 'home' ? '' : slug;
+  if (process.env.NODE_ENV === 'development') {
+    return resolvePageHtmlInner(normalized, locale);
+  }
   return unstable_cache(
     () => resolvePageHtmlInner(normalized, locale),
     ['page-html', normalized, locale],

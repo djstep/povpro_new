@@ -1,5 +1,5 @@
 /**
- * Загружает экран «Интеллектуальные системы — ППО №3 (Fidelity Layout Sync)» из Stitch.
+ * Загружает экран "Интеллектуальные системы — «ППО №3»" (Fidelity Layout Sync) из Stitch.
  */
 import fs from 'fs';
 import path from 'path';
