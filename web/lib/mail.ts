@@ -17,6 +17,11 @@ export type InquiryMailPayload = {
   attachments?: MailAttachment[];
 };
 
+/** Убирает CR/LF и управляющие символы — защита от инъекции почтовых заголовков. */
+function sanitizeHeaderValue(value: string): string {
+  return value.replace(/[\r\n\u0000-\u001f\u007f]+/g, ' ').trim();
+}
+
 function smtpConfigured(): boolean {
   return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
 }
@@ -62,15 +67,19 @@ export async function sendInquiryMail(payload: InquiryMailPayload): Promise<void
     payload.message?.trim() || '—',
   ].filter((line): line is string => line !== null);
 
+  const safeName = sanitizeHeaderValue(payload.name);
+  const safeCompany = payload.company ? sanitizeHeaderValue(payload.company) : '';
+  const safeReplyTo = payload.email ? sanitizeHeaderValue(payload.email) : '';
+
   const transport = createTransport();
   await transport.sendMail({
     from: `"«ППО №3» — сайт" <${from}>`,
     to,
-    replyTo: payload.email || undefined,
-    subject: `Заявка с сайта: ${payload.name}${payload.company ? ` (${payload.company})` : ''}`,
+    replyTo: safeReplyTo || undefined,
+    subject: `Заявка с сайта: ${safeName}${safeCompany ? ` (${safeCompany})` : ''}`,
     text: lines.join('\n'),
     attachments: (payload.attachments ?? []).map((file) => ({
-      filename: file.filename,
+      filename: sanitizeHeaderValue(file.filename) || 'attachment',
       content: file.content,
       contentType: file.contentType,
     })),

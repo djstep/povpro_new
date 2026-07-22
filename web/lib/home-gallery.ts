@@ -13,7 +13,8 @@ export function homeGalleryItemKey(item: HomeGalleryItem): string {
 
 export function homeGalleryImageUrl(id: number): string {
   if (LOCAL_GALLERY_IMAGE_IDS.has(id)) {
-    return `/assets/img/povpro-gallery-${id}.jpg`;
+    // Локальные файлы имеют webp-версию — она в разы легче jpg
+    return `/assets/img/povpro-gallery-${id}.webp`;
   }
   return resolveAssetUrl(`/assets/img/povpro-gallery-${id}.jpg`);
 }
@@ -50,6 +51,6 @@ export const ALL_HOME_GALLERY_ITEMS: HomeGalleryItem[] = [
   {
     kind: 'video',
     src: '/assets/video/gallery-video-2.mp4',
-    poster: '/assets/img/povpro-gallery-22.jpg',
+    poster: '/assets/img/povpro-gallery-22.webp',
   },
 ];

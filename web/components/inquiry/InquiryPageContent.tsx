@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { submitInquiry } from '@/lib/inquiry-api';
 import { trackFormSubmit } from '@/components/analytics/AnalyticsTracker';
-import { useLocale, useT } from '@/components/i18n/LocaleProvider';
+import { useT } from '@/components/i18n/LocaleProvider';
 import { OrderForm } from './OrderForm';
 
 function splitLegacyContact(contact: string): { phone: string; email: string } {
@@ -15,7 +15,6 @@ function splitLegacyContact(contact: string): { phone: string; email: string } {
 }
 
 export function InquiryPageContent() {
-  const { locale } = useLocale();
   const t = useT();
   const searchParams = useSearchParams();
   const from = searchParams.get('from') ?? undefined;

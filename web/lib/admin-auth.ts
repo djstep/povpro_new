@@ -5,10 +5,7 @@ import {
   SESSION_MAX_AGE_SEC,
   getAdminAuthMode,
 } from '@/lib/admin-auth-constants';
-import {
-  createAdminSessionToken,
-  verifyAdminSessionToken,
-} from '@/lib/admin-auth-crypto';
+import { verifyAdminSessionToken } from '@/lib/admin-auth-crypto';
 
 export { ADMIN_COOKIE, isAdminPasswordConfigured, getAdminAuthMode } from '@/lib/admin-auth-constants';
 export { createAdminSessionToken, verifyAdminSessionToken } from '@/lib/admin-auth-crypto';

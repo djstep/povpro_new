@@ -38,9 +38,15 @@
 }
 
 .site-content .termo-temper-card__title {
-  white-space: nowrap;
   font-size: 1.375rem;
   line-height: 1.2;
+}
+
+/* nowrap только на широких экранах — на мобильных длинные заголовки переносятся */
+@media (min-width: 640px) {
+  .site-content .termo-temper-card__title {
+    white-space: nowrap;
+  }
 }
 
 @media (min-width: 768px) {
