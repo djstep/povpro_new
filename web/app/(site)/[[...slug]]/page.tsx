@@ -9,7 +9,7 @@ import { FrictionTablesEnhancer } from '@/components/friction/FrictionTablesEnha
 import { ReviewsPanel } from '@/components/reviews/ReviewsPanel';
 import { SiteReviews } from '@/components/reviews/SiteReviews';
 import { SiteMain } from '@/components/SiteMain';
-import { getPageTitle } from '@/lib/pages';
+import { getPageTitle, getPageDescription } from '@/lib/pages';
 import { parseLocaleFromSlug } from '@/lib/i18n/locale';
 import { resolvePageHtml, getPageRecord } from '@/lib/cms/resolve-page-html';
 
@@ -38,7 +38,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const record = await getPageRecord(slugKey);
   if (record?.metaTitle) return { title: record.metaTitle, description: record.metaDesc ?? undefined };
   if (record?.title) return { title: record.title, description: record.metaDesc ?? undefined };
-  return { title: getPageTitle(slugKey, locale) };
+  return {
+    title: getPageTitle(slugKey, locale),
+    description: getPageDescription(slugKey, locale),
+  };
 }
 
 function PageEnhancers({ slugKey }: { slugKey: string }) {

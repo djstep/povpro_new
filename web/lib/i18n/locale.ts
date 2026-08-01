@@ -43,9 +43,13 @@ export function parseLocaleFromPathname(pathname: string): ParsedPathname {
 
 /** Prefix or strip locale segment on a site path (not a full URL). */
 export function localizedPath(path: string, locale: Locale): string {
-  const qIndex = path.indexOf('?');
-  const pathname = qIndex >= 0 ? path.slice(0, qIndex) : path;
-  const query = qIndex >= 0 ? path.slice(qIndex) : '';
+  const hashIndex = path.indexOf('#');
+  const hash = hashIndex >= 0 ? path.slice(hashIndex) : '';
+  const withoutHash = hashIndex >= 0 ? path.slice(0, hashIndex) : path;
+
+  const qIndex = withoutHash.indexOf('?');
+  const pathname = qIndex >= 0 ? withoutHash.slice(0, qIndex) : withoutHash;
+  const query = qIndex >= 0 ? withoutHash.slice(qIndex) : '';
 
   let clean = pathname;
   if (clean === '/en' || clean.startsWith('/en/')) {
@@ -55,8 +59,8 @@ export function localizedPath(path: string, locale: Locale): string {
     clean = `/${clean}`;
   }
   const prefix = LOCALE_PREFIX[locale];
-  if (clean === '/') return `${prefix || '/'}${query}`;
-  return `${prefix}${clean}${query}`;
+  if (clean === '/') return `${prefix || '/'}${query}${hash}`;
+  return `${prefix}${clean}${query}${hash}`;
 }
 
 /** Switch the locale prefix on the current pathname, preserving the page path. */

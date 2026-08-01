@@ -22,6 +22,7 @@ export type Dictionary = {
     slotting: string;
     dieCastingSalesRepair: string;
     heatTreatment: string;
+    spectralAnalysis: string;
     forgePressRepair: string;
     frictionProducts: string;
     frictionTechnicalSpecs: string;
@@ -109,6 +110,7 @@ const ru: Dictionary = {
     slotting: 'Долбежные работы',
     dieCastingSalesRepair: 'Продажа и ремонт МЛД',
     heatTreatment: 'Термообработка',
+    spectralAnalysis: 'Спектральный анализ металла',
     forgePressRepair: 'Ремонт КПО',
     frictionProducts: 'Наши фрикционные изделия',
     frictionTechnicalSpecs: 'Технические условия',
@@ -133,7 +135,7 @@ const ru: Dictionary = {
   },
   common: {
     page: 'Страница',
-    companyName: '«ППО №3»',
+    companyName: 'ППО №3',
     cityAddress: 'г. Тольятти, ул. Окраинная, 24',
   },
   forms: {
@@ -200,6 +202,7 @@ const en: Dictionary = {
     slotting: 'Slotting',
     dieCastingSalesRepair: 'Die Casting Sales & Repair',
     heatTreatment: 'Heat Treatment',
+    spectralAnalysis: 'Metal Spectral Analysis',
     forgePressRepair: 'Forge & Press Repair',
     frictionProducts: 'Our Friction Products',
     frictionTechnicalSpecs: 'Technical Specifications',
@@ -295,6 +298,7 @@ const NAV_HREF_LABELS: Record<string, keyof Dictionary['nav']> = {
   '/dolbezhnye-raboty': 'slotting',
   '/mashiny-dlya-litya-pod-davleniem': 'dieCastingSalesRepair',
   '/termoobrabotka': 'heatTreatment',
+  '/termoobrabotka#spektralnyy-analiz': 'spectralAnalysis',
   '/remont-kuznechno-pressovogo-oborudovaniya': 'forgePressRepair',
   '/frikcionnye-nakladki/nashi-izdeliya': 'frictionProducts',
   '/frikcionnye-nakladki/tu': 'frictionTechnicalSpecs',

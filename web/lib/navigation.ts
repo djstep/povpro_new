@@ -70,5 +70,9 @@ export const USLUGI_CHILDREN: NavMenuItem[] = [
     activeSlugs: ['remont-mashin-dlya-litya-pod-davleniem'],
   },
   { href: '/termoobrabotka', label: 'Термообработка' },
+  {
+    href: '/termoobrabotka#spektralnyy-analiz',
+    label: 'Спектральный анализ металла',
+  },
   { href: '/remont-kuznechno-pressovogo-oborudovaniya', label: 'Ремонт КПО' },
 ];

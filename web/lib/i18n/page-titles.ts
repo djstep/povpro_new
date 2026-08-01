@@ -20,9 +20,15 @@ export const EN_PAGE_TITLES: Record<string, string> = {
   'metalloobrabotka': 'Services',
   'mashiny-dlya-litya-pod-davleniem': 'Die Casting Machines',
   'remont-mashin-dlya-litya-pod-davleniem': 'Die Casting Machine Repair',
-  'termoobrabotka': 'Heat Treatment',
+  'termoobrabotka': 'Heat Treatment & Metal Spectral Analysis',
   'remont-kuznechno-pressovogo-oborudovaniya': 'Forge & Press Equipment Repair',
   'contacts': 'Contacts',
   'otzyvy-o-ppo': 'Reviews',
   'policy': 'Privacy Policy',
+};
+
+/** Optional English meta descriptions for key landing pages. */
+export const EN_PAGE_DESCRIPTIONS: Record<string, string> = {
+  termoobrabotka:
+    'Heat treatment of parts, metal spectral analysis for steel grade determination, and hardness testing. PPO №3, Tolyatti.',
 };

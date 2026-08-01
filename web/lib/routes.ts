@@ -41,7 +41,12 @@ export const ROUTES = {
     slug: 'remont-mashin-dlya-litya-pod-davleniem',
     title: 'Ремонт МЛД',
   },
-  '/termoobrabotka': { slug: 'termoobrabotka', title: 'Термообработка' },
+  '/termoobrabotka': {
+    slug: 'termoobrabotka',
+    title: 'Термообработка и спектральный анализ металла',
+    description:
+      'Термообработка деталей, спектральный анализ металла на определение марки стали и замеры твёрдости. ООО «ППО №3», Тольятти.',
+  },
   '/remont-kuznechno-pressovogo-oborudovaniya': {
     slug: 'remont-kuznechno-pressovogo-oborudovaniya',
     title: 'Ремонт кузнечно-прессового оборудования',

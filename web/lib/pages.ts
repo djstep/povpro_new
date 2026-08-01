@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import type { Locale } from './i18n/config';
-import { EN_PAGE_TITLES } from './i18n/page-titles';
+import { EN_PAGE_TITLES, EN_PAGE_DESCRIPTIONS } from './i18n/page-titles';
 import { ROUTES, pathToSlug } from './routes';
 
 const contentDir = path.join(process.cwd(), 'content');
@@ -26,6 +26,16 @@ export function getPageTitle(slug: string, locale: Locale = 'ru'): string {
   const key = slug === '' ? '/' : (`/${slug}` as keyof typeof ROUTES);
   const route = ROUTES[key as keyof typeof ROUTES];
   return route?.title ?? (locale === 'en' ? 'Page' : 'Страница');
+}
+
+export function getPageDescription(slug: string, locale: Locale = 'ru'): string | undefined {
+  if (locale === 'en') {
+    const en = EN_PAGE_DESCRIPTIONS[slug];
+    if (en) return en;
+  }
+  const key = slug === '' ? '/' : (`/${slug}` as keyof typeof ROUTES);
+  const route = ROUTES[key as keyof typeof ROUTES] as { description?: string } | undefined;
+  return route?.description;
 }
 
 export function getPageContent(slug: string, locale: Locale = 'ru'): string | null {
