@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next';
+import { Suspense } from 'react';
 import { geistSans } from '@/lib/fonts';
+import { ThirdPartyAnalytics } from '@/components/analytics/ThirdPartyAnalytics';
 import './globals.css';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://povpro.ru';
@@ -54,6 +56,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={`${geistSans.className} selection:bg-primary-container selection:text-on-primary-container`}>
+        <Suspense fallback={null}>
+          <ThirdPartyAnalytics />
+        </Suspense>
         {children}
       </body>
     </html>

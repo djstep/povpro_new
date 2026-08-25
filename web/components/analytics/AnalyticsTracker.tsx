@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { trackThirdPartyFormSubmit } from '@/components/analytics/ThirdPartyAnalytics';
 
 const SESSION_KEY = 'ppo_analytics_sid';
 
@@ -100,4 +101,5 @@ export function trackFormSubmit(source: string) {
     path: typeof window !== 'undefined' ? window.location.pathname : undefined,
     metadata: { source },
   });
+  trackThirdPartyFormSubmit(source);
 }
