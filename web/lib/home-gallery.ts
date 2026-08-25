@@ -1,7 +1,5 @@
-import { resolveAssetUrl } from './resolve-asset-urls';
-
-/** Локальные файлы галереи в public (остальные — с povpro.ru) */
-const LOCAL_GALLERY_IMAGE_IDS = new Set([22]);
+/** Локальные файлы галереи в public (webp предпочтительнее для тяжёлых jpg). */
+const LOCAL_GALLERY_WEBP_IDS = new Set([22, 25, 26]);
 
 export type HomeGalleryItem =
   | { kind: 'image'; id: number }
@@ -12,11 +10,10 @@ export function homeGalleryItemKey(item: HomeGalleryItem): string {
 }
 
 export function homeGalleryImageUrl(id: number): string {
-  if (LOCAL_GALLERY_IMAGE_IDS.has(id)) {
-    // Локальные файлы имеют webp-версию — она в разы легче jpg
+  if (LOCAL_GALLERY_WEBP_IDS.has(id)) {
     return `/assets/img/povpro-gallery-${id}.webp`;
   }
-  return resolveAssetUrl(`/assets/img/povpro-gallery-${id}.jpg`);
+  return `/assets/img/povpro-gallery-${id}.jpg`;
 }
 
 /** Все фото и видео галереи «Производство в деталях» — единый список */
