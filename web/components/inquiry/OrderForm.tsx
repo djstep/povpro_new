@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from 'react';
 import { useLocale, useT } from '@/components/i18n/LocaleProvider';
 import { localizedPath } from '@/lib/i18n/locale';
+import { formatRuPhoneInput } from '@/lib/phone';
 
 const ACCEPT = '.pdf,.dwg,.docx,.zip,application/pdf,application/zip';
 const MAX_FILE_BYTES = 20 * 1024 * 1024;
@@ -141,8 +142,11 @@ export function OrderForm({
             className={INPUT_FIELD}
             placeholder={t.forms.phonePlaceholder}
             type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            maxLength={18}
             value={phone}
-            onChange={(e) => onPhoneChange(e.target.value)}
+            onChange={(e) => onPhoneChange(formatRuPhoneInput(e.target.value))}
           />
         </div>
         <div>

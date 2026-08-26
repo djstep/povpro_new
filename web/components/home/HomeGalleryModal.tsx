@@ -39,6 +39,7 @@ function GalleryCard({ item, index, posterSrc, onOpen }: GalleryCardProps) {
           fill
           sizes="(max-width: 640px) 100vw, 33vw"
           className="home-gallery-modal__img"
+          loading="eager"
         />
       ) : (
         <div className="home-gallery-modal__img home-gallery-modal__video-placeholder" />

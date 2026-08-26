@@ -46,7 +46,7 @@ export function renderContentBlocks(blocks: ContentBlock[]): string {
       <h1 class="font-headline-xl text-headline-xl text-on-surface">${esc(block.title)}</h1>
       ${block.subtitle ? `<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">${esc(block.subtitle)}</p>` : ''}
     </div>
-    ${block.image ? `<div class="flex-1 w-full aspect-[4/3] rounded-xl overflow-hidden"><img src="${esc(block.image)}" alt="${esc(block.title)}" class="w-full h-full object-cover" loading="lazy"/></div>` : ''}
+    ${block.image ? `<div class="flex-1 w-full aspect-[4/3] rounded-xl overflow-hidden"><img src="${esc(block.image)}" alt="${esc(block.title)}" class="w-full h-full object-cover" loading="eager" decoding="async"/></div>` : ''}
   </div>
 </section>`;
       case 'heading': {
@@ -64,7 +64,7 @@ export function renderContentBlocks(blocks: ContentBlock[]): string {
       case 'image':
         return `<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop w-full mb-8">
   <figure class="liquid-card rounded-xl overflow-hidden p-2">
-    <img src="${esc(block.src)}" alt="${esc(block.alt ?? '')}" class="w-full rounded-lg object-cover max-h-[32rem]" loading="lazy"/>
+    <img src="${esc(block.src)}" alt="${esc(block.alt ?? '')}" class="w-full rounded-lg object-cover max-h-[32rem]" loading="eager" decoding="async"/>
     ${block.caption ? `<figcaption class="font-body-md text-body-md text-on-surface-variant mt-3 px-2">${esc(block.caption)}</figcaption>` : ''}
   </figure>
 </section>`;

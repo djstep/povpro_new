@@ -54,12 +54,20 @@ export function rewriteContentAssets(html: string): string {
     return `src="${resolveContentAssetUrl(`/assets/img/${file}`, imgIndex)}"`;
   });
 
-  let imgLazyIndex = 0;
+  let imgEagerIndex = 0;
   out = out.replace(/<img(?![^>]*\bloading=)/gi, () => {
-    imgLazyIndex += 1;
-    if (imgLazyIndex === 1) return '<img fetchpriority="high" ';
-    return '<img loading="lazy" decoding="async" ';
+    imgEagerIndex += 1;
+    if (imgEagerIndex === 1) return '<img fetchpriority="high" loading="eager" decoding="async" ';
+    return '<img loading="eager" decoding="async" ';
   });
+
+  // Уже размеченные lazy — грузим сразу (схемы фрикционов оставляем lazy)
+  out = out.replace(/<img\b[^>]*>/gi, (tag) => {
+    if (/friction-table-schema/i.test(tag)) return tag;
+    return tag.replace(/\bloading=(["'])lazy\1/gi, 'loading=$1eager$1');
+  });
+
+  out = out.replace(/<video(?![^>]*\bpreload=)/gi, '<video preload="auto" ');
 
   return out;
 }

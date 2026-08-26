@@ -12,7 +12,7 @@ const ALLOWED_EXT = new Set(['.pdf', '.dwg', '.docx', '.zip']);
 
 const fieldsSchema = z.object({
   name: z.string().min(1).max(200),
-  phone: z.string().max(50).optional(),
+  phone: z.string().max(18).optional(),
   email: z.string().email().max(200).optional().or(z.literal('')),
   company: z.string().max(300).optional(),
   message: z.string().max(5000).optional(),

@@ -76,6 +76,7 @@ export type Dictionary = {
     consentError: string;
     nameRequired: string;
     phoneRequired: string;
+    phoneInvalid: string;
     emailRequired: string;
     orderTitle: string;
     orderLead1: string;
@@ -166,6 +167,7 @@ const ru: Dictionary = {
     consentError: 'Подтвердите согласие с политикой и обработкой персональных данных',
     nameRequired: 'Укажите имя',
     phoneRequired: 'Укажите телефон',
+    phoneInvalid: 'Введите телефон полностью: +7 (___) ___-__-__',
     emailRequired: 'Укажите email',
     orderTitle: 'Сделать заказ',
     orderLead1:
@@ -257,6 +259,7 @@ const en: Dictionary = {
     consentError: 'Please confirm agreement with the privacy policy and personal data processing',
     nameRequired: 'Please enter your name',
     phoneRequired: 'Please enter your phone number',
+    phoneInvalid: 'Enter the full phone number: +7 (___) ___-__-__',
     emailRequired: 'Please enter your email',
     orderTitle: 'Place an Order',
     orderLead1:

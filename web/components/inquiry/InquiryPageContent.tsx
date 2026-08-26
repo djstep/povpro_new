@@ -5,6 +5,7 @@ import { useMemo, useState } from 'react';
 import { submitInquiry } from '@/lib/inquiry-api';
 import { trackFormSubmit } from '@/components/analytics/AnalyticsTracker';
 import { useT } from '@/components/i18n/LocaleProvider';
+import { formatRuPhoneInput, isCompleteRuPhone } from '@/lib/phone';
 import { OrderForm } from './OrderForm';
 
 function splitLegacyContact(contact: string): { phone: string; email: string } {
@@ -29,7 +30,9 @@ export function InquiryPageContent() {
 
   const [name, setName] = useState(() => searchParams.get('name') ?? '');
   const [company, setCompany] = useState(() => searchParams.get('company') ?? '');
-  const [phone, setPhone] = useState(() => initialContact.phone);
+  const [phone, setPhone] = useState(() =>
+    initialContact.phone ? formatRuPhoneInput(initialContact.phone) : '',
+  );
   const [email, setEmail] = useState(() => initialContact.email);
   const [message, setMessage] = useState(() => searchParams.get('message') ?? '');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -45,6 +48,11 @@ export function InquiryPageContent() {
     if (!phone.trim()) {
       setStatus('error');
       setErrorText(t.forms.phoneRequired);
+      return;
+    }
+    if (!isCompleteRuPhone(phone)) {
+      setStatus('error');
+      setErrorText(t.forms.phoneInvalid);
       return;
     }
     if (!email.trim()) {
