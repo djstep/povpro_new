@@ -56,4 +56,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: ['/admin/:path*', '/api/admin/:path*'],
+  // Node runtime: доступ к ADMIN_PASSWORD / ADMIN_SESSION_SECRET из .env на VPS
+  runtime: 'nodejs',
 };
