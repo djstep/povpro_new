@@ -1,5 +1,4 @@
 import nodemailer from 'nodemailer';
-import { SITE_CONTACTS } from '@/lib/site-contacts';
 
 export type MailAttachment = {
   filename: string;
@@ -22,37 +21,73 @@ function sanitizeHeaderValue(value: string): string {
   return value.replace(/[\r\n\u0000-\u001f\u007f]+/g, ' ').trim();
 }
 
-function smtpConfigured(): boolean {
-  return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
+function parseRecipients(raw: string | undefined): string[] {
+  if (!raw?.trim()) return [];
+  return raw
+    .split(/[,;]+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+/** Как на старом сайте: sendmail/postfix без паролей. Либо SMTP с логином. */
+function getMailTransportMode(): 'sendmail' | 'smtp' | 'none' {
+  const explicit = process.env.MAIL_TRANSPORT?.trim().toLowerCase();
+  if (explicit === 'sendmail') return 'sendmail';
+  if (explicit === 'smtp') return 'smtp';
+  if (explicit === 'none') return 'none';
+  if (process.env.MAIL_USE_SENDMAIL === 'true') return 'sendmail';
+  if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) return 'smtp';
+  return 'none';
 }
 
 export function isMailConfigured(): boolean {
-  return smtpConfigured();
+  return getMailTransportMode() !== 'none';
 }
 
 function createTransport() {
-  const host = process.env.SMTP_HOST!;
-  const port = Number(process.env.SMTP_PORT || 587);
-  const secure = process.env.SMTP_SECURE === 'true' || port === 465;
+  const mode = getMailTransportMode();
 
-  return nodemailer.createTransport({
-    host,
-    port,
-    secure,
-    auth: {
-      user: process.env.SMTP_USER!,
-      pass: process.env.SMTP_PASS!,
-    },
-  });
+  if (mode === 'sendmail') {
+    // Аналог PHP mail() на Beget: локальный MTA (postfix/sendmail)
+    return nodemailer.createTransport({
+      sendmail: true,
+      newline: 'unix',
+      path: process.env.SENDMAIL_PATH || '/usr/sbin/sendmail',
+    });
+  }
+
+  if (mode === 'smtp') {
+    const host = process.env.SMTP_HOST!;
+    const port = Number(process.env.SMTP_PORT || 587);
+    const secure = process.env.SMTP_SECURE === 'true' || port === 465;
+    return nodemailer.createTransport({
+      host,
+      port,
+      secure,
+      auth: {
+        user: process.env.SMTP_USER!,
+        pass: process.env.SMTP_PASS!,
+      },
+    });
+  }
+
+  throw new Error('Почта не настроена: MAIL_TRANSPORT=sendmail или SMTP_*');
+}
+
+function resolveRecipients(): string[] {
+  const fromEnv = parseRecipients(process.env.MAIL_TO);
+  if (fromEnv.length > 0) return fromEnv;
+  // Как в старом model.php: admin@ + logistica@
+  return ['admin@povpro.ru', 'logistica@povpro.ru'];
 }
 
 export async function sendInquiryMail(payload: InquiryMailPayload): Promise<void> {
-  if (!smtpConfigured()) {
-    throw new Error('SMTP не настроен: задайте SMTP_HOST, SMTP_USER, SMTP_PASS в .env');
+  if (!isMailConfigured()) {
+    throw new Error('Почта не настроена');
   }
 
-  const to = process.env.MAIL_TO || SITE_CONTACTS.email;
-  const from = process.env.MAIL_FROM || process.env.SMTP_USER!;
+  const to = resolveRecipients();
+  const from = process.env.MAIL_FROM || 'noreply@povpro.ru';
 
   const lines = [
     'Новая заявка с сайта «ППО №3»',
@@ -73,10 +108,10 @@ export async function sendInquiryMail(payload: InquiryMailPayload): Promise<void
 
   const transport = createTransport();
   await transport.sendMail({
-    from: `"«ППО №3» — сайт" <${from}>`,
+    from: `"PovPro.ru" <${from}>`,
     to,
     replyTo: safeReplyTo || undefined,
-    subject: `Заявка с сайта: ${safeName}${safeCompany ? ` (${safeCompany})` : ''}`,
+    subject: `Новый заказ с сайта: ${safeName}${safeCompany ? ` (${safeCompany})` : ''}`,
     text: lines.join('\n'),
     attachments: (payload.attachments ?? []).map((file) => ({
       filename: sanitizeHeaderValue(file.filename) || 'attachment',

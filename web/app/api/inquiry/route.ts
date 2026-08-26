@@ -140,14 +140,14 @@ export async function POST(request: Request) {
       console.error('[inquiry mail]', e);
       return NextResponse.json(
         {
-          error: 'Заявка сохранена, но не удалось отправить письмо. Проверьте SMTP.',
+          error: 'Заявка сохранена, но не удалось отправить письмо. Проверьте почту на сервере.',
           id: inquiryId,
         },
         { status: 502 },
       );
     }
   } else {
-    console.warn('[inquiry] SMTP не настроен — письмо не отправлено');
+    console.warn('[inquiry] Почта не настроена — письмо не отправлено');
   }
 
   return NextResponse.json({
@@ -156,6 +156,6 @@ export async function POST(request: Request) {
     mailed: isMailConfigured(),
     message: isMailConfigured()
       ? undefined
-      : 'Заявка принята (SMTP не настроен — письмо не отправлено)',
+      : 'Заявка принята (почта не настроена — письмо не отправлено)',
   });
 }
