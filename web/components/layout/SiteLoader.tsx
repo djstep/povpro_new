@@ -46,7 +46,7 @@ export function SiteLoader() {
       className={`site-loader${phase === 'fade' ? ' site-loader--fade' : ''}`}
       role="status"
       aria-live="polite"
-      aria-busy={phase !== 'done'}
+      aria-busy="true"
       aria-label="Загрузка сайта"
     >
       <img
