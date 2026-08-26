@@ -112,6 +112,21 @@
   pointer-events: none;
 }
 
+.site-content .mech-examples-thumb {
+  border-radius: 0.75rem !important;
+  overflow: hidden !important;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.site-content .mech-examples-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  object-position: center;
+  transform: none !important;
+  scale: 1 !important;
+}
+
 .site-content .frezernye-hero-photo,
 .site-content .frezernye-hero-photo img {
   border: none !important;

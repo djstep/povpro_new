@@ -4,6 +4,8 @@ import { NavigationProvider } from '@/components/layout/NavigationProvider';
 import { Footer } from '@/components/layout/Footer';
 import { InquiryBridge } from '@/components/inquiry/InquiryBridge';
 import { HomeGalleryBridge } from '@/components/home/HomeGalleryBridge';
+import { HomeGalleryPreviewFix } from '@/components/home/HomeGalleryPreviewFix';
+import { PageTransition } from '@/components/layout/PageTransition';
 import { Suspense } from 'react';
 import { AnalyticsTracker } from '@/components/analytics/AnalyticsTracker';
 import { LocaleShell } from '@/components/i18n/LocaleShell';
@@ -17,10 +19,11 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <NavigationProvider nav={nav}>
         <MobileMenuProvider>
           <Header />
-          {children}
+          <PageTransition>{children}</PageTransition>
           <Footer />
           <InquiryBridge />
           <HomeGalleryBridge />
+          <HomeGalleryPreviewFix />
           <Suspense fallback={null}>
             <AnalyticsTracker />
           </Suspense>

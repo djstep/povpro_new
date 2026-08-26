@@ -11,17 +11,22 @@
   background: transparent !important;
 }
 
-.site-content .edm-hero-photo {
-  line-height: 0;
-  align-self: start;
-}
-
 .site-content .edm-hero-photo img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 0 !important;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0.75rem !important;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.site-content .edm-hero-photo {
+  line-height: 0;
+  align-self: start;
+  border-radius: 0.75rem !important;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .site-content .edm-wire-intro {
@@ -61,13 +66,21 @@
 .site-content .edm-wire-block .edm-wire-image img {
   display: block;
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 0 !important;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.75rem !important;
+  background: transparent !important;
   transform: none !important;
   scale: 1 !important;
   transition: none !important;
   animation: none !important;
+}
+
+.site-content .edm-wire-block .edm-machine-photo {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 0.75rem !important;
 }
 
 .site-content .edm-wire-block:hover .edm-machine-photo,
