@@ -108,10 +108,10 @@ export function Header() {
         <div className="site-nav-top px-3 sm:px-5 md:px-8 lg:px-margin-desktop py-2.5 sm:py-3 md:py-4 flex justify-between items-center gap-2 sm:gap-4 max-w-container-max mx-auto w-full min-w-0">
           <Link
             href={localizedPath('/', locale)}
-            className="site-nav-logo font-headline-lg-mobile text-primary font-black tracking-tighter text-[1.35rem] sm:text-[1.65rem] md:text-[2.5rem] leading-tight flex items-center gap-2 sm:gap-3 md:gap-4 no-underline min-w-0 shrink"
+            className="site-nav-logo font-headline-lg-mobile text-primary font-black tracking-tighter text-[1.35rem] sm:text-[1.65rem] md:text-[2.5rem] leading-none flex items-center gap-2 sm:gap-3 md:gap-4 no-underline min-w-0 shrink overflow-visible"
           >
             <Image src={LOGO} alt={t.common.companyName} width={48} height={48} className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain shrink-0" />
-            <span className="truncate">{t.common.companyName}</span>
+            <span className="whitespace-nowrap overflow-visible pb-[0.12em]">{t.common.companyName}</span>
           </Link>
           <div className="flex items-center gap-2 sm:gap-3 md:gap-6 min-w-0 shrink-0">
             <div className="hidden md:flex flex-col gap-2 min-w-0 items-center nav-contact-row">

@@ -130,4 +130,28 @@
       animation: none;
     }
   }
+
+  .site-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    background: #051424;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    pointer-events: auto;
+  }
+
+  .site-loader--fade {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .site-loader__mark {
+    width: min(42vw, 200px);
+    height: auto;
+    display: block;
+    user-select: none;
+  }
 }
