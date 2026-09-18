@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { revalidateSiteContent } from '@/lib/revalidate-site';
 import { z } from 'zod';
 import { requireAdminApi } from '@/lib/admin-api-guard';
-import { getEditablePageHtml, getPageRecord, isProtectedSlug } from '@/lib/cms/resolve-page-html';
+import { getAdminPageBaseHtml, getPageRecord, isProtectedSlug } from '@/lib/cms/resolve-page-html';
 import { parseContentBlocks } from '@/lib/cms/content-blocks';
 import { extractTextBlocks } from '@/lib/cms/extract-blocks';
 import { getPageContent, getPageTitle } from '@/lib/pages';
@@ -20,13 +20,13 @@ export async function GET(_request: Request, { params }: Params) {
   if (denied) return denied;
 
   const slug = decodeSlug((await params).slug);
-  const html = (await getEditablePageHtml(slug)) ?? getPageContent(slug);
-  if (!html) {
+  const baseHtml = (await getAdminPageBaseHtml(slug)) ?? getPageContent(slug);
+  if (!baseHtml) {
     return NextResponse.json({ error: 'Страница не найдена' }, { status: 404 });
   }
 
   const pageSlug = slug || 'home';
-  const extracted = extractTextBlocks(html, pageSlug);
+  const extracted = extractTextBlocks(baseHtml, pageSlug);
   const record = await getPageRecord(slug);
 
   let dbBlocks: Awaited<ReturnType<typeof prisma.textBlock.findMany>> = [];
@@ -45,7 +45,7 @@ export async function GET(_request: Request, { params }: Params) {
     return {
       blockKey: block.blockKey,
       label: block.label,
-      originalText: block.originalText,
+      originalText: saved?.originalText ?? block.originalText,
       content: saved?.content ?? block.originalText,
       saved: Boolean(saved),
     };
@@ -56,7 +56,8 @@ export async function GET(_request: Request, { params }: Params) {
   return NextResponse.json({
     slug,
     title: record?.title ?? getPageTitle(slug),
-    html,
+    html: baseHtml,
+    baseHtml,
     textBlocks,
     contentBlocks,
     pageMeta: {

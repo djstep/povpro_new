@@ -154,4 +154,24 @@
     display: block;
     user-select: none;
   }
+
+  /* Админка: click-to-edit текстовых фрагментов на превью */
+  .cms-text-preview .cms-editable {
+    outline: 1px dashed rgba(56, 189, 248, 0.35);
+    outline-offset: 2px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: outline-color 0.15s ease, background-color 0.15s ease;
+  }
+  .cms-text-preview .cms-editable:hover {
+    outline-color: rgba(56, 189, 248, 0.85);
+    background: rgba(56, 189, 248, 0.08);
+  }
+  .cms-text-preview .cms-editable.is-active {
+    outline: 2px solid rgb(56, 189, 248);
+    background: rgba(56, 189, 248, 0.12);
+  }
+  .cms-text-preview a {
+    pointer-events: none;
+  }
 }

@@ -146,7 +146,8 @@ export async function resolvePageHtml(slug: string, locale: Locale = 'ru'): Prom
   )();
 }
 
-export async function getEditablePageHtml(slug: string): Promise<string | null> {
+/** Базовый HTML для админки: без текстовых правок, с подменой медиа (для превью и извлечения блоков). */
+export async function getAdminPageBaseHtml(slug: string): Promise<string | null> {
   const normalized = slug === 'home' ? '' : slug;
 
   if (isDbConfigured()) {
@@ -155,13 +156,8 @@ export async function getEditablePageHtml(slug: string): Promise<string | null> 
       if (page) {
         const raw = blocksToHtml(page.contentBlocks, page.body);
         if (raw) {
-          const { media, text } = await loadOverrides();
-          const slugText = text.filter(
-            (b) => b.pageSlug === normalized || b.pageSlug === (normalized || 'home'),
-          );
-          let html = applyTextBlockOverrides(raw, slugText);
-          html = applyMediaOverrides(html, media);
-          return html;
+          const { media } = await loadOverrides();
+          return applyMediaOverrides(raw, media);
         }
       }
     } catch {
@@ -171,13 +167,20 @@ export async function getEditablePageHtml(slug: string): Promise<string | null> 
 
   const fileHtml = getPageContent(normalized, 'ru');
   if (!fileHtml) return null;
-  const { media, text } = await loadOverrides();
+  const { media } = await loadOverrides();
+  return applyMediaOverrides(fileHtml, media);
+}
+
+export async function getEditablePageHtml(slug: string): Promise<string | null> {
+  const normalized = slug === 'home' ? '' : slug;
+  const base = await getAdminPageBaseHtml(normalized);
+  if (!base) return null;
+
+  const { text } = await loadOverrides();
   const slugText = text.filter(
     (b) => b.pageSlug === normalized || b.pageSlug === (normalized || 'home'),
   );
-  let html = applyTextBlockOverrides(fileHtml, slugText);
-  html = applyMediaOverrides(html, media);
-  return html;
+  return applyTextBlockOverrides(base, slugText);
 }
 
 export async function getPageRecord(slug: string) {
