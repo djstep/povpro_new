@@ -17,6 +17,7 @@ enum InquiryStatus {
 enum MediaKind {
   IMAGE
   VIDEO
+  DOCUMENT
 }
 
 enum NavSection {

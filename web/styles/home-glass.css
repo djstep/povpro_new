@@ -24,6 +24,16 @@
   width: 100%;
 }
 
+/* Несколько кнопок-презентаций (добавляются из админки) — шире и с переносом */
+.site-content .home-hero-doc-btns:has(> .home-hero-doc-btn + .home-hero-doc-btn) {
+  max-width: 46rem;
+  flex-wrap: wrap;
+}
+
+.site-content .home-hero-doc-btns:has(> .home-hero-doc-btn + .home-hero-doc-btn) > .home-hero-doc-btn {
+  flex: 1 1 18rem;
+}
+
 /* Главная: вдвое меньше зазор между формой заявки и футером (только мобилка) */
 @media (max-width: 767px) {
   .site-content:has(.home-hero) > main {

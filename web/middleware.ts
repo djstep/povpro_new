@@ -55,7 +55,9 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/api/admin/:path*'],
+  // /api/admin/upload исключён: с Node-middleware Next 15.5 multipart-тело больше ~0.5 МБ
+  // приходит в роут «disturbed or locked» (500). Авторизацию роут проверяет сам (requireAdminApi).
+  matcher: ['/admin/:path*', '/api/admin/((?!upload(?:/|$)).*)'],
   // Node runtime: доступ к ADMIN_PASSWORD / ADMIN_SESSION_SECRET из .env на VPS
   runtime: 'nodejs',
 };

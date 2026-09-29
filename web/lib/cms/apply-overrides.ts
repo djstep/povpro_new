@@ -17,6 +17,10 @@ function replaceSrcInHtml(html: string, originalSrc: string, replacementSrc: str
 
   out = out.replace(new RegExp(`url\\(['"]?${escaped}['"]?\\)`, 'g'), `url('${replacementSrc}')`);
 
+  if (kind === 'DOCUMENT') {
+    out = out.replace(new RegExp(`(href=["'])${escaped}([?#][^"']*)?(["'])`, 'g'), `$1${replacementSrc}$3`);
+  }
+
   if (kind === 'IMAGE') {
     out = out.replace(new RegExp(`(<img[^>]+src=["'])${escaped}(["'])`, 'gi'), `$1${replacementSrc}$2`);
     if (replacementSrc !== originalSrc) {

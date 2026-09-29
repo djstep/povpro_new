@@ -1,0 +1,259 @@
+/* Блоки, добавленные через админку (lib/cms/content-blocks.ts).
+   Стили заданы явно, без Tailwind-классов, чтобы не зависеть от сканирования content. */
+
+.cms-section {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto 4rem;
+  padding-inline: 8px;
+}
+
+@media (min-width: 768px) {
+  .cms-section {
+    padding-inline: 48px;
+    margin-bottom: 5rem;
+  }
+}
+
+/* Страницы, где <main> уже задаёт ширину и отступы */
+main.max-w-container-max .cms-section,
+main[class*='px-margin'] .cms-section {
+  padding-inline: 0;
+}
+
+.cms-card {
+  position: relative;
+  background-color: rgba(28, 43, 60, 0.4);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 10px 40px -10px rgba(0, 0, 0, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.12);
+  border-radius: 2rem;
+  padding: 2rem 1.5rem;
+  color: #c2c6d6;
+}
+
+@media (min-width: 768px) {
+  .cms-card {
+    border-radius: 3rem;
+    padding: 4rem;
+  }
+}
+
+.cms-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.cms-card--split {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .cms-card--split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+  }
+
+  .cms-card--media-left .cms-card__media {
+    order: -1;
+  }
+}
+
+.cms-card__media {
+  width: 100%;
+}
+
+/* Заголовки */
+.cms-page-title {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 56rem;
+  font-size: clamp(1.75rem, 6vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  color: #d4e4fa;
+}
+
+.cms-h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  color: #d4e4fa;
+}
+
+.cms-h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 600;
+  color: #adc6ff;
+}
+
+@media (min-width: 768px) {
+  .cms-h2 {
+    font-size: 32px;
+  }
+
+  .cms-h3 {
+    font-size: 24px;
+  }
+}
+
+/* Текст */
+.cms-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #c2c6d6;
+}
+
+.cms-text > * + * {
+  margin-top: 1rem;
+}
+
+.cms-text p {
+  margin: 0;
+}
+
+.cms-text h2,
+.cms-text h3,
+.cms-text h4 {
+  font-weight: 600;
+  line-height: 1.25;
+  color: #d4e4fa;
+  margin-top: 1.5rem;
+}
+
+.cms-text h2 {
+  font-size: 24px;
+}
+
+.cms-text h3,
+.cms-text h4 {
+  font-size: 20px;
+  color: #adc6ff;
+}
+
+.cms-text strong,
+.cms-text b {
+  color: #d4e4fa;
+  font-weight: 600;
+}
+
+.cms-text a {
+  color: #adc6ff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cms-text ul,
+.cms-text ol {
+  padding-left: 1.25rem;
+}
+
+.cms-text ul {
+  list-style: disc;
+}
+
+.cms-text ol {
+  list-style: decimal;
+}
+
+.cms-text li + li {
+  margin-top: 0.5rem;
+}
+
+.cms-text li::marker {
+  color: #adc6ff;
+}
+
+/* Фото и видео внутри карточки (во всю ширину) */
+.cms-figure {
+  margin: 0;
+}
+
+.cms-figure img,
+.cms-figure video {
+  display: block;
+  width: 100%;
+  max-height: 36rem;
+  object-fit: cover;
+  border-radius: 2rem;
+  border: 1px solid rgba(140, 144, 159, 0.2);
+}
+
+.cms-figure figcaption {
+  margin-top: 0.75rem;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #8c909f;
+}
+
+/* Кнопки / презентации */
+.cms-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.cms-buttons--center {
+  justify-content: center;
+}
+
+.cms-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #adc6ff;
+  background-color: rgba(28, 43, 60, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.cms-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(173, 198, 255, 0.5);
+}
+
+.cms-button .material-symbols-outlined {
+  font-size: 20px;
+}
+
+@media (max-width: 639px) {
+  .cms-button {
+    width: 100%;
+  }
+}
+
+/* Превью блоков в админке — фон как на сайте */
+.cms-blocks-preview {
+  background: #051424 !important;
+  color: #d4e4fa;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+.cms-blocks-preview a {
+  pointer-events: none;
+}

@@ -205,6 +205,26 @@ mkdir -p public/assets/uploads
 chmod -R u+rw public/assets/uploads
 ```
 
+### Лимит размера загрузки в nginx
+
+Админка принимает файлы до 50 МБ (фото, видео, PDF-презентации). По умолчанию nginx пропускает только ~1 МБ и на больших файлах отдаёт HTML-страницу «413 Request Entity Too Large» — в админке это выглядит как ошибка `Unexpected token '<', "<!DOCTYPE"... is not valid JSON` (или «Файл слишком большой для сервера»).
+
+Найдите конфиг сайта (обычно `/etc/nginx/sites-enabled/…` или `/etc/nginx/conf.d/…`, где есть `proxy_pass http://127.0.0.1:3000`) и добавьте в блок `server { … }`:
+
+```nginx
+client_max_body_size 64m;
+proxy_read_timeout 300s;
+proxy_send_timeout 300s;
+```
+
+Проверить и применить:
+
+```bash
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+Если прав на nginx нет (виртуальный хостинг) — попросите поддержку Beget увеличить `client_max_body_size` до 64 МБ.
+
 ---
 
 ## 4. Чеклист после обновления админки
@@ -241,6 +261,8 @@ pm2 restart povpro
 | «DATABASE_URL не настроен» | Путь к `.env`, перезапуск pm2 после правки `.env` |
 | Сборка падает на assets | Скрипт `verify-public-assets` — на месте ли файлы в `web/public/assets` |
 | Картинки из админки не сохраняются | Права на `web/public/assets/uploads`, на Beget/Vercel FS иногда read-only — на своём VPS обычно ок |
+| Загрузка: `Unexpected token '<'` / «Файл слишком большой для сервера» | Лимит nginx — `client_max_body_size 64m` (раздел «Лимит размера загрузки в nginx») |
+| Не сохраняется замена PDF в «Презентациях» | Не выполнен `npx prisma db push` после обновления (в схеме новый тип `DOCUMENT`) |
 | Старый интерфейс админки | Кэш браузера / CDN; убедитесь что `build` прошёл и pm2 поднял **новый** `.next` |
 | `git pull` ничего не дал | Локально не запушили в тот remote/ветку, откуда тянет сервер |
 
@@ -251,7 +273,7 @@ pm2 restart povpro
 ```bash
 ssh USER@HOST
 cd APP_DIR && git pull origin main
-cd web && npm ci && npx prisma generate && npm run build && pm2 restart povpro
+cd web && npm ci && npx prisma generate && npx prisma db push && npm run build && pm2 restart povpro
 pm2 logs povpro --lines 30
 ```
 

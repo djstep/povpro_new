@@ -37,6 +37,7 @@
 @import '../styles/photo-hover-clip.css';
 @import '../styles/card-hover-glow.css';
 @import '../styles/mech-service-icons.css';
+@import '../styles/cms-blocks.css';
 
 @layer base {
   html {

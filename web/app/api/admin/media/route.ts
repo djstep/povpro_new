@@ -7,6 +7,7 @@ import {
   deleteUploadFile,
   findMediaUsage,
   listMediaLibrary,
+  mediaPreviewSrc,
   scanSiteMediaWithDb,
 } from '@/lib/cms/extract-media';
 
@@ -32,6 +33,7 @@ export async function GET(request: Request) {
   }
 
   const scanned = await scanSiteMediaWithDb();
+  const library = await listMediaLibrary(scanned);
   let overrides: Awaited<ReturnType<typeof prisma.mediaOverride.findMany>> = [];
 
   if (isDbConfigured()) {
@@ -61,6 +63,7 @@ export async function GET(request: Request) {
             }
           : null,
         effectiveSrc: override?.replacementSrc ?? item.src,
+        previewSrc: mediaPreviewSrc(override?.replacementSrc ?? item.src),
       };
     });
 
@@ -79,11 +82,10 @@ export async function GET(request: Request) {
           updatedAt: override.updatedAt.toISOString(),
         },
         effectiveSrc: override.replacementSrc,
+        previewSrc: mediaPreviewSrc(override.replacementSrc),
       });
     }
   }
-
-  const library = await listMediaLibrary();
 
   return NextResponse.json({ items, library });
 }
@@ -92,7 +94,7 @@ const saveSchema = z.object({
   originalSrc: z.string().min(1).max(2000),
   replacementSrc: z.string().min(1).max(2000),
   alt: z.string().max(500).optional(),
-  kind: z.enum(['IMAGE', 'VIDEO']).optional(),
+  kind: z.enum(['IMAGE', 'VIDEO', 'DOCUMENT']).optional(),
 });
 
 export async function POST(request: Request) {
@@ -118,7 +120,11 @@ export async function POST(request: Request) {
   const data = parsed.data;
   const kind =
     data.kind ??
-    (data.replacementSrc.match(/\.(mp4|webm|ogg|mov)|youtube|vimeo/i) ? 'VIDEO' : 'IMAGE');
+    (/\.pdf(\?|#|$)/i.test(data.originalSrc)
+      ? 'DOCUMENT'
+      : data.replacementSrc.match(/\.(mp4|webm|ogg|mov)|youtube|vimeo/i)
+        ? 'VIDEO'
+        : 'IMAGE');
 
   try {
     const row = await prisma.mediaOverride.upsert({

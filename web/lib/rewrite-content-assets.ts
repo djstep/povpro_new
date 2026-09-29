@@ -41,6 +41,11 @@ function resolveContentAssetUrl(assetPath: string, imgIndex: Set<string>): strin
   return resolveAssetUrl(assetPath);
 }
 
+/** Итоговый URL файла из /assets/img (webp-версия, локальный файл или CDN) */
+export function resolveContentAssetSrc(assetPath: string): string {
+  return resolveContentAssetUrl(assetPath, getPublicImgIndex());
+}
+
 /** Подмена /assets/img/… на внешние URL перед рендером HTML-контента */
 export function rewriteContentAssets(html: string): string {
   const imgIndex = getPublicImgIndex();
