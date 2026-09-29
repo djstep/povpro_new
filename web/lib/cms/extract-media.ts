@@ -4,7 +4,7 @@ import { ROUTES } from '@/lib/routes';
 import { getPageContent } from '@/lib/pages';
 import { ALL_HOME_GALLERY_ITEMS, homeGalleryImageUrl } from '@/lib/home-gallery';
 import { isDbConfigured, prisma } from '@/lib/db';
-import { parseContentBlocks } from '@/lib/cms/content-blocks';
+import { parseContentBlocks, renderBlockHtml } from '@/lib/cms/content-blocks';
 import { resolveContentAssetSrc } from '@/lib/rewrite-content-assets';
 
 export type MediaKindValue = 'IMAGE' | 'VIDEO' | 'DOCUMENT';
@@ -130,18 +130,8 @@ export function scanHtml(html: string, pageSlug: string, map: Map<string, SiteMe
 function scanContentBlocksJson(raw: string | null | undefined, pageSlug: string, map: Map<string, SiteMediaRef>) {
   const blocks = parseContentBlocks(raw);
   for (const block of blocks) {
-    if (block.type === 'image' && block.src) addRef(map, block.src, pageSlug, block.alt);
-    if (block.type === 'video') {
-      if (block.src) addRef(map, block.src, pageSlug);
-      if (block.poster) addRef(map, block.poster, pageSlug);
-    }
-    if (block.type === 'hero' && block.image) addRef(map, block.image, pageSlug);
-    if (block.type === 'buttons') {
-      for (const item of block.items) {
-        if (item.href && isDocumentSrc(item.href)) addRef(map, item.href, pageSlug, item.label);
-      }
-    }
-    if (block.type === 'html' && block.content) scanHtml(block.content, pageSlug, map);
+    const html = renderBlockHtml(block);
+    if (html) scanHtml(html, pageSlug, map);
   }
 }
 

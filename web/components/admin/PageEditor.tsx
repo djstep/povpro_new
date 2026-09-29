@@ -1,9 +1,21 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { ContentBlocksEditor } from '@/components/admin/ContentBlocksEditor';
+import dynamic from 'next/dynamic';
+import type { Data } from '@puckeditor/core';
 import type { ContentBlock } from '@/lib/cms/content-blocks';
+import {
+  blocksSignature,
+  blocksToBuilderData,
+  builderDataToBlocks,
+  type BuilderData,
+} from '@/lib/cms/builder-data';
 import { applyTextOverridesLocally, htmlToContentBlocks } from '@/lib/cms/html-to-blocks';
+
+const PageBuilder = dynamic(
+  () => import('@/components/admin/builder/PageBuilder').then((m) => m.PageBuilder),
+  { ssr: false, loading: () => <p className="text-zinc-500">Загрузка конструктора…</p> },
+);
 
 type VisualTextBlock = {
   blockKey: string;
@@ -33,6 +45,7 @@ type PageData = {
   baseHtml?: string;
   textBlocks: VisualTextBlock[];
   contentBlocks: ContentBlock[];
+  assetMap?: Record<string, string>;
   pageMeta: PageMeta;
 };
 
@@ -46,8 +59,19 @@ const NAV_SECTIONS = [
   { value: 'TOP_LINK', label: 'Верхнее меню' },
 ];
 
-function blocksSignature(blocks: ContentBlock[]) {
-  return JSON.stringify(blocks);
+function draftKey(slugPath: string) {
+  return `povpro-admin-blocks-draft:${slugPath || 'home'}`;
+}
+
+function readDraft(slugPath: string): { blocks: ContentBlock[]; importedFromFile?: boolean } | null {
+  try {
+    const raw = localStorage.getItem(draftKey(slugPath));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { blocks?: ContentBlock[]; importedFromFile?: boolean };
+    return parsed.blocks?.length ? { blocks: parsed.blocks, importedFromFile: parsed.importedFromFile } : null;
+  } catch {
+    return null;
+  }
 }
 
 export function PageEditor({ slugPath }: { slugPath: string }) {
@@ -57,13 +81,27 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
   const [html, setHtml] = useState('');
   const [title, setTitle] = useState('');
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([]);
+  const [builderData, setBuilderData] = useState<BuilderData | null>(null);
+  const [builderKey, setBuilderKey] = useState(0);
   const [meta, setMeta] = useState<PageMeta | null>(null);
   const [categories, setCategories] = useState<CategoryOption[]>([]);
   const [tab, setTab] = useState<'content' | 'html' | 'settings'>('content');
   const [importedFromFile, setImportedFromFile] = useState(false);
   const [baseline, setBaseline] = useState('');
-  const [message, setMessage] = useState('');
+  /** Подпись исходного содержимого: черновик пишется, только если его реально меняли */
+  const [pristine, setPristine] = useState('');
+  const [message, setMessageText] = useState('');
+  const [messageIsError, setMessageIsError] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const setMessage = useCallback((text: string) => {
+    setMessageText(text);
+    setMessageIsError(false);
+  }, []);
+  const setError = useCallback((e: unknown) => {
+    setMessageText(e instanceof Error ? e.message : 'Ошибка');
+    setMessageIsError(true);
+  }, []);
   const [saving, setSaving] = useState(false);
 
   const dirty = useMemo(
@@ -88,26 +126,30 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
       setMeta(json.pageMeta);
 
       const existing = json.contentBlocks ?? [];
-      if (existing.length > 0) {
-        setContentBlocks(existing);
-        setBaseline(blocksSignature(existing));
-        setImportedFromFile(false);
-      } else {
-        const base = json.baseHtml ?? json.html;
-        const withText = applyTextOverridesLocally(base, json.textBlocks ?? []);
-        const imported = htmlToContentBlocks(withText);
-        setContentBlocks(imported);
-        // Пока не сохранено в БД — считаем «несохранённым», чтобы можно было зафиксировать
-        setBaseline('__unsaved_import__');
-        setImportedFromFile(true);
-      }
+      const fromFile = existing.length === 0;
+      const saved = fromFile
+        ? htmlToContentBlocks(applyTextOverridesLocally(json.baseHtml ?? json.html, json.textBlocks ?? []))
+        : existing;
+      // Старые блоки при загрузке переводятся в формат конструктора — эталон считаем уже после перевода
+      const savedBlocks = builderDataToBlocks(blocksToBuilderData(saved));
+      const draft = readDraft(slugPath);
+      const startBlocks = draft ? builderDataToBlocks(blocksToBuilderData(draft.blocks)) : savedBlocks;
+
+      setContentBlocks(startBlocks);
+      setBuilderData(blocksToBuilderData(startBlocks));
+      setBuilderKey((k) => k + 1);
+      // Пока страница не сохранена в БД — считаем правки несохранёнными, чтобы её можно было зафиксировать
+      setBaseline(fromFile ? '__unsaved_import__' : blocksSignature(savedBlocks));
+      setPristine(blocksSignature(savedBlocks));
+      setImportedFromFile(draft?.importedFromFile ?? fromFile);
+      if (draft) setMessage('Восстановлен несохранённый черновик');
       setTab('content');
     } catch (e) {
-      setMessage(e instanceof Error ? e.message : 'Ошибка');
+      setError(e);
     } finally {
       setLoading(false);
     }
-  }, [apiSlug]);
+  }, [apiSlug, slugPath, setMessage, setError]);
 
   useEffect(() => {
     void load();
@@ -116,8 +158,8 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
   // Черновик блоков в localStorage
   useEffect(() => {
     if (!data || loading) return;
-    const key = `povpro-admin-blocks-draft:${slugPath || 'home'}`;
-    if (!dirty) {
+    const key = draftKey(slugPath);
+    if (!dirty || blocksSignature(contentBlocks) === pristine) {
       localStorage.removeItem(key);
       return;
     }
@@ -128,59 +170,72 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
       );
     }, 700);
     return () => window.clearTimeout(timer);
-  }, [contentBlocks, dirty, data, loading, slugPath, importedFromFile]);
+  }, [contentBlocks, dirty, pristine, data, loading, slugPath, importedFromFile]);
 
-  useEffect(() => {
-    if (!data || loading) return;
-    const key = `povpro-admin-blocks-draft:${slugPath || 'home'}`;
-    try {
-      const raw = localStorage.getItem(key);
-      if (!raw) return;
-      const parsed = JSON.parse(raw) as {
-        blocks?: ContentBlock[];
-        importedFromFile?: boolean;
-      };
-      if (parsed.blocks?.length) {
-        setContentBlocks(parsed.blocks);
-        if (typeof parsed.importedFromFile === 'boolean') {
-          setImportedFromFile(parsed.importedFromFile);
-        }
-        setMessage('Восстановлен черновик контента');
-      }
-    } catch {
-      /* ignore */
+  async function putPage(payload: Record<string, unknown>) {
+    const res = await fetch(`/api/admin/pages/${apiSlug}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, ...payload }),
+    });
+    const json = (await res.json().catch(() => ({}))) as { error?: unknown };
+    if (!res.ok) {
+      throw new Error(typeof json.error === 'string' ? json.error : `Ошибка сохранения (${res.status})`);
     }
-    // только после первой загрузки страницы
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data?.slug]);
+  }
 
   async function savePage(payload: Record<string, unknown>, successMsg: string) {
     setSaving(true);
     setMessage('');
     try {
-      const res = await fetch(`/api/admin/pages/${apiSlug}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, ...payload }),
-      });
-      const json = (await res.json()) as { error?: string };
-      if (!res.ok) throw new Error(json.error ?? 'Ошибка');
-      setMessage(successMsg);
-      localStorage.removeItem(`povpro-admin-blocks-draft:${slugPath || 'home'}`);
+      await putPage(payload);
       await load();
+      setMessage(successMsg);
     } catch (e) {
-      setMessage(e instanceof Error ? e.message : 'Ошибка');
+      setError(e);
     } finally {
       setSaving(false);
     }
   }
 
-  async function saveContentBlocks() {
-    const confirmMsg = importedFromFile
-      ? 'Страница будет сохранена как набор блоков в базе. Внешний вид сохранится. Продолжить?'
-      : null;
-    if (confirmMsg && !window.confirm(confirmMsg)) return;
-    await savePage({ contentBlocks }, 'Контент сохранён');
+  const onBuilderChange = useCallback((next: Data) => {
+    setContentBlocks(builderDataToBlocks(next));
+  }, []);
+
+  const saveContentBlocks = useCallback(
+    async (next: Data) => {
+      const blocks = builderDataToBlocks(next);
+      if (
+        importedFromFile &&
+        !window.confirm('Страница будет сохранена в базе как набор блоков. Внешний вид сохранится. Продолжить?')
+      ) {
+        return;
+      }
+      setSaving(true);
+      setMessage('');
+      try {
+        await putPage({ contentBlocks: blocks });
+        setContentBlocks(blocks);
+        setBaseline(blocksSignature(blocks));
+        setPristine(blocksSignature(blocks));
+        setImportedFromFile(false);
+        localStorage.removeItem(draftKey(slugPath));
+        setMessage('Страница сохранена');
+      } catch (e) {
+        setError(e);
+      } finally {
+        setSaving(false);
+      }
+    },
+    // putPage зависит только от apiSlug и title
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [importedFromFile, slugPath, apiSlug, title, setMessage, setError],
+  );
+
+  function discardDraft() {
+    if (!window.confirm('Отменить все несохранённые правки и вернуть сохранённую версию?')) return;
+    localStorage.removeItem(draftKey(slugPath));
+    void load();
   }
 
   async function saveHtml() {
@@ -244,31 +299,40 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
         ))}
       </div>
 
-      {message && <p className="text-sm text-emerald-400">{message}</p>}
+      {message && (
+        <p className={`text-sm ${messageIsError ? 'text-red-400' : 'text-emerald-400'}`}>{message}</p>
+      )}
 
-      {tab === 'content' && (
-        <div className="space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="text-xs">
-              {dirty ? (
-                <span className="text-amber-400">Есть несохранённые правки</span>
-              ) : (
-                <span className="text-emerald-500">Сохранено</span>
-              )}
+      {tab === 'content' && builderData && (
+        <div className="space-y-3">
+          <div className="flex flex-wrap items-start justify-between gap-3 text-xs text-zinc-500">
+            <p className="max-w-4xl leading-relaxed">
+              Перетащите блок из списка слева на страницу. Кликните по блоку, чтобы изменить его справа:
+              тексты, фото, расположение, подложку и отступы. Блоки можно перетаскивать мышью, копировать и
+              удалять. Переключатель размера экрана над страницей показывает вид на телефоне.
+              {importedFromFile && ' Страница пока не сохранена в базе — нажмите «Сохранить», чтобы зафиксировать.'}
             </p>
-            <button
-              type="button"
-              disabled={saving || !dirty}
-              onClick={() => void saveContentBlocks()}
-              className="rounded-lg bg-white text-zinc-900 px-4 py-2 text-sm font-medium disabled:opacity-50"
-            >
-              {saving ? 'Сохранение…' : 'Сохранить'}
-            </button>
+            {pristine && blocksSignature(contentBlocks) !== pristine && (
+              <button
+                type="button"
+                onClick={discardDraft}
+                className="shrink-0 rounded-lg border border-zinc-700 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-900"
+              >
+                Отменить правки
+              </button>
+            )}
           </div>
-          <ContentBlocksEditor
-            blocks={contentBlocks}
-            onChange={setContentBlocks}
-            importedFromFile={importedFromFile}
+          <PageBuilder
+            key={builderKey}
+            initialData={builderData}
+            assetMap={data.assetMap ?? {}}
+            headerTitle={title}
+            headerPath={publicUrl}
+            publicUrl={publicUrl}
+            dirty={dirty}
+            saving={saving}
+            onChange={onBuilderChange}
+            onSave={(next) => void saveContentBlocks(next)}
           />
         </div>
       )}

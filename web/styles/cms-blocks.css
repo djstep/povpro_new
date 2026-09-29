@@ -49,26 +49,235 @@ main[class*='px-margin'] .cms-section {
   min-width: 0;
 }
 
-.cms-card--split {
+.cms-card--accent {
+  background:
+    radial-gradient(120% 140% at 50% 0%, rgba(77, 142, 255, 0.28) 0%, rgba(77, 142, 255, 0) 60%),
+    rgba(28, 43, 60, 0.55);
+  border-color: rgba(173, 198, 255, 0.3);
+}
+
+.cms-plain {
+  color: #c2c6d6;
+}
+
+/* Ширина и отступы секций */
+.cms-section.cms-w-narrow {
+  max-width: calc(56rem + 16px);
+}
+
+.cms-section.cms-w-wide {
+  max-width: none;
+}
+
+.cms-section.cms-pt-s { padding-top: 1.5rem; }
+.cms-section.cms-pt-m { padding-top: 3rem; }
+.cms-section.cms-pt-l { padding-top: 6rem; }
+.cms-section.cms-mb-none { margin-bottom: 0; }
+.cms-section.cms-mb-s { margin-bottom: 1.5rem; }
+.cms-section.cms-mb-l { margin-bottom: 7rem; }
+
+@media (min-width: 768px) {
+  .cms-section.cms-w-narrow {
+    max-width: calc(56rem + 96px);
+  }
+
+  .cms-section.cms-mb-l { margin-bottom: 9rem; }
+}
+
+.cms-align-center {
+  text-align: center;
+  align-items: center;
+}
+
+/* Текст рядом с фото */
+.cms-split {
   display: grid;
   gap: 2.5rem;
   align-items: center;
 }
 
+.cms-split--top {
+  align-items: start;
+}
+
 @media (min-width: 768px) {
-  .cms-card--split {
+  .cms-split {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 3rem;
   }
 
-  .cms-card--media-left .cms-card__media {
+  .cms-split--third {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+
+  .cms-split--twoThirds {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+
+  .cms-split--media-left.cms-split--third {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+
+  .cms-split--media-left.cms-split--twoThirds {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+
+  .cms-split--media-left .cms-card__media {
     order: -1;
   }
+}
+
+.cms-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .cms-card__media {
   width: 100%;
 }
+
+/* Заголовок блока, плашка, лид */
+.cms-block-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.cms-title {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cms-title.cms-align-center .cms-page-title,
+.cms-title.cms-align-center .cms-lead {
+  margin-inline: auto;
+}
+
+.cms-title:not(.cms-align-center) .cms-page-title {
+  text-align: left;
+  margin: 0;
+}
+
+.cms-eyebrow {
+  display: inline-flex;
+  width: max-content;
+  max-width: 100%;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(173, 198, 255, 0.25);
+  background: rgba(173, 198, 255, 0.1);
+  color: #adc6ff;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cms-lead {
+  margin: 0;
+  max-width: 48rem;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #c2c6d6;
+}
+
+/* Сетки: карточки, цифры, галерея */
+.cms-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 640px) {
+  .cms-cols-2,
+  .cms-cols-3,
+  .cms-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .cms-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cms-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.cms-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  border-radius: 2rem;
+  color: #c2c6d6;
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.cms-item--glass {
+  background-color: rgba(28, 43, 60, 0.4);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.cms-item--outline {
+  border: 1px solid rgba(140, 144, 159, 0.35);
+}
+
+.cms-item--plain {
+  padding: 0.5rem 0;
+}
+
+a.cms-item:hover {
+  border-color: rgba(173, 198, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.cms-item .cms-item__icon {
+  font-size: 40px;
+  color: #adc6ff;
+}
+
+.cms-item__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 1.25rem;
+}
+
+.cms-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.cms-stat__value {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.1;
+  font-weight: 600;
+  color: #adc6ff;
+}
+
+.cms-stat__label {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #c2c6d6;
+}
+
+.cms-spacer--s { height: 1.5rem; }
+.cms-spacer--m { height: 3rem; }
+.cms-spacer--l { height: 6rem; }
+.cms-spacer--xl { height: 10rem; }
 
 /* Заголовки */
 .cms-page-title {
@@ -89,6 +298,10 @@ main[class*='px-margin'] .cms-section {
   letter-spacing: -0.01em;
   font-weight: 600;
   color: #d4e4fa;
+}
+
+.cms-h2--lg {
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
 }
 
 .cms-h3 {
@@ -191,6 +404,24 @@ main[class*='px-margin'] .cms-section {
   border: 1px solid rgba(140, 144, 159, 0.2);
 }
 
+.cms-figure.cms-ratio-landscape img,
+.cms-figure.cms-ratio-landscape video {
+  aspect-ratio: 16 / 10;
+  max-height: none;
+}
+
+.cms-figure.cms-ratio-square img,
+.cms-figure.cms-ratio-square video {
+  aspect-ratio: 1 / 1;
+  max-height: none;
+}
+
+.cms-figure.cms-ratio-portrait img,
+.cms-figure.cms-ratio-portrait video {
+  aspect-ratio: 3 / 4;
+  max-height: none;
+}
+
 .cms-figure figcaption {
   margin-top: 0.75rem;
   font-size: 14px;
@@ -241,19 +472,44 @@ main[class*='px-margin'] .cms-section {
   font-size: 20px;
 }
 
+.cms-button--primary {
+  color: #002e6a;
+  background-color: #adc6ff;
+  border-color: #adc6ff;
+}
+
+.cms-button--primary:hover {
+  color: #002e6a;
+  background-color: #d8e2ff;
+  border-color: #d8e2ff;
+}
+
+.cms-align-center .cms-buttons {
+  justify-content: center;
+}
+
 @media (max-width: 639px) {
   .cms-button {
     width: 100%;
   }
 }
 
-/* Превью блоков в админке — фон как на сайте */
-.cms-blocks-preview {
-  background: #051424 !important;
-  color: #d4e4fa;
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+/* Холст конструктора в админке (внутри iframe Puck) */
+.site-content.cms-builder-canvas {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  min-height: 100vh;
 }
 
-.cms-blocks-preview a {
+.cms-builder-canvas a {
   pointer-events: none;
+}
+
+.cms-builder-empty {
+  padding: 1.5rem;
+  border: 1px dashed rgba(140, 144, 159, 0.5);
+  border-radius: 1rem;
+  text-align: center;
+  font-size: 14px;
+  color: #8c909f;
 }

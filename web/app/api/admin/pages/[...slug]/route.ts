@@ -7,6 +7,7 @@ import { parseContentBlocks } from '@/lib/cms/content-blocks';
 import { extractTextBlocks } from '@/lib/cms/extract-blocks';
 import { getPageContent, getPageTitle } from '@/lib/pages';
 import { isDbConfigured, prisma } from '@/lib/db';
+import { resolveContentAssetSrc } from '@/lib/rewrite-content-assets';
 
 type Params = { params: Promise<{ slug: string[] }> };
 
@@ -53,7 +54,16 @@ export async function GET(_request: Request, { params }: Params) {
 
   const contentBlocks = parseContentBlocks(record?.contentBlocks);
 
+  const assetMap: Record<string, string> = {};
+  for (const source of [baseHtml, record?.contentBlocks ?? '']) {
+    for (const m of source.matchAll(/\/assets\/img\/[^"'()\s>\\]+/g)) {
+      const resolved = resolveContentAssetSrc(m[0]);
+      if (resolved !== m[0]) assetMap[m[0]] = resolved;
+    }
+  }
+
   return NextResponse.json({
+    assetMap,
     slug,
     title: record?.title ?? getPageTitle(slug),
     html: baseHtml,
