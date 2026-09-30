@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import type { Data } from '@puckeditor/core';
 import type { ContentBlock } from '@/lib/cms/content-blocks';
@@ -59,18 +59,47 @@ const NAV_SECTIONS = [
   { value: 'TOP_LINK', label: 'Верхнее меню' },
 ];
 
+type Draft = {
+  blocks: ContentBlock[];
+  importedFromFile?: boolean;
+  /** Подпись серверной версии, поверх которой сделан черновик */
+  baseSignature?: string;
+  savedAt?: number;
+};
+
 function draftKey(slugPath: string) {
   return `povpro-admin-blocks-draft:${slugPath || 'home'}`;
 }
 
-function readDraft(slugPath: string): { blocks: ContentBlock[]; importedFromFile?: boolean } | null {
+/** Черновик, отложенный из-за того, что страницу изменили на другом устройстве */
+function staleDraftKey(slugPath: string) {
+  return `${draftKey(slugPath)}:stale`;
+}
+
+function readDraft(key: string): Draft | null {
   try {
-    const raw = localStorage.getItem(draftKey(slugPath));
+    const raw = localStorage.getItem(key);
     if (!raw) return null;
-    const parsed = JSON.parse(raw) as { blocks?: ContentBlock[]; importedFromFile?: boolean };
-    return parsed.blocks?.length ? { blocks: parsed.blocks, importedFromFile: parsed.importedFromFile } : null;
+    const parsed = JSON.parse(raw) as Partial<Draft>;
+    return parsed.blocks?.length ? { ...parsed, blocks: parsed.blocks } : null;
   } catch {
     return null;
+  }
+}
+
+function formatDateTime(value: number | string | undefined) {
+  if (!value) return '';
+  return new Date(value).toLocaleString('ru-RU', {
+    day: 'numeric',
+    month: 'long',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+
+class ConflictError extends Error {
+  constructor(public updatedAt: string | null) {
+    super('Страницу уже изменили на другом устройстве');
   }
 }
 
@@ -90,6 +119,8 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
   const [baseline, setBaseline] = useState('');
   /** Подпись исходного содержимого: черновик пишется, только если его реально меняли */
   const [pristine, setPristine] = useState('');
+  const [staleDraft, setStaleDraft] = useState<Draft | null>(null);
+  const serverUpdatedAt = useRef<string | null>(null);
   const [message, setMessageText] = useState('');
   const [messageIsError, setMessageIsError] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -113,8 +144,8 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
     setLoading(true);
     try {
       const [pageRes, catRes] = await Promise.all([
-        fetch(`/api/admin/pages/${apiSlug}`),
-        fetch('/api/admin/categories'),
+        fetch(`/api/admin/pages/${apiSlug}`, { cache: 'no-store' }),
+        fetch('/api/admin/categories', { cache: 'no-store' }),
       ]);
       const json = (await pageRes.json()) as PageData & { error?: string };
       if (!pageRes.ok) throw new Error(json.error);
@@ -124,6 +155,7 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
       setHtml(json.html);
       setTitle(json.title);
       setMeta(json.pageMeta);
+      serverUpdatedAt.current = json.pageMeta.updatedAt ?? null;
 
       const existing = json.contentBlocks ?? [];
       const fromFile = existing.length === 0;
@@ -132,16 +164,33 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
         : existing;
       // Старые блоки при загрузке переводятся в формат конструктора — эталон считаем уже после перевода
       const savedBlocks = builderDataToBlocks(blocksToBuilderData(saved));
-      const draft = readDraft(slugPath);
-      const startBlocks = draft ? builderDataToBlocks(blocksToBuilderData(draft.blocks)) : savedBlocks;
+      const savedSignature = blocksSignature(savedBlocks);
+
+      // Черновик годен, только если сделан поверх той же версии, что сейчас на сервере.
+      // Иначе показываем свежую версию, а черновик откладываем — его можно открыть вручную.
+      let draft = readDraft(draftKey(slugPath));
+      if (draft) {
+        const draftBlocks = builderDataToBlocks(blocksToBuilderData(draft.blocks));
+        if (blocksSignature(draftBlocks) === savedSignature) {
+          draft = null;
+        } else if (draft.baseSignature !== savedSignature) {
+          localStorage.setItem(staleDraftKey(slugPath), JSON.stringify(draft));
+          draft = null;
+        } else {
+          draft = { ...draft, blocks: draftBlocks };
+        }
+        if (!draft) localStorage.removeItem(draftKey(slugPath));
+      }
+      setStaleDraft(readDraft(staleDraftKey(slugPath)));
+      const startBlocks = draft ? draft.blocks : savedBlocks;
 
       setContentBlocks(startBlocks);
       setBuilderData(blocksToBuilderData(startBlocks));
       setBuilderKey((k) => k + 1);
       // Пока страница не сохранена в БД — считаем правки несохранёнными, чтобы её можно было зафиксировать
-      setBaseline(fromFile ? '__unsaved_import__' : blocksSignature(savedBlocks));
-      setPristine(blocksSignature(savedBlocks));
-      setImportedFromFile(draft?.importedFromFile ?? fromFile);
+      setBaseline(fromFile ? '__unsaved_import__' : savedSignature);
+      setPristine(savedSignature);
+      setImportedFromFile(fromFile);
       if (draft) setMessage('Восстановлен несохранённый черновик');
       setTab('content');
     } catch (e) {
@@ -155,6 +204,49 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
     void load();
   }, [load]);
 
+  const [remoteChangedAt, setRemoteChangedAt] = useState<string | null>(null);
+  useEffect(() => {
+    if (loading) return;
+    let busy = false;
+    async function check() {
+      if (document.visibilityState !== 'visible' || busy) return;
+      busy = true;
+      try {
+        const res = await fetch(`/api/admin/pages/${apiSlug}`, { cache: 'no-store' });
+        if (!res.ok) return;
+        const json = (await res.json()) as PageData;
+        const remote = json.pageMeta.updatedAt ?? null;
+        setRemoteChangedAt(remote && remote !== serverUpdatedAt.current ? remote : null);
+      } catch {
+        /* нет сети — проверим в следующий раз */
+      } finally {
+        busy = false;
+      }
+    }
+    document.addEventListener('visibilitychange', check);
+    window.addEventListener('focus', check);
+    return () => {
+      document.removeEventListener('visibilitychange', check);
+      window.removeEventListener('focus', check);
+    };
+  }, [apiSlug, loading]);
+
+  function reloadFresh() {
+    if (blocksSignature(contentBlocks) !== pristine) {
+      localStorage.setItem(
+        draftKey(slugPath),
+        JSON.stringify({
+          savedAt: Date.now(),
+          blocks: contentBlocks,
+          importedFromFile,
+          baseSignature: pristine,
+        } satisfies Draft),
+      );
+    }
+    setRemoteChangedAt(null);
+    void load();
+  }
+
   // Черновик блоков в localStorage
   useEffect(() => {
     if (!data || loading) return;
@@ -166,21 +258,52 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
     const timer = window.setTimeout(() => {
       localStorage.setItem(
         key,
-        JSON.stringify({ savedAt: Date.now(), blocks: contentBlocks, importedFromFile }),
+        JSON.stringify({
+          savedAt: Date.now(),
+          blocks: contentBlocks,
+          importedFromFile,
+          baseSignature: pristine,
+        } satisfies Draft),
       );
     }, 700);
     return () => window.clearTimeout(timer);
   }, [contentBlocks, dirty, pristine, data, loading, slugPath, importedFromFile]);
 
-  async function putPage(payload: Record<string, unknown>) {
+  async function sendPage(payload: Record<string, unknown>, force: boolean) {
     const res = await fetch(`/api/admin/pages/${apiSlug}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, ...payload }),
+      body: JSON.stringify({ title, ...payload, baseUpdatedAt: serverUpdatedAt.current, force }),
     });
-    const json = (await res.json().catch(() => ({}))) as { error?: unknown };
+    const json = (await res.json().catch(() => ({}))) as {
+      error?: unknown;
+      conflict?: boolean;
+      updatedAt?: string | null;
+    };
+    if (res.status === 409 && json.conflict) throw new ConflictError(json.updatedAt ?? null);
     if (!res.ok) {
       throw new Error(typeof json.error === 'string' ? json.error : `Ошибка сохранения (${res.status})`);
+    }
+    serverUpdatedAt.current = json.updatedAt ?? null;
+  }
+
+  async function putPage(payload: Record<string, unknown>) {
+    try {
+      await sendPage(payload, false);
+    } catch (e) {
+      if (!(e instanceof ConflictError)) throw e;
+      const when = e.updatedAt ? ` (${formatDateTime(e.updatedAt)})` : '';
+      const overwrite = window.confirm(
+        `Эту страницу уже сохранили с другого устройства${when}, пока вы её редактировали.\n\n` +
+          'ОК — сохранить вашу версию поверх (правки с другого устройства пропадут).\n' +
+          'Отмена — ничего не сохранять. Ваши правки останутся черновиком.',
+      );
+      if (!overwrite) {
+        throw new Error(
+          'Не сохранено: страницу изменили на другом устройстве. Обновите страницу, чтобы увидеть свежую версию — ваш черновик можно будет открыть снова.',
+        );
+      }
+      await sendPage(payload, true);
     }
   }
 
@@ -236,6 +359,29 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
     if (!window.confirm('Отменить все несохранённые правки и вернуть сохранённую версию?')) return;
     localStorage.removeItem(draftKey(slugPath));
     void load();
+  }
+
+  function openStaleDraft() {
+    if (!staleDraft) return;
+    if (
+      blocksSignature(contentBlocks) !== pristine &&
+      !window.confirm('Текущие несохранённые правки заменятся старым черновиком. Продолжить?')
+    ) {
+      return;
+    }
+    const blocks = builderDataToBlocks(blocksToBuilderData(staleDraft.blocks));
+    setContentBlocks(blocks);
+    setBuilderData(blocksToBuilderData(blocks));
+    setBuilderKey((k) => k + 1);
+    localStorage.removeItem(staleDraftKey(slugPath));
+    setStaleDraft(null);
+    setMessage('Открыт ваш старый черновик. Проверьте его перед сохранением — он сделан до чужих правок.');
+  }
+
+  function dropStaleDraft() {
+    if (!window.confirm('Удалить старый черновик с этого устройства?')) return;
+    localStorage.removeItem(staleDraftKey(slugPath));
+    setStaleDraft(null);
   }
 
   async function saveHtml() {
@@ -301,6 +447,48 @@ export function PageEditor({ slugPath }: { slugPath: string }) {
 
       {message && (
         <p className={`text-sm ${messageIsError ? 'text-red-400' : 'text-emerald-400'}`}>{message}</p>
+      )}
+
+      {remoteChangedAt && (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-sky-700/60 bg-sky-950/40 px-4 py-3 text-sm text-sky-200">
+          <p className="max-w-3xl">
+            Эту страницу сохранили с другого устройства ({formatDateTime(remoteChangedAt)}). Загрузите свежую
+            версию, чтобы не затереть чужие правки. Ваши несохранённые изменения останутся черновиком.
+          </p>
+          <button
+            type="button"
+            onClick={reloadFresh}
+            className="shrink-0 rounded-md border border-sky-600 px-3 py-1.5 text-xs hover:bg-sky-900/50"
+          >
+            Загрузить свежую версию
+          </button>
+        </div>
+      )}
+
+      {staleDraft && (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-amber-700/60 bg-amber-950/40 px-4 py-3 text-sm text-amber-200">
+          <p className="max-w-3xl">
+            На этом устройстве остался несохранённый черновик
+            {staleDraft.savedAt ? ` от ${formatDateTime(staleDraft.savedAt)}` : ''}, но страницу с тех пор
+            изменили и сохранили. Сейчас показана актуальная версия с сайта.
+          </p>
+          <div className="flex shrink-0 gap-2">
+            <button
+              type="button"
+              onClick={openStaleDraft}
+              className="rounded-md border border-amber-600 px-3 py-1.5 text-xs hover:bg-amber-900/50"
+            >
+              Открыть мой черновик
+            </button>
+            <button
+              type="button"
+              onClick={dropStaleDraft}
+              className="rounded-md border border-zinc-700 px-3 py-1.5 text-xs text-zinc-300 hover:bg-zinc-900"
+            >
+              Удалить черновик
+            </button>
+          </div>
+        </div>
       )}
 
       {tab === 'content' && builderData && (

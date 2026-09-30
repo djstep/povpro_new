@@ -62,27 +62,30 @@ export async function GET(_request: Request, { params }: Params) {
     }
   }
 
-  return NextResponse.json({
-    assetMap,
-    slug,
-    title: record?.title ?? getPageTitle(slug),
-    html: baseHtml,
-    baseHtml,
-    textBlocks,
-    contentBlocks,
-    pageMeta: {
-      published: record?.published ?? true,
-      updatedAt: record?.updatedAt?.toISOString(),
-      fromDb: Boolean(record?.body || record?.contentBlocks),
-      navSection: record?.navSection ?? 'NONE',
-      categoryId: record?.categoryId ?? null,
-      showInNav: record?.showInNav ?? false,
-      sortOrder: record?.sortOrder ?? 0,
-      isProtected: record?.isProtected ?? isProtectedSlug(slug),
-      metaTitle: record?.metaTitle ?? '',
-      metaDesc: record?.metaDesc ?? '',
+  return NextResponse.json(
+    {
+      assetMap,
+      slug,
+      title: record?.title ?? getPageTitle(slug),
+      html: baseHtml,
+      baseHtml,
+      textBlocks,
+      contentBlocks,
+      pageMeta: {
+        published: record?.published ?? true,
+        updatedAt: record?.updatedAt?.toISOString(),
+        fromDb: Boolean(record?.body || record?.contentBlocks),
+        navSection: record?.navSection ?? 'NONE',
+        categoryId: record?.categoryId ?? null,
+        showInNav: record?.showInNav ?? false,
+        sortOrder: record?.sortOrder ?? 0,
+        isProtected: record?.isProtected ?? isProtectedSlug(slug),
+        metaTitle: record?.metaTitle ?? '',
+        metaDesc: record?.metaDesc ?? '',
+      },
     },
-  });
+    { headers: { 'Cache-Control': 'no-store' } },
+  );
 }
 
 const putSchema = z.object({
@@ -96,6 +99,9 @@ const putSchema = z.object({
   categoryId: z.string().nullable().optional(),
   showInNav: z.boolean().optional(),
   sortOrder: z.number().int().optional(),
+  /** updatedAt версии, от которой шло редактирование (null — страницы ещё не было в базе) */
+  baseUpdatedAt: z.string().nullable().optional(),
+  force: z.boolean().optional(),
 });
 
 export async function PUT(request: Request, { params }: Params) {
@@ -117,6 +123,23 @@ export async function PUT(request: Request, { params }: Params) {
   const parsed = putSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
+  }
+
+  if (parsed.data.baseUpdatedAt !== undefined && !parsed.data.force) {
+    const current = await prisma.page
+      .findUnique({ where: { slug }, select: { updatedAt: true } })
+      .catch(() => null);
+    const currentUpdatedAt = current?.updatedAt.toISOString() ?? null;
+    if (currentUpdatedAt !== parsed.data.baseUpdatedAt) {
+      return NextResponse.json(
+        {
+          error: 'Страницу уже изменили на другом устройстве',
+          conflict: true,
+          updatedAt: currentUpdatedAt,
+        },
+        { status: 409 },
+      );
+    }
   }
 
   const title = parsed.data.title ?? getPageTitle(slug);
