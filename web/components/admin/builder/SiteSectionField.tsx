@@ -147,8 +147,8 @@ export function SiteSectionEditor({ value, onChange }: { value: string; onChange
   return (
     <div className="space-y-5 text-zinc-900">
       <p className="text-xs text-zinc-500 leading-relaxed">
-        Это исходная секция сайта: её вёрстка сохраняется. Здесь можно поменять тексты, фото и ссылки.
-        Перемещать и удалять секцию — на холсте или в «Структуре».
+        Исходная вёрстка сайта сохраняется. Здесь можно поменять тексты, фото и ссылки. Перемещать,
+        копировать и удалять — на холсте или в «Структуре».
       </p>
 
       {state.images.length > 0 && (
@@ -296,7 +296,7 @@ export function SiteSectionEditor({ value, onChange }: { value: string; onChange
       )}
 
       <details className="rounded-md border border-zinc-200">
-        <summary className="cursor-pointer px-2 py-1.5 text-xs text-zinc-600">HTML-код секции (для опытных)</summary>
+        <summary className="cursor-pointer px-2 py-1.5 text-xs text-zinc-600">HTML-код (для опытных)</summary>
         <textarea
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -311,9 +311,9 @@ export function SiteSectionEditor({ value, onChange }: { value: string; onChange
 
 export const siteSectionField: CustomField<string> = {
   type: 'custom',
-  label: 'Содержимое секции',
+  label: 'Содержимое',
   render: ({ value, onChange }) => (
-    <FieldLabel label="Содержимое секции" el="div">
+    <FieldLabel label="Содержимое" el="div">
       <SiteSectionEditor value={value ?? ''} onChange={onChange} />
     </FieldLabel>
   ),

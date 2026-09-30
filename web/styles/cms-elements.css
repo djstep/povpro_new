@@ -1,0 +1,740 @@
+/* Элементы и контейнеры конструктора (lib/cms/elements.ts). Цвета — только из палитры сайта (inline --tone / color). */
+
+/* Контент в вёрстке сайта стоит на relative z-10 поверх декоративных пятен (absolute) — новые элементы наравне с ним */
+.cmsx-el {
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* Элемент прямо на странице (не внутри секции) — в пределах ширины сайта */
+main > .cmsx-el:not(.cmsx-section),
+main > [data-puck-dropzone] > .cmsx-el:not(.cmsx-section) {
+  width: calc(100% - 16px);
+  max-width: 1184px;
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  main > .cmsx-el:not(.cmsx-section),
+  main > [data-puck-dropzone] > .cmsx-el:not(.cmsx-section) {
+    width: calc(100% - 96px);
+  }
+}
+
+main.max-w-container-max > .cmsx-el:not(.cmsx-section),
+main[class*='px-margin'] > .cmsx-el:not(.cmsx-section) {
+  width: 100%;
+  max-width: none;
+}
+
+/* ---------- Выравнивание ---------- */
+
+.cmsx-place {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cmsx-al-left { text-align: left; }
+.cmsx-al-center { text-align: center; }
+.cmsx-al-right { text-align: right; }
+
+.cmsx-place.cmsx-al-left { align-items: flex-start; }
+.cmsx-place.cmsx-al-center { align-items: center; }
+.cmsx-place.cmsx-al-right { align-items: flex-end; }
+.cmsx-place.cmsx-al-stretch { align-items: stretch; }
+
+.cmsx-al-stretch > .cmsx-btn { justify-content: center; }
+
+[class*='cmsx-mw-'].cmsx-al-center { margin-inline: auto; }
+[class*='cmsx-mw-'].cmsx-al-right { margin-left: auto; margin-right: 0; }
+
+@media (max-width: 767px) {
+  .cmsx-mal-left { text-align: left; }
+  .cmsx-mal-center { text-align: center; }
+  .cmsx-mal-right { text-align: right; }
+  .cmsx-place.cmsx-mal-left { align-items: flex-start; }
+  .cmsx-place.cmsx-mal-center { align-items: center; }
+  .cmsx-place.cmsx-mal-right { align-items: flex-end; }
+  .cmsx-place.cmsx-mal-stretch { align-items: stretch; }
+  .cmsx-mal-stretch > .cmsx-btn { justify-content: center; }
+  [class*='cmsx-mw-'].cmsx-mal-center { margin-inline: auto; }
+  [class*='cmsx-mw-'].cmsx-mal-left { margin-left: 0; margin-right: auto; }
+  [class*='cmsx-mw-'].cmsx-mal-right { margin-left: auto; margin-right: 0; }
+}
+
+/* ---------- Отступы ---------- */
+
+.cmsx-mt-xs { margin-top: 0.5rem; }
+.cmsx-mt-s { margin-top: 1rem; }
+.cmsx-mt-m { margin-top: 1.5rem; }
+.cmsx-mt-l { margin-top: 2.5rem; }
+.cmsx-mt-xl { margin-top: 4rem; }
+.cmsx-mb-xs { margin-bottom: 0.5rem; }
+.cmsx-mb-s { margin-bottom: 1rem; }
+.cmsx-mb-m { margin-bottom: 1.5rem; }
+.cmsx-mb-l { margin-bottom: 2.5rem; }
+.cmsx-mb-xl { margin-bottom: 4rem; }
+
+.cmsx-p-xs { padding: 0.5rem; }
+.cmsx-p-s { padding: 1rem; }
+.cmsx-p-m { padding: 1.5rem; }
+.cmsx-p-l { padding: 2rem 1.5rem; }
+.cmsx-p-xl { padding: 2.5rem 1.5rem; }
+
+@media (min-width: 768px) {
+  .cmsx-p-m { padding: 2rem; }
+  .cmsx-p-l { padding: 3rem; }
+  .cmsx-p-xl { padding: 4.5rem; }
+}
+
+/* ---------- Ширина ---------- */
+
+.cmsx-mw-xs { max-width: 20rem; }
+.cmsx-mw-s { max-width: 32rem; }
+.cmsx-mw-m { max-width: 48rem; }
+.cmsx-mw-l { max-width: 64rem; }
+
+/* ---------- Подложка, рамка, тень, скругление ---------- */
+
+.cmsx-glass {
+  background-color: rgba(28, 43, 60, 0.4);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 10px 40px -10px rgba(0, 0, 0, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.12);
+  border-radius: 1.5rem;
+  color: #c2c6d6;
+}
+
+.cmsx-accent {
+  background:
+    radial-gradient(120% 140% at 50% 0%, rgba(77, 142, 255, 0.28) 0%, rgba(77, 142, 255, 0) 60%),
+    rgba(28, 43, 60, 0.55);
+  border: 1px solid rgba(173, 198, 255, 0.3);
+  border-radius: 1.5rem;
+  color: #c2c6d6;
+}
+
+.cmsx-has-bg { border-radius: 1.25rem; }
+
+.cmsx-section > .cmsx-glass,
+.cmsx-section > .cmsx-accent {
+  border-radius: 2rem;
+}
+
+@media (min-width: 768px) {
+  .cmsx-section > .cmsx-glass,
+  .cmsx-section > .cmsx-accent {
+    border-radius: 3rem;
+  }
+}
+
+.cmsx-bd-thin { border: 1px solid rgba(140, 144, 159, 0.35); }
+.cmsx-bd-thick { border: 2px solid rgba(140, 144, 159, 0.5); }
+
+.cmsx-sh-s { box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3); }
+.cmsx-sh-l { box-shadow: 0 24px 60px -16px rgba(0, 0, 0, 0.7); }
+.cmsx-sh-glow { box-shadow: 0 0 48px rgba(77, 142, 255, 0.35); }
+
+/* После подложек: явное скругление важнее */
+.cmsx-el.cmsx-r-none,
+.cmsx-section > .cmsx-r-none { border-radius: 0; }
+.cmsx-el.cmsx-r-s,
+.cmsx-section > .cmsx-r-s { border-radius: 0.5rem; }
+.cmsx-el.cmsx-r-m,
+.cmsx-section > .cmsx-r-m { border-radius: 1rem; }
+.cmsx-el.cmsx-r-l,
+.cmsx-section > .cmsx-r-l { border-radius: 2rem; }
+.cmsx-el.cmsx-r-full,
+.cmsx-section > .cmsx-r-full { border-radius: 9999px; }
+
+/* ---------- Показ на устройствах ---------- */
+
+@media (max-width: 767px) {
+  .site-content:not(.cms-builder-canvas) .cmsx-hide-mobile { display: none !important; }
+  .cms-builder-canvas .cmsx-hide-mobile { opacity: 0.35; outline: 1px dashed #8c909f; }
+}
+
+@media (min-width: 768px) {
+  .site-content:not(.cms-builder-canvas) .cmsx-hide-desktop { display: none !important; }
+  .cms-builder-canvas .cmsx-hide-desktop { opacity: 0.35; outline: 1px dashed #8c909f; }
+}
+
+/* ---------- Заголовок и текст ---------- */
+
+.cmsx-heading {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #d4e4fa;
+}
+
+/* XL = заголовок страницы сайта (headline-xl), L = заголовок раздела (headline-lg / -mobile) */
+.cmsx-hs-xl { font-size: 48px; line-height: 1.1; letter-spacing: -0.02em; }
+.cmsx-hs-l { font-size: 32px; }
+
+@media (max-width: 767px) {
+  .cmsx-hs-xl { font-size: clamp(1.625rem, 7.5vw, 2.25rem); line-height: 1.15; }
+  .cmsx-hs-l { font-size: 24px; }
+}
+.cmsx-hs-m { font-size: 1.5rem; }
+.cmsx-hs-s { font-size: 1.25rem; }
+.cmsx-hs-xs { font-size: 1rem; }
+
+.cmsx-fw-normal { font-weight: 400; }
+.cmsx-fw-medium { font-weight: 500; }
+.cmsx-fw-bold { font-weight: 700; }
+
+.cmsx-upper {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cmsx-ts-s { font-size: 14px; }
+.cmsx-ts-m { font-size: 16px; }
+.cmsx-ts-l { font-size: 18px; }
+.cmsx-ts-xl { font-size: 20px; }
+
+/* ---------- Кнопки ---------- */
+
+.cmsx-btn {
+  --tone: #adc6ff;
+  --tone-on: #002e6a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 100%;
+  border: 1px solid transparent;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    filter 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cmsx-btn .material-symbols-outlined {
+  transition: transform 0.2s ease;
+}
+
+/* M = стандартная кнопка сайта: px-8 py-4, 13px, иконка фактически 24px (глобальный .material-symbols-outlined
+   перебивает text-[18px]) → высота 56px. Паддинги меньше на 1px — рамка кнопки. S и L — на шаг меньше/больше */
+.cmsx-size-s { padding: calc(0.625rem - 1px) calc(1.25rem - 1px); font-size: 12px; }
+.cmsx-size-m { padding: calc(1rem - 1px) calc(2rem - 1px); font-size: 13px; }
+.cmsx-size-l { padding: calc(1.25rem - 1px) calc(2.5rem - 1px); font-size: 15px; }
+.cmsx-size-s .material-symbols-outlined,
+.cmsx-size-s .cmsx-icon-custom { font-size: 18px; }
+.cmsx-size-m .material-symbols-outlined,
+.cmsx-size-m .cmsx-icon-custom { font-size: 24px; }
+.cmsx-size-l .material-symbols-outlined,
+.cmsx-size-l .cmsx-icon-custom { font-size: 28px; }
+
+/* Иконка не должна раздувать строку: высота кнопки задаётся текстом, как у кнопок сайта */
+.cmsx-btn .material-symbols-outlined,
+.cmsx-btn .cmsx-icon-custom { line-height: 1; }
+
+.cmsx-btn.cmsx-upper { letter-spacing: 0.05em; }
+
+.cmsx-shape-square { border-radius: 0.375rem; }
+.cmsx-shape-rounded { border-radius: 0.9rem; }
+.cmsx-shape-pill { border-radius: 9999px; }
+
+.cmsx-btn--filled {
+  background-color: var(--tone);
+  border-color: var(--tone);
+  color: var(--tone-on);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--tone) 15%, transparent);
+}
+
+.cmsx-btn--filled:hover { filter: brightness(1.08); }
+
+.cmsx-btn--outline {
+  background-color: transparent;
+  border-color: var(--tone);
+  color: var(--tone);
+}
+
+.cmsx-btn--outline:hover { background-color: color-mix(in srgb, var(--tone) 12%, transparent); }
+
+.cmsx-btn--soft {
+  background-color: color-mix(in srgb, var(--tone) 16%, transparent);
+  border-color: color-mix(in srgb, var(--tone) 30%, transparent);
+  color: var(--tone);
+}
+
+.cmsx-btn--soft:hover { background-color: color-mix(in srgb, var(--tone) 24%, transparent); }
+
+.cmsx-btn--glass {
+  background-color: rgba(28, 43, 60, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--tone);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.cmsx-btn--glass:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: color-mix(in srgb, var(--tone) 50%, transparent);
+}
+
+.cmsx-btn--link,
+.cmsx-btn--arrow {
+  padding-inline: 0;
+  padding-block: 0.25rem;
+  background: none;
+  border-color: transparent;
+  color: var(--tone);
+  box-shadow: none;
+}
+
+.cmsx-btn--link {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.cmsx-btn--link:hover,
+.cmsx-btn--arrow:hover { filter: brightness(1.15); }
+
+.cmsx-btn--arrow:hover .material-symbols-outlined:last-child,
+.cmsx-btn--arrow:hover .cmsx-icon-custom:last-child { transform: translateX(4px); }
+
+.cmsx-btn .cmsx-icon-custom { transition: transform 0.2s ease; }
+
+.cmsx-btn--icon {
+  padding: 0;
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 9999px;
+  background-color: var(--tone);
+  color: var(--tone-on);
+}
+
+.cmsx-btn--icon.cmsx-size-s { width: 2.5rem; height: 2.5rem; }
+.cmsx-btn--icon.cmsx-size-l { width: 3.75rem; height: 3.75rem; }
+.cmsx-btn--icon.cmsx-shape-square { border-radius: 0.375rem; }
+.cmsx-btn--icon.cmsx-shape-rounded { border-radius: 0.9rem; }
+.cmsx-btn--icon:hover .material-symbols-outlined { transform: translateX(2px); }
+
+.cms-buttons--right { justify-content: flex-end; }
+.cms-buttons--stretch > * { flex: 1 1 0; }
+
+/* ---------- Фото и видео ---------- */
+
+.cmsx-image { margin: 0; }
+
+.cmsx-media {
+  display: block;
+  width: 100%;
+}
+
+.cmsx-iw-l { max-width: 36rem; }
+.cmsx-iw-m { max-width: 24rem; }
+.cmsx-iw-s { max-width: 16rem; }
+.cmsx-iw-xs { max-width: 8rem; }
+
+.cmsx-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+}
+
+.cmsx-ar-16-9 { aspect-ratio: 16 / 9; object-fit: cover; }
+.cmsx-ar-4-3 { aspect-ratio: 4 / 3; object-fit: cover; }
+.cmsx-ar-1-1 { aspect-ratio: 1 / 1; object-fit: cover; }
+.cmsx-ar-3-4 { aspect-ratio: 3 / 4; object-fit: cover; }
+.cmsx-img.cmsx-fit-contain { object-fit: contain; }
+
+.cmsx-ir-none { border-radius: 0; }
+.cmsx-ir-s { border-radius: 0.5rem; }
+.cmsx-ir-m { border-radius: 1rem; }
+.cmsx-ir-l { border-radius: 2rem; }
+
+.cmsx-image figcaption {
+  margin-top: 0.75rem;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #8c909f;
+}
+
+/* ---------- Иконка ---------- */
+
+.cmsx-icon {
+  --tone: #adc6ff;
+  --tone-on: #002e6a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: var(--tone);
+}
+
+.cmsx-icon.cmsx-is-s { font-size: 24px; }
+.cmsx-icon.cmsx-is-m { font-size: 40px; }
+.cmsx-icon.cmsx-is-l { font-size: 56px; }
+.cmsx-icon.cmsx-is-xl { font-size: 80px; }
+
+.cmsx-ib-soft,
+.cmsx-ib-filled,
+.cmsx-ib-outline {
+  padding: 0.3em;
+  border-radius: 9999px;
+}
+
+.cmsx-ib-soft { background-color: color-mix(in srgb, var(--tone) 14%, transparent); }
+.cmsx-ib-filled { background-color: var(--tone); color: var(--tone-on); }
+.cmsx-ib-outline { border: 1px solid var(--tone); }
+
+/* Своя иконка (загруженная картинка): размер = 1em, как у шрифтовой */
+.cmsx-icon-custom {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.cmsx-icon-img {
+  display: block;
+  width: 1em;
+  height: 1em;
+  object-fit: contain;
+}
+
+.cmsx-icon-mask {
+  background-color: currentColor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* ---------- Плашка ---------- */
+
+.cmsx-badge {
+  --tone: #adc6ff;
+  --tone-on: #002e6a;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 100%;
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cmsx-badge--soft {
+  background-color: color-mix(in srgb, var(--tone) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--tone) 25%, transparent);
+  color: var(--tone);
+}
+
+.cmsx-badge--outline {
+  border: 1px solid var(--tone);
+  color: var(--tone);
+}
+
+.cmsx-badge--filled {
+  background-color: var(--tone);
+  color: var(--tone-on);
+}
+
+.cmsx-badge__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: currentColor;
+  animation: cmsx-pulse 2s ease-in-out infinite;
+}
+
+@keyframes cmsx-pulse {
+  50% { opacity: 0.35; }
+}
+
+/* ---------- Список ---------- */
+
+.cmsx-list {
+  --tone: #adc6ff;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  line-height: 1.55;
+  color: #c2c6d6;
+}
+
+.cmsx-list-gap-s { gap: 0.375rem; }
+.cmsx-list-gap-l { gap: 1.25rem; }
+
+.cmsx-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.cmsx-al-center.cmsx-list li { justify-content: center; }
+.cmsx-al-right.cmsx-list li { justify-content: flex-end; }
+
+.cmsx-list__mark {
+  flex: none;
+  font-size: 1.25em;
+  line-height: 1.25;
+  color: var(--tone);
+}
+
+.cmsx-list__dot {
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.55em;
+  border-radius: 9999px;
+  background-color: var(--tone);
+}
+
+.cmsx-list__dash {
+  flex: none;
+  width: 0.9rem;
+  height: 2px;
+  margin-top: 0.75em;
+  background-color: var(--tone);
+}
+
+.cmsx-list__num {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  font-size: 0.85em;
+  font-weight: 600;
+  background-color: color-mix(in srgb, var(--tone) 16%, transparent);
+  color: var(--tone);
+}
+
+/* ---------- Линия ---------- */
+
+.cmsx-hr {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid rgba(140, 144, 159, 0.35);
+}
+
+.cmsx-hr--medium { border-top-width: 2px; }
+.cmsx-hr--thick { border-top-width: 4px; }
+.cmsx-hr--dashed { border-top-style: dashed; }
+.cmsx-hr-len-half { width: 50%; }
+.cmsx-hr-len-short { width: 4rem; }
+
+/* ---------- Группа и секция ---------- */
+
+.cmsx-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cmsx-group.cmsx-dir-row {
+  flex-direction: row;
+  align-items: center;
+}
+
+.cmsx-gap-none { gap: 0; }
+.cmsx-gap-xs { gap: 0.5rem; }
+.cmsx-gap-s { gap: 1rem; }
+.cmsx-gap-m { gap: 1.5rem; }
+.cmsx-gap-l { gap: 2.5rem; }
+.cmsx-gap-xl { gap: 4rem; }
+
+.cmsx-group.cmsx-wrap { flex-wrap: wrap; }
+.cmsx-group.cmsx-jc-center { justify-content: center; }
+.cmsx-group.cmsx-jc-end { justify-content: flex-end; }
+.cmsx-group.cmsx-jc-between { justify-content: space-between; }
+.cmsx-group.cmsx-ai-start { align-items: flex-start; }
+.cmsx-group.cmsx-ai-center { align-items: center; }
+.cmsx-group.cmsx-ai-end { align-items: flex-end; }
+.cmsx-group.cmsx-ai-stretch { align-items: stretch; }
+
+@media (max-width: 767px) {
+  .cmsx-group.cmsx-dir-row.cmsx-mstack {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.cmsx-section.cmsx-mt-xs { margin-top: 0.5rem; }
+.cmsx-section.cmsx-mt-s { margin-top: 1rem; }
+.cmsx-section.cmsx-mt-m { margin-top: 1.5rem; }
+.cmsx-section.cmsx-mt-l { margin-top: 2.5rem; }
+.cmsx-section.cmsx-mt-xl { margin-top: 4rem; }
+.cmsx-section.cmsx-mb-none { margin-bottom: 0; }
+.cmsx-section.cmsx-mb-xs { margin-bottom: 0.5rem; }
+.cmsx-section.cmsx-mb-s { margin-bottom: 1rem; }
+.cmsx-section.cmsx-mb-m { margin-bottom: 1.5rem; }
+.cmsx-section.cmsx-mb-l { margin-bottom: 2.5rem; }
+.cmsx-section.cmsx-mb-xl { margin-bottom: 4rem; }
+
+/* ---------- Колонки ---------- */
+
+.cmsx-columns {
+  display: grid;
+  grid-template-columns: var(--cmsx-cols, repeat(2, minmax(0, 1fr)));
+  gap: 2.5rem;
+}
+
+.cmsx-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.cmsx-va-start { align-items: start; }
+.cmsx-va-center { align-items: center; }
+.cmsx-va-end { align-items: end; }
+.cmsx-va-stretch { align-items: stretch; }
+
+@media (max-width: 767px) {
+  .cmsx-columns.cmsx-mobile-stack,
+  .cmsx-columns.cmsx-mobile-reverse {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cmsx-columns.cmsx-mobile-reverse > .cmsx-col:nth-child(1) { order: 4; }
+  .cmsx-columns.cmsx-mobile-reverse > .cmsx-col:nth-child(2) { order: 3; }
+  .cmsx-columns.cmsx-mobile-reverse > .cmsx-col:nth-child(3) { order: 2; }
+  .cmsx-columns.cmsx-mobile-reverse > .cmsx-col:nth-child(4) { order: 1; }
+}
+
+/* ---------- Свободное размещение ---------- */
+
+/* На телефоне свободный элемент возвращается в общий поток, если не выбрано «оставить как на компьютере» */
+@media (min-width: 768px) {
+  .cmsx-free {
+    position: absolute !important;
+    z-index: 11 !important;
+    margin: 0 !important;
+    width: max-content !important;
+    max-width: 100%;
+  }
+
+  :has(> .cmsx-free):not(.absolute):not(.fixed):not(.sticky) { position: relative; }
+}
+
+.cmsx-free.cmsx-free-keep {
+  position: absolute !important;
+  z-index: 11 !important;
+  margin: 0 !important;
+  width: max-content !important;
+  max-width: 100%;
+}
+
+:has(> .cmsx-free-keep):not(.absolute):not(.fixed):not(.sticky) { position: relative; }
+
+.cms-builder-canvas .cmsx-free { cursor: move; }
+
+/* ---------- Размер, заданный уголком (--cmsx-w / --cmsx-h) ---------- */
+
+/* У кнопки, плашки, иконки, фото и линии размер получает сам видимый элемент, а не обёртка-выравниватель */
+.cmsx-dw:not(.cmsx-place) {
+  width: var(--cmsx-w) !important;
+  max-width: 100% !important;
+}
+
+.cmsx-dh:not(.cmsx-place) { min-height: var(--cmsx-h) !important; }
+
+.cmsx-dw > .cmsx-btn,
+.cmsx-dw > .cmsx-badge,
+.cmsx-dw > .cmsx-media,
+.cmsx-dw > .cmsx-hr {
+  width: var(--cmsx-w) !important;
+  max-width: 100%;
+}
+
+.cmsx-dh > .cmsx-btn,
+.cmsx-dh > .cmsx-badge { height: var(--cmsx-h); }
+
+.cmsx-dw > .cmsx-btn,
+.cmsx-dw > .cmsx-badge { justify-content: center; }
+
+.cmsx-dh .cmsx-media > .cmsx-img {
+  height: var(--cmsx-h);
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+
+.cmsx-dh .cmsx-media > .cmsx-img.cmsx-fit-contain { object-fit: contain; }
+
+/* Иконка масштабируется целиком: ширина рамки = размер знака (с подложкой — знак + отступы 0.3em) */
+.cmsx-dw > .cmsx-icon { font-size: var(--cmsx-w); }
+.cmsx-dw > .cmsx-icon:is(.cmsx-ib-soft, .cmsx-ib-filled, .cmsx-ib-outline) { font-size: calc(var(--cmsx-w) / 1.6); }
+
+/* ---------- Холст конструктора (iframe Puck) ---------- */
+
+/* Зона вложения — это сам контейнер из вёрстки: Puck не должен менять его размеры */
+.cms-builder-canvas [data-puck-dropzone] {
+  width: auto;
+  height: auto;
+}
+
+.cms-builder-canvas main > [data-puck-dropzone] {
+  display: inherit;
+  flex-direction: inherit;
+  gap: inherit;
+  align-items: inherit;
+}
+
+/* Puck ставит элементам position: relative — возвращаем исходное позиционирование */
+.cms-builder-canvas [data-cms-pos='absolute'] { position: absolute !important; }
+.cms-builder-canvas [data-cms-pos='fixed'] { position: fixed !important; }
+.cms-builder-canvas [data-cms-pos='sticky'] { position: sticky !important; }
+
+.cms-builder-canvas a[data-puck-component] { pointer-events: auto; }
+
+/* ---------- Панели редактора ---------- */
+
+/* Заголовок панели «родитель › элемент»: в узкой панели родитель не должен наезжать на название */
+.cms-puck-host [class*='SidebarSection-breadcrumbs_'],
+.cms-puck-host [class*='_Breadcrumbs_'] {
+  flex-wrap: wrap;
+  row-gap: 2px;
+  min-width: 0;
+}
+
+.cms-puck-host [class*='SidebarSection-breadcrumb_'],
+.cms-puck-host [class*='Breadcrumbs-breadcrumb_'] {
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+.cms-puck-host [class*='breadcrumbLabel_'] {
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cms-puck-host [class*='SidebarSection-heading_'] { min-width: 0; }

@@ -128,20 +128,43 @@ export function PageStructureAdmin() {
     await load();
   }
 
-  async function deletePage(slug: string) {
-    if (!confirm(`Удалить страницу /${slug}?`)) return;
+  function pageApi(slug: string): string {
     const segment = slug === '' ? 'home' : slug;
-    const res = await fetch(`/api/admin/pages/${segment.split('/').map(encodeURIComponent).join('/')}`, {
-      method: 'DELETE',
-    });
+    return `/api/admin/pages/${segment.split('/').map(encodeURIComponent).join('/')}`;
+  }
+
+  async function deletePage(page: PageRow) {
+    const question =
+      page.source === 'static'
+        ? `Удалить страницу «${page.title}» (${page.url})?\n\nОна пропадёт с сайта, из меню и карты сайта. Если понадобится — её можно будет восстановить здесь же.`
+        : `Удалить страницу «${page.title}» (${page.url}) безвозвратно?\n\nВсё её содержимое будет стёрто.`;
+    if (!confirm(question)) return;
+    const res = await fetch(pageApi(page.slug), { method: 'DELETE' });
     const data = (await res.json()) as { error?: string };
     if (!res.ok) {
       setMessage(data.error ?? 'Не удалось удалить');
       return;
     }
-    setMessage('Страница удалена');
+    setMessage(`Страница «${page.title}» удалена`);
     await load();
   }
+
+  async function setPublished(page: PageRow, published: boolean) {
+    const res = await fetch(pageApi(page.slug), {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ published }),
+    });
+    const data = (await res.json()) as { error?: string };
+    if (!res.ok) {
+      setMessage(data.error ?? 'Ошибка');
+      return;
+    }
+    setMessage(published ? `Страница «${page.title}» снова на сайте` : `Страница «${page.title}» скрыта`);
+    await load();
+  }
+
+  const sortedPages = [...pages].sort((a, b) => Number(a.published === false) - Number(b.published === false));
 
   async function deleteCategory(id: string) {
     if (!confirm('Удалить категорию? Страницы останутся без категории.')) return;
@@ -236,20 +259,44 @@ export function PageStructureAdmin() {
             </tr>
           </thead>
           <tbody>
-            {pages.map((p) => (
-              <tr key={p.slug + p.source} className="border-t border-zinc-800">
-                <td className="p-3 font-mono text-xs">{p.url}</td>
-                <td className="p-3">{p.title}</td>
-                <td className="p-3 text-zinc-500">{NAV_SECTIONS.find((s) => s.value === p.navSection)?.label ?? '—'}</td>
-                <td className="p-3 text-zinc-500">{p.source === 'db' ? 'БД' : 'Файл'}</td>
-                <td className="p-3 text-right space-x-2 whitespace-nowrap">
-                  <Link href={editHref(p.slug)} className="text-primary hover:underline text-xs">Редактировать</Link>
-                  {p.source === 'db' && !p.isProtected && (
-                    <button type="button" onClick={() => void deletePage(p.slug)} className="text-xs text-red-400">Удалить</button>
-                  )}
-                </td>
-              </tr>
-            ))}
+            {sortedPages.map((p) => {
+              const hidden = p.published === false;
+              return (
+                <tr key={p.slug + p.source} className={`border-t border-zinc-800 ${hidden ? 'opacity-60' : ''}`}>
+                  <td className="p-3 font-mono text-xs">{p.url}</td>
+                  <td className="p-3">
+                    {p.title}
+                    {hidden && (
+                      <span className="ml-2 rounded bg-red-500/15 px-1.5 py-0.5 text-[11px] text-red-300">
+                        {p.source === 'static' ? 'Удалена с сайта' : 'Скрыта'}
+                      </span>
+                    )}
+                  </td>
+                  <td className="p-3 text-zinc-500">{NAV_SECTIONS.find((s) => s.value === p.navSection)?.label ?? '—'}</td>
+                  <td className="p-3 text-zinc-500">{p.source === 'db' ? 'БД' : 'Файл'}</td>
+                  <td className="p-3 text-right space-x-3 whitespace-nowrap">
+                    {hidden ? (
+                      <button type="button" onClick={() => void setPublished(p, true)} className="text-xs text-emerald-400 hover:underline">
+                        Восстановить
+                      </button>
+                    ) : (
+                      <Link href={editHref(p.slug)} className="text-primary hover:underline text-xs">Редактировать</Link>
+                    )}
+                    {p.isProtected ? (
+                      <span className="text-xs text-zinc-600" title="Главная, контакты и разделы из шапки сайта удалить нельзя">
+                        защищена
+                      </span>
+                    ) : (
+                      (!hidden || p.source === 'db') && (
+                        <button type="button" onClick={() => void deletePage(p)} className="text-xs text-red-400 hover:underline">
+                          Удалить
+                        </button>
+                      )
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </section>

@@ -22,7 +22,8 @@ export const ACCEPT: Record<LibKind, string> = {
 type MediaContextValue = {
   /** Открыть библиотеку; null — окно закрыли без выбора */
   pick: (kind: LibKind) => Promise<LibraryItem | null>;
-  upload: (file: File) => Promise<LibraryItem>;
+  upload: (file: File, opts?: { purpose?: 'icon' }) => Promise<LibraryItem>;
+  library: LibraryItem[];
   /** URL для показа в админке (webp / CDN для файлов сайта) */
   previewSrc: (src: string) => string;
   /** То же для HTML секции: подменяет пути в src/poster/url() */
@@ -93,8 +94,8 @@ export function MediaLibraryProvider({
     });
   }, []);
 
-  const upload = useCallback(async (file: File) => {
-    const result = await uploadAdminFile(file);
+  const upload = useCallback(async (file: File, opts?: { purpose?: 'icon' }) => {
+    const result = await uploadAdminFile(file, opts);
     const item: LibraryItem = {
       src: result.path,
       previewSrc: result.path,
@@ -112,7 +113,10 @@ export function MediaLibraryProvider({
     setRequest(null);
   };
 
-  const value = useMemo(() => ({ pick, upload, previewSrc, previewHtml }), [pick, upload, previewSrc, previewHtml]);
+  const value = useMemo(
+    () => ({ pick, upload, library, previewSrc, previewHtml }),
+    [pick, upload, library, previewSrc, previewHtml],
+  );
 
   return (
     <MediaContext.Provider value={value}>

@@ -81,7 +81,8 @@ export async function POST(request: Request) {
     );
   }
 
-  const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}${ext}`;
+  const prefix = form.get('purpose') === 'icon' && mime.startsWith('image/') ? 'icon-' : '';
+  const filename = `${prefix}${Date.now()}-${Math.random().toString(36).slice(2, 9)}${ext}`;
   const dest = path.join(uploadsDir, filename);
 
   try {

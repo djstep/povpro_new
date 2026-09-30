@@ -12,7 +12,16 @@ import { applyMediaOverrides, applyTextBlockOverrides } from './apply-overrides'
 import { rewriteContentAssets } from '@/lib/rewrite-content-assets';
 import { rewriteHtmlLinksForLocale } from '@/lib/i18n/rewrite-html-links';
 
-const PROTECTED_SLUGS = new Set(['', 'home', 'contacts']);
+/** Главная, контакты и страницы, на которые жёстко ссылаются шапка и мобильное меню, — не удаляются */
+const PROTECTED_SLUGS = new Set([
+  '',
+  'home',
+  'contacts',
+  'mekhanicheskaya-obrabotka',
+  'metalloobrabotka',
+  'otzyvy-o-ppo',
+  'policy',
+]);
 
 export function slugifySegment(input: string): string {
   return input
@@ -32,24 +41,43 @@ export function slugifySegment(input: string): string {
     .slice(0, 80);
 }
 
+async function fetchHiddenSlugs(): Promise<string[]> {
+  if (!isDbConfigured()) return [];
+  try {
+    const rows = await prisma.page.findMany({ where: { published: false }, select: { slug: true } });
+    return rows.map((r) => r.slug).filter((slug) => !isProtectedSlug(slug));
+  } catch {
+    return [];
+  }
+}
+
+/** Страницы, убранные с сайта (в т.ч. удалённые страницы из файлов — у них в базе published=false) */
+export const getHiddenSlugs = unstable_cache(fetchHiddenSlugs, ['hidden-pages'], {
+  revalidate: 300,
+  tags: ['pages', 'site-navigation'],
+});
+
 export async function pageExists(slug: string): Promise<boolean> {
   const normalized = slug === 'home' ? '' : slug;
   if (normalized === '' || ROUTES[`/${normalized}` as keyof typeof ROUTES]) {
-    return true;
+    return !(await getHiddenSlugs()).includes(normalized);
   }
   if (!isDbConfigured()) return false;
   try {
     const page = await prisma.page.findUnique({ where: { slug: normalized } });
-    return Boolean(page);
+    return Boolean(page?.published);
   } catch {
     return false;
   }
 }
 
 export async function getAllSiteSlugs(): Promise<{ slug: string[] | undefined }[]> {
-  const staticSlugs = Object.values(ROUTES).map((r) => ({
-    slug: r.slug === '' ? undefined : r.slug.split('/'),
-  }));
+  const hidden = new Set(await fetchHiddenSlugs());
+  const staticSlugs = Object.values(ROUTES)
+    .filter((r) => !hidden.has(r.slug))
+    .map((r) => ({
+      slug: r.slug === '' ? undefined : r.slug.split('/'),
+    }));
 
   if (!isDbConfigured()) return staticSlugs;
 
@@ -99,10 +127,9 @@ export async function getBasePageHtml(slug: string, locale: Locale = 'ru'): Prom
 
   if (isDbConfigured()) {
     try {
-      const page = await prisma.page.findUnique({
-        where: { slug: normalized, published: true },
-      });
-      if (page) {
+      const page = await prisma.page.findUnique({ where: { slug: normalized } });
+      if (page && !page.published && !isProtectedSlug(normalized)) return null;
+      if (page?.published) {
         const html = blocksToHtml(page.contentBlocks, page.body);
         if (html) return html;
       }

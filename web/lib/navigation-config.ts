@@ -18,6 +18,8 @@ export type SiteNavConfig = {
   mech: NavMenuItem[];
   uslugi: NavMenuItem[];
   topLinks: NavMenuItem[];
+  /** Slug страниц, убранных с сайта: ссылки на них не показываются */
+  hidden?: string[];
 };
 
 export const STATIC_NAV: SiteNavConfig = {

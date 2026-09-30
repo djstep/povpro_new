@@ -7,10 +7,20 @@ import {
   type ButtonItem,
   type ContentBlock,
 } from '@/lib/cms/content-blocks';
-import { SITE_SECTION_TYPE, mainClassFromAttrs, type ShellProps } from '@/lib/cms/builder-data';
+import { SITE_FRAGMENT_TYPE, SITE_SECTION_TYPE, mainClassFromAttrs, type ShellProps } from '@/lib/cms/builder-data';
 import { iconField, linkField, mediaField } from '@/components/admin/builder/fields';
 import { siteSectionField } from '@/components/admin/builder/SiteSectionField';
 import { useMedia } from '@/components/admin/builder/media';
+import { colorField } from '@/components/admin/builder/StyleField';
+import {
+  ELEMENT_LABELS,
+  buttonIconField,
+  buttonShapeField,
+  buttonSizeField,
+  buttonVariantOptions,
+  elementComponents,
+  iconPositionField,
+} from '@/components/admin/builder/elements-config';
 
 /* ---------- Превью блока на холсте: тот же HTML, что и на сайте ---------- */
 
@@ -148,6 +158,7 @@ export const BLOCK_LABELS: Record<string, string> = {
   text: 'Текст (старый)',
   image: 'Фото (старое)',
   video: 'Видео (старое)',
+  ...ELEMENT_LABELS,
 };
 
 function label(type: string) {
@@ -156,13 +167,19 @@ function label(type: string) {
 
 export const builderConfig: Config = {
   categories: {
-    main: {
-      title: 'Основные блоки',
-      components: ['hero', 'title', 'textMedia', 'cards', 'buttons', 'cta'],
+    elements: {
+      title: 'Элементы',
+      components: ['elHeading', 'elText', 'elButton', 'elImage', 'elVideo', 'elIcon', 'elBadge', 'elList', 'elDivider', 'spacer'],
     },
-    media: { title: 'Фото и видео', components: ['gallery', 'videoSection'] },
-    extra: { title: 'Дополнительно', components: ['stats', 'spacer', 'html'] },
-    site: { title: 'Секции сайта', components: [SITE_SECTION_TYPE], visible: false },
+    layout: { title: 'Раскладка', components: ['elSection', 'elColumns', 'elGroup'] },
+    main: {
+      title: 'Готовые блоки',
+      components: ['hero', 'title', 'textMedia', 'cards', 'buttons', 'cta'],
+      defaultExpanded: false,
+    },
+    media: { title: 'Готовые: фото и видео', components: ['gallery', 'videoSection'], defaultExpanded: false },
+    extra: { title: 'Дополнительно', components: ['stats', 'html'], defaultExpanded: false },
+    site: { title: 'Секции сайта', components: [SITE_SECTION_TYPE, SITE_FRAGMENT_TYPE, 'box'], visible: false },
     other: { visible: false },
   },
   root: {
@@ -380,11 +397,59 @@ export const builderConfig: Config = {
       label: label('buttons'),
       fields: {
         items: { ...buttonsField, label: 'Кнопки' } as Field,
-        align: { type: 'radio', label: 'Выравнивание', options: alignOptions },
+        variant: {
+          type: 'select',
+          label: 'Вид кнопок',
+          options: [{ label: 'Классический (как раньше)', value: '' }, ...buttonVariantOptions],
+        },
+        tone: colorField('Цвет'),
+        shape: buttonShapeField,
+        size: buttonSizeField,
+        icon: buttonIconField,
+        iconPosition: iconPositionField,
+        upper: {
+          type: 'radio',
+          label: 'Заглавными буквами',
+          options: [
+            { label: 'Да', value: 'yes' },
+            { label: 'Нет', value: 'no' },
+          ],
+        },
+        align: {
+          type: 'radio',
+          label: 'Выравнивание',
+          options: [
+            ...alignOptions,
+            { label: 'Справа', value: 'right' },
+            { label: 'На всю ширину', value: 'stretch' },
+          ],
+        },
         ...styleFields({ background: false }),
+      },
+      resolveFields: (data, { fields }) => {
+        const next = { ...fields } as Record<string, Field>;
+        const variant = data.props.variant as string | undefined;
+        if (!variant) {
+          for (const key of ['tone', 'shape', 'size', 'icon', 'iconPosition', 'upper']) delete next[key];
+          next.align = { type: 'radio', label: 'Выравнивание', options: alignOptions };
+        } else {
+          if (variant === 'icon') {
+            delete next.iconPosition;
+            delete next.upper;
+          }
+          if (variant === 'link' || variant === 'arrow') delete next.shape;
+        }
+        return next as typeof fields;
       },
       defaultProps: {
         items: [{ label: 'Презентация компании', href: '' }],
+        variant: 'glass',
+        tone: 'primary',
+        shape: 'pill',
+        size: 'm',
+        icon: 'auto',
+        iconPosition: 'left',
+        upper: 'yes',
         align: 'center',
         ...styleDefaults,
       },
@@ -536,5 +601,7 @@ export const builderConfig: Config = {
     text: { label: label('text'), render: preview('text', label('text')) },
     image: { label: label('image'), render: preview('image', label('image')) },
     video: { label: label('video'), render: preview('video', label('video')) },
+
+    ...elementComponents,
   },
 };

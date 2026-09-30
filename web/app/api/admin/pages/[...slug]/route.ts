@@ -202,13 +202,25 @@ export async function DELETE(_request: Request, { params }: Params) {
 
   try {
     const page = await prisma.page.findUnique({ where: { slug } });
-    if (!page) {
-      return NextResponse.json({ error: 'Страница только в файлах — удаление недоступно' }, { status: 404 });
-    }
-    if (page.isProtected) {
+    if (page?.isProtected) {
       return NextResponse.json({ error: 'Страница защищена от удаления' }, { status: 403 });
     }
 
+    // Страница из файлов сайта вернётся при следующем обновлении кода, поэтому её не стираем,
+    // а убираем с сайта (published=false) — её можно восстановить.
+    if (getPageContent(slug)) {
+      await prisma.page.upsert({
+        where: { slug },
+        create: { slug, title: getPageTitle(slug), published: false, showInNav: false },
+        update: { published: false },
+      });
+      revalidateSiteContent(slug);
+      return NextResponse.json({ ok: true, hidden: true });
+    }
+
+    if (!page) {
+      return NextResponse.json({ error: 'Страница не найдена' }, { status: 404 });
+    }
     await prisma.textBlock.deleteMany({ where: { pageSlug: slug || 'home' } });
     await prisma.page.delete({ where: { id: page.id } });
     revalidateSiteContent(slug);
@@ -216,5 +228,45 @@ export async function DELETE(_request: Request, { params }: Params) {
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: 'Ошибка удаления' }, { status: 500 });
+  }
+}
+
+const patchSchema = z.object({ published: z.boolean() });
+
+/** Вернуть удалённую (скрытую) страницу на сайт или скрыть её */
+export async function PATCH(request: Request, { params }: Params) {
+  const denied = await requireAdminApi();
+  if (denied) return denied;
+
+  if (!isDbConfigured()) {
+    return NextResponse.json({ error: 'DATABASE_URL не настроен' }, { status: 503 });
+  }
+
+  const slug = decodeSlug((await params).slug);
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: 'Неверный JSON' }, { status: 400 });
+  }
+  const parsed = patchSchema.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json({ error: 'Неверный запрос' }, { status: 400 });
+  }
+  if (!parsed.data.published && isProtectedSlug(slug)) {
+    return NextResponse.json({ error: 'Эту страницу нельзя убрать с сайта' }, { status: 403 });
+  }
+
+  try {
+    const page = await prisma.page.findUnique({ where: { slug } });
+    if (!page) {
+      return NextResponse.json({ error: 'Страница не найдена' }, { status: 404 });
+    }
+    await prisma.page.update({ where: { id: page.id }, data: { published: parsed.data.published } });
+    revalidateSiteContent(slug);
+    return NextResponse.json({ ok: true });
+  } catch (e) {
+    console.error(e);
+    return NextResponse.json({ error: 'Ошибка сохранения' }, { status: 500 });
   }
 }

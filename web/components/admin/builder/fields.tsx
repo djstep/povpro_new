@@ -195,9 +195,89 @@ const ICONS = [
   'location_on',
 ];
 
+function isCustomIcon(value: string): boolean {
+  return /^(\/|https?:\/\/)/i.test(value);
+}
+
+function CustomIcons({ value, onChange }: { value: string; onChange: (icon: string) => void }) {
+  const media = useMedia();
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const uploaded = media.library.filter((item) => item.kind === 'IMAGE' && item.filename.startsWith('icon-'));
+  const icons = isCustomIcon(value) && !uploaded.some((i) => i.src === value) ? [{ src: value }, ...uploaded] : uploaded;
+
+  return (
+    <div className="space-y-1.5 rounded-md border border-zinc-200 p-2">
+      <div className="flex items-center justify-between gap-2">
+        <span className="text-[11px] font-medium text-zinc-600">Свои иконки</span>
+        <div className="flex gap-1.5">
+          <label className={`${smallBtnCls} cursor-pointer`}>
+            {busy ? 'Загрузка…' : 'Загрузить'}
+            <input
+              type="file"
+              accept="image/svg+xml,.svg,image/png,image/webp"
+              className="hidden"
+              disabled={busy}
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                e.target.value = '';
+                if (!file) return;
+                setBusy(true);
+                setError('');
+                try {
+                  const item = await media.upload(file, { purpose: 'icon' });
+                  onChange(item.src);
+                } catch (err) {
+                  setError(err instanceof Error ? err.message : 'Ошибка загрузки');
+                } finally {
+                  setBusy(false);
+                }
+              }}
+            />
+          </label>
+          <button
+            type="button"
+            className={smallBtnCls}
+            onClick={async () => {
+              const item = await media.pick('IMAGE');
+              if (item) onChange(item.src);
+            }}
+          >
+            Из библиотеки
+          </button>
+        </div>
+      </div>
+      {icons.length > 0 ? (
+        <div className="grid grid-cols-8 gap-1">
+          {icons.map((icon) => (
+            <button
+              key={icon.src}
+              type="button"
+              title={icon.src.split('/').pop()}
+              onClick={() => onChange(icon.src)}
+              className={`flex h-8 items-center justify-center rounded-md border bg-zinc-800 ${
+                value === icon.src ? 'border-sky-500 ring-1 ring-sky-500' : 'border-zinc-200 hover:border-zinc-400'
+              }`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={media.previewSrc(icon.src)} alt="" className="h-5 w-5 object-contain" />
+            </button>
+          ))}
+        </div>
+      ) : (
+        <p className="text-[11px] leading-relaxed text-zinc-500">
+          SVG или PNG с прозрачным фоном. Одноцветные иконки можно перекрашивать в цвета сайта.
+        </p>
+      )}
+      {error && <p className="text-xs text-red-600">{error}</p>}
+    </div>
+  );
+}
+
 export function IconInput({ value, onChange }: { value: string; onChange: (icon: string) => void }) {
   return (
     <div className="space-y-2 text-zinc-900">
+      <CustomIcons value={value} onChange={onChange} />
       <div className="grid grid-cols-8 gap-1">
         <button
           type="button"
@@ -224,7 +304,7 @@ export function IconInput({ value, onChange }: { value: string; onChange: (icon:
         ))}
       </div>
       <input
-        value={value}
+        value={isCustomIcon(value) ? '' : value}
         onChange={(e) => onChange(e.target.value.trim())}
         placeholder="Другая иконка (название с fonts.google.com/icons)"
         className={`${inputCls} text-xs`}

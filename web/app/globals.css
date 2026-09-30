@@ -38,6 +38,7 @@
 @import '../styles/card-hover-glow.css';
 @import '../styles/mech-service-icons.css';
 @import '../styles/cms-blocks.css';
+@import '../styles/cms-elements.css';
 
 @layer base {
   html {

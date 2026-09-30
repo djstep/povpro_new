@@ -4,11 +4,15 @@ import Link from 'next/link';
 import { SITE_CONTACTS } from '@/lib/site-contacts';
 import { useLocale, useT } from '@/components/i18n/LocaleProvider';
 import { localizedPath } from '@/lib/i18n/locale';
+import { useSiteNavigation } from '@/components/layout/NavigationProvider';
 
 export function Footer() {
   const { locale } = useLocale();
   const t = useT();
   const year = new Date().getFullYear();
+
+  const hidden = new Set(useSiteNavigation().hidden ?? []);
+  const visible = (l: { href: string }) => !hidden.has(l.href.replace(/^\//, ''));
 
   const navLinks = [
     { href: '/', label: t.nav.home },
@@ -17,13 +21,13 @@ export function Footer() {
     { href: '/irt', label: t.nav.intelligentSystems },
     { href: '/otzyvy-o-ppo', label: t.nav.reviews },
     { href: '/contacts', label: t.nav.contacts },
-  ];
+  ].filter(visible);
 
   const productLinks = [
     { href: '/proizvodstvo-press-form-i-shtampov', label: t.nav.diesAndMolds },
     { href: '/izgotovlenie-valov', label: t.nav.shafts },
     { href: '/izgotovlenie-shesteren-i-zubchatyh-koles', label: t.nav.gearsAndPinions },
-  ];
+  ].filter(visible);
 
   return (
     <footer className="site-footer bg-surface-container-lowest/95 w-full rounded-t-lg border-t border-white/10 mt-20">

@@ -84,14 +84,68 @@ function describeHttpError(status: number, size: number): string {
   return `Ошибка сервера (${status}). Попробуйте ещё раз.`;
 }
 
+export function isSvgFile(file: File): boolean {
+  return file.type === 'image/svg+xml' || /\.svg$/i.test(file.name);
+}
+
+/**
+ * SVG → PNG в браузере. Сервер SVG не принимает (внутри может быть JavaScript),
+ * а картинка, отрисованная через <img>, скрипты не выполняет.
+ */
+export async function rasterizeSvg(file: File, size = 512): Promise<File> {
+  const text = await file.text();
+  const parsed = new DOMParser().parseFromString(text, 'image/svg+xml');
+  const svg = parsed.documentElement;
+  if (svg.nodeName.toLowerCase() !== 'svg' || parsed.querySelector('parsererror')) {
+    throw new Error('Не удалось прочитать SVG-файл');
+  }
+  const viewBox = (svg.getAttribute('viewBox') ?? '').split(/[\s,]+/).map(Number);
+  const attrW = parseFloat(svg.getAttribute('width') ?? '');
+  const attrH = parseFloat(svg.getAttribute('height') ?? '');
+  let ratio = 1;
+  if (viewBox.length === 4 && viewBox[2] > 0 && viewBox[3] > 0) ratio = viewBox[2] / viewBox[3];
+  else if (attrW > 0 && attrH > 0) {
+    ratio = attrW / attrH;
+    svg.setAttribute('viewBox', `0 0 ${attrW} ${attrH}`);
+  }
+  const w = ratio >= 1 ? size : Math.round(size * ratio);
+  const h = ratio >= 1 ? Math.round(size / ratio) : size;
+  svg.setAttribute('width', String(w));
+  svg.setAttribute('height', String(h));
+
+  const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' }));
+  try {
+    const img = new Image();
+    img.src = url;
+    await img.decode();
+    const canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('Браузер не смог обработать SVG');
+    ctx.drawImage(img, 0, 0, w, h);
+    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/png'));
+    if (!blob) throw new Error('Браузер не смог обработать SVG');
+    const baseName = file.name.replace(/\.[^.]+$/, '') || 'icon';
+    return new File([blob], `${baseName}.png`, { type: 'image/png', lastModified: Date.now() });
+  } catch (e) {
+    throw e instanceof Error && e.message.startsWith('Браузер') ? e : new Error('Не удалось преобразовать SVG в картинку');
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
+
 /**
  * Загружает файл в библиотеку (/api/admin/upload).
  * Картинки перед отправкой сжимаются в WebP. Ошибки сервера переводятся в понятный текст.
+ * purpose=icon — своя иконка: SVG переводится в PNG, имя файла начинается с icon-.
  */
-export async function uploadAdminFile(original: File): Promise<UploadResult> {
-  const file = await compressImageForUpload(original);
+export async function uploadAdminFile(original: File, opts: { purpose?: 'icon' } = {}): Promise<UploadResult> {
+  const source = opts.purpose === 'icon' && isSvgFile(original) ? await rasterizeSvg(original) : original;
+  const file = await compressImageForUpload(source);
   const form = new FormData();
   form.append('file', file);
+  if (opts.purpose) form.append('purpose', opts.purpose);
 
   let res: Response;
   try {

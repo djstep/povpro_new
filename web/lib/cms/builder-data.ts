@@ -1,7 +1,11 @@
 import { migrateLegacyBlocks, type ContentBlock } from '@/lib/cms/content-blocks';
+import { SLOT_PROPS } from '@/lib/cms/elements';
+import { decomposeSiteSection } from '@/lib/cms/html-tree';
 
 /** Исходная секция сайта (сырой HTML) в конструкторе — отдельный тип компонента */
 export const SITE_SECTION_TYPE = 'siteSection';
+/** Элемент внутри разобранной секции сайта (тоже сырой HTML) */
+export const SITE_FRAGMENT_TYPE = 'siteFragment';
 
 export type ShellProps = { before: string; mainAttrs: string; after: string };
 
@@ -39,51 +43,75 @@ function mergeBlankSections(blocks: ContentBlock[]): ContentBlock[] {
   return out;
 }
 
+/** Цельная секция сайта → контейнер с отдельными элементами (вёрстка та же), если разметка позволяет */
+function splitSiteSection(block: ContentBlock): ContentBlock {
+  if (block.type !== 'html' || !block.raw) return block;
+  return decomposeSiteSection(block.content, block.id, block.label) ?? block;
+}
+
+function blockToItem(block: ContentBlock, nested: boolean): BuilderItem {
+  const { id, type, ...rest } = block as ContentBlock & Record<string, unknown>;
+  const raw = type === 'html' && (block as { raw?: boolean }).raw;
+  const props: Record<string, unknown> & { id: string } = { id, ...rest };
+  if (raw) delete props.raw;
+  for (const slot of SLOT_PROPS[type] ?? []) {
+    const children = (rest as Record<string, unknown>)[slot];
+    props[slot] = Array.isArray(children) ? (children as ContentBlock[]).map((c) => blockToItem(c, true)) : [];
+  }
+  return { type: raw ? (nested ? SITE_FRAGMENT_TYPE : SITE_SECTION_TYPE) : type, props };
+}
+
 export function blocksToBuilderData(blocks: ContentBlock[]): BuilderData {
   const shell = blocks.find((b): b is Extract<ContentBlock, { type: 'shell' }> => b.type === 'shell');
   const body = mergeBlankSections(blocks.filter((b) => b.type !== 'shell'));
-  const content = migrateLegacyBlocks(body).map((block) => {
-    const { id, type, ...rest } = block;
-    const puckType = type === 'html' && (block as { raw?: boolean }).raw ? SITE_SECTION_TYPE : type;
-    return { type: puckType, props: { id, ...rest } } as BuilderItem;
-  });
   return {
     root: {
       props: {
         shell: shell ? { before: shell.before, mainAttrs: shell.mainAttrs, after: shell.after } : null,
       },
     },
-    content,
+    content: migrateLegacyBlocks(body)
+      .map(splitSiteSection)
+      .map((block) => blockToItem(block, false)),
   };
+}
+
+type RawItem = { type: string; props: Record<string, unknown> };
+
+function itemToBlock(item: RawItem): ContentBlock {
+  const { id, ...rest } = item.props;
+  const raw = item.type === SITE_SECTION_TYPE || item.type === SITE_FRAGMENT_TYPE;
+  const type = raw ? 'html' : item.type;
+  const block: Record<string, unknown> = { ...rest, id: String(id), type };
+  if (raw) block.raw = true;
+  for (const slot of SLOT_PROPS[type] ?? []) {
+    const children = rest[slot];
+    block[slot] = Array.isArray(children) ? (children as RawItem[]).map(itemToBlock) : [];
+  }
+  return block as unknown as ContentBlock;
 }
 
 export function builderDataToBlocks(data: {
   root?: { props?: Record<string, unknown> };
-  content?: Array<{ type: string; props: Record<string, unknown> }>;
+  content?: RawItem[];
 }): ContentBlock[] {
   const out: ContentBlock[] = [];
   const shell = data.root?.props?.shell as ShellProps | null | undefined;
   if (shell) {
     out.push({ id: 'shell', type: 'shell', before: shell.before, mainAttrs: shell.mainAttrs, after: shell.after });
   }
-  for (const item of data.content ?? []) {
-    const { id, ...rest } = item.props;
-    if (item.type === SITE_SECTION_TYPE) {
-      out.push({ ...rest, id: String(id), type: 'html', raw: true } as ContentBlock);
-    } else {
-      out.push({ ...rest, id: String(id), type: item.type } as ContentBlock);
-    }
-  }
+  for (const item of data.content ?? []) out.push(itemToBlock(item));
   return out;
 }
 
-/** Сравнение без учёта порядка ключей */
+/** Сравнение по содержимому: без учёта порядка ключей и id блоков */
 export function blocksSignature(blocks: ContentBlock[]): string {
-  return JSON.stringify(blocks, (_key, value: unknown) => {
+  return JSON.stringify(blocks, (key, value: unknown) => {
+    if (key === 'id') return undefined;
     if (value && typeof value === 'object' && !Array.isArray(value)) {
       return Object.fromEntries(
         Object.entries(value as Record<string, unknown>)
-          .filter(([, v]) => v !== undefined)
+          .filter(([k, v]) => v !== undefined && k !== 'id')
           .sort(([a], [b]) => a.localeCompare(b)),
       );
     }

@@ -31,6 +31,7 @@ export async function GET() {
     title: r.title,
     source: 'static' as const,
     url: r.slug === '' ? '/' : `/${r.slug}`,
+    isProtected: isProtectedSlug(r.slug),
   }));
 
   if (!isDbConfigured()) {
@@ -61,7 +62,7 @@ export async function GET() {
           showInNav: db?.showInNav ?? false,
           navSection: db?.navSection ?? 'NONE',
           categoryId: db?.categoryId ?? null,
-          isProtected: db?.isProtected ?? (r.slug === '' || r.slug === 'contacts'),
+          isProtected: isProtectedSlug(r.slug) || Boolean(db?.isProtected),
           hasDbBody: Boolean(db?.body || db?.contentBlocks),
         };
       }),

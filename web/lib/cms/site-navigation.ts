@@ -2,6 +2,7 @@ import type { NavMenuItem, SiteNavConfig } from '@/lib/navigation-config';
 import { STATIC_NAV } from '@/lib/navigation-config';
 import { unstable_cache } from 'next/cache';
 import { isDbConfigured, prisma } from '@/lib/db';
+import { isProtectedSlug } from '@/lib/cms/resolve-page-html';
 
 type NavSectionKey = 'NONE' | 'FRICTION' | 'MECH' | 'USLUGI' | 'TOP_LINK';
 
@@ -96,11 +97,28 @@ async function buildSectionNav(
   return mergeNavItems(staticItems, [...dbTree, ...uncategorized]);
 }
 
+/** Убирает из меню пункты скрытых/удалённых страниц; пустые подменю тоже пропадают */
+function dropHidden(items: NavMenuItem[], hidden: Set<string>): NavMenuItem[] {
+  const out: NavMenuItem[] = [];
+  for (const item of items) {
+    const slug = typeof item.href === 'string' ? item.href.replace(/^\/+|\/+$/g, '') : null;
+    if (slug !== null && hidden.has(slug)) continue;
+    if (item.children) {
+      const children = dropHidden(item.children, hidden);
+      if (!children.length && !item.href) continue;
+      out.push({ ...item, children });
+    } else {
+      out.push(item);
+    }
+  }
+  return out;
+}
+
 async function fetchSiteNavigation(): Promise<SiteNavConfig> {
   if (!isDbConfigured()) return STATIC_NAV;
 
   try {
-    const [mech, uslugi, topPages] = await Promise.all([
+    const [mech, uslugi, topPages, hiddenPages] = await Promise.all([
       buildSectionNav('MECH', STATIC_NAV.mech),
       buildSectionNav('USLUGI', STATIC_NAV.uslugi),
       prisma.page.findMany({
@@ -108,6 +126,7 @@ async function fetchSiteNavigation(): Promise<SiteNavConfig> {
         orderBy: [{ sortOrder: 'asc' }, { title: 'asc' }],
         select: { slug: true, title: true },
       }),
+      prisma.page.findMany({ where: { published: false }, select: { slug: true } }),
     ]);
 
     const topLinks = mergeNavItems(
@@ -115,7 +134,14 @@ async function fetchSiteNavigation(): Promise<SiteNavConfig> {
       topPages.map(pageToNavItem),
     );
 
-    return { mech, uslugi, topLinks };
+    const hidden = new Set(hiddenPages.map((p) => p.slug).filter((slug) => !isProtectedSlug(slug)));
+    if (!hidden.size) return { mech, uslugi, topLinks };
+    return {
+      mech: dropHidden(mech, hidden),
+      uslugi: dropHidden(uslugi, hidden),
+      topLinks: dropHidden(topLinks, hidden),
+      hidden: [...hidden],
+    };
   } catch {
     return STATIC_NAV;
   }

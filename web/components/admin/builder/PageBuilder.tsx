@@ -13,8 +13,11 @@ import {
   type Viewports,
 } from '@puckeditor/core';
 import { builderConfig } from '@/components/admin/builder/config';
+import { FREE_TYPES, measurePlace, updatePlace, useFreeDrag } from '@/components/admin/builder/FreeDrag';
 import { MediaLibraryProvider } from '@/components/admin/builder/media';
+import { useResizeHandles } from '@/components/admin/builder/ResizeHandles';
 import type { BuilderData } from '@/lib/cms/builder-data';
+import { isPlace } from '@/lib/cms/elements';
 
 const DICTIONARY: Dictionary = {
   'header-publish': 'Сохранить',
@@ -149,7 +152,7 @@ function NamedActionBar({
 }) {
   const name = usePuckSelector((s) => {
     const value = s.selectedItem?.props?.label ?? s.selectedItem?.props?.title ?? s.selectedItem?.props?.text;
-    return typeof value === 'string' ? value.trim() : '';
+    return typeof value === 'string' ? value.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() : '';
   });
   const shown = name ? `${label ?? 'Блок'}: ${name.length > 40 ? `${name.slice(0, 39)}…` : name}` : label;
   return (
@@ -158,17 +161,77 @@ function NamedActionBar({
         {parentAction}
         {shown && <ActionBar.Label label={shown} />}
       </ActionBar.Group>
-      <ActionBar.Group>{children}</ActionBar.Group>
+      <ActionBar.Group>
+        <FreeToggle />
+        {children}
+      </ActionBar.Group>
     </ActionBar>
+  );
+}
+
+/** Кнопка «свободно / по порядку» для выбранного элемента */
+function FreeToggle() {
+  const getPuck = useGetPuck();
+  const type = usePuckSelector((s) => s.selectedItem?.type ?? '');
+  const id = usePuckSelector((s) => String(s.selectedItem?.props?.id ?? ''));
+  const free = usePuckSelector((s) => isPlace(s.selectedItem?.props?.place));
+  if (!id || !FREE_TYPES.has(type)) return null;
+  return (
+    <ActionBar.Action
+      label={free ? 'Вернуть в общий порядок' : 'Свободно: двигать мышью в любое место'}
+      active={free}
+      onClick={(e) => {
+        e.stopPropagation();
+        updatePlace(getPuck, id, free ? undefined : measurePlace(id));
+      }}
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+        <path d="M12 2v20M2 12h20M12 2l-3 3M12 2l3 3M12 22l-3-3M12 22l3-3M2 12l3-3M2 12l3 3M22 12l-3-3M22 12l-3 3" />
+      </svg>
+    </ActionBar.Action>
   );
 }
 
 /** Документ холста получает те же классы html/body, что и сайт (тёмная тема, шрифт) */
 function IframeSync({ children, document: doc }: { children: React.ReactNode; document?: Document }) {
+  useFreeDrag(doc);
+  const selectedId = usePuckSelector((s) => String(s.selectedItem?.props?.id ?? ''));
+  const selectedType = usePuckSelector((s) => s.selectedItem?.type ?? '');
+  useResizeHandles(doc, selectedId, selectedType);
   useEffect(() => {
     if (!doc) return;
     doc.documentElement.className = window.document.documentElement.className;
     doc.body.className = window.document.body.className;
+    // Ссылки и формы на холсте не должны уводить со страницы редактора
+    const stopLink = (e: Event) => {
+      if ((e.target as Element | null)?.closest?.('a[href]')) e.preventDefault();
+    };
+    const stopSubmit = (e: Event) => e.preventDefault();
+    doc.addEventListener('click', stopLink, true);
+    doc.addEventListener('submit', stopSubmit, true);
+    // Выбор в «Структуре» зовёт scrollIntoView — он прокручивает и блоки сайта с overflow:hidden, и оболочку
+    // редактора, откуда колесом уже не вернуть. Двигаем только само окно холста.
+    const win = doc.defaultView;
+    const proto = win?.Element.prototype;
+    const nativeScrollIntoView = proto?.scrollIntoView;
+    if (win && proto && nativeScrollIntoView) {
+      proto.scrollIntoView = function (this: Element, arg?: boolean | ScrollIntoViewOptions) {
+        const scroller = doc.scrollingElement;
+        if (!this.hasAttribute('data-puck-component') || !scroller || scroller.scrollHeight <= win.innerHeight + 1) {
+          nativeScrollIntoView.call(this, arg);
+          return;
+        }
+        const rect = this.getBoundingClientRect();
+        const room = win.innerHeight - rect.height;
+        const offset = room > 160 ? room / 2 : 140;
+        win.scrollTo({ top: Math.max(0, win.scrollY + rect.top - offset), behavior: 'smooth' });
+      };
+    }
+    return () => {
+      doc.removeEventListener('click', stopLink, true);
+      doc.removeEventListener('submit', stopSubmit, true);
+      if (proto && nativeScrollIntoView) proto.scrollIntoView = nativeScrollIntoView;
+    };
   }, [doc]);
   return <>{children}</>;
 }

@@ -1,5 +1,16 @@
 /** Типы и рендер блочного контента страниц */
 
+import {
+  ELEMENT_TYPES,
+  SLOT_PROPS,
+  applyPlace,
+  renderButtonHtml,
+  renderElementHtml,
+  renderIconHtml,
+  type ButtonLook,
+  type ElementBlock,
+} from '@/lib/cms/elements';
+
 export type ButtonItem = { label: string; href: string };
 
 /** Положение фото в карточке: во всю ширину или рядом с текстом */
@@ -46,8 +57,27 @@ export type ContentBlock =
   | { id: string; type: 'text'; content: string }
   | { id: string; type: 'image'; src: string; alt?: string; caption?: string; layout?: ImageLayout }
   | { id: string; type: 'video'; src: string; poster?: string }
-  | ({ id: string; type: 'buttons'; items: ButtonItem[]; align?: TextAlign } & SectionStyle)
+  | ({
+      id: string;
+      type: 'buttons';
+      items: ButtonItem[];
+      align?: TextAlign | 'right' | 'stretch';
+    } & ButtonLook &
+      SectionStyle)
   | { id: string; type: 'html'; content: string; raw?: boolean; label?: string }
+  /** Контейнер из исходной вёрстки сайта: открывающий/закрывающий тег как есть, внутри — блоки */
+  | {
+      id: string;
+      type: 'box';
+      label?: string;
+      lead?: string;
+      open: string;
+      content: ContentBlock[];
+      tail?: string;
+      close: string;
+      trail?: string;
+    }
+  | ElementBlock
   | ({
       id: string;
       type: 'title';
@@ -115,19 +145,26 @@ const ARRAY_PROPS: Partial<Record<ContentBlockType, string>> = {
   cards: 'items',
   stats: 'items',
   gallery: 'items',
+  elList: 'items',
 };
+
+function normalizeBlock(b: ContentBlock): ContentBlock {
+  const record = { ...(b as unknown as Record<string, unknown>) };
+  const key = ARRAY_PROPS[b.type];
+  if (key && !Array.isArray(record[key])) record[key] = [];
+  for (const slot of SLOT_PROPS[b.type] ?? []) {
+    const value = record[slot];
+    record[slot] = Array.isArray(value) ? value.filter(isContentBlock).map(normalizeBlock) : [];
+  }
+  return record as unknown as ContentBlock;
+}
 
 export function parseContentBlocks(raw: string | null | undefined): ContentBlock[] {
   if (!raw?.trim()) return [];
   try {
     const parsed = JSON.parse(raw) as unknown;
     if (!Array.isArray(parsed)) return [];
-    return parsed.filter(isContentBlock).map((b) => {
-      const key = ARRAY_PROPS[b.type];
-      const record = b as unknown as Record<string, unknown>;
-      if (key && !Array.isArray(record[key])) return { ...b, [key]: [] } as ContentBlock;
-      return b;
-    });
+    return parsed.filter(isContentBlock).map(normalizeBlock);
   } catch {
     return [];
   }
@@ -313,9 +350,7 @@ function renderCards(block: Extract<ContentBlock, { type: 'cards' }>): string {
           ? `<img class="cms-item__img" src="${esc(item.image)}" alt="${esc(item.title ?? '')}" loading="eager" decoding="async"/>`
           : ''
       }${
-        item.icon?.trim()
-          ? `<span class="material-symbols-outlined cms-item__icon" aria-hidden="true">${esc(item.icon.trim())}</span>`
-          : ''
+        item.icon?.trim() ? renderIconHtml(item.icon, 'cms-item__icon') : ''
       }${item.title?.trim() ? `<h3 class="cms-h3">${esc(item.title)}</h3>` : ''}${
         !isEmptyRichText(item.text) ? `<div class="cms-text">${textToHtml(item.text ?? '')}</div>` : ''
       }</${tag}>`;
@@ -381,7 +416,17 @@ function renderCta(block: Extract<ContentBlock, { type: 'cta' }>): string {
 }
 
 function renderButtonsSection(block: Extract<ContentBlock, { type: 'buttons' }>): string {
-  const html = renderButtons(block.items, block.align ?? 'center');
+  const align = block.align ?? 'center';
+  let html: string;
+  if (block.variant) {
+    const links = block.items
+      .filter((i) => i.href?.trim() && i.label?.trim())
+      .map((item) => renderButtonHtml(item.label, item.href, block))
+      .join('');
+    html = links ? `<div class="cms-buttons cms-buttons--${align}">${links}</div>` : '';
+  } else {
+    html = renderButtons(block.items, align === 'center' ? 'center' : 'left');
+  }
   if (!html) return '';
   return `<section class="${sectionClass(block)}">${html}</section>`;
 }
@@ -431,7 +476,7 @@ function renderFlowItem(block: FlowBlock): string {
       if (!block.src) return '';
       return renderMediaFigure('video', block.src, { poster: block.poster });
     case 'buttons':
-      return renderButtons(block.items, block.align ?? 'left');
+      return renderButtons(block.items, block.align === 'center' ? 'center' : 'left');
   }
 }
 
@@ -490,6 +535,12 @@ function groupLegacyFlow(blocks: ContentBlock[]): Array<ContentBlock | FlowBlock
 
 /** HTML одного блока без группировки (превью в конструкторе, сканирование медиа) */
 export function renderBlockHtml(block: ContentBlock): string {
+  const html = renderBlockBody(block);
+  const { place, dims } = block as { place?: unknown; dims?: unknown };
+  return place || dims ? applyPlace(html, place, dims) : html;
+}
+
+function renderBlockBody(block: ContentBlock): string {
   switch (block.type) {
     case 'shell':
       return '';
@@ -525,7 +576,12 @@ export function renderBlockHtml(block: ContentBlock): string {
       return renderCta(block);
     case 'spacer':
       return `<div class="cms-spacer cms-spacer--${block.size ?? 'm'}" aria-hidden="true"></div>`;
+    case 'box':
+      return `${block.lead ?? ''}${block.open}${(block.content ?? []).map(renderBlockHtml).join('')}${block.tail ?? ''}${
+        block.close
+      }${block.trail ?? ''}`;
     default:
+      if (ELEMENT_TYPES.has(block.type)) return renderElementHtml(block as ElementBlock, renderBlockHtml);
       return '';
   }
 }
